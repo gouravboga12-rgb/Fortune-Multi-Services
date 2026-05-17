@@ -26,7 +26,6 @@ const Navbar = () => {
   }, []);
 
   const navLinks = [
-    { name: 'About Us', path: '/about' },
     { 
       name: 'Startup', 
       path: '/services/startup', 
@@ -75,6 +74,7 @@ const Navbar = () => {
       hasDropdown: true,
       category: servicesData.find(c => c.slug === 'tax-compliance')
     },
+    { name: 'About Us', path: '/about' },
   ];
 
   return (
