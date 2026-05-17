@@ -81,15 +81,15 @@ const Footer = () => {
             <h4 className="text-lg font-bold mb-6 text-accent">Get in Touch</h4>
             <ul className="space-y-4">
               <li className="flex items-start gap-3 text-gray-400 text-sm">
-                <MapPin className="w-5 h-5 text-primary shrink-0" />
+                <MapPin className="w-5 h-5 text-accent-light shrink-0" />
                 <span>Plot no 178&179, Flat No 303, Mahadevpuram colony, Kukatpally, Hyderabad, 500072</span>
               </li>
               <li className="flex items-center gap-3 text-gray-400 text-sm">
-                <Phone className="w-5 h-5 text-primary shrink-0" />
+                <Phone className="w-5 h-5 text-accent-light shrink-0" />
                 <a href="tel:+918919051513" className="hover:text-white">+91 89190 51513</a>
               </li>
               <li className="flex items-center gap-3 text-gray-400 text-sm">
-                <Mail className="w-5 h-5 text-primary shrink-0" />
+                <Mail className="w-5 h-5 text-accent-light shrink-0" />
                 <a href="mailto:fortunemultiservices2023@gmail.com" className="hover:text-white">fortunemultiservices2023@gmail.com</a>
               </li>
             </ul>
