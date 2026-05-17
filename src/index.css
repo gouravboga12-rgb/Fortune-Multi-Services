@@ -1,0 +1,59 @@
+@import "tailwindcss";
+
+@theme {
+  /* Royal Authority Palette */
+  --color-primary: #0F172A;    /* Slate 900 - Deep, Trustworthy */
+  --color-secondary: #1E293B;  /* Slate 800 - Professional */
+  --color-accent: #D97706;     /* Amber 600 - Premium Gold/Amber */
+  --color-accent-light: #F59E0B; /* Amber 500 */
+  --color-soft-white: #F8FAFC; /* Slate 50 - Clean Surface */
+  --color-dark-gray: #334155;  /* Slate 700 - Body Text */
+  --color-light-gray: #E2E8F0; /* Slate 200 - Borders */
+  --color-success: #059669;    /* Emerald 600 */
+
+  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+  --font-heading: "Plus Jakarta Sans", "Outfit", system-ui, -apple-system, sans-serif;
+
+  --shadow-premium: 0 10px 15px -3px rgba(15, 23, 42, 0.05), 0 4px 6px -4px rgba(15, 23, 42, 0.05);
+  --shadow-glow: 0 0 20px rgba(217, 119, 6, 0.15);
+}
+
+@layer base {
+  body {
+    @apply bg-soft-white text-dark-gray font-sans selection:bg-accent/30 selection:text-primary;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading text-primary font-bold tracking-tight;
+  }
+}
+
+@utility btn-primary {
+  @apply bg-primary text-white px-7 py-3.5 rounded-xl font-semibold transition-all duration-300 
+         hover:bg-secondary hover:shadow-lg active:scale-95 flex items-center justify-center gap-2;
+}
+
+@utility btn-accent {
+  @apply bg-accent text-white px-7 py-3.5 rounded-xl font-semibold transition-all duration-300 
+         hover:bg-accent-light hover:shadow-glow active:scale-95 flex items-center justify-center gap-2;
+}
+
+@utility glass-card {
+  @apply bg-white/70 backdrop-blur-xl border border-white/40 shadow-premium rounded-2xl transition-all duration-300;
+}
+
+@utility bento-card {
+  @apply glass-card p-6 hover:shadow-xl hover:-translate-y-1 hover:border-accent/20;
+}
+
+@utility mesh-gradient {
+  background-color: #0F172A;
+  background-image: 
+    radial-gradient(at 0% 0%, hsla(217,100%,10%,1) 0, transparent 50%), 
+    radial-gradient(at 50% 0%, hsla(210,100%,15%,1) 0, transparent 50%), 
+    radial-gradient(at 100% 0%, hsla(35,100%,20%,1) 0, transparent 50%);
+}
+
+@utility text-gradient {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-primary via-secondary to-accent;
+}

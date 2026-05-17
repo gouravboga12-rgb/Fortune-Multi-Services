@@ -1,0 +1,311 @@
+import { Shield, Target, Award, TrendingUp, Heart, Clock, ShieldCheck, FileText, Briefcase, DollarSign, MapPin, Users, Coins } from 'lucide-react';
+import { motion } from 'framer-motion';
+
+const About = () => {
+  return (
+    <div className="bg-soft-white min-h-screen">
+      {/* Hero Header */}
+      <section className="relative pt-48 pb-24 overflow-hidden bg-primary">
+        <div className="absolute inset-0 mesh-gradient opacity-60"></div>
+        <div className="container mx-auto px-4 lg:px-8 relative z-10 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="max-w-4xl mx-auto space-y-6"
+          >
+            <span className="text-accent uppercase tracking-widest font-black text-sm px-4 py-2 bg-accent/10 rounded-full border border-accent/20">
+              About Us
+            </span>
+            <h1 className="text-4xl lg:text-6xl font-black text-white leading-tight tracking-tighter">
+              Who we are and what <span className="text-accent">We can do</span> for your Business?
+            </h1>
+            <p className="text-lg md:text-xl text-white/80 font-medium leading-relaxed max-w-3xl mx-auto">
+              Invention Business Solutions (Fortune Multi Services) is the largest offline & online compliance services platform dedicated to helping people start and grow their business, at an affordable cost. Our aim is to help the entrepreneur on the legal and regulatory requirements, and be a partner throughout the business lifecycle, offering support at every stage to ensure the business remains compliant and continually growing.
+            </p>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Registrations & Licenses Section */}
+      <section className="py-24 bg-white relative">
+        <div className="container mx-auto px-4 lg:px-8">
+          <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
+            <div className="flex justify-center gap-4 text-xs font-black uppercase tracking-widest text-accent mb-2">
+              <span className="px-3 py-1 bg-accent/10 rounded-full">Make a massive Progress</span>
+              <span className="px-3 py-1 bg-green-500/10 text-green-600 rounded-full">Safe investment</span>
+            </div>
+            <h2 className="text-3xl lg:text-5xl font-black text-primary tracking-tight">
+              Get Your Business Registrations & Licenses
+            </h2>
+            <p className="text-lg text-dark-gray font-medium opacity-65">
+              Trusted by experts and businesses
+            </p>
+            <div className="w-20 h-1 bg-accent mx-auto rounded-full mt-4"></div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {[
+              {
+                title: 'GST Filling',
+                desc: 'File your GST returns every month with us.',
+                icon: TrendingUp,
+                color: 'bg-primary/5 text-primary border-primary/10 hover:border-primary',
+              },
+              {
+                title: 'Labour Renews',
+                desc: 'Renew your Labour License annually with us.',
+                icon: Clock,
+                color: 'bg-accent/5 text-accent border-accent/10 hover:border-accent',
+              },
+              {
+                title: 'PvtLtd Compliances',
+                desc: 'File Private limited Company yearly compliances.',
+                icon: ShieldCheck,
+                color: 'bg-green-500/5 text-green-600 border-green-500/10 hover:border-green-600',
+              },
+              {
+                title: 'IT returns',
+                desc: 'File your Income tax returns here.',
+                icon: Award,
+                color: 'bg-purple-500/5 text-purple-600 border-purple-500/10 hover:border-purple-600',
+              },
+            ].map((item, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                className={`p-8 rounded-[2rem] border transition-all duration-500 group flex flex-col items-start ${item.color}`}
+              >
+                <div className="p-4 rounded-2xl bg-white shadow-sm mb-6 group-hover:scale-110 transition-transform duration-500">
+                  <item.icon className="w-8 h-8" />
+                </div>
+                <h3 className="text-2xl font-black mb-3 tracking-tight">{item.title}</h3>
+                <p className="text-sm font-medium leading-relaxed opacity-75">{item.desc}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Experience and Quote Banner */}
+      <section className="py-20 bg-secondary text-white relative overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(245,166,35,0.08),transparent_70%)]"></div>
+        <div className="container mx-auto px-4 lg:px-8 relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="space-y-4"
+            >
+              <span className="text-accent uppercase tracking-widest font-black text-xs">
+                Seven Years of Trust
+              </span>
+              <h2 className="text-3xl lg:text-5xl font-black tracking-tight leading-tight text-white">
+                We have Over <span className="text-accent">Seven years</span> of Experience
+              </h2>
+              <div className="w-20 h-1 bg-accent rounded-full"></div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="p-8 lg:p-12 rounded-[2.5rem] bg-white/5 border border-white/10 backdrop-blur-md space-y-6"
+            >
+              <span className="text-accent font-black text-5xl leading-none">“</span>
+              <p className="text-2xl lg:text-3xl font-bold tracking-tight text-accent italic">
+                Ensure Professional, Accurate, High Quality Service.
+              </p>
+              <p className="text-gray-300 font-medium leading-relaxed">
+                Our Team has the Knowledge and Expertise to Ensure Professional, Accurate, High Quality Services.
+              </p>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Metrics Board Grid 1 */}
+      <section className="py-24 bg-white relative">
+        <div className="container mx-auto px-4 lg:px-8">
+          <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
+            <span className="text-accent uppercase tracking-widest font-black text-xs">
+              Milestones
+            </span>
+            <h2 className="text-3xl lg:text-4xl font-black text-primary tracking-tight">
+              Track Record of Business Excellence
+            </h2>
+            <div className="w-20 h-1 bg-accent mx-auto rounded-full"></div>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            {[
+              { label: 'Successful Projects', val: '734+', icon: Briefcase },
+              { label: 'Happy Clients', val: '586+', icon: Heart },
+              { label: 'Professionals Team', val: '3+', icon: Users },
+              { label: 'Services Offered', val: '164+', icon: FileText },
+              { label: 'Repeat Clients', val: '100%', icon: ShieldCheck },
+              { label: 'Savings in Fees', val: '50%', icon: Coins },
+              { label: 'Payment Options', val: '5+', icon: DollarSign },
+              { label: 'Cities Served', val: '10+', icon: MapPin },
+            ].map((stat, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.05 }}
+                className="bg-soft-white p-8 rounded-3xl border border-light-gray flex flex-col items-center text-center group hover:shadow-xl hover:border-accent transition-all duration-500"
+              >
+                <div className="p-3 bg-white rounded-2xl shadow-sm text-primary mb-4 group-hover:scale-110 transition-transform">
+                  <stat.icon className="w-6 h-6" />
+                </div>
+                <div className="text-3xl lg:text-4xl font-black text-primary tracking-tighter mb-2">
+                  {stat.val}
+                </div>
+                <div className="text-xs font-bold uppercase tracking-wider text-dark-gray opacity-80">
+                  {stat.label}
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* India's Largest Corporate compliance Platform Section */}
+      <section className="py-24 bg-soft-white relative overflow-hidden">
+        <div className="container mx-auto px-4 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+            {/* Platform Text Details */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="lg:col-span-7 space-y-8"
+            >
+              <div className="space-y-4">
+                <span className="text-accent uppercase tracking-widest font-black text-xs px-4 py-2 bg-accent/10 rounded-full border border-accent/20">
+                  India's largest financial services
+                </span>
+                <h2 className="text-4xl lg:text-5xl font-black text-primary leading-tight tracking-tight">
+                  Invention Tax Solutions
+                </h2>
+                <div className="w-20 h-1 bg-accent rounded-full"></div>
+              </div>
+
+              <p className="text-lg text-dark-gray font-medium leading-relaxed">
+                Invention Tax Solutions is the Best Tax And Corporates compliance platform that helps small, medium and large businesses to fulfill with various Business registrations and Licenses, tax filings, accounting, And government services. We have already served over 3,000 customers and have a steadily growing network of over 50+ professionals from all the major cities (Like Hyderabad, Bangalore) on our online platform. In 2016, we launched way of working for legal professionals across India.
+              </p>
+
+              {/* Second Statistical Metrics list */}
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-6 pt-4">
+                {[
+                  { title: 'Served clients', val: '1257+' },
+                  { title: 'Office Employees', val: '10+' },
+                  { title: 'Invoices Completed', val: '2684+' },
+                  { title: 'Tax returns filed', val: '782+' },
+                  { title: 'Happy clients', val: '1200+' },
+                ].map((stat, idx) => (
+                  <div key={idx} className="p-6 bg-white rounded-2xl border border-light-gray shadow-sm flex flex-col">
+                    <span className="text-2xl font-black text-primary tracking-tight mb-1">{stat.val}</span>
+                    <span className="text-xs font-bold uppercase tracking-wide text-dark-gray opacity-70">{stat.title}</span>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+
+            {/* Corporate Accolades Panel */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              className="lg:col-span-5 bg-primary text-white p-10 lg:p-12 rounded-[2.5rem] shadow-glow space-y-8"
+            >
+              <div className="space-y-2">
+                <span className="text-accent uppercase tracking-widest font-black text-xs">
+                  Trusted Partners
+                </span>
+                <h3 className="text-3xl font-black tracking-tight leading-tight text-white">
+                  200+ brands. <br />700+ businesses. <br />20+ experts.
+                </h3>
+              </div>
+              <div className="w-16 h-1 bg-accent rounded-full"></div>
+              <p className="text-gray-300 font-medium leading-relaxed text-lg">
+                We are the trusted partners for tax experts and businesses across industries such as manufacturing, retail, FMCG, financial services, e-commerce and healthcare.
+              </p>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Core Operational Service Highlights */}
+      <section className="py-24 bg-white relative">
+        <div className="container mx-auto px-4 lg:px-8">
+          <div className="text-center max-w-3xl mx-auto mb-20 space-y-4">
+            <span className="text-accent uppercase tracking-widest font-black text-xs">
+              Platform Features
+            </span>
+            <h2 className="text-3xl lg:text-5xl font-black text-primary tracking-tight">
+              Our Core Services & Filings
+            </h2>
+            <div className="w-20 h-1 bg-accent mx-auto rounded-full"></div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[
+              {
+                title: 'GST Filings',
+                desc: 'Easily file your GST monthly filings with our experts.',
+                icon: TrendingUp,
+              },
+              {
+                title: 'IncomeTax Returns',
+                desc: 'File Income tax returns every year with us on time.',
+                icon: Award,
+              },
+              {
+                title: 'GST Way bills',
+                desc: 'Generate GST e-way bills to transport your Goods.',
+                icon: Clock,
+              },
+              {
+                title: 'Trade Filing',
+                desc: 'Complete Trade License registration and renewal.',
+                icon: Shield,
+              },
+              {
+                title: 'ESI & PF returns',
+                desc: 'File ESI and PF returns every month.',
+                icon: Target,
+              },
+              {
+                title: 'TDS Refund',
+                desc: 'File your ITR and get refunds from your TDS.',
+                icon: Heart,
+              },
+            ].map((srv, idx) => (
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: idx * 0.1 }}
+                className="p-8 rounded-3xl border border-light-gray hover:border-accent hover:shadow-xl transition-all duration-500 group"
+              >
+                <div className="w-12 h-12 bg-primary/5 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-accent group-hover:scale-110 transition-all duration-500">
+                  <srv.icon className="w-6 h-6 text-primary group-hover:text-white" />
+                </div>
+                <h4 className="text-2xl font-black text-primary mb-3 tracking-tight">{srv.title}</h4>
+                <p className="text-dark-gray font-medium text-sm leading-relaxed opacity-75">{srv.desc}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+};
+
+export default About;
