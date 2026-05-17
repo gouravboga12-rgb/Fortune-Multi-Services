@@ -4,55 +4,50 @@ import { MessageSquare, ArrowRight, ShieldCheck, Zap, Star } from 'lucide-react'
 import { motion } from 'framer-motion';
 
 const Hero = () => {
-  const [title1, setTitle1] = useState('');
-  const [title2, setTitle2] = useState('');
-  const [desc, setDesc] = useState('');
-  const [step, setStep] = useState(0);
-
-  const fullTitle1 = 'Fortune';
-  const fullTitle2 = 'Multi Services';
-  const fullDesc = 'Elevate your business with elite compliance solutions. From Startup Registrations to Global Trademarks.';
+  const [text1, setText1] = useState('');
+  const [text2, setText2] = useState('');
+  const [showCursor1, setShowCursor1] = useState(true);
+  const [showCursor2, setShowCursor2] = useState(false);
 
   useEffect(() => {
-    if (step === 0) {
-      let i = 0;
-      const timer = setInterval(() => {
-        setTitle1(fullTitle1.slice(0, i + 1));
-        i++;
-        if (i >= fullTitle1.length) {
-          clearInterval(timer);
-          setTimeout(() => setStep(1), 150);
-        }
-      }, 90);
-      return () => clearInterval(timer);
-    }
-    
-    if (step === 1) {
-      let i = 0;
-      const timer = setInterval(() => {
-        setTitle2(fullTitle2.slice(0, i + 1));
-        i++;
-        if (i >= fullTitle2.length) {
-          clearInterval(timer);
-          setTimeout(() => setStep(2), 150);
-        }
-      }, 70);
-      return () => clearInterval(timer);
-    }
+    let line1Str = "Fortune";
+    let line2Str = "Multi Services";
+    let i = 0;
+    let j = 0;
 
-    if (step === 2) {
-      let i = 0;
-      const timer = setInterval(() => {
-        setDesc(fullDesc.slice(0, i + 1));
+    // Type Line 1
+    const interval1 = setInterval(() => {
+      if (i < line1Str.length) {
+        setText1((prev) => prev + line1Str.charAt(i));
         i++;
-        if (i >= fullDesc.length) {
-          clearInterval(timer);
-          setStep(3);
-        }
-      }, 25);
-      return () => clearInterval(timer);
-    }
-  }, [step]);
+      } else {
+        clearInterval(interval1);
+        setShowCursor1(false);
+        setShowCursor2(true);
+        
+        // Start Type Line 2 after a small delay
+        setTimeout(() => {
+          const interval2 = setInterval(() => {
+            if (j < line2Str.length) {
+              setText2((prev) => prev + line2Str.charAt(j));
+              j++;
+            } else {
+              clearInterval(interval2);
+              // Keep cursor blinking for a bit then fade out
+              setTimeout(() => {
+                setShowCursor2(false);
+              }, 2000);
+            }
+          }, 80);
+        }, 200);
+      }
+    }, 100);
+
+    return () => {
+      clearInterval(interval1);
+    };
+  }, []);
+
   return (
     <section className="relative min-h-screen flex items-center pt-32 pb-16 lg:pt-20 lg:pb-0 overflow-hidden bg-primary">
       {/* Background Effects */}
@@ -75,22 +70,31 @@ const Hero = () => {
               <span>India's Trusted Business Partner</span>
             </div>
             
-            <h1 className="text-5xl lg:text-8xl font-black leading-[0.95] text-white tracking-tighter min-h-[96px] lg:min-h-[160px]">
-              {title1}
-              {step === 0 && <span className="text-accent animate-pulse font-normal">|</span>}
+            <h1 className="text-5xl lg:text-8xl font-black leading-[0.95] text-white tracking-tighter min-h-[105px] lg:min-h-[160px]">
+              {text1}
+              {showCursor1 && <span className="text-accent animate-pulse font-light">|</span>}
               <br />
               <span className="text-accent">
-                {title2}
-                {step === 1 && <span className="text-white animate-pulse font-normal">|</span>}
+                {text2}
               </span>
+              {showCursor2 && <span className="text-white animate-pulse font-light">|</span>}
             </h1>
             
-            <p className="text-xl text-white/70 max-w-xl leading-relaxed font-medium min-h-[56px]">
-              {desc}
-              {step === 2 && <span className="text-accent animate-pulse font-bold">|</span>}
-            </p>
+            <motion.p 
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 2.2, duration: 0.8, ease: "easeOut" }}
+              className="text-xl text-white/70 max-w-xl leading-relaxed font-medium"
+            >
+              Elevate your business with elite compliance solutions. From <span className="text-white font-bold underline decoration-accent underline-offset-4">Startup Registrations</span> to <span className="text-white font-bold underline decoration-accent underline-offset-4">Global Trademarks</span>.
+            </motion.p>
 
-            <div className="flex flex-col sm:flex-row gap-5">
+            <motion.div 
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 2.5, duration: 0.8, ease: "easeOut" }}
+              className="flex flex-col sm:flex-row gap-5"
+            >
               <Link to="/contact" className="btn-accent px-10 py-5 text-lg shadow-glow">
                 Start My Business
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -104,9 +108,14 @@ const Hero = () => {
                 <MessageSquare className="w-5 h-5 text-green-400" />
                 Expert Consultation
               </a>
-            </div>
+            </motion.div>
 
-            <div className="flex items-center gap-8 pt-8">
+            <motion.div 
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 2.8, duration: 0.8, ease: "easeOut" }}
+              className="flex items-center gap-8 pt-8"
+            >
               <div className="flex -space-x-3">
                 {[1, 2, 3, 4].map((i) => (
                   <div key={i} className="w-12 h-12 rounded-full border-2 border-primary bg-slate-800 flex items-center justify-center text-white text-xs font-bold overflow-hidden">
@@ -121,7 +130,7 @@ const Hero = () => {
                 </div>
                 <p className="text-white/50 text-sm font-medium">Trusted by 5,000+ Entrepreneurs</p>
               </div>
-            </div>
+            </motion.div>
           </motion.div>
 
           <motion.div 
