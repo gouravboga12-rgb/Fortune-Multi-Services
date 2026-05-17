@@ -1,8 +1,58 @@
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { MessageSquare, ArrowRight, ShieldCheck, Zap, Star } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const Hero = () => {
+  const [title1, setTitle1] = useState('');
+  const [title2, setTitle2] = useState('');
+  const [desc, setDesc] = useState('');
+  const [step, setStep] = useState(0);
+
+  const fullTitle1 = 'Fortune';
+  const fullTitle2 = 'Multi Services';
+  const fullDesc = 'Elevate your business with elite compliance solutions. From Startup Registrations to Global Trademarks.';
+
+  useEffect(() => {
+    if (step === 0) {
+      let i = 0;
+      const timer = setInterval(() => {
+        setTitle1(fullTitle1.slice(0, i + 1));
+        i++;
+        if (i >= fullTitle1.length) {
+          clearInterval(timer);
+          setTimeout(() => setStep(1), 150);
+        }
+      }, 90);
+      return () => clearInterval(timer);
+    }
+    
+    if (step === 1) {
+      let i = 0;
+      const timer = setInterval(() => {
+        setTitle2(fullTitle2.slice(0, i + 1));
+        i++;
+        if (i >= fullTitle2.length) {
+          clearInterval(timer);
+          setTimeout(() => setStep(2), 150);
+        }
+      }, 70);
+      return () => clearInterval(timer);
+    }
+
+    if (step === 2) {
+      let i = 0;
+      const timer = setInterval(() => {
+        setDesc(fullDesc.slice(0, i + 1));
+        i++;
+        if (i >= fullDesc.length) {
+          clearInterval(timer);
+          setStep(3);
+        }
+      }, 25);
+      return () => clearInterval(timer);
+    }
+  }, [step]);
   return (
     <section className="relative min-h-screen flex items-center pt-32 pb-16 lg:pt-20 lg:pb-0 overflow-hidden bg-primary">
       {/* Background Effects */}
@@ -25,13 +75,19 @@ const Hero = () => {
               <span>India's Trusted Business Partner</span>
             </div>
             
-            <h1 className="text-5xl lg:text-8xl font-black leading-[0.95] text-white tracking-tighter">
-              Fortune <br />
-              <span className="text-accent">Multi Services</span>
+            <h1 className="text-5xl lg:text-8xl font-black leading-[0.95] text-white tracking-tighter min-h-[96px] lg:min-h-[160px]">
+              {title1}
+              {step === 0 && <span className="text-accent animate-pulse font-normal">|</span>}
+              <br />
+              <span className="text-accent">
+                {title2}
+                {step === 1 && <span className="text-white animate-pulse font-normal">|</span>}
+              </span>
             </h1>
             
-            <p className="text-xl text-white/70 max-w-xl leading-relaxed font-medium">
-              Elevate your business with elite compliance solutions. From <span className="text-white font-bold underline decoration-accent underline-offset-4">Startup Registrations</span> to <span className="text-white font-bold underline decoration-accent underline-offset-4">Global Trademarks</span>.
+            <p className="text-xl text-white/70 max-w-xl leading-relaxed font-medium min-h-[56px]">
+              {desc}
+              {step === 2 && <span className="text-accent animate-pulse font-bold">|</span>}
             </p>
 
             <div className="flex flex-col sm:flex-row gap-5">
