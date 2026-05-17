@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 
 const Hero = () => {
   return (
-    <section className="relative min-h-screen flex items-center pt-20 overflow-hidden bg-primary">
+    <section className="relative min-h-screen flex items-center pt-32 pb-16 lg:pt-20 lg:pb-0 overflow-hidden bg-primary">
       {/* Background Effects */}
       <div className="absolute inset-0 mesh-gradient opacity-80"></div>
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">

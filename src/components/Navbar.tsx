@@ -14,6 +14,7 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const [mobileDropdown, setMobileDropdown] = useState<string | null>(null);
   const location = useLocation();
 
   useEffect(() => {
@@ -186,29 +187,47 @@ const Navbar = () => {
             <div className="flex flex-col p-6 gap-4">
               {navLinks.map((link) => (
                 <div key={link.name} className="flex flex-col gap-2">
-                  <Link
-                    to={link.path}
-                    className={cn(
-                      'text-sm font-bold uppercase tracking-wide flex justify-between items-center',
-                      location.pathname === link.path ? 'text-accent' : 'text-primary'
+                  <div className="flex justify-between items-center w-full">
+                    <Link
+                      to={link.path}
+                      className={cn(
+                        'text-sm font-bold uppercase tracking-wide py-1',
+                        location.pathname === link.path ? 'text-accent' : 'text-primary'
+                      )}
+                      onClick={() => setIsOpen(false)}
+                    >
+                      {link.name}
+                    </Link>
+                    {link.hasDropdown && (
+                      <button
+                        onClick={() => setMobileDropdown(mobileDropdown === link.name ? null : link.name)}
+                        className="p-2 text-primary hover:text-accent transition-colors"
+                      >
+                        <ChevronDown className={cn(
+                          "w-4 h-4 transition-transform duration-300",
+                          mobileDropdown === link.name && "rotate-180 text-accent"
+                        )} />
+                      </button>
                     )}
-                    onClick={() => !link.hasDropdown && setIsOpen(false)}
-                  >
-                    {link.name}
-                  </Link>
-                  {link.hasDropdown && (
-                    <div className="grid grid-cols-1 gap-2 pl-4 border-l-2 border-accent/10">
+                  </div>
+                  {link.hasDropdown && mobileDropdown === link.name && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: 'auto', opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      className="grid grid-cols-1 gap-2 pl-4 border-l-2 border-accent/10 overflow-hidden"
+                    >
                       {link.category?.services.map((service) => (
                         <Link
                           key={service.name}
                           to={`${link.path}/${service.slug}`}
-                          className="text-xs text-dark-gray py-1"
+                          className="text-xs text-dark-gray py-1.5 hover:text-accent transition-colors"
                           onClick={() => setIsOpen(false)}
                         >
                           {service.name}
                         </Link>
                       ))}
-                    </div>
+                    </motion.div>
                   )}
                 </div>
               ))}
