@@ -119,7 +119,7 @@ const Navbar = () => {
         </Link>
 
         {/* Desktop Links */}
-        <div className="hidden xl:flex items-center gap-1">
+        <div className="hidden xl:flex items-center gap-0.5 2xl:gap-1.5 shrink-0">
           {navLinks.map((link) => (
             <div
               key={link.name}
@@ -186,22 +186,22 @@ const Navbar = () => {
             <Search className="w-4 h-4 text-primary group-hover:text-accent transition-colors" />
           </button>
 
-          <Link to="/contact" className="btn-accent text-[10px] 2xl:text-[11px] px-4 2xl:px-5 py-2 2xl:py-2.5 ml-2 shadow-glow whitespace-nowrap uppercase tracking-wider">
+          <Link to="/contact" className="btn-accent text-[10px] 2xl:text-[11px] px-4 2xl:px-5 py-2 2xl:py-2.5 ml-2 shadow-glow whitespace-nowrap uppercase tracking-wider shrink-0">
             Book Consultation
           </Link>
 
-          <div className="w-px h-8 bg-light-gray mx-4 hidden xl:block"></div>
+          <div className="w-px h-8 bg-light-gray mx-4 hidden xl:block shrink-0"></div>
 
           <Link 
             to="/login" 
-            className="flex items-center gap-3 group"
+            className="flex items-center gap-2.5 group shrink-0"
           >
-            <div className="flex flex-col items-end hidden xl:flex">
-              <span className="text-[8px] font-black text-primary/30 uppercase tracking-[0.2em] leading-none mb-1">User Portal</span>
-              <span className="text-[10px] font-black text-primary group-hover:text-accent transition-colors uppercase tracking-widest">Login / Signup</span>
+            <div className="flex flex-col items-end hidden xl:flex text-right shrink-0">
+              <span className="text-[10px] font-bold text-accent-light uppercase tracking-wider leading-none mb-1 whitespace-nowrap">User Portal</span>
+              <span className="text-xs font-black text-primary group-hover:text-accent transition-colors uppercase tracking-wider whitespace-nowrap">Login / Signup</span>
             </div>
-            <div className="w-10 h-10 rounded-xl bg-primary/5 border border-primary/10 flex items-center justify-center group-hover:bg-primary transition-all duration-500">
-              <User className="w-5 h-5 text-primary group-hover:text-white transition-colors duration-500 group-hover:scale-110" />
+            <div className="w-10 h-10 rounded-xl bg-accent/5 border border-accent/20 flex items-center justify-center group-hover:bg-accent transition-all duration-500 shrink-0 shadow-sm">
+              <User className="w-5 h-5 text-accent group-hover:text-white transition-colors duration-500 group-hover:scale-110" />
             </div>
           </Link>
         </div>
