@@ -65,6 +65,12 @@ const Navbar = () => {
       category: servicesData.find(c => c.slug === 'trademark')
     },
     { 
+      name: 'Global', 
+      path: '/services/global', 
+      hasDropdown: true,
+      category: servicesData.find(c => c.slug === 'global')
+    },
+    { 
       name: 'Tax Compliances', 
       path: '/services/tax-compliance', 
       hasDropdown: true,

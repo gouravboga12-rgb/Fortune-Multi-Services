@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 import { 
   CheckCircle, ArrowRight, Star, Quote, 
   Briefcase, Award, TrendingUp, Users2, ShieldCheck, 
-  Zap, FileText, Landmark, Scale 
+  Zap, FileText, Landmark, Scale, Globe 
 } from 'lucide-react';
 
 const Home = () => {
@@ -39,6 +39,7 @@ const Home = () => {
       case 'govt-license': return Award;
       case 'food-license': return Zap;
       case 'trademark': return ShieldCheck;
+      case 'global': return Globe;
       default: return TrendingUp;
     }
   };

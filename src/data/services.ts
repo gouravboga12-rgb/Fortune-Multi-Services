@@ -2149,4 +2149,106 @@ export const servicesData: ServiceCategory[] = [
       { question: "When is the deadline for ITR filing?", answer: "Usually July 31st for individuals and October 31st for audited businesses." }
     ]
   },
+  {
+    title: "Global",
+    slug: "global",
+    description: "International company incorporation and global trademark registration services.",
+    services: [
+      { 
+        name: "UAE Company Registration", 
+        tag: "#UAECompany", 
+        slug: "uae-company-registration",
+        description: "Incorporate your company in Dubai Mainland or Free Zones with 100% foreign ownership and zero tax.",
+        details: {
+          overview: "UAE Company Registration allows global promoters to incorporate corporate entities in Dubai Mainland or prominent Free Zones (such as IFZA, Meydan, or DMCC). This offers 100% foreign ownership, zero corporate & personal income taxes, and complete capital repatriation rights.",
+          targetAudience: "Global e-commerce brands, consulting firms, wealth managers, and international traders.",
+          benefits: ["0% Corporate & Personal Income Tax", "100% Foreign Ownership allowed", "Golden Visa eligibility for founders", "Global banking access"],
+          documents: ["Passport copy of all shareholders", "Proof of residential address (utility bill)", "Suggested trade names (three)", "Brief business profile"],
+          process: ["Zone selection (Mainland vs Free Zone)", "Trade name reservation & activity approval", "Drafting Memorandum of Association (MOA)", "Government fee payment and License issuance", "Establishment card and corporate bank opening"],
+          timeline: "5-7 Working Days",
+          faqs: [
+            { question: "Do I need a local UAE sponsor to own a company?", answer: "No, under recent legal reforms, foreigners can enjoy 100% full ownership of mainland trading and service companies without a local Emirati sponsor." }
+          ]
+        }
+      },
+      { 
+        name: "USA Company Registration", 
+        tag: "#USACompany", 
+        slug: "usa-company-registration",
+        description: "Form a US LLC or C-Corp in premium tax-friendly states like Delaware or Wyoming with EIN & banking.",
+        details: {
+          overview: "USA Company Registration sets up your corporate presence (LLC or C-Corp) in tax-haven states like Delaware, Wyoming, or Florida. This includes obtaining a Federal Employer Identification Number (EIN) and configuring payment systems.",
+          targetAudience: "SaaS startups, Amazon FBA sellers, international agencies, and startup founders raising US venture capital.",
+          benefits: ["No US state taxes in Wyoming/Delaware for non-residents", "Access to Stripe, PayPal, and US bank accounts", "Maximum global credibility"],
+          documents: ["Passport copy of all founders", "Suggested business name", "Declared physical or virtual address (we assist)"],
+          process: ["Selecting state and structure (LLC vs C-Corp)", "Filing Articles of Organization/Incorporation", "Applying for EIN from the IRS", "Drafting Operating Agreement", "Setting up digital business banking"],
+          timeline: "7-14 Working Days",
+          faqs: [
+            { question: "What is the difference between an LLC and a C-Corp for non-residents?", answer: "An LLC is a pass-through entity with fewer filing rules, ideal for bootstrapped founders. A C-Corp is required if you plan to issue stock and raise funding from US venture capital firms." }
+          ]
+        }
+      },
+      { 
+        name: "Singapore Company Registration", 
+        tag: "#SingaporeCompany", 
+        slug: "singapore-company-registration",
+        description: "Establish a Private Limited company in Singapore, the leading financial hub of Southeast Asia.",
+        details: {
+          overview: "Singapore Company Registration incorporates a Private Limited (Pte. Ltd.) entity in the world's most business-friendly tax regime. It offers excellent intellectual property protections, low corporate tax rates, and a portal to Southeast Asian markets.",
+          targetAudience: "Tech developers, fintech platforms, venture capitalists, and global trading companies.",
+          benefits: ["17% Corporate Tax with initial startup exemptions", "World-class IP safety and regulatory systems", "No dividend or capital gains taxes"],
+          documents: ["Passport copy", "Proof of residential address", "Suggested company name", "Nominee Director details (mandatory, we provide)"],
+          process: ["Reserving company name on ACRA", "Drafting constitution and board resolutions", "Appointing corporate secretary & resident nominee director", "Filing ACRA incorporation", "Corporate banking setup"],
+          timeline: "3-5 Working Days",
+          faqs: [
+            { question: "Is a local resident director mandatory in Singapore?", answer: "Yes, Singapore law mandates that every company must have at least one director who is an ordinary resident of Singapore. We provide professional Nominee Director services to satisfy this." }
+          ]
+        }
+      },
+      { 
+        name: "UK Company Registration", 
+        tag: "#UKCompany", 
+        slug: "uk-company-registration",
+        description: "Incorporate a UK Private Limited Company (LTD) with Companies House and register for VAT.",
+        details: {
+          overview: "UK Company Registration registers a Private Limited Company (LTD) directly with the UK Companies House. This is one of the fastest and most cost-effective ways to establish a European corporate footprint.",
+          targetAudience: "Freelancers, international consulting firms, e-commerce dropshippers, and retail exporters.",
+          benefits: ["Extremely low setup and yearly overhead costs", "Vibrant European market access", "Easy integration with Stripe, Wise, and UK banks"],
+          documents: ["Passport or ID proof", "Registered office address (virtual address supported)", "Suggested LTD name"],
+          process: ["Checking name availability at Companies House", "Filing incorporation application (Form IN01)", "Acquiring Certificate of Incorporation", "Registering for Corporation Tax and VAT (if required)"],
+          timeline: "1-2 Working Days",
+          faqs: [
+            { question: "Do I need to live in the UK to open a UK LTD?", answer: "No, anyone of any nationality can incorporate a UK company from anywhere in the world without any travel requirements." }
+          ]
+        }
+      },
+      { 
+        name: "USA Trademark Registration", 
+        tag: "#USATrademark", 
+        slug: "usa-trademark-registration",
+        description: "Protect your brand globally by registering your trademark with the USPTO.",
+        details: {
+          overview: "USA Trademark Registration registers your brand name, logo, or slogan with the United States Patent and Trademark Office (USPTO), securing federal brand rights, Amazon Brand Registry access, and legal protections.",
+          targetAudience: "Amazon sellers, SaaS companies, product manufacturers, and international exporters selling in the US.",
+          benefits: ["Federal brand protection across all 50 states", "Mandatory for Amazon Brand Registry", "Legal authority to sue copycats in US Federal courts"],
+          documents: ["Logo image or plain text name", "Specimen of use (proof of selling the product in the US)", "Identity proof of the applicant"],
+          process: ["Conducting USPTO database clearance search", "Determining international goods/services classes", "Filing federal application with USPTO", "Responding to USPTO Office Actions", "Trademark publication & registration grant"],
+          timeline: "8-12 Months",
+          faqs: [
+            { question: "What is a 'Specimen of Use' in US trademark law?", answer: "Unlike other countries, the US requires active proof that you are already selling your goods or services in commerce within the United States (e.g., product packaging photos, active e-commerce store screenshots with US pricing) to grant registration." }
+          ]
+        }
+      }
+    ],
+    details: {
+      benefits: ["Tax Efficiency", "Global Credibility", "Asset Security", "Venture Capital Access"],
+      documents: ["Passport Copy", "Address Proof", "Suggested Business Name", "Business Activity Profile"],
+      process: ["Strategic Jurisdiction Mapping", "Name Approval Reservation", "Document Drafting & Notarization", "Government Registry Submission", "Corporate Banking Setup"],
+      timeline: "2-14 Working Days",
+    },
+    faqs: [
+      { question: "Do I need to travel to register a foreign company?", answer: "No, all international company formations (UAE, USA, Singapore, UK) are completed 100% remotely without any travel requirements." },
+      { question: "What is an EIN?", answer: "An Employer Identification Number (EIN) is a federal tax ID issued by the US IRS, mandatory for corporate banking and filing US taxes." }
+    ]
+  },
 ];
