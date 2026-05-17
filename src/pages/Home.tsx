@@ -7,6 +7,7 @@ import {
   Briefcase, Award, TrendingUp, Users2, ShieldCheck, 
   Zap, FileText, Landmark, Scale, Globe 
 } from 'lucide-react';
+import GstCalculator from '../components/GstCalculator';
 
 const Home = () => {
   const stats = [
@@ -47,6 +48,26 @@ const Home = () => {
   return (
     <div className="bg-soft-white">
       <Hero />
+
+      {/* Credibility Registry Strip */}
+      <div className="bg-primary/5 py-8 border-y border-light-gray/60 overflow-hidden">
+        <div className="container mx-auto px-4 lg:px-8">
+          <div className="flex flex-col lg:flex-row items-center justify-between gap-6">
+            <span className="text-[10px] font-black text-primary/45 uppercase tracking-[0.2em] whitespace-nowrap">
+              Coordinating Direct Filings & Registries With:
+            </span>
+            <div className="flex flex-wrap justify-center lg:justify-end items-center gap-x-12 gap-y-4 opacity-40">
+              {['MCA Registry', 'Income Tax Dept', 'GST Network', 'FSSAI Authority', 'Trademark Patent Office'].map((logo) => (
+                <div key={logo} className="text-primary font-black text-xs uppercase tracking-widest whitespace-nowrap">
+                  {logo}
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <GstCalculator />
 
       {/* Bento Grid Services Section */}
       <section className="py-32 relative overflow-hidden">

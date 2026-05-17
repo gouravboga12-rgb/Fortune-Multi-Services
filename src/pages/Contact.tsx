@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import { Mail, Phone, MapPin, Send, MessageSquare, CheckCircle2 } from 'lucide-react';
 import { servicesData } from '../data/services';
 
@@ -12,6 +13,24 @@ const Contact = () => {
     service: '',
     message: '',
   });
+
+  const location = useLocation();
+
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    const nameParam = params.get('name') || '';
+    const serviceParam = params.get('service') || '';
+
+    if (nameParam || serviceParam) {
+      setFormData(prev => ({
+        ...prev,
+        service: serviceParam || prev.service,
+        message: nameParam 
+          ? `I would like to verify the availability and register the company name: "${nameParam}".` 
+          : prev.message
+      }));
+    }
+  }, [location]);
 
   const [submitted, setSubmitted] = useState(false);
 

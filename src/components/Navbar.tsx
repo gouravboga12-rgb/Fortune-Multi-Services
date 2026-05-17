@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, ChevronDown, User } from 'lucide-react';
+import { Menu, X, ChevronDown, User, Search } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
@@ -15,6 +15,8 @@ const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [mobileDropdown, setMobileDropdown] = useState<string | null>(null);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
   const location = useLocation();
 
   useEffect(() => {
@@ -24,6 +26,13 @@ const Navbar = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  // Close mobile/search menus when location changes
+  useEffect(() => {
+    setIsOpen(false);
+    setIsSearchOpen(false);
+    setSearchQuery('');
+  }, [location]);
 
   const navLinks = [
     { 
@@ -76,6 +85,23 @@ const Navbar = () => {
     },
     { name: 'About Us', path: '/about' },
   ];
+
+  // Flattened services for global search matching
+  const allServices = servicesData.flatMap(cat => 
+    cat.services.map(s => ({
+      ...s,
+      categoryName: cat.title,
+      categorySlug: cat.slug
+    }))
+  );
+
+  const filteredServices = searchQuery.trim() === '' 
+    ? [] 
+    : allServices.filter(s => 
+        s.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        s.tag.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        (s.description && s.description.toLowerCase().includes(searchQuery.toLowerCase()))
+      ).slice(0, 8);
 
   return (
     <nav
@@ -151,7 +177,16 @@ const Navbar = () => {
             </div>
           ))}
           
-          <Link to="/contact" className="btn-accent text-[10px] 2xl:text-[11px] px-4 2xl:px-5 py-2 2xl:py-2.5 ml-2 2xl:ml-4 shadow-glow whitespace-nowrap uppercase tracking-wider">
+          {/* Desktop Search Trigger */}
+          <button 
+            onClick={() => setIsSearchOpen(true)}
+            className="w-10 h-10 rounded-xl bg-primary/5 border border-primary/10 flex items-center justify-center hover:bg-accent/10 hover:text-accent transition-all duration-300 ml-2 group cursor-pointer"
+            aria-label="Search Services"
+          >
+            <Search className="w-4 h-4 text-primary group-hover:text-accent transition-colors" />
+          </button>
+
+          <Link to="/contact" className="btn-accent text-[10px] 2xl:text-[11px] px-4 2xl:px-5 py-2 2xl:py-2.5 ml-2 shadow-glow whitespace-nowrap uppercase tracking-wider">
             Book Consultation
           </Link>
 
@@ -171,13 +206,25 @@ const Navbar = () => {
           </Link>
         </div>
 
-        {/* Mobile Toggle */}
-        <button
-          className="xl:hidden text-primary p-2 bg-white/50 backdrop-blur-md rounded-lg border border-white/20"
-          onClick={() => setIsOpen(!isOpen)}
-        >
-          {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-        </button>
+        {/* Mobile Actions Container */}
+        <div className="xl:hidden flex items-center gap-2">
+          {/* Mobile Search Trigger */}
+          <button
+            onClick={() => setIsSearchOpen(true)}
+            className="p-2 bg-white/50 backdrop-blur-md rounded-lg border border-white/20 text-primary"
+            aria-label="Search Services"
+          >
+            <Search className="w-5 h-5" />
+          </button>
+          
+          {/* Mobile Menu Toggle */}
+          <button
+            className="text-primary p-2 bg-white/50 backdrop-blur-md rounded-lg border border-white/20"
+            onClick={() => setIsOpen(!isOpen)}
+          >
+            {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile Menu */}
@@ -257,8 +304,117 @@ const Navbar = () => {
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* Global Search Overlay Modal */}
+      <AnimatePresence>
+        {isSearchOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-primary/40 backdrop-blur-md z-[100] flex items-start justify-center pt-24 px-4"
+            onClick={() => setIsSearchOpen(false)}
+          >
+            <motion.div
+              initial={{ scale: 0.95, y: -20 }}
+              animate={{ scale: 1, y: 0 }}
+              exit={{ scale: 0.95, y: -20 }}
+              transition={{ duration: 0.2 }}
+              className="bg-white w-full max-w-2xl rounded-2xl shadow-2xl border border-light-gray overflow-hidden"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Search input header */}
+              <div className="p-5 border-b border-light-gray flex items-center gap-3">
+                <Search className="w-6 h-6 text-accent shrink-0" />
+                <input
+                  type="text"
+                  placeholder="Search 100+ business compliances... (e.g. GST, Private Limited)"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="w-full text-lg outline-none text-primary placeholder-dark-gray/40 font-medium"
+                  autoFocus
+                />
+                <button 
+                  onClick={() => {
+                    setIsSearchOpen(false);
+                    setSearchQuery('');
+                  }}
+                  className="p-1.5 rounded-lg bg-soft-white border border-light-gray text-dark-gray hover:bg-light-gray transition-colors cursor-pointer"
+                >
+                  <X className="w-4 h-4" />
+                </button>
+              </div>
+
+              {/* Suggestions / Results */}
+              <div className="p-6 max-h-[60vh] overflow-y-auto space-y-6">
+                {searchQuery.trim() === '' ? (
+                  <div className="space-y-4">
+                    <h4 className="text-[10px] font-black text-primary/30 uppercase tracking-[0.2em]">Popular Services</h4>
+                    <div className="flex flex-wrap gap-2">
+                      {[
+                        { name: 'Private Limited Company', slug: 'private-limited-company', cat: 'startup' },
+                        { name: 'Trademark Registration', slug: 'trademark-registration', cat: 'trademark' },
+                        { name: 'GST Registration', slug: 'gst-registration', cat: 'gst' },
+                        { name: 'Startup India', slug: 'startup-india-registration', cat: 'registrations' },
+                        { name: 'FSSAI License', slug: 'fssai-license', cat: 'food-license' },
+                        { name: 'Udyam Registration', slug: 'udyam-registration', cat: 'registrations' },
+                        { name: 'LEI Code', slug: 'legal-entity-identifier-code', cat: 'registrations' }
+                      ].map((item) => (
+                        <button
+                          key={item.name}
+                          onClick={() => setSearchQuery(item.name)}
+                          className="px-4 py-2 bg-soft-white hover:bg-accent/10 border border-light-gray hover:border-accent/30 text-xs font-bold text-dark-gray hover:text-accent rounded-xl transition-all duration-300 cursor-pointer"
+                        >
+                          {item.name}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                ) : filteredServices.length > 0 ? (
+                  <div className="space-y-3">
+                    <h4 className="text-[10px] font-black text-primary/30 uppercase tracking-[0.2em] mb-4">Search Results ({filteredServices.length})</h4>
+                    <div className="grid grid-cols-1 gap-2.5">
+                      {filteredServices.map((service) => (
+                        <Link
+                          key={service.name}
+                          to={`/services/${service.categorySlug}/${service.slug}`}
+                          onClick={() => {
+                            setIsSearchOpen(false);
+                            setSearchQuery('');
+                          }}
+                          className="p-3.5 bg-soft-white hover:bg-accent/5 border border-light-gray hover:border-accent/20 rounded-xl flex items-center justify-between group transition-all duration-300"
+                        >
+                          <div className="flex items-center gap-3">
+                            <div className="w-8 h-8 rounded-lg bg-primary/5 flex items-center justify-center border border-primary/10 group-hover:bg-accent/10 transition-colors">
+                              <Search className="w-4 h-4 text-primary group-hover:text-accent" />
+                            </div>
+                            <div>
+                              <div className="text-sm font-bold text-primary group-hover:text-accent transition-colors">{service.name}</div>
+                              <div className="text-[10px] text-dark-gray/50 font-bold uppercase tracking-wider">{service.categoryName}</div>
+                            </div>
+                          </div>
+                          <span className="text-[10px] font-black text-accent-dark uppercase tracking-widest bg-accent/10 px-2.5 py-1 rounded-md opacity-0 group-hover:opacity-100 transition-opacity">
+                            Get Quote
+                          </span>
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                ) : (
+                  <div className="py-12 text-center space-y-3">
+                    <div className="text-4xl">🔍</div>
+                    <p className="text-sm text-dark-gray/60 font-semibold">No services found matching "{searchQuery}"</p>
+                    <p className="text-xs text-dark-gray/40 font-medium">Try searching for generic terms like "GST", "LLP", or "FSSAI".</p>
+                  </div>
+                )}
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </nav>
   );
 };
 
 export default Navbar;
+
