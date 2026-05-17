@@ -1474,109 +1474,304 @@ export const servicesData: ServiceCategory[] = [
     description: "Protect your brand identity and intellectual property.",
     services: [
       { 
-        name: "Brand Registration", 
-        tag: "#BrandRegistration", 
-        slug: "brand-registration",
-        description: "Official registration services for protecting your corporate brand name.",
+        name: "Trademark Registration", 
+        tag: "#TrademarkRegistration", 
+        slug: "trademark-registration",
+        description: "Official legal registration to secure exclusive ownership of your brand name, logo, or tagline.",
         details: {
-          overview: "Brand Registration involves securing legal ownership of your business brand name, giving you exclusive rights to use it in your sector and preventing competitors from stealing your market presence.",
-          targetAudience: "E-commerce brands, corporate groups, and startups.",
-          benefits: ["Corporate identity protection", "Brand value creation", "Legal security", "Consumer trust"],
-          documents: ["Logo files", "PAN and Aadhaar of owner", "Authorization letter", "User Affidavit"],
-          process: ["Brand Search Report", "Class Mapping", "Filing Online Application", "Obtaining 'TM' number"],
-          timeline: "6-12 Months",
-          characteristics: [
-            "Exclusive ownership: Legal lock on the trade name.",
-            "Market Credibility: Confirms authentic brand origin."
-          ],
-          pros: [
-            "Protects market value from brand dilution."
-          ],
-          cons: [
-            "Can face third-party oppositions."
-          ],
-          commonMistakes: [
-            "Choosing highly descriptive names."
-          ],
-          postCompliances: [
-            "Renewals."
-          ],
-          faqs: [
-            { question: "Can I register a brand name without a logo?", answer: "Yes, you can register a 'Wordmark' to protect the name itself, or a 'Devicemark' to protect the logo design." }
-          ]
-        }
-      },
-      { 
-        name: "Trademark (TM) Registration", 
-        tag: "#TMRegistration", 
-        slug: "tm-registration",
-        description: "Register your business logo, slogan, or name to secure exclusive intellectual property rights.",
-        details: {
-          overview: "Trademark Registration gives you exclusive, legal ownership of your business brand name, logo, or tagline under the Trade Marks Act, 1999. This prevents unauthorized competitors from copying your branding, protects your market reputation, and creates a valuable corporate asset.",
+          overview: "Trademark Registration gives you exclusive, legal ownership of your business brand name, logo, or tagline under the Trade Marks Act, 1999. This prevents competitors from copying your branding, protects your reputation, and creates a valuable corporate asset.",
           targetAudience: "Startups, brands, e-commerce sellers, and businesses looking to safeguard their brand identity.",
           benefits: ["Brand Protection", "Legal Ownership", "Asset Creation", "Consumer Trust"],
-          documents: ["Logo/Name mockups", "Identity Proof of Promoter", "Authorization/Power of Attorney Letter", "User Affidavit (if trademark is already in use)"],
-          process: ["Comprehensive Trademark Search Report", "Class Selection (out of 45 classes)", "Filing online Application with Registrar", "Obtaining 'TM' application number", "Government Examination & Publication in Journal", "Issuance of ® Certificate"],
+          documents: ["Logo/Name mockups", "Identity Proof of Promoter", "Authorization/Power of Attorney Letter", "User Affidavit (if in use)"],
+          process: ["IP Search Report", "Class Selection (out of 45 classes)", "Filing online Application", "Obtaining 'TM' application number", "Government Journal Publication", "Issuance of ® Certificate"],
           timeline: "6-12 Months",
           characteristics: [
-            "Use of TM Symbol: Allowed to append 'TM' next to the brand immediately after filing.",
-            "Use of R Symbol: Allowed to use '®' only after final registration certificate is granted.",
-            "10-Year Validity: Fully valid for 10 years and renewable indefinitely."
+            "Use of TM Symbol: Immediately after filing.",
+            "Use of R Symbol: Only after registration grant.",
+            "10-Year Validity: Indefinitely renewable."
           ],
-          pros: [
-            "Total legal authority to file lawsuits and sue imitators.",
-            "Establishes a powerful, protectable brand value that can be franchised or sold."
-          ],
-          cons: [
-            "Extremely slow government approval timeline (usually takes up to a year).",
-            "Subject to third-party objections and government opposition hearings."
-          ],
-          commonMistakes: [
-            "Selecting a highly descriptive, generic, or common name that cannot be trademarked.",
-            "Failing to conduct a thorough search before filing, leading to immediate rejection."
-          ],
-          postCompliances: [
-            "Renewing the trademark every 10 years."
-          ],
+          pros: ["Exclusive statutory rights", "Nationwide brand control"],
+          cons: ["Long government timeline"],
+          commonMistakes: ["Using generic names", "Failing to search"],
+          postCompliances: ["Renewal every 10 years"],
           faqs: [
-            { question: "What is the difference between TM and R symbols?", answer: "The TM symbol means the trademark application is filed and pending. The ® symbol can only be used once the registration certificate is officially issued." },
-            { question: "Can a trademark be rejected?", answer: "Yes, if it is identical/similar to an existing mark, or if it is generic, offensive, or descriptive of the service." }
+            { question: "What is the difference between TM and R symbols?", answer: "The TM symbol means the application is pending. The ® symbol can only be used once officially registered." },
+            { question: "Can a trademark be rejected?", answer: "Yes, if it is identical to an existing mark, or descriptive of the service." }
           ]
         }
       },
       { 
-        name: "Trademark (TM) Objection", 
-        tag: "#TMObjection", 
-        slug: "tm-objection",
-        description: "Professional drafting and legal filing services to resolve trademark objections.",
+        name: "Trademark Objection", 
+        tag: "#TrademarkObjection", 
+        slug: "trademark-objection",
+        description: "Legal drafting and filing of counter-replies to defend your objected trademark application.",
         details: {
-          overview: "A Trademark Objection is an early hurdle where the Trademark Registrar highlights issues with your application under Section 9 (absolute grounds) or Section 11 (relative grounds, similarity to existing marks). Professional legal drafting is required to file a counter-reply and defend your mark.",
+          overview: "A Trademark Objection is an early hurdle where the Trademark Registrar highlights issues with your application under Section 9 (absolute grounds) or Section 11 (relative grounds, similarity to existing marks). Professional legal replies are required to defend the mark.",
           targetAudience: "Trademark applicants who have received an 'Objected' status in their examination report.",
-          benefits: ["Rescues trademark from abandonment", "Legal defense by IP experts", "Higher approval chance", "Avoids loss of filing fee"],
-          documents: ["Trademark Examination Report copy", "Brand usage proof (invoices, website traffic, news mentions)", "Detailed user affidavit"],
-          process: ["Reviewing the Objection report", "Drafting a professional legal reply citing relevant case laws", "Uploading reply on portal within 30 days", "Attending hearings (if further requested by officer)"],
+          benefits: ["Rescues trademark from abandonment", "Legal defense by IP experts", "Higher approval chance"],
+          documents: ["Examination Report copy", "Brand usage proof (invoices, website traffic)", "User affidavit"],
+          process: ["Reviewing Objection report", "Drafting legal reply with case laws", "Uploading reply within 30 days"],
           timeline: "15-30 Working Days",
-          characteristics: [
-            "30-day Limit: The legal reply must be filed within exactly 30 days of the report generation to prevent cancellation.",
-            "Legal Drafting: Must cite previous judicial decisions to counter registrar arguments."
-          ],
-          pros: [
-            "Defends your branding from being declared abandoned."
-          ],
-          cons: [
-            "Requires payment of additional drafting and attorney fees."
-          ],
-          commonMistakes: [
-            "Filing a generic, non-legal reply without providing concrete proof of brand usage."
-          ],
-          postCompliances: [
-            "Regular status monitoring of application."
-          ],
           faqs: [
-            { question: "What happens if I miss the 30-day deadline?", answer: "If you fail to file a reply within 30 days of receiving the examination report, the application is marked as 'Abandoned' and cancelled." }
+            { question: "What happens if I miss the 30-day deadline?", answer: "If you fail to file a reply within 30 days, the application is marked as 'Abandoned' and cancelled." }
           ]
         }
       },
+      { 
+        name: "Trademark Certificate", 
+        tag: "#TrademarkCertificate", 
+        slug: "trademark-certificate",
+        description: "Procurement of your official registered trademark certificate and legal ® authorization.",
+        details: {
+          overview: "The Trademark Certificate is the ultimate proof of ownership issued by the IP India office once your mark passes all examination, publication, and opposition phases without issues.",
+          targetAudience: "Applicants whose marks have been successfully advertised in the TM journal for 4 months.",
+          benefits: ["Final statutory proof", "Enables ® symbol usage", "Cross-border IP enforcement"],
+          documents: ["TM Application Number", "Journal publication copy", "Power of Attorney"],
+          process: ["Journal status monitoring", "Resolving pending fee checks", "Downloading digital registration certificate"],
+          timeline: "5-10 Working Days",
+          faqs: [
+            { question: "How long is the certificate valid?", answer: "It is valid for 10 years from the original date of application." }
+          ]
+        }
+      },
+      { 
+        name: "Trademark Opposition", 
+        tag: "#TrademarkOpposition", 
+        slug: "trademark-opposition",
+        description: "Drafting and filing opposition replies to defend your mark against third-party challenges.",
+        details: {
+          overview: "Trademark Opposition occurs when a third party files an objection in the Journal within 4 months of advertisement. Resolving this requires drafting a Notice of Opposition or a counter-statement to protect your brand.",
+          targetAudience: "Applicants facing competitor challenges, or owners wanting to oppose copycats.",
+          benefits: ["Blocks copycats early", "Defends against hostile opposition", "Protects brand exclusivity"],
+          documents: ["Opposition notice copy", "Evidence of prior brand usage", "Authorized power of attorney"],
+          process: ["Analyzing opponent grounds", "Drafting Counter-Statement (Form TM-O)", "Filing within 2 months of notice receipt", "Submitting evidence logs"],
+          timeline: "3-6 Months",
+          faqs: [
+            { question: "What is the timeline to reply to an opposition?", answer: "A counter-reply must be filed strictly within 2 months of receiving the opposition notice, with no extensions allowed." }
+          ]
+        }
+      },
+      { 
+        name: "Trademark Hearing", 
+        tag: "#TrademarkHearing", 
+        slug: "trademark-hearing",
+        description: "Professional representation by specialized IP attorneys in TM Registrar hearings.",
+        details: {
+          overview: "A Trademark Hearing is scheduled when the registrar is not fully satisfied with your written objection reply. A physical or virtual hearing is conducted where an IP attorney presents arguments and case laws directly to the officer.",
+          targetAudience: "Applicants whose marks remain pending with status 'Ready for Hearing' or 'Show Cause Hearing'.",
+          benefits: ["Direct representation by IP counsel", "Real-time query resolutions", "Maximum approval chance"],
+          documents: ["Hearing notice", "Copy of filed reply", "Power of attorney", "Supporting brand usage logs"],
+          process: ["Scheduling & case analysis", "Drafting written submissions", "Representing the applicant in front of the Registrar", "Securing order sheets"],
+          timeline: "15-45 Working Days",
+          faqs: [
+            { question: "Is my physical presence required at the hearing?", answer: "No, our certified IP attorneys represent you completely, so you do not need to attend." }
+          ]
+        }
+      },
+      { 
+        name: "Trademark Rectification", 
+        tag: "#TrademarkRectification", 
+        slug: "trademark-rectification",
+        description: "Filing rectifications to correct or update registered trademark details in the government registry.",
+        details: {
+          overview: "Trademark Rectification involves correcting errors, updating classification codes, modifying address details, or removing a registered trademark from the registry if it was registered incorrectly or is not being used.",
+          targetAudience: "Trademark owners wanting to clean registry records, or applicants seeking to cancel inactive competitor marks.",
+          benefits: ["Maintains registry accuracy", "Updates owner address details", "Removes defunct competitor entries"],
+          documents: ["Registration certificate", "Details of changes needed", "Supporting legal proofs"],
+          process: ["Drafting Rectification form (TM-M or TM-O)", "Submitting change proofs", "Review and update by Registrar"],
+          timeline: "2-4 Months",
+          faqs: [
+            { question: "Can I change the core brand logo via rectification?", answer: "No, substantial changes to the brand name or logo are not allowed. You must file a new application for major modifications." }
+          ]
+        }
+      },
+      { 
+        name: "TM Infringement Notice", 
+        tag: "#TMInfringementNotice", 
+        slug: "tm-infringement-notice",
+        description: "Drafting and issuing formal legal Cease & Desist notices to parties infringing your trademark.",
+        details: {
+          overview: "A Cease & Desist Infringement Notice is a formal legal warning sent to individuals or competitors who are using an identical or deceptively similar name, logo, or tagline, threatening civil and criminal lawsuit if they don't stop.",
+          targetAudience: "Registered trademark owners who discover copycats or counterfeit sellers in the market.",
+          benefits: ["Stops copycats without court battles", "Establishes a strong legal paper trail", "Secures damages and undertakings"],
+          documents: ["Trademark registration certificate", "Proof of infringer's activity (screenshots, products)"],
+          process: ["Investigating infringer actions", "Drafting custom Cease & Desist notice", "Sending via Registered AD & Email", "Negotiating settlements"],
+          timeline: "3-7 Working Days",
+          faqs: [
+            { question: "What if the infringer ignores the legal notice?", answer: "If ignored, we can file a commercial suit for trademark infringement in the District Court to secure an immediate injunction and damages." }
+          ]
+        }
+      },
+      { 
+        name: "Trademark Renewal", 
+        tag: "#TrademarkRenewal", 
+        slug: "trademark-renewal",
+        description: "Renew your registered trademark every 10 years to maintain exclusive brand lock indefinitely.",
+        details: {
+          overview: "A trademark is valid for 10 years. Trademark Renewal ensures that your exclusive brand rights are extended for another 10 years, preserving your brand assets and avoiding cancellation.",
+          targetAudience: "Trademark owners whose marks are approaching the 10-year expiration threshold.",
+          benefits: ["Uninterrupted brand protection", "Retains ® symbol right", "Maintains active asset value"],
+          documents: ["Trademark Registration number", "Power of Attorney", "Identity proof of owner"],
+          process: ["Status checks and eligibility verification", "Filing Form TM-R with government fees", "Registry update verification"],
+          timeline: "10-20 Working Days",
+          faqs: [
+            { question: "When should I apply for trademark renewal?", answer: "You can apply for renewal within 6 months before the 10-year expiry date. A late filing is also possible within 6 months after expiry with a late fee." }
+          ]
+        }
+      },
+      { 
+        name: "Trademark Transfer", 
+        tag: "#TrademarkTransfer", 
+        slug: "trademark-transfer",
+        description: "Officially assign, transfer, or license your trademark ownership to another entity legally.",
+        details: {
+          overview: "Trademark Assignment/Transfer is the formal process of transferring the ownership, rights, and title of a trademark (whether registered or pending) from one company or individual to another via a written assignment deed.",
+          targetAudience: "Business sellers, corporate restructurings, brand licensors, and acquirers.",
+          benefits: ["Monetizes brand assets", "Enables brand franchising", "Legal transfer of asset value"],
+          documents: ["Assignment Deed on Stamp Paper", "Registration certificate copy", "Identities of both parties"],
+          process: ["Drafting Assignment Agreement", "Executing with signatures and stamp duty", "Filing Form TM-P with Registrar", "Registry ownership updates"],
+          timeline: "2-4 Months",
+          faqs: [
+            { question: "Can a pending trademark be transferred?", answer: "Yes, you can legally transfer pending trademark applications using the same assignment procedure." }
+          ]
+        }
+      },
+      { 
+        name: "Expedited TM Registration", 
+        tag: "#ExpeditedTMRegistration", 
+        slug: "expedited-tm-registration",
+        description: "Accelerated trademark examination and processing path for rapid brand approvals.",
+        details: {
+          overview: "Expedited Trademark Registration bypasses the standard queue, accelerating the examination process. The application is reviewed within days of filing, helping you secure approvals much faster.",
+          targetAudience: "Startups, urgent product launches, and businesses facing immediate infringement risks.",
+          benefits: ["Super fast examination report", "Bypasses years of queues", "Rapid commercial security"],
+          documents: ["Logo mockups", "Statutory declaration/user affidavit", "Expedited request form details"],
+          process: ["Filing standard application", "Filing Request for Expedited Examination (Form TM-M)", "Rapid examination review by Officer"],
+          timeline: "1-3 Months",
+          faqs: [
+            { question: "Does expedited filing guarantee approval?", answer: "No, it only speeds up the examination queue. Any objection or opposition will still follow standard legal procedures." }
+          ]
+        }
+      },
+      { 
+        name: "Logo Designing", 
+        tag: "#LogoDesigning", 
+        slug: "logo-designing",
+        description: "Get premium, unique, and legally compliant brand logo designs tailored for trademarking.",
+        details: {
+          overview: "Logo Designing goes beyond aesthetics; we design elite, highly distinctive, and brand-aligned logos designed specifically to pass trademark searches and avoid conflict rejections.",
+          targetAudience: "New startups, rebranding companies, and product developers.",
+          benefits: ["Highly distinctive design", "100% trademark-ready", "Vector source files delivered", "Professional branding"],
+          documents: ["Brand concept ideas", "Preferred color palettes", "Target industry sector details"],
+          process: ["Design brief consultation", "Distinctiveness & trademark search pre-check", "Drafting multiple design concepts", "Revisions and final vector handoff"],
+          timeline: "5-10 Working Days",
+          faqs: [
+            { question: "Why is a trademark search important for logo design?", answer: "It ensures the custom shape or visual style doesn't match an existing corporate logo, saving you from trademark objections later." }
+          ]
+        }
+      },
+      { 
+        name: "Design Registration", 
+        tag: "#DesignRegistration", 
+        slug: "design-registration",
+        description: "Register the unique aesthetic appearance, shape, or pattern of your physical products.",
+        details: {
+          overview: "Design Registration protects the unique visual design, shape, configuration, pattern, or ornamentation applied to a functional product under the Designs Act, 2000. It prevents competitors from copying your product looks.",
+          targetAudience: "Industrial manufacturers, jewelry designers, electronics brands, and apparel designers.",
+          benefits: ["10-year exclusive look protection", "Monopolizes product aesthetics", "Stops visual lookalikes"],
+          documents: ["Four-view photographic shots of the product", "Brief description of design novelty", "Identity proof of developer"],
+          process: ["Design novelty check", "Class determination (out of 32 classes)", "Filing application with Patent Office", "Resolving examiner checks", "Certification Grant"],
+          timeline: "3-6 Months",
+          faqs: [
+            { question: "What is the validity of a design registration?", answer: "It is registered for 10 years, and can be extended for an additional 5 years (maximum 15 years total)." }
+          ]
+        }
+      },
+      { 
+        name: "Design Objection", 
+        tag: "#DesignObjection", 
+        slug: "design-objection",
+        description: "Respond legally to design examination reports and objections to secure product design rights.",
+        details: {
+          overview: "A Design Objection is issued when the examiner finds that your product design lacks novelty, matches an existing registered design, or is purely functional rather than aesthetic. A professional legal reply is mandatory to save your registration.",
+          targetAudience: "Design applicants who have received a statement of objections from the Controller of Designs.",
+          benefits: ["Defends product design investments", "Legal replies by patent/design experts", "Avoids abandonment status"],
+          documents: ["Objection report copy", "Novelty proofs and prior-art logs"],
+          process: ["Analyzing objection grounds", "Drafting legal reply highlighting design novelty", "Filing reply with Controller", "Attending hearings if required"],
+          timeline: "15-45 Working Days",
+          faqs: [
+            { question: "How much time is allowed to reply to a design objection?", answer: "You must file a written reply within exactly 6 months from the date of the application filing or objection report, as specified." }
+          ]
+        }
+      },
+      { 
+        name: "Copyright Registration", 
+        tag: "#CopyrightRegistration", 
+        slug: "copyright-registration",
+        description: "Secure legal copyright protection for your software code, literary works, art, music, or videos.",
+        details: {
+          overview: "Copyright Registration grants exclusive legal ownership and reproduction rights for original creative expressions—literary works, software code, website content, music, films, and artistic designs—under the Copyright Act, 1957.",
+          targetAudience: "Software developers, writers, artists, musicians, filmmakers, and content creators.",
+          benefits: ["Global copyright protection", "Stops software/content piracy", "Creates licensing royalty streams", "Public record of ownership"],
+          documents: ["Three copies of the creative work", "Identity proofs of author & applicant", "No-Objection Certificate (NOC) from publisher/employers"],
+          process: ["Filing application online (Form XIV)", "Government Diary Number generation", "Mandatory 30-day waiting period for objections", "Examination and Certificate issuance"],
+          timeline: "4-8 Months",
+          faqs: [
+            { question: "How long does copyright protection last?", answer: "For literary, dramatic, musical, and artistic works, copyright lasts for the lifetime of the author plus 60 years after their death." }
+          ]
+        }
+      },
+      { 
+        name: "Copyright Objection", 
+        tag: "#CopyrightObjection", 
+        slug: "copyright-objection",
+        description: "Resolve copyright examination discrepancies and replies to secure artistic and literary ownership.",
+        details: {
+          overview: "A Copyright Objection is raised during the examination phase, either by the registrar (for technical errors or lack of originality) or via a third-party claim. Resolving it requires a detailed legal reply to justify the work's originality.",
+          targetAudience: "Applicants who have received an objection or discrepancy letter from the Copyright Office.",
+          benefits: ["Clears application status", "Defends artistic originality", "Ensures certificate approval"],
+          documents: ["Copyright discrepancy letter", "Clarification proofs", "Original work drafts"],
+          process: ["Analyzing discrepancies", "Drafting and uploading legal explanation", "Attending virtual hearing if called by Registrar"],
+          timeline: "20-45 Working Days",
+          faqs: [
+            { question: "What is a 'discrepancy letter' in copyright?", answer: "It is an official letter pointing out issues like mismatched signatures, missing NOCs, or similar copyrighted works in the registry." }
+          ]
+        }
+      },
+      { 
+        name: "Patent Registration", 
+        tag: "#PatentRegistration", 
+        slug: "patent-registration",
+        description: "File provisional and complete patent applications to protect your unique technical inventions.",
+        details: {
+          overview: "Patent Registration grants exclusive, monopolistic rights to a patentee for a unique invention (whether a product or process) that is novel, non-obvious, and has industrial utility, under the Patents Act, 1970.",
+          targetAudience: "Tech inventors, R&D labs, software engineers, and industrial product developers.",
+          benefits: ["20-year absolute market monopoly", "Strong shield against tech theft", "High valuations for licensing/sale"],
+          documents: ["Invention specification sheet", "Structural/technical blueprints", "Aadhaar and PAN of inventor"],
+          process: ["Patent search for prior art", "Drafting Patent Specifications (Form 1 & 2)", "Filing Provisional/Complete Application", "Publication in patent journal", "Examination & Final Grant"],
+          timeline: "1-3 Years (Expedited routes available)",
+          faqs: [
+            { question: "What is a provisional patent?", answer: "A provisional patent is a quick, low-cost application filed early to secure a 'Priority Date' for your invention before writing the full complete specification within 12 months." }
+          ]
+        }
+      },
+      { 
+        name: "Trademark Protection", 
+        tag: "#TrademarkProtection", 
+        slug: "trademark-protection",
+        description: "Comprehensive brand monitoring, IP enforcement, and watch services to block copycats early.",
+        details: {
+          overview: "Trademark Protection is an active brand-monitoring service where our IP experts scan weekly journal advertisements, registry databases, and online portals to detect and block competitor applications that copy or infringe your brand.",
+          targetAudience: "Established brands and corporate groups wanting to keep their brand locks unique.",
+          benefits: ["Blocks copycats early", "Protects brand reputation", "Avoids market confusion"],
+          documents: ["Registered trademark details", "Authorization Letter"],
+          process: ["Weekly monitoring of TM journals", "Generating alert reports", "Filing timely Oppositions against infringers"],
+          timeline: "Ongoing/Annual",
+          faqs: [
+            { question: "Why is a trademark watch service important?", answer: "If you don't actively monitor the journal, a copycat's application might get registered, forcing you to go through a slow, expensive court rectification to remove it later." }
+          ]
+        }
+      }
     ],
     details: {
       benefits: ["Brand Protection", "Legal Ownership", "Asset Creation", "Consumer Trust"],
