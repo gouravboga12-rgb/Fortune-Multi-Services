@@ -10,41 +10,69 @@ const Hero = () => {
   const [showCursor2, setShowCursor2] = useState(false);
 
   useEffect(() => {
+    let active = true;
+    let timer1: any;
+    let timer2: any;
+    let timeoutId: any;
+
     let line1Str = "Fortune";
     let line2Str = "Multi Services";
     let i = 0;
     let j = 0;
 
-    // Type Line 1
-    const interval1 = setInterval(() => {
-      if (i < line1Str.length) {
-        setText1((prev) => prev + line1Str.charAt(i));
-        i++;
-      } else {
-        clearInterval(interval1);
-        setShowCursor1(false);
-        setShowCursor2(true);
-        
-        // Start Type Line 2 after a small delay
-        setTimeout(() => {
-          const interval2 = setInterval(() => {
-            if (j < line2Str.length) {
-              setText2((prev) => prev + line2Str.charAt(j));
-              j++;
-            } else {
-              clearInterval(interval2);
-              // Keep cursor blinking for a bit then fade out
-              setTimeout(() => {
-                setShowCursor2(false);
-              }, 2000);
-            }
-          }, 80);
-        }, 200);
-      }
-    }, 100);
+    // Reset states initially
+    setText1('');
+    setText2('');
+    setShowCursor1(true);
+    setShowCursor2(false);
+
+    const typeLine1 = () => {
+      timer1 = setInterval(() => {
+        if (!active) return;
+        if (i < line1Str.length) {
+          setText1(line1Str.substring(0, i + 1));
+          i++;
+        } else {
+          clearInterval(timer1);
+          if (!active) return;
+          setShowCursor1(false);
+          setShowCursor2(true);
+          
+          // Delay before starting line 2
+          timeoutId = setTimeout(() => {
+            if (!active) return;
+            typeLine2();
+          }, 300);
+        }
+      }, 100);
+    };
+
+    const typeLine2 = () => {
+      timer2 = setInterval(() => {
+        if (!active) return;
+        if (j < line2Str.length) {
+          setText2(line2Str.substring(0, j + 1));
+          j++;
+        } else {
+          clearInterval(timer2);
+          if (!active) return;
+          // Keep cursor blinking then hide it
+          timeoutId = setTimeout(() => {
+            if (!active) return;
+            setShowCursor2(false);
+          }, 2000);
+        }
+      }, 80);
+    };
+
+    // Start the typing sequence
+    typeLine1();
 
     return () => {
-      clearInterval(interval1);
+      active = false;
+      clearInterval(timer1);
+      clearInterval(timer2);
+      clearTimeout(timeoutId);
     };
   }, []);
 
@@ -59,16 +87,16 @@ const Hero = () => {
 
       <div className="container mx-auto px-4 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          <motion.div 
-            initial={{ opacity: 0, x: -30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            className="space-y-10"
-          >
-            <div className="inline-flex items-center gap-3 px-5 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/10 text-accent-light text-[13px] font-bold tracking-widest uppercase">
+          <div className="space-y-10">
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
+              className="inline-flex items-center gap-3 px-5 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/10 text-accent-light text-[13px] font-bold tracking-widest uppercase"
+            >
               <Zap className="w-4 h-4 fill-accent-light" />
               <span>India's Trusted Business Partner</span>
-            </div>
+            </motion.div>
             
             <h1 className="text-5xl lg:text-8xl font-black leading-[0.95] text-white tracking-tighter min-h-[105px] lg:min-h-[160px]">
               {text1}
@@ -131,7 +159,7 @@ const Hero = () => {
                 <p className="text-white/50 text-sm font-medium">Trusted by 5,000+ Entrepreneurs</p>
               </div>
             </motion.div>
-          </motion.div>
+          </div>
 
           <motion.div 
             initial={{ opacity: 0, scale: 0.9 }}
