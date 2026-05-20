@@ -47,17 +47,14 @@ const Navbar = () => {
       hasDropdown: true,
       category: servicesData.find(c => c.slug === 'registrations')
     },
-    { 
-      name: 'Govt License', 
-      path: '/services/govt-license', 
+    {
+      name: 'Licenses',
+      path: '/services/govt-license',
       hasDropdown: true,
-      category: servicesData.find(c => c.slug === 'govt-license')
-    },
-    { 
-      name: 'Food License', 
-      path: '/services/food-license', 
-      hasDropdown: true,
-      category: servicesData.find(c => c.slug === 'food-license')
+      categories: [
+        servicesData.find(c => c.slug === 'govt-license'),
+        servicesData.find(c => c.slug === 'food-license'),
+      ].filter(Boolean)
     },
     { 
       name: 'GST', 
@@ -83,6 +80,7 @@ const Navbar = () => {
       hasDropdown: true,
       category: servicesData.find(c => c.slug === 'tax-compliance')
     },
+    { name: 'Web Services', path: '/web-services' },
     { name: 'About Us', path: '/about' },
   ];
 
@@ -107,12 +105,21 @@ const Navbar = () => {
     <nav
       className={cn(
         'fixed top-0 w-full z-50 transition-all duration-500',
-        isScrolled 
-          ? 'bg-white py-1 shadow-premium border-b border-light-gray' 
-          : 'bg-white/80 backdrop-blur-md py-4'
+        isScrolled || isOpen
+          ? 'bg-white shadow-premium border-b border-light-gray' 
+          : 'bg-white/80 backdrop-blur-md'
       )}
     >
-      <div className="w-full px-4 lg:px-8 2xl:px-12 flex justify-between items-center">
+      <div 
+        className={cn(
+          "w-full flex justify-between items-center transition-all duration-500",
+          isOpen
+            ? "px-6 py-4"
+            : isScrolled
+              ? "px-6 py-2 lg:px-8 2xl:px-12"
+              : "px-6 py-4 lg:px-8 2xl:px-12"
+        )}
+      >
         {/* Logo */}
         <Link to="/" className="flex items-center gap-2 group shrink-0">
           <img src="/logo.png" alt="Fortune Multi Services" className="h-14 md:h-16 w-auto object-contain" />
@@ -151,26 +158,62 @@ const Navbar = () => {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: 10 }}
                     transition={{ duration: 0.2 }}
-                    className="absolute top-full left-1/2 -translate-x-1/2 w-[600px] bg-white shadow-2xl border border-light-gray rounded-xl overflow-hidden z-50 mt-[-5px]"
+                    className="absolute top-full left-1/2 -translate-x-1/2 w-[680px] bg-white shadow-2xl border border-light-gray rounded-xl overflow-hidden z-50 mt-[-5px]"
                   >
-                    <div className="p-6 grid grid-cols-2 gap-x-8 gap-y-2">
-                      {link.category?.services.map((service) => (
-                        <Link
-                          key={service.name}
-                          to={`${link.path}/${service.slug}`}
-                          className="text-[13px] text-dark-gray hover:text-accent transition-colors py-1.5 border-b border-transparent hover:border-accent/10 flex items-center gap-2"
-                        >
-                          <div className="w-1.5 h-1.5 rounded-full bg-accent/30 group-hover:bg-accent" />
-                          {service.name}
-                        </Link>
-                      ))}
-                    </div>
-                    <div className="bg-soft-white p-4 border-t border-light-gray flex justify-between items-center">
-                      <p className="text-[11px] text-primary/60">{link.category?.description}</p>
-                      <Link to={link.path} className="text-[11px] font-bold text-accent hover:underline uppercase tracking-wider">
-                        View All Services
-                      </Link>
-                    </div>
+                    {'categories' in link && link.categories ? (
+                      <>
+                        <div className="p-6 grid grid-cols-2 gap-x-6">
+                          {(link.categories as NonNullable<typeof link.categories>).map((cat) => (
+                            <div key={cat!.slug}>
+                              <div className="flex items-center gap-2 mb-3">
+                                <span className="text-[9px] font-black text-accent uppercase tracking-[0.18em]">{cat!.title}</span>
+                                <div className="flex-1 h-px bg-accent/15"></div>
+                              </div>
+                              <div className="flex flex-col gap-0.5">
+                                {cat!.services.map((service) => (
+                                  <Link
+                                    key={service.name}
+                                    to={`/services/${cat!.slug}/${service.slug}`}
+                                    className="text-[13px] text-dark-gray hover:text-accent transition-colors py-1.5 border-b border-transparent hover:border-accent/10 flex items-center gap-2"
+                                  >
+                                    <div className="w-1.5 h-1.5 rounded-full bg-accent/30" />
+                                    {service.name}
+                                  </Link>
+                                ))}
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                        <div className="bg-soft-white p-4 border-t border-light-gray flex justify-between items-center">
+                          <p className="text-[11px] text-primary/60">Government & Food Regulatory Licenses</p>
+                          <div className="flex gap-4">
+                            <Link to="/services/govt-license" className="text-[11px] font-bold text-accent hover:underline uppercase tracking-wider">Govt License</Link>
+                            <Link to="/services/food-license" className="text-[11px] font-bold text-accent hover:underline uppercase tracking-wider">Food License</Link>
+                          </div>
+                        </div>
+                      </>
+                    ) : (
+                      <>
+                        <div className="p-6 grid grid-cols-2 gap-x-8 gap-y-2">
+                          {(link as {category?: {services: {name: string; slug?: string}[]}}).category?.services.map((service) => (
+                            <Link
+                              key={service.name}
+                              to={`${link.path}/${service.slug}`}
+                              className="text-[13px] text-dark-gray hover:text-accent transition-colors py-1.5 border-b border-transparent hover:border-accent/10 flex items-center gap-2"
+                            >
+                              <div className="w-1.5 h-1.5 rounded-full bg-accent/30 group-hover:bg-accent" />
+                              {service.name}
+                            </Link>
+                          ))}
+                        </div>
+                        <div className="bg-soft-white p-4 border-t border-light-gray flex justify-between items-center">
+                          <p className="text-[11px] text-primary/60">{(link as {category?: {description: string}}).category?.description}</p>
+                          <Link to={link.path} className="text-[11px] font-bold text-accent hover:underline uppercase tracking-wider">
+                            View All Services
+                          </Link>
+                        </div>
+                      </>
+                    )}
                   </motion.div>
                 )}
               </AnimatePresence>
@@ -267,18 +310,36 @@ const Navbar = () => {
                       initial={{ height: 0, opacity: 0 }}
                       animate={{ height: 'auto', opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}
-                      className="grid grid-cols-1 gap-2 pl-4 border-l-2 border-accent/10 overflow-hidden"
+                      className="pl-4 border-l-2 border-accent/10 overflow-hidden"
                     >
-                      {link.category?.services.map((service) => (
-                        <Link
-                          key={service.name}
-                          to={`${link.path}/${service.slug}`}
-                          className="text-xs text-dark-gray py-1.5 hover:text-accent transition-colors"
-                          onClick={() => setIsOpen(false)}
-                        >
-                          {service.name}
-                        </Link>
-                      ))}
+                      {'categories' in link && link.categories ? (
+                        (link.categories as NonNullable<typeof link.categories>).map((cat) => (
+                          <div key={cat!.slug} className="mb-3">
+                            <div className="text-[9px] font-black text-accent uppercase tracking-widest mb-1.5">{cat!.title}</div>
+                            {cat!.services.map((service) => (
+                              <Link
+                                key={service.name}
+                                to={`/services/${cat!.slug}/${service.slug}`}
+                                className="block text-xs text-dark-gray py-1.5 hover:text-accent transition-colors"
+                                onClick={() => setIsOpen(false)}
+                              >
+                                {service.name}
+                              </Link>
+                            ))}
+                          </div>
+                        ))
+                      ) : (
+                        (link as {category?: {services: {name: string; slug?: string}[]}}).category?.services.map((service) => (
+                          <Link
+                            key={service.name}
+                            to={`${link.path}/${service.slug}`}
+                            className="block text-xs text-dark-gray py-1.5 hover:text-accent transition-colors"
+                            onClick={() => setIsOpen(false)}
+                          >
+                            {service.name}
+                          </Link>
+                        ))
+                      )}
                     </motion.div>
                   )}
                 </div>
@@ -294,7 +355,7 @@ const Navbar = () => {
                 </Link>
                 <Link 
                   to="/contact" 
-                  className="btn-accent w-full text-center py-3"
+                  className="flex items-center justify-center gap-2 w-full py-3 bg-accent text-white rounded-xl text-sm font-bold uppercase tracking-wide hover:bg-accent-light transition-all shadow-glow"
                   onClick={() => setIsOpen(false)}
                 >
                   Free Consultation
@@ -357,7 +418,7 @@ const Navbar = () => {
                         { name: 'GST Registration', slug: 'gst-registration', cat: 'gst' },
                         { name: 'Startup India', slug: 'startup-india-registration', cat: 'registrations' },
                         { name: 'FSSAI License', slug: 'fssai-license', cat: 'food-license' },
-                        { name: 'Udyam Registration', slug: 'udyam-registration', cat: 'registrations' },
+                        { name: 'MSME Registration', slug: 'udyam-registration', cat: 'registrations' },
                         { name: 'LEI Code', slug: 'legal-entity-identifier-code', cat: 'registrations' }
                       ].map((item) => (
                         <button

@@ -8,13 +8,14 @@ import {
   Zap, FileText, Landmark, Scale, Globe 
 } from 'lucide-react';
 import GstCalculator from '../components/GstCalculator';
+import premiumAdvisors from '../assets/premium_advisors.png';
 
 const Home = () => {
   const stats = [
     { label: 'Years Experience', value: '10+', icon: Briefcase },
-    { label: 'Successful Registrations', value: '2500+', icon: CheckCircle },
-    { label: 'Expert Consultants', value: '25+', icon: Users2 },
-    { label: 'Client Satisfaction', value: '99%', icon: Star },
+    { label: 'Satisfied Clients', value: '5,000+', icon: Users2 },
+    { label: 'Compliance Guarantee', value: '100%', icon: ShieldCheck },
+    { label: 'Successful Registrations', value: '2,500+', icon: CheckCircle },
   ];
 
   const containerVariants = {
@@ -70,20 +71,20 @@ const Home = () => {
       <GstCalculator />
 
       {/* Bento Grid Services Section */}
-      <section className="py-32 relative overflow-hidden">
+      <section id="our-services" className="py-16 sm:py-24 lg:py-32 relative overflow-hidden">
         <div className="absolute top-0 right-0 w-1/3 h-1/3 bg-accent/5 blur-[150px] -z-10 rounded-full"></div>
         <div className="container mx-auto px-4 lg:px-8">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="max-w-3xl mx-auto mb-20 text-center space-y-4"
+            className="max-w-3xl mx-auto mb-10 sm:mb-20 text-center space-y-4"
           >
-            <h2 className="text-4xl lg:text-6xl font-black text-primary">
+            <h2 className="text-3xl sm:text-4xl lg:text-6xl font-black text-primary">
               Our <span className="text-accent">Exquisite</span> Services
             </h2>
             <div className="w-24 h-1 bg-accent mx-auto rounded-full"></div>
-            <p className="text-lg text-dark-gray font-medium max-w-2xl mx-auto leading-relaxed">
+            <p className="text-base sm:text-lg text-dark-gray font-medium max-w-2xl mx-auto leading-relaxed">
               We provide surgical precision in business compliance, ensuring your enterprise stays ahead of the curve.
             </p>
           </motion.div>
@@ -93,7 +94,7 @@ const Home = () => {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 auto-rows-[320px]"
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 auto-rows-[320px]"
           >
             {servicesData.map((category, index) => {
               const Icon = getServiceIcon(category.slug);
@@ -145,11 +146,11 @@ const Home = () => {
       </section>
 
       {/* Premium Stats Section */}
-      <section className="py-24 relative">
+      <section className="py-16 sm:py-24 relative">
         <div className="container mx-auto px-4 lg:px-8">
-          <div className="bg-primary rounded-[3rem] p-12 lg:p-20 relative overflow-hidden shadow-2xl">
+          <div className="bg-primary rounded-[2rem] sm:rounded-[3rem] p-6 sm:p-12 lg:p-20 relative overflow-hidden shadow-2xl">
             <div className="absolute inset-0 mesh-gradient opacity-40"></div>
-            <div className="relative z-10 grid grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
+            <div className="relative z-10 grid grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-12 lg:gap-8">
               {stats.map((stat, index) => (
                 <motion.div 
                   key={stat.label}
@@ -173,30 +174,30 @@ const Home = () => {
       </section>
 
       {/* Why Choose Us: Editorial Style */}
-      <section className="py-32 bg-white">
+      <section className="py-16 sm:py-24 lg:py-32 bg-white">
         <div className="container mx-auto px-4 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
-            <div className="space-y-12">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center">
+            <div className="space-y-8 sm:space-y-12">
               <motion.div 
                 initial={{ opacity: 0, x: -30 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
-                className="space-y-6"
+                className="space-y-4 sm:space-y-6"
               >
-                <div className="inline-flex items-center gap-3 px-4 py-1.5 rounded-full bg-accent/10 text-accent text-sm font-bold border border-accent/20">
+                <div className="inline-flex items-center gap-3 px-4 py-1.5 rounded-full bg-accent/10 text-accent text-xs sm:text-sm font-bold border border-accent/20">
                   <ShieldCheck className="w-4 h-4" />
                   Elite Business Solutions
                 </div>
-                <h2 className="text-5xl lg:text-7xl font-black text-primary leading-none tracking-tighter">
+                <h2 className="text-4xl sm:text-5xl lg:text-7xl font-black text-primary leading-none tracking-tighter">
                   The Gold Standard <br />
                   <span className="text-accent">Of Consulting</span>
                 </h2>
-                <p className="text-xl text-dark-gray font-medium leading-relaxed">
+                <p className="text-lg sm:text-xl text-dark-gray font-medium leading-relaxed">
                   We don't just register companies; we build the foundations for global conglomerates. Our approach is surgical, data-driven, and results-oriented.
                 </p>
               </motion.div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-10">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-10">
                 {[
                   { title: 'Full Spectrum', desc: 'End-to-end compliance from incorporation to annual audit.', icon: Zap },
                   { title: 'Global Precision', desc: 'Adhering to international standards for trademark and IP.', icon: Award },
@@ -208,7 +209,7 @@ const Home = () => {
                     initial={{ opacity: 0, y: 10 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ delay: i * 0.1 }}
-                    className="space-y-3"
+                    className="space-y-2 sm:space-y-3"
                   >
                     <div className="w-12 h-12 bg-primary/5 rounded-xl flex items-center justify-center border border-primary/10">
                       <item.icon className="w-6 h-6 text-primary" />
@@ -226,10 +227,10 @@ const Home = () => {
               viewport={{ once: true }}
               className="relative"
             >
-              <div className="relative z-10 rounded-[3rem] overflow-hidden shadow-[0_50px_100px_-20px_rgba(15,23,42,0.25)] border-[16px] border-soft-white">
+              <div className="relative z-10 rounded-[1.5rem] sm:rounded-[3rem] overflow-hidden shadow-[0_50px_100px_-20px_rgba(15,23,42,0.25)] border-8 sm:border-[16px] border-soft-white">
                 <img 
-                  src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&q=80&w=1200" 
-                  alt="Premium Professional Workspace" 
+                  src={premiumAdvisors} 
+                  alt="Elite Business Advisory Board" 
                   className="w-full h-auto"
                 />
               </div>
@@ -238,7 +239,7 @@ const Home = () => {
                 <div className="flex items-center gap-6">
                   <div className="text-5xl font-black text-primary">100%</div>
                   <div className="w-px h-12 bg-light-gray"></div>
-                  <div className="text-xs text-dark-gray font-bold uppercase tracking-widest leading-tight">Document <br />Accuracy</div>
+                  <div className="text-xs text-dark-gray font-bold uppercase tracking-widest leading-tight">Compliance <br />Guaranteed</div>
                 </div>
               </div>
             </motion.div>
@@ -247,25 +248,25 @@ const Home = () => {
       </section>
 
       {/* Testimonials: Premium Carousel feel */}
-      <section className="py-32 bg-soft-white overflow-hidden">
+      <section className="py-16 sm:py-24 lg:py-32 bg-soft-white overflow-hidden">
         <div className="container mx-auto px-4 lg:px-8">
-          <div className="text-center mb-24 space-y-4">
-            <h2 className="text-4xl lg:text-6xl font-black text-primary">Client Success Stories</h2>
+          <div className="text-center mb-12 sm:mb-24 space-y-4">
+            <h2 className="text-3xl sm:text-4xl lg:text-6xl font-black text-primary">Client Success Stories</h2>
             <div className="w-20 h-1 bg-accent mx-auto rounded-full"></div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-10">
             {[
-              { name: 'Rahul Sharma', role: 'CEO, TechLogics', content: 'Fortune Multi Services transformed our legal foundation. Their precision is unmatched in the industry.', avatar: 'https://i.pravatar.cc/150?u=1' },
-              { name: 'Ananya Goel', role: 'Founder, Organic Bloom', content: 'From GST to Trademark, they handled everything while I focused on growth. A true partner in every sense.', avatar: 'https://i.pravatar.cc/150?u=2' },
-              { name: 'Vikram Singh', role: 'Director, Zenith Corp', content: 'Highly professional team. Their compliance strategies saved us millions in potential penalties.', avatar: 'https://i.pravatar.cc/150?u=3' },
+              { name: 'Rahul Sharma', role: 'CEO, TechLogics', content: 'Fortune Multi Services transformed our legal foundation. Their precision is unmatched in the industry.', avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=150&h=150' },
+              { name: 'Ananya Goel', role: 'Founder, Organic Bloom', content: 'From GST to Trademark, they handled everything while I focused on growth. A true partner in every sense.', avatar: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=150&h=150' },
+              { name: 'Vikram Singh', role: 'Director, Zenith Corp', content: 'Highly professional team. Their compliance strategies saved us millions in potential penalties.', avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=150&h=150' },
             ].map((t, i) => (
               <motion.div 
                 key={t.name}
                 initial={{ opacity: 0, scale: 0.95 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 transition={{ delay: i * 0.1 }}
-                className="glass-card p-10 relative group"
+                className="glass-card p-6 sm:p-10 relative group"
               >
                 <Quote className="absolute top-8 right-8 w-16 h-16 text-primary/5 group-hover:text-accent/10 transition-colors" />
                 <div className="flex items-center gap-5 mb-8">
@@ -275,7 +276,7 @@ const Home = () => {
                     <div className="text-[10px] text-accent font-black uppercase tracking-widest">{t.role}</div>
                   </div>
                 </div>
-                <p className="text-dark-gray font-medium leading-relaxed text-lg">"{t.content}"</p>
+                <p className="text-dark-gray font-medium leading-relaxed text-base sm:text-lg">"{t.content}"</p>
                 <div className="mt-8 flex gap-1">
                   {[1,2,3,4,5].map(star => <Star key={star} className="w-4 h-4 fill-accent text-accent" />)}
                 </div>
@@ -286,26 +287,26 @@ const Home = () => {
       </section>
 
       {/* Final Call to Action */}
-      <section className="py-32">
+      <section className="py-16 sm:py-24 lg:py-32">
         <div className="container mx-auto px-4 lg:px-8">
-          <div className="relative bg-primary rounded-[4rem] p-16 lg:p-32 text-center text-white overflow-hidden shadow-[0_50px_100px_-20px_rgba(15,23,42,0.5)]">
+          <div className="relative bg-primary rounded-[2rem] sm:rounded-[3rem] lg:rounded-[4rem] p-6 sm:p-16 lg:p-32 text-center text-white overflow-hidden shadow-[0_50px_100px_-20px_rgba(15,23,42,0.5)]">
             <div className="absolute inset-0 mesh-gradient opacity-60"></div>
-            <div className="relative z-10 max-w-4xl mx-auto space-y-12">
-              <h2 className="text-5xl lg:text-8xl font-black tracking-tighter leading-none text-white">
+            <div className="relative z-10 max-w-4xl mx-auto space-y-8 sm:space-y-12">
+              <h2 className="text-3.5xl sm:text-5xl lg:text-8xl font-black tracking-tighter leading-none text-white">
                 Build Your <span className="text-accent">Empire</span> <br />
                 With Confidence
               </h2>
-              <p className="text-2xl text-white/70 font-medium">
+              <p className="text-lg sm:text-2xl text-white/70 font-medium">
                 Join the elite circle of 5,000+ businesses powered by Fortune Multi Services.
               </p>
-              <div className="flex flex-col sm:flex-row justify-center gap-8">
-                <Link to="/contact" className="btn-accent px-16 py-6 text-xl shadow-glow">
+              <div className="flex flex-col sm:flex-row justify-center gap-4 sm:gap-8">
+                <Link to="/contact" className="btn-accent px-8 sm:px-16 py-4 sm:py-6 text-base sm:text-xl shadow-glow">
                   Initialize Setup
                   <ArrowRight className="w-6 h-6 ml-2" />
                 </Link>
                 <a 
                   href="https://wa.me/918919051513" 
-                  className="px-16 py-6 rounded-2xl bg-white/10 backdrop-blur-md border border-white/10 font-bold text-white hover:bg-white/20 transition-all text-xl"
+                  className="px-8 sm:px-16 py-4 sm:py-6 rounded-2xl bg-white/10 backdrop-blur-md border border-white/10 font-bold text-white hover:bg-white/20 transition-all text-base sm:text-xl"
                 >
                   Priority Concierge
                 </a>

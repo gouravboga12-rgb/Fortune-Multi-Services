@@ -361,7 +361,7 @@ const ServiceDetails = () => {
                 )}
 
                 <Link to={`/apply/${category.slug}/${service.slug}`} className="btn-accent w-full text-center py-4 rounded-xl mb-4 text-lg">
-                  Initialize Application
+                  Apply Now
                 </Link>
                 <a 
                   href={`https://wa.me/918919051513?text=Hi, I am interested in ${service.name} service.`}

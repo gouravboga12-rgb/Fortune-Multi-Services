@@ -107,10 +107,10 @@ const GstCalculator = () => {
             </p>
 
             {/* Selector Tabs */}
-            <div className="inline-flex p-1 bg-primary/5 rounded-2xl border border-primary/10 mt-6 shrink-0">
+            <div className="flex w-full max-w-md mx-auto p-1 bg-primary/5 rounded-2xl border border-primary/10 mt-6">
               <button
                 onClick={() => setActiveTab('gst')}
-                className={`px-6 py-3 rounded-xl text-xs font-black uppercase tracking-wider transition-all cursor-pointer ${
+                className={`flex-1 py-3 rounded-xl text-xs font-black uppercase tracking-wider transition-all cursor-pointer text-center ${
                   activeTab === 'gst' ? 'bg-primary text-white shadow-md' : 'text-primary/60 hover:text-primary'
                 }`}
               >
@@ -118,7 +118,7 @@ const GstCalculator = () => {
               </button>
               <button
                 onClick={() => setActiveTab('startup')}
-                className={`px-6 py-3 rounded-xl text-xs font-black uppercase tracking-wider transition-all cursor-pointer ${
+                className={`flex-1 py-3 rounded-xl text-xs font-black uppercase tracking-wider transition-all cursor-pointer text-center ${
                   activeTab === 'startup' ? 'bg-primary text-white shadow-md' : 'text-primary/60 hover:text-primary'
                 }`}
               >
@@ -128,7 +128,7 @@ const GstCalculator = () => {
           </div>
 
           {/* Calculator Layout */}
-          <div className="bg-white border border-light-gray rounded-[2.5rem] p-8 lg:p-12 shadow-premium grid grid-cols-1 lg:grid-cols-12 gap-12 relative overflow-hidden">
+          <div className="bg-white border border-light-gray rounded-[1.5rem] sm:rounded-[2.5rem] p-5 sm:p-8 lg:p-12 shadow-premium grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 relative overflow-hidden">
             {activeTab === 'gst' ? (
               <>
                 {/* GST LEFT INPUTS */}
@@ -144,7 +144,7 @@ const GstCalculator = () => {
                       onChange={(e) => setAmount(Number(e.target.value))}
                       className="w-full h-16 px-6 bg-soft-white border border-light-gray focus:border-accent rounded-2xl outline-none text-xl font-black text-primary transition-colors shadow-sm"
                     />
-                    <div className="flex gap-2">
+                    <div className="flex flex-wrap gap-2">
                       {[5000, 10000, 25000, 50000, 100000].map((val) => (
                         <button
                           key={val}
@@ -224,7 +224,7 @@ const GstCalculator = () => {
                 </div>
 
                 {/* GST RIGHT OUTPUTS */}
-                <div className="lg:col-span-5 bg-primary text-white rounded-[2rem] p-8 space-y-8 flex flex-col justify-between shadow-2xl relative overflow-hidden">
+                <div className="lg:col-span-5 bg-primary text-white rounded-[1.5rem] sm:rounded-[2rem] p-6 sm:p-8 space-y-8 flex flex-col justify-between shadow-2xl relative overflow-hidden">
                   <div className="absolute inset-0 mesh-gradient opacity-20 pointer-events-none"></div>
 
                   <div className="space-y-6 relative z-10">
@@ -343,7 +343,7 @@ const GstCalculator = () => {
                 </div>
 
                 {/* STARTUP RIGHT OUTPUTS */}
-                <div className="lg:col-span-5 bg-primary text-white rounded-[2rem] p-8 space-y-8 flex flex-col justify-between shadow-2xl relative overflow-hidden">
+                <div className="lg:col-span-5 bg-primary text-white rounded-[1.5rem] sm:rounded-[2rem] p-6 sm:p-8 space-y-8 flex flex-col justify-between shadow-2xl relative overflow-hidden">
                   <div className="absolute inset-0 mesh-gradient opacity-20 pointer-events-none"></div>
 
                   <div className="space-y-6 relative z-10">

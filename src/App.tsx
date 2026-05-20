@@ -12,11 +12,13 @@ import Contact from './pages/Contact';
 import AdminDashboard from './pages/AdminDashboard';
 import Login from './pages/Login';
 import ApplyService from './pages/ApplyService';
+import WebServices from './pages/WebServices';
 
 // Components
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import FloatingWhatsApp from './components/FloatingWhatsApp';
+import WelcomeToast from './components/WelcomeToast';
 
 function App() {
   useEffect(() => {
@@ -39,12 +41,14 @@ function App() {
             <Route path="/services/:category/:serviceSlug" element={<ServiceDetails />} />
             <Route path="/apply/:category/:serviceSlug" element={<ApplyService />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/web-services" element={<WebServices />} />
             <Route path="/admin" element={<AdminDashboard />} />
             <Route path="/login" element={<Login />} />
           </Routes>
         </main>
         <Footer />
         <FloatingWhatsApp />
+        <WelcomeToast />
       </div>
     </Router>
   );

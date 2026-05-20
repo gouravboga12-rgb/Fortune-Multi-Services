@@ -45,62 +45,148 @@ export const servicesData: ServiceCategory[] = [
         name: "Proprietorship",
         tag: "#Proprietorship",
         slug: "proprietorship",
-        description: "A sole proprietorship is a business that is owned and managed by a single person, ideal for small businesses.",
+        description: "A sole proprietorship is the simplest and most popular form of business in India, owned and managed by a single individual. Ideal for freelancers, traders, and small business owners.",
         details: {
-          overview: "A Sole Proprietorship is the simplest and most common structure chosen to start a business in India. It is an unincorporated business owned, managed, and controlled by a single individual (the sole proprietor) who is personally entitled to all profits and personally responsible for all business debts.",
-          targetAudience: "Solo entrepreneurs, local shops, freelancers, and small businesses with low risk.",
-          benefits: ["Complete Control", "Minimal Compliance", "Easy to Start & Close", "Tax Benefits for small income"],
-          documents: ["PAN Card", "Aadhaar Card", "Bank Account Statement", "Registered Office Proof (Rent/Utility Bill)"],
-          process: [
-            "Initial Consultation & Strategy",
-            "Document Collection & Verification",
-            "MSME/Udyam Registration",
-            "Applying for GST & Local Licenses",
-            "Bank Current Account Opening"
-          ],
-          timeline: "3-5 Working Days",
+          overview: `A sole proprietorship firm is the simplest and most popular form of business in India, owned and managed by a single individual. It requires minimal compliance, low investment, and offers complete control to the owner. Whether you are a freelancer, trader, or small business owner, registering a sole proprietorship is the first step towards a legally recognized business identity.
+
+What is Sole Proprietorship Firm Registration in India?
+Sole proprietorship firm registration in India refers to the process by which an individual legally establishes a business under their own name or a trade name. Unlike a private limited company or LLP, a sole proprietorship does not require incorporation under the Companies Act. Instead, it gains legal recognition through registrations such as GST registration, MSME/Udyam registration, or a Shop and Establishment licence.
+
+A sole proprietor is personally responsible for all the liabilities and debts of the business. The business and the owner are considered the same legal entity, making it the most straightforward business registration for individuals in India.
+
+Eligibility Criteria:
+The applicant must be an Indian citizen and at least 18 years of age with a valid PAN card. The applicant must not be involved in any illegal business activity. NRIs can also register a sole proprietorship with certain restrictions. Any individual engaged in trading, manufacturing, or service-based activities can register as a sole proprietor firm in India.
+
+Registration Fee Structure:
+• GST Registration — Government Fee: Free | Professional Fee: ₹500–₹2,000
+• MSME/Udyam Registration — Government Fee: Free | Professional Fee: ₹500–₹1,500
+• Shop & Establishment Licence — Government Fee: ₹100–₹1,000 | Professional Fee: ₹1,000–₹3,000
+• Trade Licence — Government Fee: ₹500–₹5,000 | Professional Fee: ₹1,000–₹3,000
+
+Penalties for Non-Compliance:
+• GST non-registration penalty: 10% of tax due or ₹10,000, whichever is higher
+• Late GST return filing: ₹50 per day (₹20 for nil returns)
+• Non-filing of ITR: Penalty up to ₹5,000 under Section 234F
+
+Registration Timeline:
+• GST Registration: 3–7 Working Days
+• MSME/Udyam Registration: 1–2 Working Days
+• Shop & Establishment Licence: 7–15 Working Days
+• Trade Licence: 15–30 Working Days
+
+Why Choose Fortune Multi Services?
+Fortune Multi Services is your trusted partner for sole proprietorship firm registration across India. Our experienced professionals provide end-to-end support from documentation to certificate delivery. We offer transparent pricing with no hidden charges, a dedicated relationship manager for each client, and real-time tracking of your application status. Trusted by over 5,000 businesses across India, we ensure quick turnaround with complete compliance accuracy.`,
+          targetAudience: "Solo entrepreneurs, freelancers, traders, local shops, and small business owners.",
+          timeline: "3–7 Working Days (GST/MSME)",
           characteristics: [
-            "Single Owner Control: Absolute decision-making authority sits with a single owner.",
-            "No Separate Legal Entity: The owner and the business are treated as one under the law.",
-            "Unlimited Liability: Personal assets of the owner can be used to recover business liabilities.",
-            "Easy Setup & Termination: Requires minimal legal formalities to start or close."
+            "Single ownership and full control by one person — absolute decision-making authority.",
+            "No separate legal entity from the owner — the business and proprietor are legally the same.",
+            "Unlimited personal liability — personal assets can be used to recover business debts.",
+            "Easy to form with minimal formalities — no incorporation under Companies Act required.",
+            "All profits and losses belong solely to the owner with simplified tax filing."
+          ],
+          benefits: [
+            "Complete ownership and decision-making control",
+            "Minimal compliance and regulatory requirements",
+            "Low investment and quick setup (1–7 days)",
+            "Simplified tax filing integrated into personal ITR",
+            "Easy to close or wind up without legal formalities",
+            "Eligible for MSME government benefits and subsidies",
+            "Suitable for GST registration and current bank account opening",
+            "Ideal for freelancers, traders, and local service providers"
+          ],
+          documents: [
+            "PAN Card of the proprietor (mandatory)",
+            "Aadhaar Card / Voter ID / Passport (identity proof)",
+            "Passport-size photographs",
+            "Business address proof (electricity bill / rent agreement)",
+            "Bank account details in the name of the business",
+            "Trade name or business name details",
+            "GST registration certificate (if turnover exceeds threshold)",
+            "MSME/Udyam registration certificate",
+            "Shop and Establishment licence (state-specific)"
+          ],
+          process: [
+            "Step 1 – Choose a Business Name: Select a unique trade name for your sole proprietorship. Ensure it does not infringe on any existing trademarks.",
+            "Step 2 – Obtain PAN Card: Apply for a PAN card in the proprietor's name. The sole proprietorship PAN card is mandatory for all tax-related activities.",
+            "Step 3 – Open a Current Bank Account: Open a current bank account in the name of the business for all proprietorship banking activities.",
+            "Step 4 – GST Registration: Apply for GST registration if your annual turnover exceeds ₹20 lakhs (₹10 lakhs for special category states).",
+            "Step 5 – MSME/Udyam Registration: Register under MSME to avail government benefits, subsidies, and priority sector lending.",
+            "Step 6 – Shop & Establishment Licence: Obtain the licence from your local municipal authority based on your business state and activity."
           ],
           pros: [
             "Extremely easy and low-cost to establish and maintain.",
-            "Complete decision-making control and confidentiality.",
-            "Simplified tax filing integrated directly into the owner's personal ITR."
+            "Complete decision-making control and business confidentiality.",
+            "Simplified tax filing integrated directly into the owner's personal ITR (ITR-3 or ITR-4).",
+            "Eligible for MSME schemes, government subsidies, and priority lending.",
+            "No mandatory audit requirements for small turnovers.",
+            "Quick registration process — operational in as little as 3 days."
           ],
           cons: [
-            "Unlimited personal liability for all business debts and obligations.",
-            "Difficult to raise external investment, equity funding, or secure corporate loans.",
-            "Business terminates immediately upon the death or disability of the owner."
+            "Unlimited personal liability — personal assets are at risk for all business debts.",
+            "Difficult to raise external investment, equity funding, or secure large corporate loans.",
+            "Business ceases to exist upon the death or disability of the owner.",
+            "Limited growth potential compared to companies or LLPs.",
+            "No perpetual succession — business identity tied entirely to individual."
           ],
           commonMistakes: [
-            "Failing to register for municipal/local business licenses (like Trade License).",
-            "Mixing personal and business funds in a single bank account.",
-            "Ignoring timely registration for GST once annual turnover exceeds statutory thresholds."
+            "Failing to register for municipal/local business licences such as Trade Licence or Shop & Establishment.",
+            "Mixing personal and business funds in the same bank account — always open a separate current account.",
+            "Ignoring GST registration once annual turnover crosses ₹20 lakhs (₹10 lakhs for special category states).",
+            "Not filing annual Income Tax Returns (ITR-3 or ITR-4) — attracts penalties up to ₹5,000 under Section 234F.",
+            "Not renewing the Shop & Establishment licence annually as required by state law.",
+            "Using a business name that infringes on existing trademarks without prior clearance."
           ],
           postCompliances: [
-            "Annual Income Tax Returns (ITR-3 or ITR-4).",
-            "Monthly/Quarterly GST filings (if GST registered).",
-            "Renewal of local Shop & Establishment license (annually)."
+            "Annual Income Tax Return filing (ITR-3 or ITR-4) by July 31st of each assessment year",
+            "Monthly GST returns (GSTR-1 and GSTR-3B) if GST registered",
+            "Quarterly GST returns under QRMP scheme (if opted)",
+            "Annual GST return (GSTR-9) filing",
+            "Annual renewal of Shop & Establishment licence",
+            "Maintenance of proper books of accounts and financial records",
+            "TDS (Tax Deducted at Source) compliance if applicable",
+            "Professional tax payment as per state-specific rules"
           ],
           faqs: [
             {
-              question: "Is a sole proprietorship considered a separate legal entity?",
-              answer: "No, a sole proprietorship is legally indistinguishable from its owner. All liabilities, personal assets, and tax filings are linked directly to the individual proprietor's PAN."
+              question: "What is sole proprietorship registration?",
+              answer: "Sole proprietorship registration is the process by which an individual legally establishes a business under their own name or a trade name. It gains recognition through registrations such as GST, MSME/Udyam, or Shop & Establishment licence. There is no single unified incorporation certificate."
             },
             {
-              question: "What is the key disadvantage of a sole proprietorship?",
-              answer: "The primary disadvantage is unlimited liability, meaning the owner's personal properties can be attached by courts or banks to settle any unpaid business dues or legal claims."
+              question: "What is meant by a proprietorship firm?",
+              answer: "A proprietorship firm is a business entity owned and managed by a single individual (the proprietor). The owner and the business are considered the same legal entity — all profits, losses, and liabilities belong entirely to the proprietor."
             },
             {
-              question: "Can I convert my proprietorship to a Private Limited Company later?",
-              answer: "Yes, you can seamlessly convert to a Private Limited Company or LLP as your business grows to limit liability and attract external venture funding."
+              question: "What is the cost of registering a sole proprietorship firm?",
+              answer: "The cost varies by registration type. GST and MSME/Udyam registrations have no government fee, with professional fees starting from ₹500. Shop & Establishment and Trade Licences may cost ₹100–₹5,000 in government fees plus professional charges. Fortune Multi Services offers transparent, affordable packages with no hidden charges."
             },
             {
-              question: "What registrations are required for a sole proprietorship?",
-              answer: "There is no single 'incorporation certificate'. Instead, registrations like GST, MSME Udyam, and Shop & Establishment are used to establish its operational identity."
+              question: "What are some real-life examples of sole proprietorships?",
+              answer: "Common examples include freelance consultants, individual traders, local grocery shop owners, small home-based food businesses, and independent professionals such as chartered accountants, architects, and doctors operating under their own name."
+            },
+            {
+              question: "Is GST registration required for a sole proprietorship firm?",
+              answer: "GST registration is mandatory if your annual turnover exceeds ₹20 lakhs (₹10 lakhs for special category states). Voluntary registration is also possible and beneficial for claiming input tax credits and working with GST-registered businesses."
+            },
+            {
+              question: "Can a sole proprietorship obtain a PAN card?",
+              answer: "A sole proprietorship does not obtain a separate PAN card. The proprietor's personal PAN card is used for all business tax activities. This PAN is used for GST registration, bank account opening, ITR filing, and all compliance purposes."
+            },
+            {
+              question: "Should I use a personal bank account or a business account for my sole proprietorship?",
+              answer: "You should always open a separate current bank account in the name of your business. Mixing personal and business finances in one account creates accounting complications and may raise flags during tax assessments. A business current account also adds credibility."
+            },
+            {
+              question: "Do I need a business license to operate a sole proprietorship firm in India?",
+              answer: "Yes, depending on your business type, you may require a Shop & Establishment licence, Trade Licence, FSSAI licence (for food businesses), or other state-specific licences. Fortune Multi Services helps you identify and obtain all applicable licences."
+            },
+            {
+              question: "How long does it take to register a sole proprietorship?",
+              answer: "The timeline depends on the type of registration: MSME/Udyam takes 1–2 working days, GST registration takes 3–7 working days, and Shop & Establishment licences take 7–15 working days. Fortune Multi Services ensures the fastest possible turnaround for your registration."
+            },
+            {
+              question: "Can a sole proprietorship be converted into a private limited company?",
+              answer: "Yes, a sole proprietorship can be converted into a Private Limited Company or LLP as your business grows. This helps limit personal liability, attract external investors, and scale operations. Fortune Multi Services can guide you through the entire conversion process seamlessly."
             }
           ]
         }
@@ -109,68 +195,172 @@ export const servicesData: ServiceCategory[] = [
         name: "Partnership",
         tag: "#Partnership",
         slug: "partnership",
-        description: "A business structure where two or more individuals manage and operate a business in accordance with the terms of a Partnership Deed.",
+        description: "A partnership firm is one of the most preferred business structures in India, where two or more individuals come together to run a business and share profits and losses.",
         details: {
-          overview: "A Partnership Firm is a popular structure where two or more individuals join hands to carry out business activities. The relationships, capital contribution, and profit-sharing ratio are governed by a legally binding agreement known as a Partnership Deed, draft according to the Indian Partnership Act, 1932.",
-          targetAudience: "Small to medium co-owned businesses, family ventures, and trade-based firms.",
-          benefits: ["Shared Responsibility", "More Capital", "Minimal Compliance compared to companies", "Easy Decision Making"],
+          overview: `A partnership firm is one of the most preferred business structures in India, where two or more individuals come together to run a business and share profits and losses. Governed by the Indian Partnership Act, 1932, a partnership firm offers flexibility, shared responsibility, and ease of formation. Whether you are starting a new venture or formalizing an existing business, understanding the complete partnership firm registration process is the first step towards building a legally recognized and credible business in India.
+
+What is Partnership Firm Registration in India?
+Partnership firm registration in India is the process of legally registering a business entity formed by two or more individuals under the Indian Partnership Act, 1932. Although registration is not mandatory, a registered partnership firm enjoys several legal benefits over an unregistered one, including the right to file suits in court and claim set-offs.
+
+The registration is done with the Registrar of Firms of the respective state government. A partnership deed is the foundation of every partnership firm, outlining the rights, duties, and profit-sharing ratio of each partner.
+
+Legal Framework – Indian Partnership Act 1932
+The Indian Partnership Act, 1932 governs all aspects of partnership firm registration in India. It defines the rights and liabilities of partners, rules for dissolution, and provisions for registration. The Act provides the complete legal framework for partnership business setup in the country.
+
+What are the Types of Partnership Firms in India?
+Understanding the different types of partnership firm registration helps you choose the right structure for your two person business in India or multi-partner venture. There are five major types of partnership business setup recognized in India:
+
+1. General Partnership (GP)
+A General Partnership (GP) is the most common and simplest form of partnership firm in India. In this type, all partners share equal rights and responsibilities in managing the business and are jointly and severally liable for the debts and obligations of the firm.
+• All partners have unlimited liability.
+• Every partner has the right to participate in the management of the business.
+• Profits and losses are shared as per the partnership deed.
+• Governed by the Indian Partnership Act, 1932.
+• Ideal for small businesses, traders, and professional service firms.
+
+2. Limited Liability Partnership (LLP)
+A Limited Liability Partnership (LLP) is a hybrid business structure that combines the features of a general partnership and a company. It is governed by the Limited Liability Partnership Act, 2008 and is one of the most preferred structures for professionals and startups in India.
+• Partners enjoy limited liability protection up to their capital contribution.
+• LLP is a separate legal entity distinct from its partners.
+• Mandatory registration with the Ministry of Corporate Affairs (MCA).
+• No maximum limit on the number of partners.
+• Lower compliance burden compared to a Private Limited Company.
+
+3. Partnership at Will
+A Partnership at Will is a type of partnership firm where there is no fixed duration or specific end date mentioned in the partnership deed. The partnership continues as long as all partners are willing to continue and can be dissolved at any time by any partner by giving notice to the other partners.
+• No fixed term or duration for the partnership.
+• Any partner can dissolve the firm by giving a written notice to other partners.
+• Most flexible form of partnership business setup in India.
+• Governed under Section 7 of the Indian Partnership Act, 1932.
+
+4. Particular Partnership (Partnership for a Specific Venture)
+A Particular Partnership is formed for a specific project, venture, or purpose. Once the objective of the partnership is achieved or the specific venture is completed, the partnership automatically dissolves.
+• Formed for a specific purpose or project.
+• Automatically dissolves upon completion of the venture.
+• Partners share profits and losses only for that specific venture.
+• Governed under Section 8 of the Indian Partnership Act, 1932.
+
+5. Limited Partnership (LP)
+A Limited Partnership (LP) consists of two types of partners — General Partners who manage the business and have unlimited liability, and Limited Partners who invest capital but have limited liability up to their capital contribution.
+• Comprises both general partners and limited partners.
+• Limited partners enjoy liability protection up to their investment.
+• General partners have unlimited liability and manage the business.
+
+Why Choose Fortune Multi Services?
+Fortune Multi Services is India's most trusted platform for partnership firm registration online, helping thousands of entrepreneurs and business owners register their firms every year. We offer end-to-end support from drafting the partnership deed to obtaining your partnership registration certificate.
+• Expert Assistance: Experienced professionals with deep knowledge of the Indian Partnership Act, 1932. End-to-end support with a dedicated relationship manager for every client.
+• Affordable & Transparent Pricing: No hidden charges – fully transparent fee structure with cost-effective packages.
+• Fast & Reliable Service: Quick turnaround time (5-7 working days across all states) with real-time tracking. Trusted by over 5,000+ businesses across India.`,
+          targetAudience: "Entrepreneurs, family-owned businesses, professional service providers, and multi-partner ventures.",
+          timeline: "5-7 Working Days (Fortune Multi Services Support)",
+          characteristics: [
+            "Minimum of 2 partners required, with a maximum limit of 50 partners under the Companies Act.",
+            "Governed by the Indian Partnership Act, 1932, establishing a solid legal framework.",
+            "Mutual agency relationship — each partner acts as both principal and agent for all other partners.",
+            "Unlimited joint and several liability — partners are personally liable for all firm obligations.",
+            "Governing terms, capital, and profit-sharing are defined entirely by the Partnership Deed."
+          ],
+          benefits: [
+            "Full legal protection for partners under a registered deed",
+            "Easy access to business bank accounts, loans, and credit facilities",
+            "Enhanced credibility with customers, suppliers, and government bodies",
+            "Eligibility for municipal and government tenders and contracts",
+            "Simple, fast, and highly cost-effective setup compared to corporate structures",
+            "Minimal annual compliance and regulatory filing requirements",
+            "Ability to register under MSME/Udyam to avail of interest subsidies and benefits",
+            "Shared responsibility, financial pooling, and diverse management skills"
+          ],
           documents: [
-            "Drafted Partnership Deed",
-            "PAN Card of all Partners",
-            "Aadhaar Card of all Partners",
-            "Address Proof of the Firm",
-            "NOC from Landlord"
+            "PAN Card of all partners (mandatory)",
+            "Aadhaar Card / Voter ID / Passport of all partners (identity proof)",
+            "Passport-size photographs of all partners",
+            "Business address proof (electricity bill / water bill)",
+            "Rent agreement (if the business premises is rented)",
+            "NOC (No Objection Certificate) from the property owner",
+            "Partnership Deed drafted on stamp paper of requisite value",
+            "Notarized copy of the partnership deed",
+            "Partnership firm name registration details"
           ],
           process: [
-            "Drafting & Finalizing Partnership Deed",
-            "Notarization & Stamp Duty Payment",
-            "Applying for Firm PAN & TAN",
-            "Optional Registration with Registrar of Firms (RoF)",
-            "Opening Current Bank Account"
-          ],
-          timeline: "5-10 Working Days",
-          characteristics: [
-            "Co-ownership: Formed by at least two people (maximum limit is 50).",
-            "Mutual Agency: Each partner acts as both principal and agent for other partners.",
-            "Shared Profit/Loss: Profit and losses are distributed according to the Partnership Deed.",
-            "Unlimited Liability: Partners are jointly and severally liable for all firm obligations."
+            "Step 1 – Draft the Partnership Deed: Prepare a comprehensive partnership deed registration document including business name, nature, profit-sharing ratio, capital contribution, and rights & duties.",
+            "Step 2 – Notarize the Deed: Get the partnership agreement notarized on stamp paper of appropriate value as per your state's Stamp Act.",
+            "Step 3 – Apply to the Registrar of Firms: Submit Form 1 (Application for Registration) along with all required documents to the Registrar of Firms of your state.",
+            "Step 4 – Pay the Registration Fee: Pay the applicable partnership firm registration fee to the Registrar of Firms.",
+            "Step 5 – Obtain Registration Certificate: Once verified, the Registrar will issue a partnership registration certificate, officially registering your firm.",
+            "Step 6 – Apply for PAN & GST: Apply for a partnership firm PAN card and GST registration for partnership."
           ],
           pros: [
-            "Simple pool of shared capital and diverse skills.",
-            "Fewer regulatory compliance requirements than LLPs or Companies.",
-            "Flexible profit-sharing and operational arrangements."
+            "Extremely easy and low-cost to establish and maintain compared to LLPs or Companies.",
+            "Fewer regulatory compliance requirements, offering operational flexibility.",
+            "Pool of shared capital and diverse operational and professional skills.",
+            "Complete confidentiality as financial books are not required to be made public.",
+            "Highly flexible profit-sharing and capital restructuring terms.",
+            "Fast registration process — operational in 5–7 working days with Fortune Multi Services."
           ],
           cons: [
-            "Unlimited personal liability shared among all partners.",
-            "High risk of business disruption due to internal disputes or death of a partner.",
-            "Lack of corporate status makes raising venture capital difficult."
+            "Unlimited joint and several personal liability for all business debts and obligations.",
+            "High risk of business disruption or automatic dissolution upon the death or retirement of a partner.",
+            "Difficult to raise external equity funding, venture capital, or large corporate investments.",
+            "Maximum number of partners is strictly capped at 50.",
+            "No separate legal entity status distinct from the individual partners (unlike an LLP)."
           ],
           commonMistakes: [
-            "Failing to draft a detailed Partnership Deed, leading to legal conflicts later.",
-            "Using incorrect stamp duty value for the deed, making it legally inadmissible.",
-            "Not registering the firm when dealing with national contracts or court litigation."
+            "Failing to draft a comprehensive Partnership Deed, leading to severe legal disputes later.",
+            "Using incorrect or insufficient stamp duty value for the deed, making it legally inadmissible.",
+            "Not registering the firm, which prevents the partners from filing court cases to recover dues.",
+            "Choosing a business name that infringes on existing trademarks or suggests government affiliation.",
+            "Failing to obtain a separate business PAN card or mixing personal and business funds.",
+            "Ignoring mandatory GST registration when annual turnover crosses statutory thresholds."
           ],
           postCompliances: [
-            "Filing annual Partnership ITR (ITR-5).",
-            "Regular GST filings (if registered).",
-            "TDS compliance and local professional tax (where applicable)."
+            "Annual Partnership Firm Income Tax Return filing (Form ITR-5) by July 31st",
+            "Mandatory tax audit under Section 44AB if annual turnover exceeds ₹1 crore",
+            "Monthly or quarterly GST return filings (GSTR-1 and GSTR-3B) if GST registered",
+            "Quarterly TDS deduction, deposit, and return filing if applicable",
+            "Maintenance of proper physical/digital books of accounts and transaction records",
+            "Annual renewal of Trade License and Shop & Establishment licence",
+            "Compliance with state-specific Professional Tax regulations and payments"
           ],
           faqs: [
             {
-              question: "Is registration of a Partnership Deed mandatory under Indian law?",
-              answer: "Registration of a Partnership Deed is not strictly mandatory under the Indian Partnership Act, 1932, but it is highly recommended to enforce legal rights in court and secure tax registrations."
+              question: "What is partnership firm registration?",
+              answer: "Partnership firm registration is the process of legally registering a business formed by two or more individuals under the Indian Partnership Act, 1932, with the state's Registrar of Firms (RoF)."
             },
             {
-              question: "What is 'joint and several liability' in a partnership?",
-              answer: "It means that each partner is individually and collectively liable for all business debts incurred by any partner on behalf of the firm, exposing personal assets."
+              question: "Is registration of a partnership firm mandatory in India?",
+              answer: "No, registration of a partnership firm is optional. However, an unregistered partnership firm suffers from severe legal disabilities, including the inability to file lawsuits in court against third parties to enforce rights or recover debts. Therefore, registration is strongly recommended."
+            },
+            {
+              question: "What is the minimum and maximum number of partners required?",
+              answer: "A minimum of 2 partners are required to establish a partnership firm. The maximum number of partners is capped at 50 under the Companies Act, 2013."
+            },
+            {
+              question: "Can a minor become a partner in a partnership firm?",
+              answer: "A minor cannot be a full partner in a partnership firm because they cannot legally enter into a contract. However, with the unanimous consent of all partners, a minor can be admitted to the benefits of an existing partnership."
+            },
+            {
+              question: "What is a Partnership Deed and why is it important?",
+              answer: "A partnership deed is a legally binding agreement written on stamp paper that outlines the rights, duties, capital contribution, profit-sharing ratio, and operational terms of the partners. It is the foundation of the firm's credibility and legal status."
             },
             {
               question: "How is a Partnership Firm taxed in India?",
-              answer: "A partnership firm is treated as a separate tax entity. It is taxed at a flat rate of 30% plus applicable surcharges and health & education cess on its total taxable profits."
+              answer: "A partnership firm is taxed as a separate entity at a flat rate of 30% on its net income, plus applicable surcharge and cess. The firm is required to file its income tax returns using Form ITR-5."
             },
             {
-              question: "Can a new partner be admitted without unanimous consent?",
-              answer: "No, unless there is a specific clause in the partnership agreement to the contrary, a new partner can only be admitted with the unanimous consent of all existing partners."
+              question: "What is the difference between a General Partnership and an LLP?",
+              answer: "In a General Partnership, partners have unlimited personal liability and registration is optional. In a Limited Liability Partnership (LLP), partners enjoy limited liability protection, the firm is a distinct separate legal entity registered with the MCA, and registration is mandatory."
+            },
+            {
+              question: "How long does it take to register a partnership firm?",
+              answer: "With Fortune Multi Services support, the online registration process typically takes 5 to 7 working days across all states. Offline state registrations can take 15 to 30 working days depending on the Registrar's workload."
+            },
+            {
+              question: "Can a partnership firm obtain an MSME registration?",
+              answer: "Yes, registered partnership firms are fully eligible for MSME/Udyam registration, which enables them to access lower interest rates, priority sector lending, and various government subsidies."
+            },
+            {
+              question: "How do I choose a name for my partnership firm?",
+              answer: "The name must be unique and not violate any existing trademarks or suggest government sponsorship. It must not include restricted terms like Emperor, Crown, or Royal without prior government approval."
             }
           ]
         }
@@ -185,11 +375,18 @@ export const servicesData: ServiceCategory[] = [
           targetAudience: "Solo founders, consultants, e-commerce sellers, and specialized professionals looking for a premium corporate brand.",
           benefits: ["Limited Liability", "Separate Legal Entity", "Single Owner", "Corporate Status"],
           documents: [
-            "PAN & Aadhaar of Director & Nominee",
-            "Passport Size Photo",
-            "Bank Statement (under 2 months old)",
-            "Registered Office Proof (Rent Agreement/Utility Bill)",
-            "NOC from Property Owner"
+            "PAN Card of the sole member (mandatory)",
+            "Aadhaar Card / Passport / Voter ID of the sole member",
+            "Passport-size photographs of the sole member",
+            "Latest bank statement / utility bill (not older than 2 months)",
+            "Electricity bill / Water bill of the registered office address",
+            "Rent agreement (if the business premises is rented)",
+            "NOC (No Objection Certificate) from the property owner",
+            "OPC Memorandum of Association (MOA)",
+            "OPC Articles of Association (AOA)",
+            "Nominee consent form (INC-3)",
+            "Declaration by the subscriber (INC-9)",
+            "OPC Digital Signature Certificate (DSC) and DIN of the proposed director"
           ],
           process: [
             "Name Reservation (SPICe+ Part A)",
@@ -227,20 +424,52 @@ export const servicesData: ServiceCategory[] = [
           ],
           faqs: [
             {
-              question: "Can a person incorporate more than one OPC in India?",
-              answer: "No, a single individual is legally allowed to act as a member and nominee director in only one One Person Company (OPC) at any given time."
+              question: "What is an OPC, and how does it differ from other business structures?",
+              answer: "A One Person Company (OPC) is a unique corporate structure introduced under the Companies Act, 2013 that allows a single individual to incorporate a company with limited liability protection. Unlike a sole proprietorship, an OPC is a separate legal entity distinct from its owner, meaning personal assets are protected. Unlike a Private Limited Company or LLP, an OPC requires only 1 member and 1 nominee director to incorporate, reducing structural requirements."
             },
             {
-              question: "Is it mandatory for an OPC to convert to a Private Limited Company?",
-              answer: "No, under recent MCA amendments, the mandatory conversion limits based on paid-up capital (exceeding ₹50 Lakhs) or turnover (exceeding ₹2 Crores) have been completely removed."
+              question: "When was the concept of OPC introduced in India?",
+              answer: "The concept of One Person Company (OPC) was officially introduced in India under the Companies Act, 2013, following recommendations of the J.J. Irani Committee, to encourage individual entrepreneurs and micro-businesses to enter the organized corporate sector."
             },
             {
-              question: "Who can be a nominee in an OPC?",
-              answer: "The nominee must be a natural person who is an Indian citizen and resident in India. They will take over control of the company in the event of the member's death or incapacity."
+              question: "What is the primary objective of OPC registration?",
+              answer: "The primary objective of registering an OPC is to allow solo entrepreneurs to run a business under a corporate structure with limited liability protection, enhanced brand credibility, and perpetual succession, while avoiding the compliance burden of finding a co-founder or partner."
             },
             {
-              question: "What are the compliance requirements for an OPC?",
-              answer: "OPCs enjoy relaxed compliances, such as exemption from holding Annual General Meetings (AGMs) and signing of financial statements by a single director."
+              question: "What are the eligibility criteria for OPC registration?",
+              answer: "The sole member and director of an OPC must be a natural person who is an Indian citizen. Under recent budget amendments, NRIs are also eligible to incorporate an OPC. The individual must be at least 18 years old."
+            },
+            {
+              question: "Can an OPC engage in financial activities like banking or insurance?",
+              answer: "No, an OPC cannot carry out non-banking financial investment activities, including investment in securities of any body corporate, banking, insurance, or financial services. It also cannot be incorporated or converted into a Section 8 company (non-profit company)."
+            },
+            {
+              question: "What happens if the OPC's paid-up share capital exceeds 50 lakhs or its annual turnover exceeds 2 Crores?",
+              answer: "Following the recent amendments to the Companies (Incorporation) Rules, there is no longer any mandatory threshold of paid-up capital (₹50 Lakhs) or turnover (₹2 Crores) that forces an OPC to convert into a Private Limited Company. An OPC can continue to operate regardless of its capital or turnover size unless it chooses to convert voluntarily."
+            },
+            {
+              question: "How many OPCs can an individual establish?",
+              answer: "A natural person can incorporate only one (1) One Person Company (OPC) at any given time. Additionally, an individual cannot be a nominee director in more than one OPC."
+            },
+            {
+              question: "Can an OPC have a minor as its member?",
+              answer: "No, a minor (under the age of 18) cannot become a member, shareholder, or nominee director of a One Person Company (OPC), nor can they hold shares with beneficial interest in an OPC."
+            },
+            {
+              question: "What are the advantages of registering an OPC?",
+              answer: "The key advantages of registering an OPC include limited liability protection (personal assets are insulated from business debts), separate legal entity status, guaranteed perpetual succession through a nominee, higher trust and credibility with banks/vendors, and relaxed corporate compliance such as exemption from holding AGMs."
+            },
+            {
+              question: "Are there any disadvantages to registering an OPC?",
+              answer: "The limitations of an OPC include higher operational and compliance costs (such as mandatory Chartered Accountant audits) compared to a sole proprietorship, inability to raise equity funding or venture capital directly since only one member is allowed, and restricted corporate tax rates on profits rather than individual slab rates."
+            },
+            {
+              question: "What is the registration process for an OPC in India?",
+              answer: "The online registration process with Fortune Multi Services is seamless: 1. Apply for Digital Signature Certificate (DSC) for the director. 2. Reserve the company name ending in '(OPC) Private Limited' using RUN. 3. Draft the Memorandum of Association (MOA) and Articles of Association (AOA). 4. File the SPICe+ form with the Ministry of Corporate Affairs (MCA) along with the nominee consent (INC-3). 5. Obtain the Certificate of Incorporation (COI), PAN, and TAN."
+            },
+            {
+              question: "What documents are required for OPC registration?",
+              answer: "The essential documents include the sole member's PAN card, Aadhaar card or passport/voter ID, passport-size photographs, bank statement/utility bill (under 2 months old), registered office utility bill, rent agreement (if applicable), NOC from the landlord, subscriber declaration (INC-9), and nominee consent (INC-3)."
             }
           ]
         }
@@ -255,11 +484,15 @@ export const servicesData: ServiceCategory[] = [
           targetAudience: "Service providers, consultants, real estate developers, professional partnerships (CA, CS, Law firms), and bootstrapped startups.",
           benefits: ["No Minimum Capital", "Limited Liability", "Lower Registration Cost", "No Requirement for Compulsory Audit"],
           documents: [
-            "PAN & Aadhaar of all Partners",
-            "Passport Photos",
-            "Utility Bill of Registered Office",
-            "NOC from Property Owner",
-            "Bank Statements of Partners"
+            "PAN Card of all partners (mandatory)",
+            "Aadhaar Card / Voter ID / Passport / Driving Licence of all partners (Identity Proof)",
+            "Bank Statement / Utility Bill of all partners (Address Proof – not older than 2 months)",
+            "Passport-size photograph of all partners",
+            "Email ID and mobile number of all partners",
+            "Digital Signature Certificate (DSC) for designated partners",
+            "Latest electricity bill or utility bill of the registered office",
+            "Rent Agreement (if premises is rented) along with NOC from the property landlord",
+            "Property ownership documents (if the registered office premises is owned)"
           ],
           process: ["Obtaining DSC & DIN for Designated Partners", "Name Reservation (RUN-LLP)", "Filing Incorporation Form (FiLLiP)", "Drafting & Filing the LLP Agreement (Form 3)"],
           timeline: "10-15 Working Days",
@@ -290,20 +523,44 @@ export const servicesData: ServiceCategory[] = [
           ],
           faqs: [
             {
-              question: "What is the eligibility for Limited Liability Partnership?",
-              answer: "Any individual, proprietorship, partnership, or corporate entity engaged in commercial operations is eligible for Limited Liability Partnership."
+              question: "Who are eligible for LLP?",
+              answer: "Any individual (Indian citizen, NRI, or Foreign National) who is of sound mind and at least 18 years old can form or join an LLP. Corporate entities, including domestic and foreign companies or existing LLPs, are also eligible to become partners in an LLP. A minimum of 2 partners are required, and there must be at least 2 Designated Partners who are natural persons, with at least one being a resident of India."
             },
             {
-              question: "What documents are required for Limited Liability Partnership?",
-              answer: "Standard requirements include business incorporation certificates, promoter PAN, Aadhaar cards, and registered office address proofs."
+              question: "What is the LLP registration fees?",
+              answer: "The government fee for registering an LLP is based on the capital contribution: up to ₹1 Lakh is ₹500; ₹1 Lakh to ₹5 Lakhs is ₹2,000; ₹5 Lakhs to ₹10 Lakhs is ₹4,000; ₹10 Lakhs to ₹25 Lakhs is ₹5,000; and above ₹25 Lakhs is ₹5,000 plus additional fees. Additional costs include DSC procurement, RUN-LLP name reservation (₹1,000), and state stamp duty on the LLP agreement. Fortune Multi Services offers fully transparent, budget-friendly packages with zero hidden charges."
             },
             {
-              question: "What is the penalty for non-compliance with Limited Liability Partnership?",
-              answer: "Operating without active credentials or delaying statutory filings can attract penalty fees, interest rates, or suspension of trade permits."
+              question: "Is GST required for LLP?",
+              answer: "GST registration is not automatically mandatory upon incorporation. However, it becomes mandatory if the LLP's annual turnover from services exceeds ₹20 Lakhs (₹10 Lakhs for special category states) or from goods exceeds ₹40 Lakhs. It is also required for inter-state trading or e-commerce supply. Voluntary GST registration is also available."
             },
             {
-              question: "How can Fortune Multi Services assist with Limited Liability Partnership?",
-              answer: "We provide end-to-end professional support, from file compiling and application filings to regulatory responses and certificate downloads."
+              question: "How to register LLP?",
+              answer: "The seamless online process with Fortune Multi Services involves: 1. Procuring DSC for all Designated Partners. 2. Applying for DPIN/DIN via Form DIR-3. 3. Reserving the firm name via the RUN-LLP service on the MCA portal. 4. Filing the FiLLiP incorporation form. 5. Receiving the Certificate of Incorporation from the MCA. 6. Drafting and filing the LLP Agreement (Form 3) within 30 days."
+            },
+            {
+              question: "What is DPIN (Designated Partner Identification Number)?",
+              answer: "DPIN is a unique 8-digit identification number assigned by the Ministry of Corporate Affairs (MCA) to individuals who are appointed as Designated Partners in an LLP. It is equivalent to the Director Identification Number (DIN) used in Private Limited Companies."
+            },
+            {
+              question: "How long does it take to incorporate an LLP?",
+              answer: "Incorporating an LLP online with the dedicated support of Fortune Multi Services typically takes 7 to 15 working days. This timeline includes DSC procurement (1-2 days), name reservation (2-3 days), FiLLiP filing & approval (3-5 days), and LLP Agreement execution (1-2 days)."
+            },
+            {
+              question: "Can NRIs/Foreign Nationals be designated partners in an LLP?",
+              answer: "Yes, NRIs and Foreign Nationals can be appointed as partners or Designated Partners in an LLP, provided at least one Designated Partner is an active resident of India (who has stayed in India for not less than 120 days during the financial year)."
+            },
+            {
+              question: "Do LLPs allow Foreign Direct Investment (FDI)?",
+              answer: "Yes, Foreign Direct Investment (FDI) is permitted in LLPs under the automatic route for sectors where 100% FDI is allowed and there are no performance-linked FDI conditions."
+            },
+            {
+              question: "Can we convert a Partnership Firm into an LLP?",
+              answer: "Yes, an existing partnership firm registered under the Indian Partnership Act, 1932 can be converted into a Limited Liability Partnership (LLP) by filing Form 17 (Application and Statement for conversion) along with the FiLLiP form on the MCA portal, ensuring all partners remain the same."
+            },
+            {
+              question: "What documents are required for incorporating an LLP?",
+              answer: "The primary documents include the partners' PAN card, identity proof (Aadhaar, Passport, or Voter ID), address proof (recent bank statement or utility bill), passport-size photographs, and registered office address proofs (utility bill, rent agreement, and an NOC from the landlord)."
             }
           ]
         }
@@ -317,7 +574,15 @@ export const servicesData: ServiceCategory[] = [
           overview: "A Private Limited Company (Pvt Ltd) is the premier business structure in India, governed by the Companies Act, 2013. It is universally trusted by investors, banks, and corporate entities, offering powerful benefits like complete limited liability protection, high fundraising capability, perpetual existence, and the ability to issue equity to raise capital.",
           targetAudience: "High-growth startups, tech ventures, manufacturing businesses, and firms looking to raise Venture Capital (VC) or Private Equity (PE) funding.",
           benefits: ["Limited Liability", "Separate Legal Entity", "Ease of Funding", "Employee Stock Options (ESOPs)"],
-          documents: ["PAN, Aadhaar & Photo of Directors (Min 2)", "Bank Statement/Utility Bill of Directors", "Office Proof (Rent agreement + utility bill)", "NOC from Property Owner"],
+          documents: [
+            "For Directors/Shareholders: PAN Card (mandatory for Indian nationals)",
+            "For Directors/Shareholders: Aadhaar Card / Voter ID / Passport / Driving Licence (Address Proof)",
+            "For Directors/Shareholders: Recent passport-size photograph",
+            "For Directors/Shareholders: Bank Statement / Latest utility bill (Residential Proof)",
+            "For Foreign Nationals: Notarised & apostilled passport copy",
+            "For Registered Office: Utility Bill (Electricity/Water – not older than 2 months)",
+            "For Registered Office: Rent Agreement / NOC from owner (Office Proof)"
+          ],
           process: [
             "Obtaining Digital Signatures (DSC)",
             "Name Reservation (SPICe+ Part A)",
@@ -353,20 +618,44 @@ export const servicesData: ServiceCategory[] = [
           ],
           faqs: [
             {
-              question: "What is the minimum number of directors and shareholders required?",
-              answer: "A Private Limited Company requires a minimum of 2 directors and 2 shareholders. One of the directors must be an active Indian resident."
+              question: "What is the registration process of a company?",
+              answer: "The registration process is entirely online and involves: (1) Obtaining a Digital Signature Certificate (DSC) for all directors, (2) Reserving a unique company name through the RUN (Reserve Unique Name) service on the MCA portal, (3) Filing the SPICe+ form for incorporation which integrates PAN, TAN, GSTIN, EPFO, and ESIC registrations, (4) Preparing the Memorandum of Association (MoA) and Articles of Association (AoA), and (5) Obtaining the Certificate of Incorporation from the Registrar of Companies (ROC). Fortune Multi Services handles this end-to-end, making the process completely hassle-free."
             },
             {
-              question: "Are my personal assets safe if the Private Limited Company goes into debt?",
-              answer: "Yes, shareholders enjoy limited liability. Your personal liability is strictly capped at the face value of the shares you have subscribed to and remain unpaid."
+              question: "How much is the private limited company registration fees?",
+              answer: "The total cost includes government registration fees (based on authorized capital, which is nil for capital up to ₹15 Lakhs under SPICe+ in most states), stamp duty (state-specific), DSC fees, name approval fee (₹1,000), and professional fees. Fortune Multi Services offers transparent and affordable packages starting from just ₹2,899 (exclusive of state stamp duty and government filings if applicable) with no hidden charges."
             },
             {
-              question: "Is it mandatory to hold an Annual General Meeting (AGM)?",
-              answer: "Yes, every Private Limited Company must hold an AGM within 6 months from the closing of the financial year (typically by September 30th) to approve financial statements."
+              question: "What are the types of registration?",
+              answer: "Under the Companies Act, 2013, a private limited company can be incorporated in three ways based on the liability of its members: (1) Company Limited by Shares (most common, where liability is capped at unpaid share value), (2) Company Limited by Guarantee (liability is limited to the guaranteed amount, often for non-profits/NGOs), and (3) Unlimited Private Company (members have unlimited personal liability, which is extremely rare)."
             },
             {
-              question: "Can a Private Limited Company raise venture capital or foreign funding?",
-              answer: "Yes, it is the most preferred structure for venture capitalists, angel investors, and foreign direct investment (FDI) due to clear share allocation laws."
+              question: "Can NRIs or foreign national or foreign entities register a company in India?",
+              answer: "Yes, NRIs, foreign nationals, and foreign entities can register a Private Limited Company in India and hold shares as Foreign Direct Investment (FDI) under the automatic route for most sectors. However, at least one director must be an Indian resident, and all foreign documents must be notarized and apostilled or consularized in their home country. Fortune Multi Services specializes in assisting foreign companies and NRIs with Indian subsidiary setup and registration."
+            },
+            {
+              question: "How do I check the availability of names for my company?",
+              answer: "You can check company name availability on the Ministry of Corporate Affairs (MCA) portal database and the Intellectual Property (IP) India portal for trademarks. The name must be unique, not match any registered company or LLP, and not infringe on any registered trademark. Fortune Multi Services performs comprehensive name search checks as part of our initial setup process to ensure quick approval."
+            },
+            {
+              question: "Is GST registration mandatory at this stage?",
+              answer: "No, GST registration is not mandatory during the initial company incorporation unless your business expects immediate inter-state transactions, operates in e-commerce, or has an annual turnover exceeding the threshold (₹40 Lakhs for goods, ₹20 Lakhs for services in most states). You can opt for GST registration simultaneously through the SPICe+ form or apply later. Fortune Multi Services will help you determine if immediate registration is beneficial."
+            },
+            {
+              question: "What are the compliances of a Private Limited Company?",
+              answer: "A Private Limited Company has strict compliance requirements. Primary annual compliances include: (1) Appointing the first auditor (ADT-1) within 30 days of incorporation, (2) Filing for Commencement of Business (INC-20A) within 180 days, (3) Holding annual board meetings and an Annual General Meeting (AGM), (4) Filing annual financial statements (Form AOC-4) and Annual Return (Form MGT-7/MGT-7A) with the ROC, and (5) Filing annual Income Tax Returns (ITR-6). Fortune Multi Services offers comprehensive compliance packages to ensure you never miss a deadline."
+            },
+            {
+              question: "how to register a private limited company in India?",
+              answer: "You can register a private limited company entirely online through Fortune Multi Services. Simply submit your documents (PAN, Aadhaar, Photo, Address proof, and Office utility bill) to our experts. We will draft the documents, apply for DSC, get name approval via MCA's RUN service, file the SPICe+ integration form, coordinate with the Registrar of Companies (ROC), and deliver your Certificate of Incorporation along with PAN and TAN."
+            },
+            {
+              question: "Which Form is to be filed for the ITR filing of Private Limited Company?",
+              answer: "Every registered Private Limited Company must file its annual Income Tax Return using Form ITR-6 on the Income Tax e-filing portal. This is mandatory regardless of whether the company has active business, profits, or losses during the financial year."
+            },
+            {
+              question: "Which form is to be filed for filing the annual returns of a Company?",
+              answer: "A Private Limited Company must file two main annual forms with the Registrar of Companies (ROC): Form AOC-4 for filing the financial statements (balance sheet, profit & loss statement, auditor's report, and board report) within 30 days of the AGM, and Form MGT-7 (or MGT-7A for small companies) for filing the Annual Return (containing details of directors, shareholders, and shareholdings) within 60 days of the AGM."
             }
           ]
         }
@@ -1381,38 +1670,80 @@ export const servicesData: ServiceCategory[] = [
         }
       },
       {
-        name: "Udyam Registration",
-        tag: "#Udyam",
+        name: "MSME Registration",
+        tag: "#MSME",
         slug: "udyam-registration",
-        description: "Obtain MSME Udyam status to access bank loan schemes, collateral-free credit, and delayed payment protections.",
+        description: "Starting and growing a business in India can be challenging — especially for small and medium enterprises that struggle with funding, market competition, and compliance. Get registered under MSME to unlock benefits.",
         details: {
-          overview: "Udyam Registration is a permanent MSME government registration, giving small businesses access to collateral-free bank loans, subsidized interest rates, delayed payment protection (45-day rule), and concessions on patent fees.",
-          targetAudience: "Small scale manufacturers, traders, and service providers.",
+          overview: "Starting and growing a business in India can be challenging — especially for small and medium enterprises that struggle with funding, market competition, and compliance. Thankfully, the Government of India has introduced several initiatives to support them, one of the most crucial being MSME registration.\n\nMSME registration helps small and medium enterprises access benefits like low-interest loans, tax subsidies, ease of doing business, and government tender preferences. Whether you are a budding entrepreneur or an established small business owner, getting registered under MSME (now known as Udyam) can be a game-changer for your business growth.\n\nWhat Is MSME Registration?\nMSME stands for Micro, Small, and Medium Enterprises, as defined under the Micro, Small, and Medium Enterprises Development (MSMED) Act, 2006. MSME registration (currently known as Udyam Registration) is a government-issued recognition that helps businesses avail themselves of various financial and operational benefits. After registration, your enterprise receives a unique Udyam Registration Number (URN) and a certificate issued by the Ministry of Micro, Small and Medium Enterprises.\n\nMSME Classification Criteria (Updated 2024):\n• Micro: Investment up to ₹1 Crore | Turnover up to ₹5 Crore\n• Small: Investment up to ₹10 Crore | Turnover up to ₹50 Crore\n• Medium: Investment up to ₹50 Crore | Turnover up to ₹250 Crore\nThis classification applies uniformly to manufacturing and service sectors, removing the earlier distinction between the two.\n\nExpert Tips for Successful Registration:\n✓ Use your official business email and mobile number for OTPs and communication.\n✓ Keep all documents handy before starting the registration process.\n✓ If your business has multiple branches, mention the main office as the principal location.\n✓ Always cross-verify PAN and GST details before submission.\n✓ For professional help, consult a business registration expert like Fortune Multi Services to ensure error-free registration.\n\nReal-Life Success Story:\nA small Hyderabad-based furniture manufacturing company, CraftWood India Pvt. Ltd., applied for MSME registration in 2022. Within six months:\n1. The company secured a low-interest working capital loan from SBI.\n2. It received priority in tender allotment for local government contracts.\n3. The firm availed subsidies for ISO certification and technology upgrades.\nToday, CraftWood India has expanded its business across five states, proving how MSME registration can directly boost growth and credibility.\n\nGet expert assistance from Fortune Multi Services, one of India’s leading business registration consultants, to ensure a seamless and professional experience.",
+          targetAudience: "Micro, Small & Medium Enterprises (Manufacturers, Service Providers & Traders)",
           benefits: [
-            "Collateral-free loans",
-            "Subsidized interest rates",
-            "Protects against buyers who delay payments (45-day terms)",
-            "Electricity bill concessions"
+            "Easier Access to Collateral-Free Loans (CGTMSE)",
+            "Lower Interest Rates from Banks & NBFCs",
+            "Priority in Public Procurement & Government Tenders",
+            "Exemptions and Subsidies on Patent/ISO Certification",
+            "Delayed Payment Protection (Mandatory 45-Day Terms)",
+            "Enhanced Credibility and Business Credit Score",
+            "Special Economic Packages & Moratorium Support"
           ],
-          documents: ["Aadhaar and PAN of applicant", "Bank account details & IFSC", "Primary business classification details"],
-          process: ["Udyam portal registration", "Verifying Aadhaar and PAN", " turnover inputs", "Udyam Certificate download"],
+          documents: [
+            "Aadhaar Card of the applicant (proprietor/partner/director)",
+            "PAN Card of the business or individual",
+            "GSTIN (if applicable)",
+            "Business address proof (utility bill, rental agreement, etc.)",
+            "Bank account details (account number and IFSC code)",
+            "NIC Code classification matching nature of business",
+            "Total investment & annual turnover figures"
+          ],
+          process: [
+            "Visit the Official Udyam Registration Portal",
+            "Enter & Validate Aadhaar Number via OTP",
+            "Fill Business Details (Name, Type, PAN, Location)",
+            "Provide Plant & Machinery Investment & Turnover Details",
+            "Select the Correct National Industrial Classification (NIC) Code",
+            "Submit and Verify details against PAN & GST Databases",
+            "Receive Udyam MSME Certificate with Unique Registration Number"
+          ],
+          pros: [
+            "Easy access to finance and collateral-free bank credit",
+            "Substantial government subsidies (Patent, ISO, Technology)",
+            "Income tax concessions, electricity rebate, and tender advantages",
+            "High market recognition and corporate credibility"
+          ],
+          cons: [
+            "Mandatory annual reporting of business turnover details",
+            "Benefits limited strictly to Micro, Small, and Medium Enterprises",
+            "Must maintain highly accurate and transparent financial logs",
+            "Misreporting of data can lead to penalties and loss of status"
+          ],
+          commonMistakes: [
+            "Incorrect business details – Ensure your PAN and Aadhaar match the business type.",
+            "Wrong NIC code – Selecting the wrong industry classification can cause verification delays.",
+            "Multiple registrations – Each business entity is legally allowed only one Udyam registration.",
+            "Failure to update turnover data – Must update yearly financial details on the portal to remain compliant.",
+            "Using unofficial clone websites – Always register through the official government portal to avoid fraud."
+          ],
           timeline: "1-2 Working Days",
           faqs: [
             {
-              question: "What is the validity of an Udyam Certificate?",
-              answer: "Udyam Registration is a permanent certificate with lifetime validity; it does not require renewals."
+              question: "Is MSME registration mandatory?",
+              answer: "No, it's not mandatory, but it is highly beneficial for availing government benefits, concessions, subsidies, and low-interest loans."
             },
             {
-              question: "What is the MSME 45-day payment protection rule?",
-              answer: "Under Section 15 of the MSMED Act, buyers must pay MSMEs for goods or services within 45 days. Delayed payments attract compound interest at 3 times the RBI bank rate."
+              question: "Can traders apply for MSME registration?",
+              answer: "Yes. As per the latest updates from the Ministry of MSME, both manufacturers and service providers, including retail and wholesale traders, are eligible to apply."
             },
             {
-              question: "Can a retail or wholesale trader apply for Udyam?",
-              answer: "Yes, the Ministry of MSME recently relaxed rules to allow retail and wholesale traders to get Udyam certificates, primarily for priority sector lending benefits."
+              question: "Is GST registration required for MSME registration?",
+              answer: "Not necessarily. However, having a valid GSTIN is highly recommended and mandatory for certain turnover limits under active GST guidelines."
             },
             {
-              question: "Is GSTIN mandatory to obtain Udyam registration?",
-              answer: "Yes, having a valid GSTIN and PAN is mandatory to register under the Udyam MSME scheme, except for certain exempt categories."
+              question: "Can a company have multiple MSME registrations?",
+              answer: "No. One business entity/PAN can have only one Udyam registration. However, you can add multiple branches or manufacturing units under the same registration."
+            },
+            {
+              question: "How long does MSME registration take?",
+              answer: "The application submission process takes about 5–10 minutes if all details are correct. The certificate is processed and issued online, usually within 1-2 working days."
             }
           ]
         }
@@ -1472,7 +1803,7 @@ export const servicesData: ServiceCategory[] = [
         answer: "Registrations establish your legal presence, protect you from heavy government penalties, and build institutional trust."
       },
       {
-        question: "What is MSME Udyam Registration?",
+        question: "What is MSME Registration?",
         answer: "It is a government registration for micro, small, and medium enterprises to avail benefits under the MSMED Act."
       },
       {
