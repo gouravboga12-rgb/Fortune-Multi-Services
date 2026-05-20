@@ -230,10 +230,10 @@ const FloatingWhatsApp = () => {
             {/* Quick Action Chips Panel */}
             <div className="p-3 bg-white border-t border-light-gray flex gap-2 overflow-x-auto shrink-0 scrollbar-none">
               {[
+                { label: '📞 Speak to Live Expert', type: 'whatsapp' },
                 { label: '🚀 Setup Pvt Ltd', query: 'Private Limited setup' },
                 { label: '📝 Trademark filing', query: 'Trademark registration' },
-                { label: '💼 Get GSTIN', query: 'GST setup' },
-                { label: '📞 Speak to Live Expert', type: 'whatsapp' }
+                { label: '💼 Get GSTIN', query: 'GST setup' }
               ].map((chip) => (
                 <button
                   key={chip.label}
