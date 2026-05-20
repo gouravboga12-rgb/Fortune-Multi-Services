@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { MessageSquare, ArrowRight, ShieldCheck, Zap, Star } from 'lucide-react';
+import { MessageSquare, ArrowRight, Zap, Star } from 'lucide-react';
 import { motion } from 'framer-motion';
 import heroConsulting from '../assets/hero_consulting.png';
 
