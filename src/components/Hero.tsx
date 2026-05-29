@@ -80,7 +80,7 @@ const Hero = () => {
   }, []);
 
   return (
-    <section className="relative min-h-screen flex items-center pt-20 pb-12 sm:pt-24 lg:pt-20 lg:pb-0 overflow-hidden bg-primary">
+    <section className="relative min-h-screen flex items-center pt-20 pb-12 sm:pt-24 lg:pt-20 lg:pb-0 overflow-x-hidden bg-primary">
       {/* Background Image */}
       <div className="absolute inset-0 w-full h-full z-0 select-none pointer-events-none">
         <img
@@ -118,11 +118,14 @@ const Hero = () => {
               </motion.div>
 
               {/* Heading */}
-              <h1 className="text-[2.75rem] sm:text-5xl lg:text-8xl font-black leading-[1] tracking-tighter">
-                <span className="block">
+              <h1 className="text-[2.75rem] sm:text-5xl lg:text-8xl font-black leading-[1.05] tracking-tighter overflow-visible">
+                <span className="block pb-2 pr-6 overflow-visible">
                   <span
                     className="italic"
                     style={{
+                      display: 'inline-block',
+                      paddingRight: '0.18em',
+                      marginRight: '-0.15em',
                       background: 'linear-gradient(135deg, #ffffff 0%, #f5ecd4 30%, #ffffff 55%, #e8dfc8 85%, #fff8ec 100%)',
                       WebkitBackgroundClip: 'text',
                       WebkitTextFillColor: 'transparent',
