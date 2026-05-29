@@ -1,5 +1,5 @@
 import { useParams, Link, useNavigate, useLocation } from 'react-router-dom';
-import { servicesData } from '../data/services';
+import { servicesData, type ServiceDetail } from '../data/services';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   CheckCircle2, FileText, Clock, ArrowRight, 
@@ -20,7 +20,7 @@ const ServiceDetails = () => {
   
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
-  const details = (service && category) ? (service.details || category.details) : null;
+  const details = ((service && category) ? (service.details || category.details) : null) as ServiceDetail;
 
   // Initialize reviews state with realistic dummy reviews as fallback
   const initialReviews = (details && service)

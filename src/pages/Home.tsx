@@ -156,7 +156,7 @@ const Home = () => {
                 color: 'from-cyan-500/10 to-accent/5',
                 isLarge: false,
               },
-            ].map((item, index) => {
+            ].map((item) => {
               const Icon = item.icon;
               return (
                 <motion.div

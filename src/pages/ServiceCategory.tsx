@@ -156,7 +156,7 @@ const ServiceCategory = () => {
         }
       });
 
-      let globalMatch = null;
+      let globalMatch: any = null;
       if (highestScore < 3) {
         let highestGlobalScore = 0;
         servicesData.forEach(cat => {
@@ -378,16 +378,16 @@ const ServiceCategory = () => {
   };
 
   // Auto-derive related services from same category if not defined
-  const relatedServices = details.relatedServices && details.relatedServices.length > 0
-    ? details.relatedServices
+  const relatedServices = details!.relatedServices && details!.relatedServices.length > 0
+    ? details!.relatedServices
     : category.services
         .filter(s => s.slug)
         .slice(0, 8)
         .map(s => ({ name: s.name, slug: s.slug!, categorySlug: category.slug }));
 
   // Auto-generate popular searches if not defined
-  const popularSearches = details.popularSearches && details.popularSearches.length > 0
-    ? details.popularSearches
+  const popularSearches = details!.popularSearches && details!.popularSearches.length > 0
+    ? details!.popularSearches
     : [
         `${category.title} services`,
         `${category.title} registration documents`,
