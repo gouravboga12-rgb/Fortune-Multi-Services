@@ -2,12 +2,12 @@ import { useParams, Link, useLocation, useNavigate } from 'react-router-dom';
 import { servicesData } from '../data/services';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
-  CheckCircle2, FileText, Clock, ArrowRight, 
-  ShieldCheck, HelpCircle, Landmark, FileCheck,
+  CheckCircle2, Clock, ArrowRight, 
+  HelpCircle, Landmark, FileCheck,
   ChevronDown, ChevronUp, Star, Search, Link2,
   Bot, Sparkles, Send
 } from 'lucide-react';
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const renderMessageText = (text: string) => {
   if (!text) return null;
