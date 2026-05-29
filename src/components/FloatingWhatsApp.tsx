@@ -127,7 +127,7 @@ const FloatingWhatsApp = () => {
   };
 
   return (
-    <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end">
+    <div className="fixed bottom-4 right-3 sm:bottom-6 sm:right-6 z-50 flex flex-col items-end">
       {/* Expanded Chat Drawer */}
       <AnimatePresence>
         {isOpen && (
@@ -135,7 +135,7 @@ const FloatingWhatsApp = () => {
             initial={{ opacity: 0, y: 50, scale: 0.9 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 50, scale: 0.9 }}
-            className="bg-white w-[350px] sm:w-[400px] h-[550px] rounded-3xl shadow-2xl border border-light-gray flex flex-col overflow-hidden mb-4"
+            className="bg-secondary w-[calc(100vw-24px)] max-w-[360px] sm:w-[400px] h-[520px] sm:h-[550px] rounded-3xl shadow-2xl border border-light-gray flex flex-col overflow-hidden mb-3 sm:mb-4"
           >
             {/* Header */}
             <div className="bg-primary text-white p-5 flex justify-between items-center relative overflow-hidden shrink-0">
@@ -170,8 +170,8 @@ const FloatingWhatsApp = () => {
                   <div
                     className={`max-w-[80%] p-3.5 rounded-2xl text-xs font-semibold leading-relaxed ${
                       msg.sender === 'user'
-                        ? 'bg-accent text-primary rounded-tr-none font-bold'
-                        : 'bg-white text-primary border border-light-gray rounded-tl-none shadow-sm'
+                        ? 'bg-accent text-white rounded-tr-none font-bold'
+                        : 'bg-primary text-white border border-light-gray rounded-tl-none shadow-sm'
                     }`}
                   >
                     {msg.text.split('\n\n').map((paragraph, i) => (
@@ -217,7 +217,7 @@ const FloatingWhatsApp = () => {
               {/* Bot typing simulation */}
               {isTyping && (
                 <div className="flex justify-start">
-                  <div className="bg-white text-primary border border-light-gray p-4 rounded-2xl rounded-tl-none flex items-center gap-1 shadow-sm">
+                  <div className="bg-primary text-white border border-light-gray p-4 rounded-2xl rounded-tl-none flex items-center gap-1 shadow-sm">
                     <span className="w-1.5 h-1.5 bg-accent rounded-full animate-bounce"></span>
                     <span className="w-1.5 h-1.5 bg-accent rounded-full animate-bounce [animation-delay:0.2s]"></span>
                     <span className="w-1.5 h-1.5 bg-accent rounded-full animate-bounce [animation-delay:0.4s]"></span>
@@ -228,7 +228,7 @@ const FloatingWhatsApp = () => {
             </div>
 
             {/* Quick Action Chips Panel */}
-            <div className="p-3 bg-white border-t border-light-gray flex gap-2 overflow-x-auto shrink-0 scrollbar-none">
+            <div className="p-3 bg-secondary border-t border-light-gray flex gap-2 overflow-x-auto shrink-0 scrollbar-none">
               {[
                 { label: '📞 Speak to Live Expert', type: 'whatsapp' },
                 { label: '🚀 Setup Pvt Ltd', query: 'Private Limited setup' },
@@ -257,19 +257,19 @@ const FloatingWhatsApp = () => {
                 e.preventDefault();
                 handleSend();
               }}
-              className="p-4 bg-white border-t border-light-gray flex gap-2 shrink-0"
+              className="p-4 bg-secondary border-t border-light-gray flex gap-2 shrink-0"
             >
               <input
                 type="text"
                 placeholder="Ask about Pvt Ltd, GST, Trademarks..."
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
-                className="flex-grow h-12 px-4 bg-soft-white border border-light-gray focus:border-accent rounded-xl outline-none text-xs font-semibold placeholder-dark-gray/30 transition-colors"
+                className="flex-grow h-12 px-4 bg-soft-white border border-light-gray focus:border-accent rounded-xl outline-none text-xs font-semibold text-white placeholder-dark-gray/30 transition-colors"
               />
               <button
                 type="submit"
                 disabled={!input.trim()}
-                className="w-12 h-12 bg-primary hover:bg-accent text-white hover:text-primary rounded-xl flex items-center justify-center transition-colors disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer shrink-0"
+                className="w-12 h-12 bg-accent hover:bg-accent-light text-white rounded-xl flex items-center justify-center transition-colors disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer shrink-0"
               >
                 <Send className="w-4 h-4" />
               </button>

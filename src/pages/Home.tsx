@@ -1,5 +1,4 @@
 import Hero from '../components/Hero';
-import { servicesData } from '../data/services';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { 
@@ -33,33 +32,21 @@ const Home = () => {
     visible: { opacity: 1, y: 0 }
   };
 
-  const getServiceIcon = (slug: string) => {
-    switch (slug) {
-      case 'registrations': return Landmark;
-      case 'gst': return FileText;
-      case 'tax-compliance': return Scale;
-      case 'govt-license': return Award;
-      case 'food-license': return Zap;
-      case 'trademark': return ShieldCheck;
-      case 'global': return Globe;
-      default: return TrendingUp;
-    }
-  };
 
   return (
     <div className="bg-soft-white">
       <Hero />
 
       {/* Credibility Registry Strip */}
-      <div className="bg-primary/5 py-8 border-y border-light-gray/60 overflow-hidden">
+      <div className="bg-secondary/50 py-6 sm:py-8 border-y border-light-gray overflow-x-auto">
         <div className="container mx-auto px-4 lg:px-8">
-          <div className="flex flex-col lg:flex-row items-center justify-between gap-6">
-            <span className="text-[10px] font-black text-primary/45 uppercase tracking-[0.2em] whitespace-nowrap">
-              Coordinating Direct Filings & Registries With:
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-6">
+            <span className="text-[10px] font-black text-dark-gray/60 uppercase tracking-[0.2em] whitespace-nowrap shrink-0">
+              Coordinating Direct Filings &amp; Registries With:
             </span>
-            <div className="flex flex-wrap justify-center lg:justify-end items-center gap-x-12 gap-y-4 opacity-40">
+            <div className="flex flex-wrap justify-center sm:justify-end items-center gap-x-6 sm:gap-x-12 gap-y-3 sm:gap-y-4 opacity-40">
               {['MCA Registry', 'Income Tax Dept', 'GST Network', 'FSSAI Authority', 'Trademark Patent Office'].map((logo) => (
-                <div key={logo} className="text-primary font-black text-xs uppercase tracking-widest whitespace-nowrap">
+                <div key={logo} className="text-dark-gray font-black text-[10px] sm:text-xs uppercase tracking-widest whitespace-nowrap">
                   {logo}
                 </div>
               ))}
@@ -70,72 +57,147 @@ const Home = () => {
 
       <GstCalculator />
 
-      {/* Bento Grid Services Section */}
+      {/* Services Grid — matches Header Navigation */}
       <section id="our-services" className="py-16 sm:py-24 lg:py-32 relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-1/3 h-1/3 bg-accent/5 blur-[150px] -z-10 rounded-full"></div>
-        <div className="container mx-auto px-4 lg:px-8">
-          <motion.div 
+        <div className="absolute top-0 right-0 w-1/3 h-1/3 bg-accent/5 blur-[150px] -z-10 rounded-full" />
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             className="max-w-3xl mx-auto mb-10 sm:mb-20 text-center space-y-4"
           >
-            <h2 className="text-3xl sm:text-4xl lg:text-6xl font-black text-primary">
-              Our <span className="text-accent">Exquisite</span> Services
+            <h2 className="text-3xl sm:text-4xl lg:text-6xl font-black text-white">
+              Our <span className="text-accent">Services</span>
             </h2>
-            <div className="w-24 h-1 bg-accent mx-auto rounded-full"></div>
+            <div className="w-24 h-1 bg-accent mx-auto rounded-full" />
             <p className="text-base sm:text-lg text-dark-gray font-medium max-w-2xl mx-auto leading-relaxed">
-              We provide surgical precision in business compliance, ensuring your enterprise stays ahead of the curve.
+              End-to-end business compliance — from startup registration to global expansion.
             </p>
           </motion.div>
 
-          <motion.div 
+          <motion.div
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 auto-rows-[320px]"
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6"
           >
-            {servicesData.map((category, index) => {
-              const Icon = getServiceIcon(category.slug);
-              // Bento Logic: Span 2 columns for the first and fourth items on large screens
-              const isLarge = index === 0 || index === 3;
-              
+            {[
+              {
+                title: 'Startup',
+                path: '/services/startup',
+                icon: TrendingUp,
+                description: 'Launch your venture with the right legal structure — Proprietorship, LLP, Pvt Ltd & more.',
+                highlights: ['Proprietorship', 'Private Limited Company'],
+                color: 'from-blue-500/10 to-accent/5',
+                isLarge: true,
+              },
+              {
+                title: 'Registrations',
+                path: '/services/registrations',
+                icon: Landmark,
+                description: 'Government licenses, FSSAI, Trade License, ISO, Import Export Code & more.',
+                highlights: ['FSSAI Registration', 'Udyam Registration'],
+                color: 'from-purple-500/10 to-accent/5',
+                isLarge: false,
+              },
+              {
+                title: 'Trademark',
+                path: '/services/trademark',
+                icon: ShieldCheck,
+                description: 'Protect your brand identity, IP rights, and creative works.',
+                highlights: ['Trademark Registration', 'Copyright Registration'],
+                color: 'from-pink-500/10 to-accent/5',
+                isLarge: false,
+              },
+              {
+                title: 'GST',
+                path: '/services/gst',
+                icon: FileText,
+                description: 'Complete GST registration, return filing, notices, and compliance support.',
+                highlights: ['GST Registration', 'GST Return Filing'],
+                color: 'from-green-500/10 to-accent/5',
+                isLarge: true,
+              },
+              {
+                title: 'Income Tax',
+                path: '/services/tax-compliance?section=income-tax',
+                icon: Scale,
+                description: 'Personal & business ITR filing, TDS returns, and tax notice handling.',
+                highlights: ['Income Tax E-Filing', 'TDS Return Filing'],
+                color: 'from-yellow-500/10 to-accent/5',
+                isLarge: false,
+              },
+              {
+                title: 'MCA',
+                path: '/services/tax-compliance?section=mca',
+                icon: Briefcase,
+                description: 'ROC filings, director changes, MOA/AOA amendments, and corporate compliance.',
+                highlights: ['Company Compliance', 'DIN eKYC Filing'],
+                color: 'from-orange-500/10 to-accent/5',
+                isLarge: false,
+              },
+              {
+                title: 'Compliance',
+                path: '/services/tax-compliance?section=compliance',
+                icon: Award,
+                description: 'PF/ESI returns, payroll, bookkeeping, professional tax & more.',
+                highlights: ['PF Return Filing', 'HR & Payroll'],
+                color: 'from-teal-500/10 to-accent/5',
+                isLarge: false,
+              },
+              {
+                title: 'Global',
+                path: '/services/global',
+                icon: Globe,
+                description: 'International company formation in UAE, USA, UK, Singapore & trademark globally.',
+                highlights: ['UAE Company', 'USA Company'],
+                color: 'from-cyan-500/10 to-accent/5',
+                isLarge: false,
+              },
+            ].map((item, index) => {
+              const Icon = item.icon;
               return (
-                <motion.div 
-                  key={category.slug}
+                <motion.div
+                  key={item.title}
                   variants={itemVariants}
                   className={cn(
-                    "bento-card group flex flex-col justify-between overflow-hidden relative",
-                    isLarge ? "lg:col-span-2" : "lg:col-span-1"
+                    'bento-card group flex flex-col justify-between overflow-hidden relative min-h-[260px] sm:min-h-[300px]',
+                    item.isLarge ? 'lg:col-span-2' : 'lg:col-span-1'
                   )}
                 >
-                  <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 group-hover:scale-125 transition-all duration-700">
-                    <Icon className="w-40 h-40" />
+                  {/* Background watermark icon */}
+                  <div className="absolute top-0 right-0 p-6 opacity-5 group-hover:opacity-10 group-hover:scale-110 transition-all duration-700">
+                    <Icon className="w-32 h-32 sm:w-40 sm:h-40" />
                   </div>
 
                   <div>
-                    <div className="w-14 h-14 bg-primary/5 rounded-2xl flex items-center justify-center mb-6 border border-primary/10 group-hover:bg-primary group-hover:text-white transition-all duration-500">
-                      <Icon className="w-7 h-7" />
+                    <div className="w-12 h-12 sm:w-14 sm:h-14 bg-white/5 rounded-2xl flex items-center justify-center mb-4 sm:mb-6 border border-white/10 group-hover:bg-accent group-hover:text-white transition-all duration-500">
+                      <Icon className="w-6 h-6 sm:w-7 sm:h-7" />
                     </div>
-                    <h3 className="text-2xl font-bold mb-3 text-primary group-hover:text-accent transition-colors">{category.title}</h3>
-                    <p className="text-dark-gray/60 text-sm font-medium line-clamp-2 max-w-sm">{category.description}</p>
+                    <h3 className="text-xl sm:text-2xl font-bold mb-2 sm:mb-3 text-white group-hover:text-accent transition-colors">
+                      {item.title}
+                    </h3>
+                    <p className="text-dark-gray/60 text-sm font-medium line-clamp-2 max-w-sm leading-relaxed">
+                      {item.description}
+                    </p>
                   </div>
 
-                  <div className="flex items-center justify-between mt-6 pt-6 border-t border-light-gray/50">
-                    <div className="flex flex-col gap-2.5">
-                      {category.services.slice(0, 2).map((s, i) => (
+                  <div className="flex items-center justify-between mt-5 sm:mt-6 pt-5 sm:pt-6 border-t border-light-gray/50">
+                    <div className="flex flex-col gap-2">
+                      {item.highlights.map((h, i) => (
                         <div key={i} className="flex items-center gap-2 text-xs font-bold text-dark-gray/80">
                           <CheckCircle className="w-3.5 h-3.5 text-accent shrink-0" />
-                          <span className="truncate">{s.name}</span>
+                          <span className="truncate">{h}</span>
                         </div>
                       ))}
                     </div>
-                    <Link 
-                      to={`/services/${category.slug}`} 
-                      className="w-12 h-12 rounded-xl bg-primary text-white flex items-center justify-center group-hover:bg-accent group-hover:shadow-glow transition-all duration-500 shrink-0"
+                    <Link
+                      to={item.path}
+                      className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-primary text-white flex items-center justify-center group-hover:bg-accent group-hover:shadow-glow transition-all duration-500 shrink-0"
                     >
-                      <ArrowRight className="w-5 h-5" />
+                      <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
                     </Link>
                   </div>
                 </motion.div>
@@ -145,26 +207,27 @@ const Home = () => {
         </div>
       </section>
 
+
       {/* Premium Stats Section */}
       <section className="py-16 sm:py-24 relative">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="bg-primary rounded-[2rem] sm:rounded-[3rem] p-6 sm:p-12 lg:p-20 relative overflow-hidden shadow-2xl">
             <div className="absolute inset-0 mesh-gradient opacity-40"></div>
-            <div className="relative z-10 grid grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-12 lg:gap-8">
+            <div className="relative z-10 grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-12 lg:gap-8">
               {stats.map((stat, index) => (
                 <motion.div 
                   key={stat.label}
                   initial={{ opacity: 0, scale: 0.9 }}
                   whileInView={{ opacity: 1, scale: 1 }}
                   transition={{ delay: index * 0.1 }}
-                  className="text-center space-y-4"
+                  className="text-center space-y-3 sm:space-y-4"
                 >
-                  <div className="w-16 h-16 bg-white/10 rounded-2xl flex items-center justify-center mx-auto border border-white/10 backdrop-blur-md">
-                    <stat.icon className="w-8 h-8 text-accent" />
+                  <div className="w-12 h-12 sm:w-16 sm:h-16 bg-white/10 rounded-2xl flex items-center justify-center mx-auto border border-white/10 backdrop-blur-md">
+                    <stat.icon className="w-6 h-6 sm:w-8 sm:h-8 text-accent" />
                   </div>
                   <div>
-                    <div className="text-4xl lg:text-6xl font-black text-white tracking-tighter mb-1">{stat.value}</div>
-                    <div className="text-xs lg:text-sm text-white/50 font-bold uppercase tracking-widest">{stat.label}</div>
+                    <div className="text-3xl sm:text-4xl lg:text-6xl font-black text-white tracking-tighter mb-1">{stat.value}</div>
+                    <div className="text-[10px] sm:text-xs lg:text-sm text-white/50 font-bold uppercase tracking-widest">{stat.label}</div>
                   </div>
                 </motion.div>
               ))}
@@ -174,7 +237,7 @@ const Home = () => {
       </section>
 
       {/* Why Choose Us: Editorial Style */}
-      <section className="py-16 sm:py-24 lg:py-32 bg-white">
+      <section className="py-16 sm:py-24 lg:py-32 bg-secondary">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center">
             <div className="space-y-8 sm:space-y-12">
@@ -188,7 +251,7 @@ const Home = () => {
                   <ShieldCheck className="w-4 h-4" />
                   Elite Business Solutions
                 </div>
-                <h2 className="text-4xl sm:text-5xl lg:text-7xl font-black text-primary leading-none tracking-tighter">
+                <h2 className="text-4xl sm:text-5xl lg:text-7xl font-black text-white leading-none tracking-tighter">
                   The Gold Standard <br />
                   <span className="text-accent">Of Consulting</span>
                 </h2>
@@ -211,10 +274,10 @@ const Home = () => {
                     transition={{ delay: i * 0.1 }}
                     className="space-y-2 sm:space-y-3"
                   >
-                    <div className="w-12 h-12 bg-primary/5 rounded-xl flex items-center justify-center border border-primary/10">
-                      <item.icon className="w-6 h-6 text-primary" />
+                    <div className="w-12 h-12 bg-white/5 rounded-xl flex items-center justify-center border border-white/10">
+                      <item.icon className="w-6 h-6 text-accent" />
                     </div>
-                    <h4 className="text-lg font-bold text-primary">{item.title}</h4>
+                    <h4 className="text-lg font-bold text-white">{item.title}</h4>
                     <p className="text-dark-gray/60 text-sm font-medium leading-relaxed">{item.desc}</p>
                   </motion.div>
                 ))}
@@ -227,7 +290,7 @@ const Home = () => {
               viewport={{ once: true }}
               className="relative"
             >
-              <div className="relative z-10 rounded-[1.5rem] sm:rounded-[3rem] overflow-hidden shadow-[0_50px_100px_-20px_rgba(15,23,42,0.25)] border-8 sm:border-[16px] border-soft-white">
+              <div className="relative z-10 rounded-[1.5rem] sm:rounded-[3rem] overflow-hidden shadow-[0_50px_100px_-20px_rgba(15,23,42,0.25)] border-4 sm:border-8 lg:border-[16px] border-soft-white">
                 <img 
                   src={premiumAdvisors} 
                   alt="Elite Business Advisory Board" 
@@ -235,9 +298,9 @@ const Home = () => {
                 />
               </div>
               <div className="absolute -top-10 -right-10 w-48 h-48 bg-accent/10 blur-[80px] -z-10 rounded-full animate-pulse"></div>
-              <div className="absolute -bottom-12 -left-12 bg-white p-10 rounded-[2rem] shadow-2xl z-20 border border-light-gray hidden xl:block">
+              <div className="absolute -bottom-12 -left-12 bg-secondary p-10 rounded-[2rem] shadow-2xl z-20 border border-light-gray hidden xl:block">
                 <div className="flex items-center gap-6">
-                  <div className="text-5xl font-black text-primary">100%</div>
+                  <div className="text-5xl font-black text-white">100%</div>
                   <div className="w-px h-12 bg-light-gray"></div>
                   <div className="text-xs text-dark-gray font-bold uppercase tracking-widest leading-tight">Compliance <br />Guaranteed</div>
                 </div>
@@ -248,10 +311,10 @@ const Home = () => {
       </section>
 
       {/* Testimonials: Premium Carousel feel */}
-      <section className="py-16 sm:py-24 lg:py-32 bg-soft-white overflow-hidden">
+      <section className="py-16 sm:py-24 lg:py-32 bg-secondary overflow-hidden">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="text-center mb-12 sm:mb-24 space-y-4">
-            <h2 className="text-3xl sm:text-4xl lg:text-6xl font-black text-primary">Client Success Stories</h2>
+            <h2 className="text-3xl sm:text-4xl lg:text-6xl font-black text-white">Client Success Stories</h2>
             <div className="w-20 h-1 bg-accent mx-auto rounded-full"></div>
           </div>
 
@@ -272,7 +335,7 @@ const Home = () => {
                 <div className="flex items-center gap-5 mb-8">
                   <img src={t.avatar} alt={t.name} className="w-14 h-14 rounded-2xl border-2 border-white shadow-lg" />
                   <div>
-                    <div className="font-black text-primary text-lg">{t.name}</div>
+                    <div className="font-black text-white text-lg">{t.name}</div>
                     <div className="text-[10px] text-accent font-black uppercase tracking-widest">{t.role}</div>
                   </div>
                 </div>
@@ -292,7 +355,7 @@ const Home = () => {
           <div className="relative bg-primary rounded-[2rem] sm:rounded-[3rem] lg:rounded-[4rem] p-6 sm:p-16 lg:p-32 text-center text-white overflow-hidden shadow-[0_50px_100px_-20px_rgba(15,23,42,0.5)]">
             <div className="absolute inset-0 mesh-gradient opacity-60"></div>
             <div className="relative z-10 max-w-4xl mx-auto space-y-8 sm:space-y-12">
-              <h2 className="text-3.5xl sm:text-5xl lg:text-8xl font-black tracking-tighter leading-none text-white">
+              <h2 className="text-3xl sm:text-5xl lg:text-8xl font-black tracking-tighter leading-none text-white">
                 Build Your <span className="text-accent">Empire</span> <br />
                 With Confidence
               </h2>
@@ -302,11 +365,11 @@ const Home = () => {
               <div className="flex flex-col sm:flex-row justify-center gap-4 sm:gap-8">
                 <Link to="/contact" className="btn-accent px-8 sm:px-16 py-4 sm:py-6 text-base sm:text-xl shadow-glow">
                   Initialize Setup
-                  <ArrowRight className="w-6 h-6 ml-2" />
+                  <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6 ml-2" />
                 </Link>
                 <a 
                   href="https://wa.me/918919051513" 
-                  className="px-8 sm:px-16 py-4 sm:py-6 rounded-2xl bg-white/10 backdrop-blur-md border border-white/10 font-bold text-white hover:bg-white/20 transition-all text-base sm:text-xl"
+                  className="px-8 sm:px-16 py-4 sm:py-6 rounded-2xl bg-white/10 backdrop-blur-md border border-white/10 font-bold text-white hover:bg-white/20 transition-all text-base sm:text-xl text-center"
                 >
                   Priority Concierge
                 </a>

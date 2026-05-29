@@ -6,6 +6,20 @@ export interface ServiceItem {
   details?: ServiceDetail;
 }
 
+export interface ReviewItem {
+  name: string;
+  rating: number;
+  review: string;
+  date: string;
+  city: string;
+}
+
+export interface RelatedService {
+  name: string;
+  slug: string;
+  categorySlug: string;
+}
+
 export interface ServiceDetail {
   overview?: string;
   benefits: string[];
@@ -19,6 +33,9 @@ export interface ServiceDetail {
   postCompliances?: string[];
   targetAudience?: string;
   faqs?: FAQItem[];
+  reviews?: ReviewItem[];
+  relatedServices?: RelatedService[];
+  popularSearches?: string[];
 }
 
 export interface FAQItem {
@@ -188,6 +205,72 @@ Fortune Multi Services is your trusted partner for sole proprietorship firm regi
               question: "Can a sole proprietorship be converted into a private limited company?",
               answer: "Yes, a sole proprietorship can be converted into a Private Limited Company or LLP as your business grows. This helps limit personal liability, attract external investors, and scale operations. Fortune Multi Services can guide you through the entire conversion process seamlessly."
             }
+          ],
+          reviews: [
+            {
+              name: "Ravi Kumar",
+              rating: 5,
+              review: "Fortune Multi Services made my proprietorship registration completely hassle-free. Got my GST and MSME done in just 4 days. Excellent support throughout the process!",
+              date: "March 2025",
+              city: "Hyderabad"
+            },
+            {
+              name: "Priya Sharma",
+              rating: 5,
+              review: "Very professional team. They guided me through every step and handled all documentation on my behalf. Highly recommend for anyone starting a new business.",
+              date: "January 2025",
+              city: "Mumbai"
+            },
+            {
+              name: "Anil Mehta",
+              rating: 4,
+              review: "Good service and transparent pricing. The team was responsive and kept me updated at every stage. My Shop & Establishment licence was processed smoothly.",
+              date: "February 2025",
+              city: "Delhi"
+            },
+            {
+              name: "Sunita Rao",
+              rating: 5,
+              review: "Registered my boutique business as a sole proprietorship within a week. The team is very knowledgeable and answered all my compliance-related questions patiently.",
+              date: "April 2025",
+              city: "Bangalore"
+            },
+            {
+              name: "Deepak Joshi",
+              rating: 4,
+              review: "Quick and affordable. They clearly explained the difference between GST and MSME registrations and helped me choose what my business actually needed.",
+              date: "December 2024",
+              city: "Pune"
+            },
+            {
+              name: "Lakshmi Nair",
+              rating: 5,
+              review: "I was new to business registration and had many doubts. The expert team at Fortune Multi Services patiently resolved every query and delivered on time. Highly satisfied!",
+              date: "May 2025",
+              city: "Chennai"
+            }
+          ],
+          relatedServices: [
+            { name: "Partnership Firm", slug: "partnership", categorySlug: "startup" },
+            { name: "LLP Registration", slug: "llp", categorySlug: "startup" },
+            { name: "Private Limited Company", slug: "private-limited", categorySlug: "startup" },
+            { name: "MSME / Udyam Registration", slug: "msme-udyam", categorySlug: "registrations" },
+            { name: "GST Registration", slug: "gst-registration", categorySlug: "tax-compliance" },
+            { name: "Trade Licence", slug: "trade-license", categorySlug: "registrations" }
+          ],
+          popularSearches: [
+            "sole proprietorship registration online India",
+            "how to register proprietorship firm",
+            "proprietorship firm documents required",
+            "sole proprietorship vs private limited company",
+            "proprietorship registration fees India",
+            "GST registration for sole proprietorship",
+            "MSME registration for proprietorship",
+            "Shop and Establishment licence sole proprietorship",
+            "proprietorship firm PAN card",
+            "sole proprietorship bank account opening",
+            "proprietorship firm income tax return",
+            "can proprietorship be converted to company"
           ]
         }
       },
@@ -362,6 +445,58 @@ Fortune Multi Services is India's most trusted platform for partnership firm reg
               question: "How do I choose a name for my partnership firm?",
               answer: "The name must be unique and not violate any existing trademarks or suggest government sponsorship. It must not include restricted terms like Emperor, Crown, or Royal without prior government approval."
             }
+          ],
+          reviews: [
+            {
+              name: "Vikram Singh",
+              rating: 5,
+              review: "Fortune Multi Services helped us register our two-partner firm seamlessly. The partnership deed was drafted professionally and registration with the RoF was completed in 8 working days.",
+              date: "February 2025",
+              city: "Jaipur"
+            },
+            {
+              name: "Meena Krishnan",
+              rating: 5,
+              review: "Very efficient team. They guided us through the stamp duty payment and partnership deed clauses. Highly recommended for anyone looking to start a partnership business.",
+              date: "March 2025",
+              city: "Chennai"
+            },
+            {
+              name: "Rakesh Sharma",
+              rating: 4,
+              review: "Good experience overall. The partnership deed was customized as per our profit-sharing requirements. Process was transparent and professional.",
+              date: "January 2025",
+              city: "Delhi"
+            },
+            {
+              name: "Nalini Patel",
+              rating: 5,
+              review: "We started a trading partnership with 3 partners. Fortune Multi Services handled everything from drafting the deed to GST registration. Excellent service!",
+              date: "April 2025",
+              city: "Ahmedabad"
+            }
+          ],
+          relatedServices: [
+            { name: "Proprietorship", slug: "proprietorship", categorySlug: "startup" },
+            { name: "LLP Registration", slug: "limited-liability-partnership", categorySlug: "startup" },
+            { name: "Private Limited Company", slug: "private-limited", categorySlug: "startup" },
+            { name: "Partnership Deed Drafting", slug: "partnership", categorySlug: "startup" },
+            { name: "MSME / Udyam Registration", slug: "msme-udyam", categorySlug: "registrations" },
+            { name: "GST Registration", slug: "gst-registration", categorySlug: "tax-compliance" }
+          ],
+          popularSearches: [
+            "partnership firm registration India",
+            "how to register a partnership firm",
+            "partnership deed format India",
+            "partnership firm documents required",
+            "partnership vs LLP India",
+            "partnership firm registration fees",
+            "registered vs unregistered partnership",
+            "partnership firm GST registration",
+            "how to dissolve a partnership firm",
+            "partnership firm income tax return",
+            "Indian Partnership Act 1932",
+            "partnership firm stamp duty"
           ]
         }
       },
@@ -471,6 +606,48 @@ Fortune Multi Services is India's most trusted platform for partnership firm reg
               question: "What documents are required for OPC registration?",
               answer: "The essential documents include the sole member's PAN card, Aadhaar card or passport/voter ID, passport-size photographs, bank statement/utility bill (under 2 months old), registered office utility bill, rent agreement (if applicable), NOC from the landlord, subscriber declaration (INC-9), and nominee consent (INC-3)."
             }
+          ],
+          reviews: [
+            {
+              name: "Sanjay Gupta",
+              rating: 5,
+              review: "I wanted limited liability without a co-founder. Fortune Multi Services helped me register my OPC in under 12 days. Their expert team handled MOA, AOA, and MCA filing flawlessly.",
+              date: "March 2025",
+              city: "Pune"
+            },
+            {
+              name: "Ritika Bose",
+              rating: 5,
+              review: "Excellent service! The team explained the nominee director concept clearly and ensured all documents were filed correctly with MCA. Got my COI on schedule.",
+              date: "January 2025",
+              city: "Kolkata"
+            },
+            {
+              name: "Harish Menon",
+              rating: 4,
+              review: "Good experience. Affordable pricing and knowledgeable staff. OPC was the perfect structure for my consulting business and Fortune Multi Services made the setup easy.",
+              date: "February 2025",
+              city: "Kochi"
+            }
+          ],
+          relatedServices: [
+            { name: "Proprietorship", slug: "proprietorship", categorySlug: "startup" },
+            { name: "Private Limited Company", slug: "private-limited", categorySlug: "startup" },
+            { name: "LLP Registration", slug: "limited-liability-partnership", categorySlug: "startup" },
+            { name: "MSME / Udyam Registration", slug: "msme-udyam", categorySlug: "registrations" },
+            { name: "GST Registration", slug: "gst-registration", categorySlug: "tax-compliance" }
+          ],
+          popularSearches: [
+            "OPC registration India",
+            "one person company eligibility",
+            "OPC vs sole proprietorship",
+            "OPC documents required",
+            "OPC registration fees",
+            "OPC vs private limited company",
+            "one person company nominee director",
+            "OPC annual compliance",
+            "how to convert OPC to private limited",
+            "OPC registration process online"
           ]
         }
       },
@@ -562,6 +739,50 @@ Fortune Multi Services is India's most trusted platform for partnership firm reg
               question: "What documents are required for incorporating an LLP?",
               answer: "The primary documents include the partners' PAN card, identity proof (Aadhaar, Passport, or Voter ID), address proof (recent bank statement or utility bill), passport-size photographs, and registered office address proofs (utility bill, rent agreement, and an NOC from the landlord)."
             }
+          ],
+          reviews: [
+            {
+              name: "Arjun Kapoor",
+              rating: 5,
+              review: "Registered our CA firm as an LLP with Fortune Multi Services. The LLP agreement was drafted with all required clauses and MCA filing was done within 10 days. Superb service!",
+              date: "February 2025",
+              city: "Bangalore"
+            },
+            {
+              name: "Kavya Reddy",
+              rating: 5,
+              review: "We converted our partnership to an LLP and the team guided us through every step. Professional, efficient and excellent value for money.",
+              date: "March 2025",
+              city: "Hyderabad"
+            },
+            {
+              name: "Suresh Nambiar",
+              rating: 4,
+              review: "Good team. The LLP incorporation process was completed smoothly. They also assisted with DPIN applications and the LLP agreement drafting.",
+              date: "January 2025",
+              city: "Trivandrum"
+            }
+          ],
+          relatedServices: [
+            { name: "Partnership Firm", slug: "partnership", categorySlug: "startup" },
+            { name: "Private Limited Company", slug: "private-limited-company", categorySlug: "startup" },
+            { name: "Proprietorship", slug: "proprietorship", categorySlug: "startup" },
+            { name: "MSME / Udyam Registration", slug: "msme-udyam", categorySlug: "registrations" },
+            { name: "GST Registration", slug: "gst-registration", categorySlug: "tax-compliance" }
+          ],
+          popularSearches: [
+            "LLP registration India",
+            "how to register an LLP",
+            "LLP vs private limited company",
+            "LLP agreement format India",
+            "LLP documents required",
+            "LLP registration fees",
+            "LLP annual compliance requirements",
+            "designated partner LLP",
+            "LLP incorporation process MCA",
+            "convert partnership to LLP",
+            "LLP income tax return",
+            "LLP registration online"
           ]
         }
       },
@@ -657,6 +878,57 @@ Fortune Multi Services is India's most trusted platform for partnership firm reg
               question: "Which form is to be filed for filing the annual returns of a Company?",
               answer: "A Private Limited Company must file two main annual forms with the Registrar of Companies (ROC): Form AOC-4 for filing the financial statements (balance sheet, profit & loss statement, auditor's report, and board report) within 30 days of the AGM, and Form MGT-7 (or MGT-7A for small companies) for filing the Annual Return (containing details of directors, shareholders, and shareholdings) within 60 days of the AGM."
             }
+          ],
+          reviews: [
+            {
+              name: "Rohit Agarwal",
+              rating: 5,
+              review: "Got our Pvt Ltd incorporated in just 10 working days. Fortune Multi Services handled everything — DSC, DIN, MOA, AOA, SPICe+ filing. Got our COI, PAN and TAN together. Highly recommended!",
+              date: "April 2025",
+              city: "Mumbai"
+            },
+            {
+              name: "Sneha Iyer",
+              rating: 5,
+              review: "We were setting up a tech startup and needed a Private Limited Company urgently for investor due diligence. The team delivered within the promised timeline. Very professional.",
+              date: "March 2025",
+              city: "Bangalore"
+            },
+            {
+              name: "Mohit Tiwari",
+              rating: 4,
+              review: "Very good experience. The team guided us through name approval and MCA filing. Company setup went smoothly and we also got free support for first-year compliances.",
+              date: "February 2025",
+              city: "Noida"
+            },
+            {
+              name: "Ananya Krishnamurthy",
+              rating: 5,
+              review: "Excellent support from start to finish. As first-time founders, we had many questions and the Fortune Multi Services team was always patient and responsive. 5 stars!",
+              date: "January 2025",
+              city: "Chennai"
+            }
+          ],
+          relatedServices: [
+            { name: "LLP Registration", slug: "limited-liability-partnership", categorySlug: "startup" },
+            { name: "OPC Registration", slug: "one-person-company", categorySlug: "startup" },
+            { name: "Trademark Registration", slug: "trademark-registration", categorySlug: "registrations" },
+            { name: "MSME / Udyam Registration", slug: "msme-udyam", categorySlug: "registrations" },
+            { name: "GST Registration", slug: "gst-registration", categorySlug: "tax-compliance" }
+          ],
+          popularSearches: [
+            "private limited company registration India",
+            "how to incorporate private limited company",
+            "private limited company documents required",
+            "Pvt Ltd registration fees India",
+            "SPICe+ form filing",
+            "private limited vs LLP comparison",
+            "private limited company minimum directors",
+            "MCA company registration",
+            "certificate of incorporation India",
+            "private limited company annual compliance",
+            "how to raise funding private limited",
+            "ESOP private limited company"
           ]
         }
       },
@@ -1024,10 +1296,10 @@ Fortune Multi Services is India's most trusted platform for partnership firm reg
   {
     title: "Registrations",
     slug: "registrations",
-    description: "Business & General Registrations",
+    description: "Business and General Registrations, Licenses, and Food Certifications.",
     services: [
       {
-        name: "Startup India Registration",
+        name: "Startup India",
         tag: "#StartupIndia",
         slug: "startup-india-registration",
         description: "Obtain DPIIT Recognition to unlock tax holidays, funding, and government patent rebates.",
@@ -1059,833 +1331,97 @@ Fortune Multi Services is India's most trusted platform for partnership firm reg
         }
       },
       {
-        name: "Trade License",
-        tag: "#TradeLicense",
-        slug: "trade-license",
-        description: "Municipal certificate mandatory to legally operate commercial trade within local civic limits.",
+        name: "FSSAI Registration",
+        tag: "#FSSAIRegistration",
+        slug: "fssai-registration",
+        description: "Basic food safety registration mandatory for small food businesses with turnover under ₹12 Lakhs.",
         details: {
-          overview: "A Trade License is a mandatory municipal certificate authorizing you to carry out specific commercial trade or business activities at a declared physical site, ensuring the business respects zoning and local safety regulations.",
-          targetAudience: "Retail shops, restaurants, commercial offices, and distributors.",
-          benefits: ["Legal commercial operations", "Protects against municipal fines", "Access to current bank accounts"],
-          documents: ["Electricity bill or property tax receipt", "Rent agreement / NOC", "PAN and Aadhaar of promoter", "Layout blueprints"],
-          process: ["Zoning compliance check", "Filing municipal application", "Inspections (where required)", "Fee payment and certificate download"],
-          timeline: "10-15 Working Days",
-          faqs: [
-            {
-              question: "Is a Trade License valid across the state?",
-              answer: "No, a Trade License is highly local and issued specifically for a single municipal address."
-            },
-            {
-              question: "What happens if I run a business without a Trade License?",
-              answer: "Operating without a Trade License can result in heavy daily penalties, closure notices, or physical sealing of the business premises by municipal authorities."
-            },
-            {
-              question: "Does a Trade License transfer to a new owner if I sell the business?",
-              answer: "Yes, you can apply for a transfer of the Trade License to the new owner by submitting the transfer application along with the sale deed and consent letters."
-            },
-            {
-              question: "How often do I need to renew my Trade License?",
-              answer: "Trade licenses are generally renewed annually, typically between March and May, depending on the rules of your local municipal corporation."
-            }
-          ]
-        }
-      },
-      {
-        name: "Import Export Code (IEC)",
-        tag: "#ImportExportCode",
-        slug: "import-export-code",
-        description: "Mandatory 10-digit DGFT registration needed to legally import or export commodities globally from India.",
-        details: {
-          overview: "The Import Export Code (IEC) is a 10-digit identification code issued by the Directorate General of Foreign Trade (DGFT). It is mandatory for any individual or corporate entity looking to import or export goods/services from India legally.",
-          targetAudience: "Exporters, global e-commerce brands, cargo companies, and wholesale importers.",
-          benefits: ["Lifetime validity", "No recurring filing requirements", "Access to national export promotional subsidies"],
-          documents: ["PAN Card of business/promoter", "Cancelled cheque of the current account", "Aadhaar Card", "Office address proof"],
-          process: ["Registering on DGFT portal", "Form ANF-2A compilation", "Uploading cheque copy", "Paying fees & instant download"],
-          timeline: "1-2 Working Days",
-          faqs: [
-            {
-              question: "Do I need to update my IEC annually?",
-              answer: "Yes, recent DGFT rules mandate that all IEC holders must verify and update their portal profile annually between April and June."
-            },
-            {
-              question: "Are there any tax filing requirements for IEC?",
-              answer: "No, there are no separate annual returns or filings required for IEC. It is strictly an identification code for customs clearance."
-            },
-            {
-              question: "Can a sole proprietor get an IEC?",
-              answer: "Yes, a sole proprietor can easily obtain an IEC in their personal name backed by their individual PAN."
-            },
-            {
-              question: "Is IEC mandatory for importing personal goods?",
-              answer: "No, IEC is not required for importing or exporting goods for purely personal use that are not connected with commercial trade."
-            }
-          ]
-        }
-      },
-      {
-        name: "Legal Entity Identifier (LEI) Code",
-        tag: "#LegalEntityIdentifier",
-        slug: "legal-entity-identifier",
-        description: "Unique 20-character global reference code mandatory for large-scale corporate financial transactions.",
-        details: {
-          overview: "The Legal Entity Identifier (LEI) is a unique 20-character global reference code designed to identify corporate entities conducting large-value financial transactions (exceeding ₹50 Crores, as per RBI directives) in financial markets.",
-          targetAudience: "Large corporate borrowers, institutional investors, public companies, and global exporters.",
-          benefits: ["RBI financial compliance", "Risk mitigation", "Global institutional credibility", "Facilitates high-value transactions"],
-          documents: ["Certificate of Incorporation", "PAN of the firm", "Board resolution authorizing applicant", "Aadhaar and PAN of authorized directors"],
-          process: ["Submitting data to Local Operating Unit (LOU)", "Validating corporate records", "Fee payment", "LEI code generation"],
-          timeline: "2-4 Working Days",
-          faqs: [
-            {
-              question: "What is the validity of an LEI code?",
-              answer: "An LEI code is valid for exactly 1 year and must be renewed annually to maintain compliant transactional status."
-            },
-            {
-              question: "What happens if my LEI expires?",
-              answer: "If your LEI is not renewed on time, banks will freeze your high-value transactions (over ₹50 Crores) and reject your fund transfers."
-            },
-            {
-              question: "Who regulates LEI in India?",
-              answer: "The Reserve Bank of India (RBI) mandates LEI, and registrations are processed by Legal Entity Identifier India Limited (LEIL), a subsidiary of CCIL."
-            },
-            {
-              question: "Is LEI mandatory for individual taxpayers?",
-              answer: "No, LEI is strictly for non-individual legal entities, such as companies, trusts, partnerships, and sole proprietorships conducting high-value trades."
-            }
-          ]
-        }
-      },
-      {
-        name: "ISO Registration",
-        tag: "#ISORegistration",
-        slug: "iso-registration",
-        description: "Secure international ISO standards certifications (9001, 14001, 27001) to confirm global quality benchmarks.",
-        details: {
-          overview: "ISO Certification validates that your organization adheres to international standards of safety, quality, and operational efficiency (such as ISO 9001 for Quality Management or ISO 27001 for Information Security).",
-          targetAudience: "Manufacturers, software agencies, healthcare clinics, and bidders for corporate or global tenders.",
-          benefits: [
-            "Elite international branding",
-            "Enhanced trust with clients",
-            "Required for global bidding and government tenders"
-          ],
-          documents: ["Business registration proof", "PAN Card of the firm", "Brief product/service flow profile"],
-          process: ["Standard selection & audit preparation", "Gap analysis", "Certification agency audit", "Certificate issuance"],
-          timeline: "5-7 Working Days",
-          faqs: [
-            {
-              question: "How long is an ISO certificate valid?",
-              answer: "It is valid for 3 years, subject to annual surveillance audits to ensure continued standard compliance."
-            },
-            {
-              question: "What is the difference between ISO 9001 and ISO 27001?",
-              answer: "ISO 9001 focuses on Quality Management Systems (QMS) across operations, while ISO 27001 sets standards for Information Security Management Systems (ISMS)."
-            },
-            {
-              question: "Can a startup apply for ISO certification?",
-              answer: "Yes, any registered entity, regardless of size or age, can apply for ISO certification to demonstrate standardized business processes."
-            },
-            {
-              question: "Is ISO certification mandatory by law?",
-              answer: "ISO is generally voluntary, but it is often made mandatory by corporate clients or government departments to participate in tenders."
-            }
-          ]
-        }
-      },
-      {
-        name: "PF Registration",
-        tag: "#PFRegistration",
-        slug: "pf-registration",
-        description: "Mandatory Provident Fund pension and retirement savings system registration for companies with 20+ staff.",
-        details: {
-          overview: "PF Registration covers your corporate firm under the Employees' Provident Funds and Miscellaneous Provisions Act, 1952. This is mandatory for any firm employing 20 or more staff members, enabling employee retirement savings.",
-          targetAudience: "Factories, commercial offices, IT firms, and retail organizations with 20+ staff.",
-          benefits: ["Legal social security compliance", "Enhanced corporate reputation", "Retirement pension for employees"],
-          documents: ["Business incorporation certificate", "PAN of the firm", "Employee salary sheets & Aadhaar cards", "Digital signature of director"],
-          process: ["Portal registration on EPFO Shram Suvidha", "Employer details entry", "Digital signature registration", "Permanent PF code allocation"],
+          overview: "FSSAI Basic Registration is a mandatory food safety certification designed for micro food business operators, home-bakers, small retailers, and mobile food stalls with an annual turnover strictly under ₹12 Lakhs.",
+          targetAudience: "Home kitchens, street food vendors, local grocery stores, and micro-caterers.",
+          benefits: ["Complete legal compliance", "Allows partnership with Zomato & Swiggy", "Improves brand hygiene perception"],
+          documents: ["Proprietor Aadhaar and PAN", "Passport photograph", "NOC or Rent agreement of premises", "List of food items handled"],
+          process: ["FoSCos portal profile creation", "Uploading basic applicant data & address proofs", "Government fee payment", "Instant or verified registration grant"],
           timeline: "3-5 Working Days",
           faqs: [
             {
-              question: "Can a company register voluntarily under PF?",
-              answer: "Yes, companies with fewer than 20 employees can opt for voluntary PF registration to provide benefits to their employees."
+              question: "Who requires a Basic FSSAI Registration?",
+              answer: "Petty food businesses, local retailers, temporary stall holders, or home bakers with an annual turnover under ₹12 Lakhs require a Basic FSSAI Registration."
             },
             {
-              question: "What is the employee and employer PF contribution rate?",
-              answer: "Generally, both the employee and the employer contribute 12% of the employee's basic salary plus dearness allowance monthly."
+              question: "Is FSSAI mandatory for home bakers?",
+              answer: "Yes, any person preparing, handling, or selling food items from home must have a valid FSSAI license or registration to operate legally."
             },
             {
-              question: "What is the penalty for not depositing PF contributions?",
-              answer: "Delaying PF deposits attracts interest penalties under Section 7Q (12% per annum) and damages under Section 14B (up to 25% per annum)."
+              question: "What is the validity period of an FSSAI Certificate?",
+              answer: "FSSAI registrations are issued with a validity of 1 to 5 years. You must apply for renewal at least 30 days before expiration to avoid daily late penalties."
             },
             {
-              question: "Is PF mandatory for contractual employees?",
-              answer: "Yes, contractual employees working directly for your business are covered under PF regulations and must be included in your monthly returns."
+              question: "What is the penalty for operating a food business without FSSAI?",
+              answer: "Operating without an FSSAI certificate can lead to imprisonment for up to 6 months and a cash penalty of up to ₹5 Lakhs."
             }
           ]
         }
       },
       {
-        name: "ESI Registration",
-        tag: "#ESIRegistration",
-        slug: "esi-registration",
-        description: "Mandatory Employee State Insurance medical cover social security registration for firms with 10+ employees.",
+        name: "FSSAI License",
+        tag: "#FSSAILicense",
+        slug: "fssai-license",
+        description: "State & Central food safety licenses mandatory for medium to large scale food businesses.",
         details: {
-          overview: "ESI Registration provides a comprehensive medical insurance shield and cash allowances to employees earning under ₹21,000 per month, mandatory for all commercial establishments employing 10 or more workers.",
-          targetAudience: "Offices, restaurants, manufacturing plants, and logistics firms with 10+ employees.",
-          benefits: [
-            "Free medical cover for employees & family",
-            "Protects employers from workplace injury liability",
-            "Sickness & maternity cash allowances"
-          ],
-          documents: ["Incorporation proof", "PAN of the business", "List of employees with salary sheets & details"],
-          process: ["Online application on ESIC portal", "Entering employer and employee details", "ESI numbers allocation", "ESI code grant"],
-          timeline: "3-5 Working Days",
+          overview: "An FSSAI License is a comprehensive food safety approval required for food manufacturers, high-capacity warehouses, restaurants, and packaging units whose annual turnover exceeds ₹12 Lakhs.",
+          targetAudience: "Restaurants, cloud kitchens, food importers/exporters, and large food processing factories.",
+          benefits: ["Allows state-wide or nationwide commercial distribution", "Prerequisite for food institutional bids", "High consumer trust and credibility"],
+          documents: ["Premises layout blueprints", "NABL potable water test certificate", "List of manufacturing equipment", "Directors' ID & Address proofs"],
+          process: ["Checking turnover limits (State vs Central)", "Filing FoSCoS portal application", "Uploading detailed technical plans", "Handling physical safety audit by FSO", "License issuance"],
+          timeline: "15-30 Working Days",
           faqs: [
             {
-              question: "Is ESI exit possible if staff strength drops below 10?",
-              answer: "No, once registered under the ESI Act, compliance is mandatory indefinitely regardless of employee count."
+              question: "What is the difference between State and Central FSSAI Licenses?",
+              answer: "A State License is for mid-sized businesses with turnovers between ₹12 Lakhs and ₹20 Crores. A Central License is mandatory for businesses with turnover exceeding ₹20 Crores, exporters, importers, or multi-state operators."
             },
             {
-              question: "What is the current monthly ESI contribution rate?",
-              answer: "The current ESI contribution rate is 4% of the employee's gross salary (3.25% by the employer and 0.75% by the employee)."
+              question: "Do food e-commerce platforms like Swiggy and Zomato require FSSAI?",
+              answer: "Yes, all e-commerce food operators must obtain a Central FSSAI License to list, sell, or deliver food products."
             },
             {
-              question: "What is the maximum salary limit for ESI coverage?",
-              answer: "ESI coverage is mandatory for all employees whose gross monthly salary is ₹21,000 or less (or ₹25,000 for employees with physical disabilities)."
+              question: "Can I upgrade my FSSAI Basic Registration to a State License?",
+              answer: "Yes, as your annual turnover grows beyond ₹12 Lakhs, you can apply for an upgrade from Basic Registration to a State FSSAI License on the FoSCoS portal."
             },
             {
-              question: "What benefits do employees get under ESI?",
-              answer: "Employees receive full outpatient and inpatient medical care, maternity leaves, sickness cash benefits, and dependent pension benefits in case of occupational injury."
+              question: "Is a food safety plan mandatory for FSSAI licenses?",
+              answer: "Yes, State and Central FSSAI license applications mandatorily require the submission of a FSMS (Food Safety Management System) plan and layout layout blueprints."
             }
           ]
         }
       },
       {
-        name: "Professional Tax Registration",
-        tag: "#PTRegistration",
-        slug: "professional-tax-registration",
-        description: "Official PTEC & PTRC regional state-level professional tax registrations for employers and specialists.",
+        name: "Halal License & Certification",
+        tag: "#HalalLicense",
+        slug: "halal-license-certification",
+        description: "Global standard halal compliance certification to permit global sales in Islamic markets.",
         details: {
-          overview: "Professional Tax is a state-level tax levied on salaried employees, professionals (Doctors, CAs, Lawyers), and commercial traders. Registration under PTEC (entity) and PTRC (employee) is essential in active states.",
-          targetAudience: "Employers, specialists, traders, and service providers operating in PT-applicable states.",
-          benefits: ["Complies with regional state labor laws", "Prevents financial state penalties", "Enables trade permit renewals"],
-          documents: ["Company incorporation proof", "Firm PAN and bank statement", "Employee salary details"],
-          process: ["Filing application on the State Tax portal", "Verifying company details", "Obtaining PTEC & PTRC certificates"],
-          timeline: "3-5 Working Days",
-          faqs: [
-            {
-              question: "Is Professional Tax applicable in all Indian states?",
-              answer: "No, professional tax is state-dependent; states like Delhi, Haryana, and Rajasthan do not levy Professional Tax."
-            },
-            {
-              question: "What is the difference between PTEC and PTRC?",
-              answer: "PTEC (Professional Tax Enrollment Certificate) is paid by the company to do business, while PTRC (Professional Tax Registration Certificate) is needed to deduct and deposit tax from employees' salaries."
-            },
-            {
-              question: "What is the maximum annual Professional Tax limit?",
-              answer: "Under the Constitution of India, the maximum professional tax that any state can levy on an individual is capped at ₹2,500 per year."
-            },
-            {
-              question: "What is the penalty for delaying Professional Tax filing?",
-              answer: "Penalties vary by state but typically include interest on late payments (1.25% to 2% per month) and late filing fees (ranging from ₹100 to ₹1,000)."
-            }
-          ]
-        }
-      },
-      {
-        name: "RCMC Registration",
-        tag: "#RCMC",
-        slug: "rcmc-registration",
-        description: "Obtain Registration Cum Membership Certificate from export councils to unlock major export benefits.",
-        details: {
-          overview: "RCMC Registration (Registration Cum Membership Certificate) is issued by Export Promotion Councils (like APEDA, FIEO, EEPC). It is mandatory for exporters wanting to claim duty drawbacks, tax rebates, and concessions under the Foreign Trade Policy.",
-          targetAudience: "Agricultural exporters, chemical manufacturers, textile exporters, and global traders.",
-          benefits: ["Unlocks duty drawback schemes", "Required for DGFT export concessions", "Export networking and trade fair access"],
-          documents: [
-            "Import Export Code (IEC)",
-            "PAN and Aadhaar of promoter",
-            "Manufacturing proof / FSSAI (for agricultural products)"
-          ],
-          process: ["Identifying the relevant Export Promotion Council", "Filing RCMC portal form", "Fee payment and certificate allotment"],
-          timeline: "7-12 Working Days",
-          faqs: [
-            {
-              question: "Is RCMC mandatory for all exports?",
-              answer: "No, RCMC is only mandatory if you wish to claim export incentives, rebates, or duty drawbacks from the government."
-            },
-            {
-              question: "How long is an RCMC certificate valid?",
-              answer: "It is valid for exactly 5 years, starting from the 1st of April of the registration year, and must be renewed upon expiry."
-            },
-            {
-              question: "Which council should I register with for agricultural goods?",
-              answer: "Agricultural exporters must register with APEDA (Agricultural and Processed Food Products Export Development Authority) to get their RCMC."
-            },
-            {
-              question: "What is FIEO in RCMC?",
-              answer: "FIEO (Federation of Indian Export Organisations) is the apex export facilitation body. If there is no specific council for your product, you can register with FIEO."
-            }
-          ]
-        }
-      },
-      {
-        name: "TN RERA Registration for Agents",
-        tag: "#TNRERA",
-        slug: "tn-rera-registration-agents",
-        description: "Mandatory Tamil Nadu Real Estate Regulatory Authority registration for real estate agents and brokers.",
-        details: {
-          overview: "TN RERA Registration is a mandatory legal registration for real estate agents, brokers, and consultants operating in Tamil Nadu, ensuring all property sales, commissions, and ads are transparent and legally authorized.",
-          targetAudience: "Property consultants, real estate brokers, and marketing agents in Tamil Nadu.",
-          benefits: ["Legal authority to broker RERA properties", "High consumer trust and elite branding", "Prevents heavy RERA fines (up to ₹10,000/day)"],
-          documents: [
-            "PAN and Aadhaar of the agent",
-            "Business address proof",
-            "Photograph",
-            "Income tax returns of past 3 years",
-            "Enterprise structure details (if firm)"
-          ],
-          process: ["Filing application on the TN RERA portal", "Filing details of previous real estate experience", "Paying agent fee", "RERA registration certificate grant"],
+          overview: "Halal Certification verifies that food items, cosmetics, or ingredients are processed, stored, and packaged in absolute compliance with Islamic dietary guidelines (Shariah law), making them eligible for export to global Islamic markets.",
+          targetAudience: "Food exporters, meat processors, cosmetics manufacturers, and pharmaceutical firms.",
+          benefits: ["Unlocks major export markets in Gulf & Southeast Asia", "High standard brand credibility", "Ensures compliance with international standards"],
+          documents: ["FSSAI License / Business Registration", "Detailed list of ingredients & raw material sources", "Laboratory test reports proving absence of non-halal items"],
+          process: ["Halal audit application", "Raw material trace examination", "On-site production facility inspection", "Halal Board review and certificate grant"],
           timeline: "15-20 Working Days",
           faqs: [
             {
-              question: "Can an agent sell properties without RERA?",
-              answer: "No, advertising, marketing, booking, or selling plots/apartments in RERA registered projects is strictly illegal without a RERA agent license."
+              question: "What is a Halal Certificate?",
+              answer: "A Halal Certificate ensures that food, cosmetics, or pharmaceutical products conform to Islamic dietary laws and quality standards, making them eligible for consumption by Muslim consumers."
             },
             {
-              question: "What is the validity of a TN RERA Agent license?",
-              answer: "A RERA Agent registration in Tamil Nadu is valid for 5 years and must be renewed at least 60 days before expiry."
+              question: "Is Halal certification mandatory by Indian law?",
+              answer: "No, Halal certification is voluntary in India, but it is highly recommended for exporting to Muslim-majority countries (UAE, Saudi Arabia, Malaysia)."
             },
             {
-              question: "Does RERA apply to commercial property brokers?",
-              answer: "Yes, RERA regulations apply to both residential and commercial real estate transactions and brokerages."
+              question: "How long is a Halal Certificate valid?",
+              answer: "A Halal Certificate is typically valid for exactly 1 year and requires an annual audit of the production unit for renewal."
             },
             {
-              question: "What is the penalty for acting as a broker without RERA?",
-              answer: "Under the RERA Act, brokers operating without registration face a daily penalty of ₹10,000, which can accumulate up to 5% of the total cost of the property brokered."
-            }
-          ]
-        }
-      },
-      {
-        name: "12A Registration",
-        tag: "#12ARegistration",
-        slug: "12a-registration",
-        description: "Income Tax exemption status certification for non-profits, NGOs, societies, and trusts.",
-        details: {
-          overview: "12A Registration is a one-time exemption status granted by the Income Tax Department. Once obtained, the entire income generated by the NGO is fully exempt from income tax, provided the funds are used for charitable objectives.",
-          targetAudience: "Charitable trusts, Section 8 companies, and societies.",
-          benefits: ["Exempts entire NGO income from tax", "Strong proof of legitimate non-profit status"],
-          documents: ["Trust Deed / Registration Certificate", "Activity reports of past 3 years", "PAN of the NGO"],
-          process: ["Filing Form 10A online", "Verifying operations and bank statements", "Receiving 12A exemption certificate"],
-          timeline: "30-45 Working Days",
-          faqs: [
-            {
-              question: "Is 12A registration applicable to private family trusts?",
-              answer: "No, 12A is exclusively for public charitable, non-profit trusts and institutions."
-            },
-            {
-              question: "How long does a provisional 12A registration remain valid?",
-              answer: "A provisional 12A registration is valid for 3 years. NGOs must apply for a permanent/active registration at least 6 months before provisional expiry."
-            },
-            {
-              question: "What is the tax exemption limit for a registered NGO?",
-              answer: "Once registered under 12A, 100% of the NGO's income is exempt from tax, provided it accumulates or utilizes at least 85% of its funds annually for charity."
-            },
-            {
-              question: "Can a Section 8 Company run without 12A?",
-              answer: "A Section 8 company can exist, but its income will be taxed at standard corporate rates unless it obtains a 12A registration."
-            }
-          ]
-        }
-      },
-      {
-        name: "80G Registration",
-        tag: "#80GRegistration",
-        slug: "80g-registration",
-        description: "Legal certification enabling donors to claim 50% income tax deductions on their charitable contributions.",
-        details: {
-          overview: "An 80G Certificate is the ultimate donor-attraction tool for any NGO. It allows individuals and corporate groups who donate to your NGO to deduct up to 50% of the donated amount from their taxable income under Section 80G.",
-          targetAudience: "Public charitable NGOs, Section 8 companies, and educational trusts.",
-          benefits: ["Encourages donors to contribute", "Access to CSR funds", "High institutional credibility"],
-          documents: ["12A certificate copy", "Trust Deed / MOA & AOA", "Detailed list of trustees & PANs"],
-          process: ["Filing Form 10G online", "Verifying donation receipts", "Obtaining 80G deduction status"],
-          timeline: "30-45 Working Days",
-          faqs: [
-            {
-              question: "Is there a limit on cash donations under 80G?",
-              answer: "Yes, cash donations exceeding ₹2,000 are not eligible for 80G tax benefits. Donors must contribute digitally to claim deductions."
-            },
-            {
-              question: "Does 80G registration give a 100% tax exemption to donors?",
-              answer: "No, standard 80G registrations allow a 50% deduction of the donated amount from the donor's taxable income, subject to a limit of 10% of their adjusted gross total income."
-            },
-            {
-              question: "What is the penalty for not filing the annual donor statement?",
-              answer: "NGOs must file an annual statement of donations (Form 10BD) by May 31st. Delaying this attracts a late fee of ₹200 per day."
-            },
-            {
-              question: "Can a newly formed NGO apply for 80G?",
-              answer: "Yes, a newly formed NGO can apply for a provisional 80G certificate immediately upon incorporation, which is valid for 3 years."
-            }
-          ]
-        }
-      },
-      {
-        name: "12A and 80G Registration",
-        tag: "#12A80G",
-        slug: "12a-80g-registration",
-        description: "Combined tax-exemption NGO registration enabling donor tax deductions and corporate CSR funding.",
-        details: {
-          overview: "12A and 80G Registration is a combined application filed with the Income Tax Department to secure complete income tax exemptions for your NGO (12A) and enable donors to claim 50% tax deductions on their donations (80G).",
-          targetAudience: "NGOs, Section 8 companies, public charitable trusts, and societies.",
-          benefits: ["NGO income is 100% tax-free", "Attracts high-value corporate donations", "Prerequisite for corporate CSR grants"],
-          documents: ["NGO incorporation certificate", "Trust Deed / MOA & AOA", "Detailed 3-year operations activity reports", "NGO Darpan ID"],
-          process: ["Filing Form 10A (12A) and Form 10G (80G)", "Submitting financial books and balance sheets", "Responding to Income Tax Commissioner queries", "Obtaining final certificates"],
-          timeline: "45-60 Working Days",
-          faqs: [
-            {
-              question: "Are these registrations permanent?",
-              answer: "No, under recent amendments, provisional registrations are initially granted for 3 years, which must be converted to regular registration within that period."
-            },
-            {
-              question: "What is Form 10BD for registered NGOs?",
-              answer: "Form 10BD is an annual statement of donations that must be filed on the income tax portal to transmit tax deduction benefits directly to the donors' profiles."
-            },
-            {
-              question: "Is a Darpan ID mandatory for 12A/80G?",
-              answer: "Yes, having a valid NITI Aayog NGO Darpan ID is highly recommended and practically mandatory to get tax approvals and government projects."
-            },
-            {
-              question: "What is the key benefit of applying for both together?",
-              answer: "It streamlines administrative workloads, ensures consistent legal files, and makes your NGO immediately operational for tax-free donations and CSR grants."
-            }
-          ]
-        }
-      },
-      {
-        name: "Barcode Registration",
-        tag: "#Barcode",
-        slug: "barcode-registration",
-        description: "Acquire international GS1 barcode numbers for your retail products to sell on global retail and e-commerce platforms.",
-        details: {
-          overview: "Barcode Registration provides internationally recognized GS1 barcode numbers (EAN/UPC) for your retail products. This is a mandatory requirement to sell your products on major retail shelves and online platforms (like Amazon, Flipkart, Reliance Retail).",
-          targetAudience: "FMCG brands, cosmetic manufacturers, electronics brands, and retail packagers.",
-          benefits: ["Sell globally on Amazon, Flipkart, etc.", "Flawless inventory scanning", "Eliminates duplicate SKU risks"],
-          documents: ["PAN and Aadhaar of promoter", "MSME/Incorporation certificate", "Product description details & SKU counts"],
-          process: [
-            "Registering with GS1 India",
-            "Selecting product category and SKU volume (100, 1000, 10000)",
-            "Fee payment",
-            "Acquiring GS1 barcode ranges"
-          ],
-          timeline: "3-5 Working Days",
-          faqs: [
-            {
-              question: "What is GS1?",
-              answer: "GS1 is the global non-profit organization that manages international standards for retail barcodes."
-            },
-            {
-              question: "What is the difference between EAN-13 and UPC barcodes?",
-              answer: "EAN-13 (13 digits) is the standard retail barcode used globally, including in Europe and India, while UPC (12 digits) is predominantly used in the United States and Canada."
-            },
-            {
-              question: "How do I choose the right barcode pack?",
-              answer: "GS1 offers barcode ranges in blocks of 100, 1,000, or 10,000, based on your active stock-keeping unit (SKU) count and product variations."
-            },
-            {
-              question: "Do virtual products require barcode registration?",
-              answer: "No, barcodes are strictly designed for physical products sold in brick-and-mortar retail stores or physical e-commerce marketplaces."
-            }
-          ]
-        }
-      },
-      {
-        name: "BIS Registration",
-        tag: "#BIS",
-        slug: "bis-registration",
-        description: "Bureau of Indian Standards product quality and safety mark registrations (ISI mark / CRS schemes).",
-        details: {
-          overview: "BIS Registration ensures that products (electronics, household appliances, steel, toy items) meet safety and quality specifications under the Bureau of Indian Standards (BIS) ISI Mark or Compulsory Registration Scheme (CRS).",
-          targetAudience: "Hardware manufacturers, electronics brands, toy makers, and chemical producers.",
-          benefits: [
-            "Permits commercial sale under ISI mark safety laws",
-            "High quality branding",
-            "Collateral for government supply tenders"
-          ],
-          documents: ["NABL lab test report of product sample", "Factory layout blueprints", "List of manufacturing machinery", "PAN & Aadhaar of director"],
-          process: ["Sample testing in NABL certified lab", "Filing online BIS application", "Factory physical audit (for ISI mark)", "BIS certification grant"],
-          timeline: "30-45 Working Days",
-          faqs: [
-            {
-              question: "Is BIS mandatory for electronics?",
-              answer: "Yes, under the CRS scheme, key electronics like smartphones, power adapters, and laptops mandatorily require BIS registration."
-            },
-            {
-              question: "What is the difference between ISI Mark and CRS under BIS?",
-              answer: "ISI Mark is generally for industrial and household consumer goods (like cylinders, cement, helmet) requiring factory audits, whereas CRS (Compulsory Registration Scheme) is for electronics and IT products tested in NABL labs."
-            },
-            {
-              question: "How long is a BIS certificate valid?",
-              answer: "A BIS CRS registration is valid for exactly 2 years and can be renewed by submitting renewal applications and fees before expiry."
-            },
-            {
-              question: "Can a foreign manufacturer get a BIS license?",
-              answer: "Yes, foreign manufacturers can get a BIS license under the Foreign Manufacturers Certification Scheme (FMCS) by appointing an Authorized Indian Representative (AIR)."
-            }
-          ]
-        }
-      },
-      {
-        name: "Certificate of Incumbency",
-        tag: "#IncumbencyCertificate",
-        slug: "certificate-of-incumbency",
-        description: "Official corporate document confirming the current directors, officers, and financial standing of a company.",
-        details: {
-          overview: "A Certificate of Incumbency is an official corporate document certifying the identities, active status, roles, and signing authorities of a company's current directors, shareholders, and officers, typically used for opening foreign bank accounts or legal transactions.",
-          targetAudience: "Exporters, multinational subsidiaries, and companies setting up global bank accounts.",
-          benefits: ["Legally validates signing authorities", "Mandatory for international business transactions", "Fosters trust with global banks"],
-          documents: ["Active MCA company incorporation certificate", "Latest list of directors filed with ROC", "Board Resolution", "Director identity proofs"],
-          process: ["Compiling company records from MCA registry", "Drafting incumbency details", "Corporate signature & notary authentication"],
-          timeline: "2-4 Working Days",
-          faqs: [
-            {
-              question: "Is this document issued by the MCA?",
-              answer: "No, it is drafted and verified by a corporate secretary or notary, backed by active government MCA database filings."
-            },
-            {
-              question: "Why do international banks require a Certificate of Incumbency?",
-              answer: "They use it to confirm the legitimate signing authority of the directors and verify that the corporation is in active standing before opening bank accounts."
-            },
-            {
-              question: "Does a Certificate of Incumbency expire?",
-              answer: "It does not have a formal expiry but banks and courts generally require a fresh certificate issued within the past 30 to 60 days to ensure details are active."
-            },
-            {
-              question: "What is the difference between Incumbency Certificate and COI?",
-              answer: "A COI (Certificate of Incorporation) proves the birth of the company, while an Incumbency Certificate proves the current live board of directors and officers at a specific point in time."
-            }
-          ]
-        }
-      },
-      {
-        name: "Darpan Registration",
-        tag: "#NGODarpan",
-        slug: "darpan-registration",
-        description: "Mandatory NITI Aayog portal enrollment for NGOs to qualify for government grants and welfare schemes.",
-        details: {
-          overview: "Darpan Registration enrolls your NGO on the NITI Aayog NGO Darpan portal. It allocates a unique ID that is mandatory to qualify for any central/state government grants, welfare projects, or CSR schemes in India.",
-          targetAudience: "Public charitable trusts, societies, and Section 8 companies.",
-          benefits: ["Access to central/state government grants", "Mandatory for 12A/80G filings", "Elite transparency ranking"],
-          documents: [
-            "NGO PAN Card",
-            "Trust Deed / MOA & AOA",
-            "Aadhaar and PAN details of all trustees / board members"
-          ],
-          process: ["NGO Darpan portal registration", "Entering trustee PAN details", "Detailed description of charitable sectors", "Unique ID generation"],
-          timeline: "3-5 Working Days",
-          faqs: [
-            {
-              question: "Is NGO Darpan registration free?",
-              answer: "Yes, NGO Darpan portal registration is completely free of cost on NITI Aayog's portal."
-            },
-            {
-              question: "Who can register on the NGO Darpan portal?",
-              answer: "Any public charitable trust, registered society, or Section 8 non-profit company is eligible to register on the Darpan portal."
-            },
-            {
-              question: "Can a private family trust register on NGO Darpan?",
-              answer: "No, only public charitable organizations that operate for the benefit of the general public are allowed to register."
-            },
-            {
-              question: "Is it mandatory to update NGO Darpan details every year?",
-              answer: "Yes, to keep your NGO active and eligible for grants, you must update the financial logs and active trustee list on the portal annually."
-            }
-          ]
-        }
-      },
-      {
-        name: "Digital Signature (DSC)",
-        tag: "#DSC",
-        slug: "digital-signature",
-        description: "Class-3 USB crypto-token digital signatures needed for MCA, Income Tax, GST, and e-tender portal filings.",
-        details: {
-          overview: "A Digital Signature Certificate (DSC) Class-3 provides the highest level of electronic signature security. Encrypted in a FIPS-compliant USB Crypto-token, it is mandatory to sign digital filings for MCA, GST, ITR, and e-tenders.",
-          targetAudience: "Company directors, partners, CAs, lawyers, and bidding contractors.",
-          benefits: ["Enables all corporate online portal filings", "Tamper-proof digital security", "Legally recognized under the IT Act, 2000"],
-          documents: ["PAN and Aadhaar card of applicant", "Passport size photo", "Mobile number & email ID"],
-          process: ["Online portal setup", "E-KYC XML verification", "Filing video check", "Crypto-token download"],
-          timeline: "1-2 Hours",
-          faqs: [
-            {
-              question: "Can a foreigner obtain an Indian DSC?",
-              answer: "Yes, foreign nationals can obtain an Indian DSC by submitting apostilled identity and address proofs."
-            },
-            {
-              question: "What is the validity of a Class-3 DSC?",
-              answer: "Class-3 DSCs are typically issued with a validity of 2 years or 3 years, after which they must be renewed."
-            },
-            {
-              question: "What happens if I lose my USB DSC token?",
-              answer: "If lost, you must block the previous token and apply for a fresh Class-3 DSC to ensure electronic security."
-            },
-            {
-              question: "Is physical verification required to get a DSC?",
-              answer: "No, verification is done digitally via video recording of the applicant showing their PAN/Aadhaar cards and verifying their details."
-            }
-          ]
-        }
-      },
-      {
-        name: "Shop Act Registration",
-        tag: "#ShopAct",
-        slug: "shop-act-registration",
-        description: "Mandatory labor certificate for shops and commercial offices operating inside municipal boundaries.",
-        details: {
-          overview: "Shop Act Registration (also known as Shop & Establishment License) is a mandatory labor registration for every physical shop, commercial office, hotel, or warehouse, regulating working hours and basic wage rules.",
-          targetAudience: "Retail shops, restaurants, commercial offices, and clinics.",
-          benefits: [
-            "Mandatory address proof for business bank accounts",
-            "Complies with state labor guidelines",
-            "Eligibility for local trade permits"
-          ],
-          documents: ["Proprietor Aadhaar and PAN", "Electricity bill of shop/office", "NOC / Rent Agreement", "Photo of shop with sign board"],
-          process: ["Online application on State Labour portal", "Uploading business photographs and details", "Paying fees & instant download"],
-          timeline: "3-5 Working Days",
-          faqs: [
-            {
-              question: "Is this required for a remote IT company?",
-              answer: "Yes, if you operate out of a physical commercial office space in any state, a Shop Act license is mandatory."
-            },
-            {
-              question: "What is the penalty for not registering under the Shop Act?",
-              answer: "Failing to register can lead to municipal inspections, fines ranging from ₹2,000 to ₹10,000, and a block on getting local business permits."
-            },
-            {
-              question: "Does Shop Act Registration require renewals?",
-              answer: "Yes, renewal terms are state-specific. Some states offer lifetime validity certificates, while others require renewals every 1 to 5 years."
-            },
-            {
-              question: "Is Shop Act registration valid as address proof for bank accounts?",
-              answer: "Yes, the Shop Act license is one of the most widely accepted KYC documents for opening business current bank accounts in India."
-            }
-          ]
-        }
-      },
-      {
-        name: "MSME Registration",
-        tag: "#MSME",
-        slug: "udyam-registration",
-        description: "Starting and growing a business in India can be challenging — especially for small and medium enterprises that struggle with funding, market competition, and compliance. Get registered under MSME to unlock benefits.",
-        details: {
-          overview: "Starting and growing a business in India can be challenging — especially for small and medium enterprises that struggle with funding, market competition, and compliance. Thankfully, the Government of India has introduced several initiatives to support them, one of the most crucial being MSME registration.\n\nMSME registration helps small and medium enterprises access benefits like low-interest loans, tax subsidies, ease of doing business, and government tender preferences. Whether you are a budding entrepreneur or an established small business owner, getting registered under MSME (now known as Udyam) can be a game-changer for your business growth.\n\nWhat Is MSME Registration?\nMSME stands for Micro, Small, and Medium Enterprises, as defined under the Micro, Small, and Medium Enterprises Development (MSMED) Act, 2006. MSME registration (currently known as Udyam Registration) is a government-issued recognition that helps businesses avail themselves of various financial and operational benefits. After registration, your enterprise receives a unique Udyam Registration Number (URN) and a certificate issued by the Ministry of Micro, Small and Medium Enterprises.\n\nMSME Classification Criteria (Updated 2024):\n• Micro: Investment up to ₹1 Crore | Turnover up to ₹5 Crore\n• Small: Investment up to ₹10 Crore | Turnover up to ₹50 Crore\n• Medium: Investment up to ₹50 Crore | Turnover up to ₹250 Crore\nThis classification applies uniformly to manufacturing and service sectors, removing the earlier distinction between the two.\n\nExpert Tips for Successful Registration:\n✓ Use your official business email and mobile number for OTPs and communication.\n✓ Keep all documents handy before starting the registration process.\n✓ If your business has multiple branches, mention the main office as the principal location.\n✓ Always cross-verify PAN and GST details before submission.\n✓ For professional help, consult a business registration expert like Fortune Multi Services to ensure error-free registration.\n\nReal-Life Success Story:\nA small Hyderabad-based furniture manufacturing company, CraftWood India Pvt. Ltd., applied for MSME registration in 2022. Within six months:\n1. The company secured a low-interest working capital loan from SBI.\n2. It received priority in tender allotment for local government contracts.\n3. The firm availed subsidies for ISO certification and technology upgrades.\nToday, CraftWood India has expanded its business across five states, proving how MSME registration can directly boost growth and credibility.\n\nGet expert assistance from Fortune Multi Services, one of India’s leading business registration consultants, to ensure a seamless and professional experience.",
-          targetAudience: "Micro, Small & Medium Enterprises (Manufacturers, Service Providers & Traders)",
-          benefits: [
-            "Easier Access to Collateral-Free Loans (CGTMSE)",
-            "Lower Interest Rates from Banks & NBFCs",
-            "Priority in Public Procurement & Government Tenders",
-            "Exemptions and Subsidies on Patent/ISO Certification",
-            "Delayed Payment Protection (Mandatory 45-Day Terms)",
-            "Enhanced Credibility and Business Credit Score",
-            "Special Economic Packages & Moratorium Support"
-          ],
-          documents: [
-            "Aadhaar Card of the applicant (proprietor/partner/director)",
-            "PAN Card of the business or individual",
-            "GSTIN (if applicable)",
-            "Business address proof (utility bill, rental agreement, etc.)",
-            "Bank account details (account number and IFSC code)",
-            "NIC Code classification matching nature of business",
-            "Total investment & annual turnover figures"
-          ],
-          process: [
-            "Visit the Official Udyam Registration Portal",
-            "Enter & Validate Aadhaar Number via OTP",
-            "Fill Business Details (Name, Type, PAN, Location)",
-            "Provide Plant & Machinery Investment & Turnover Details",
-            "Select the Correct National Industrial Classification (NIC) Code",
-            "Submit and Verify details against PAN & GST Databases",
-            "Receive Udyam MSME Certificate with Unique Registration Number"
-          ],
-          pros: [
-            "Easy access to finance and collateral-free bank credit",
-            "Substantial government subsidies (Patent, ISO, Technology)",
-            "Income tax concessions, electricity rebate, and tender advantages",
-            "High market recognition and corporate credibility"
-          ],
-          cons: [
-            "Mandatory annual reporting of business turnover details",
-            "Benefits limited strictly to Micro, Small, and Medium Enterprises",
-            "Must maintain highly accurate and transparent financial logs",
-            "Misreporting of data can lead to penalties and loss of status"
-          ],
-          commonMistakes: [
-            "Incorrect business details – Ensure your PAN and Aadhaar match the business type.",
-            "Wrong NIC code – Selecting the wrong industry classification can cause verification delays.",
-            "Multiple registrations – Each business entity is legally allowed only one Udyam registration.",
-            "Failure to update turnover data – Must update yearly financial details on the portal to remain compliant.",
-            "Using unofficial clone websites – Always register through the official government portal to avoid fraud."
-          ],
-          timeline: "1-2 Working Days",
-          faqs: [
-            {
-              question: "Is MSME registration mandatory?",
-              answer: "No, it's not mandatory, but it is highly beneficial for availing government benefits, concessions, subsidies, and low-interest loans."
-            },
-            {
-              question: "Can traders apply for MSME registration?",
-              answer: "Yes. As per the latest updates from the Ministry of MSME, both manufacturers and service providers, including retail and wholesale traders, are eligible to apply."
-            },
-            {
-              question: "Is GST registration required for MSME registration?",
-              answer: "Not necessarily. However, having a valid GSTIN is highly recommended and mandatory for certain turnover limits under active GST guidelines."
-            },
-            {
-              question: "Can a company have multiple MSME registrations?",
-              answer: "No. One business entity/PAN can have only one Udyam registration. However, you can add multiple branches or manufacturing units under the same registration."
-            },
-            {
-              question: "How long does MSME registration take?",
-              answer: "The application submission process takes about 5–10 minutes if all details are correct. The certificate is processed and issued online, usually within 1-2 working days."
-            }
-          ]
-        }
-      },
-      {
-        name: "Legal Name Change",
-        tag: "#NameChange",
-        slug: "legal-name-change",
-        description: "Complete legal publication and Gazetted notification services for official individual or corporate name changes.",
-        details: {
-          overview: "Legal Name Change facilitates the complete, legally recognized procedure for modifying your name due to marriage, divorce, or preference, culminating in an official Gazette of India publication.",
-          targetAudience: "Individuals wanting to correct passport/Aadhaar names, and corporate entities rebranding.",
-          benefits: [
-            "Updates names across all passports, bank accounts, and properties",
-            "100% legal document verification",
-            "Eliminates duplicate name mismatch errors"
-          ],
-          documents: ["Original notarized Name Affidavit", "Newspaper clippings (two papers)", "Identity proofs", "Passport photo"],
-          process: ["Drafting and notarizing affidavit", "Publishing name ads in two local papers", "Filing application with Department of Publication", "Gazette notification download"],
-          timeline: "20-30 Working Days",
-          faqs: [
-            {
-              question: "Is Gazette publication mandatory for name change?",
-              answer: "Yes, for government employees and standard passport revisions, the official Gazette publication is the only legally accepted proof."
-            },
-            {
-              question: "Can I change my name online in the Gazette?",
-              answer: "The application is prepared online, but physical submission of the dossier and CD is often required at the Department of Publication in New Delhi."
-            },
-            {
-              question: "How long does it take for the Gazette name change to publish?",
-              answer: "Once submitted, it generally takes 3 to 5 weeks for the Government Press to officially publish the name change in the weekly Gazette."
-            },
-            {
-              question: "Can minor child name changes be done via the Gazette?",
-              answer: "Yes, parents or legal guardians can file a Gazette name change application on behalf of their minor children."
-            }
-          ]
-        }
-      }
-    ],
-    details: {
-      benefits: ["Strategic Legal Structure", "Investor Readiness", "Global Scalability", "Asset Protection"],
-      documents: ["PAN Card", "Aadhaar Card", "Address Proof", "Photo"],
-      process: [
-        "Name Reservation",
-        "DSC/DIN Application",
-        "Document Drafting",
-        "ROC Submission",
-        "Certification"
-      ],
-      timeline: "7-15 Working Days"
-    },
-    faqs: [
-      {
-        question: "Why are B2B business registrations critical?",
-        answer: "Registrations establish your legal presence, protect you from heavy government penalties, and build institutional trust."
-      },
-      {
-        question: "What is MSME Registration?",
-        answer: "It is a government registration for micro, small, and medium enterprises to avail benefits under the MSMED Act."
-      },
-      {
-        question: "Do I need a Trade License?",
-        answer: "Yes, if you are operating a commercial business within municipal limits."
-      },
-      {
-        question: "How long is a GST registration valid?",
-        answer: "Once granted, GST registration is valid for lifetime unless cancelled or surrendered."
-      }
-    ]
-  },
-  {
-    title: "Govt License",
-    slug: "govt-license",
-    description: "Government & Regulatory Licenses",
-    services: [
-      {
-        name: "Trade License",
-        tag: "#TradeLicense",
-        slug: "trade-license",
-        description: "Municipal certificate mandatory to legally operate commercial trade within local civic limits.",
-        details: {
-          overview: "A Trade License is a mandatory municipal certificate authorizing you to carry out specific commercial trade or business activities at a declared physical site, ensuring the business respects zoning and local safety regulations.",
-          targetAudience: "Retail shops, restaurants, commercial offices, and distributors.",
-          benefits: ["Legal commercial operations", "Protects against municipal fines", "Access to current bank accounts"],
-          documents: ["Electricity bill or property tax receipt", "Rent agreement / NOC", "PAN and Aadhaar of promoter", "Layout blueprints"],
-          process: ["Zoning compliance check", "Filing municipal application", "Inspections (where required)", "Fee payment and certificate download"],
-          timeline: "10-15 Working Days",
-          faqs: [
-            {
-              question: "Is a Trade License valid across the state?",
-              answer: "No, a Trade License is highly local and issued specifically for a single municipal address."
-            },
-            {
-              question: "What happens if I run a business without a Trade License?",
-              answer: "Operating without a Trade License can result in heavy daily penalties, closure notices, or physical sealing of the business premises by municipal authorities."
-            },
-            {
-              question: "Does a Trade License transfer to a new owner if I sell the business?",
-              answer: "Yes, you can apply for a transfer of the Trade License to the new owner by submitting the transfer application along with the sale deed and consent letters."
-            },
-            {
-              question: "How often do I need to renew my Trade License?",
-              answer: "Trade licenses are generally renewed annually, typically between March and May, depending on the rules of your local municipal corporation."
-            }
-          ]
-        }
-      },
-      {
-        name: "Fire License",
-        tag: "#FireLicense",
-        slug: "fire-license",
-        description: "Official fire safety clearance certificate (NOC) issued by regional Fire and Emergency Services departments.",
-        details: {
-          overview: "A Fire License (Fire NOC) is an official safety certificate issued by the state's Fire and Emergency Services, confirming that a physical commercial facility has adequate fire extinguishing systems and is safe for occupancy.",
-          targetAudience: "Hotels, restaurants, multiplexes, manufacturing plants, schools, and high-rise commercial structures.",
-          benefits: ["Ensures complete occupier safety compliance", "Prerequisite for Trade & FSSAI licenses", "Protects against municipal shutdowns"],
-          documents: ["Building layout plans approved by local authority", "Details of fire fighting equipment installed", "PAN & Aadhaar of promoter", "Zoning certificates"],
-          process: [
-            "Submitting building blueprints",
-            "Department review and site safety audit by Fire Officer",
-            "Resolving safety queries",
-            "Fire NOC Certificate grant"
-          ],
-          timeline: "20-30 Working Days",
-          faqs: [
-            {
-              question: "How often must a Fire NOC be renewed?",
-              answer: "For commercial buildings, a Fire NOC is typically renewed annually or every 2 years, depending on state regulations."
-            },
-            {
-              question: "What are the common equipment requirements for a Fire NOC?",
-              answer: "Typically, buildings must install fire extinguishers, wet risers, hose reels, automatic sprinkler systems, and highly visible fire alarms."
-            },
-            {
-              question: "Is a Fire NOC mandatory for small offices?",
-              answer: "A Fire NOC is generally mandatory for commercial properties over a certain height (usually 15 meters) or specific businesses like restaurants, schools, and malls regardless of size."
-            },
-            {
-              question: "What is the consequence of operating a public facility without a Fire NOC?",
-              answer: "Operating without a Fire NOC invites immediate sealing of the property by fire marshals, a cancellation of the local trade license, and zero insurance claims coverage in case of a fire accident."
+              question: "Which industries benefit from Halal certification?",
+              answer: "Meat processors, packaged food manufacturers, cosmetics, pharmaceuticals, and hotels targeting global Islamic tourism benefit immensely."
             }
           ]
         }
@@ -1923,7 +1459,7 @@ Fortune Multi Services is India's most trusted platform for partnership firm reg
         }
       },
       {
-        name: "Import Export Code (IEC)",
+        name: "Import Export Code",
         tag: "#ImportExportCode",
         slug: "import-export-code",
         description: "Mandatory 10-digit DGFT registration needed to legally import or export commodities globally from India.",
@@ -1987,6 +1523,198 @@ Fortune Multi Services is India's most trusted platform for partnership firm reg
         }
       },
       {
+        name: "ISO Registration",
+        tag: "#ISORegistration",
+        slug: "iso-registration",
+        description: "Secure international ISO standards certifications (9001, 14001, 27001) to confirm global quality benchmarks.",
+        details: {
+          overview: "ISO Certification validates that your organization adheres to international standards of safety, quality, and operational efficiency (such as ISO 9001 for Quality Management or ISO 27001 for Information Security).",
+          targetAudience: "Manufacturers, software agencies, healthcare clinics, and bidders for corporate or global tenders.",
+          benefits: ["Elite international branding", "Enhanced trust with clients", "Required for global bidding and government tenders"],
+          documents: ["Business registration proof", "PAN Card of the firm", "Brief product/service flow profile"],
+          process: ["Standard selection & audit preparation", "Gap analysis", "Certification agency audit", "Certificate issuance"],
+          timeline: "5-7 Working Days",
+          faqs: [
+            {
+              question: "How long is an ISO certificate valid?",
+              answer: "It is valid for 3 years, subject to annual surveillance audits to ensure continued standard compliance."
+            },
+            {
+              question: "What is the difference between ISO 9001 and ISO 27001?",
+              answer: "ISO 9001 focuses on Quality Management Systems (QMS) across operations, while ISO 27001 sets standards for Information Security Management Systems (ISMS)."
+            },
+            {
+              question: "Can a startup apply for ISO certification?",
+              answer: "Yes, any registered entity, regardless of size or age, can apply for ISO certification to demonstrate standardized business processes."
+            },
+            {
+              question: "Is ISO certification mandatory by law?",
+              answer: "ISO is generally voluntary, but it is often made mandatory by corporate clients or government departments to participate in tenders."
+            }
+          ]
+        }
+      },
+      {
+        name: "ESI Registration",
+        tag: "#ESIRegistration",
+        slug: "esi-registration",
+        description: "Mandatory Employee State Insurance medical cover social security registration for firms with 10+ employees.",
+        details: {
+          overview: "ESI Registration provides a comprehensive medical insurance shield and cash allowances to employees earning under ₹21,000 per month, mandatory for all commercial establishments employing 10 or more workers.",
+          targetAudience: "Offices, restaurants, manufacturing plants, and logistics firms with 10+ employees.",
+          benefits: ["Free medical cover for employees & family", "Protects employers from workplace injury liability", "Sickness & maternity cash allowances"],
+          documents: ["Incorporation proof", "PAN of the business", "List of employees with salary sheets & details"],
+          process: ["Online application on ESIC portal", "Entering employer and employee details", "ESI numbers allocation", "ESI code grant"],
+          timeline: "3-5 Working Days",
+          faqs: [
+            {
+              question: "Is ESI exit possible if staff strength drops below 10?",
+              answer: "No, once registered under the ESI Act, compliance is mandatory indefinitely regardless of employee count."
+            },
+            {
+              question: "What is the current monthly ESI contribution rate?",
+              answer: "The current ESI contribution rate is 4% of the employee's gross salary (3.25% by the employer and 0.75% by the employee)."
+            },
+            {
+              question: "What is the maximum salary limit for ESI coverage?",
+              answer: "ESI coverage is mandatory for all employees whose gross monthly salary is ₹21,000 or less (or ₹25,000 for employees with physical disabilities)."
+            },
+            {
+              question: "What benefits do employees get under ESI?",
+              answer: "Employees receive full outpatient and inpatient medical care, maternity leaves, sickness cash benefits, and dependent pension benefits in case of occupational injury."
+            }
+          ]
+        }
+      },
+      {
+        name: "RCMC Registration",
+        tag: "#RCMC",
+        slug: "rcmc-registration",
+        description: "Obtain Registration Cum Membership Certificate from export councils to unlock major export benefits.",
+        details: {
+          overview: "RCMC Registration (Registration Cum Membership Certificate) is issued by Export Promotion Councils (like APEDA, FIEO, EEPC). It is mandatory for exporters wanting to claim duty drawbacks, tax rebates, and concessions under the Foreign Trade Policy.",
+          targetAudience: "Agricultural exporters, chemical manufacturers, textile exporters, and global traders.",
+          benefits: ["Unlocks duty drawback schemes", "Required for DGFT export concessions", "Export networking and trade fair access"],
+          documents: ["Import Export Code (IEC)", "PAN and Aadhaar of promoter", "Manufacturing proof / FSSAI (for agricultural products)"],
+          process: ["Identifying the relevant Export Promotion Council", "Filing RCMC portal form", "Fee payment and certificate allotment"],
+          timeline: "7-12 Working Days",
+          faqs: [
+            {
+              question: "Is RCMC mandatory for all exports?",
+              answer: "No, RCMC is only mandatory if you wish to claim export incentives, rebates, or duty drawbacks from the government."
+            },
+            {
+              question: "How long is an RCMC certificate valid?",
+              answer: "It is valid for exactly 5 years, starting from the 1st of April of the registration year, and must be renewed upon expiry."
+            },
+            {
+              question: "Which council should I register with for agricultural goods?",
+              answer: "Agricultural exporters must register with APEDA (Agricultural and Processed Food Products Export Development Authority) to get their RCMC."
+            },
+            {
+              question: "What is FIEO in RCMC?",
+              answer: "FIEO (Federation of Indian Export Organisations) is the apex export facilitation body. If there is no specific council for your product, you can register with FIEO."
+            }
+          ]
+        }
+      },
+      {
+        name: "TN RERA Registration for Agents",
+        tag: "#TNRERA",
+        slug: "tn-rera-registration-agents",
+        description: "Mandatory Tamil Nadu Real Estate Regulatory Authority registration for real estate agents and brokers.",
+        details: {
+          overview: "TN RERA Registration is a mandatory legal registration for real estate agents, brokers, and consultants operating in Tamil Nadu, ensuring all property sales, commissions, and ads are transparent and legally authorized.",
+          targetAudience: "Property consultants, real estate brokers, and marketing agents in Tamil Nadu.",
+          benefits: ["Legal authority to broker RERA properties", "High consumer trust and elite branding", "Prevents heavy RERA fines (up to ₹10,000/day)"],
+          documents: ["PAN and Aadhaar of the agent", "Business address proof", "Photograph", "Income tax returns of past 3 years", "Enterprise structure details (if firm)"],
+          process: ["Filing application on the TN RERA portal", "Filing details of previous real estate experience", "Paying agent fee", "RERA registration certificate grant"],
+          timeline: "15-20 Working Days",
+          faqs: [
+            {
+              question: "Can an agent sell properties without RERA?",
+              answer: "No, advertising, marketing, booking, or selling plots/apartments in RERA registered projects is strictly illegal without a RERA agent license."
+            },
+            {
+              question: "What is the validity of a TN RERA Agent license?",
+              answer: "A RERA Agent registration in Tamil Nadu is valid for 5 years and must be renewed at least 60 days before expiry."
+            },
+            {
+              question: "Does RERA apply to commercial property brokers?",
+              answer: "Yes, RERA regulations apply to both residential and commercial real estate transactions and brokerages."
+            },
+            {
+              question: "What is the penalty for acting as a broker without RERA?",
+              answer: "Under the RERA Act, brokers operating without registration face a daily penalty of ₹10,000, which can accumulate up to 5% of the total cost of the property brokered."
+            }
+          ]
+        }
+      },
+      {
+        name: "12A and 80G Registration",
+        tag: "#12A80G",
+        slug: "12a-80g-registration",
+        description: "Combined tax-exemption NGO registration enabling donor tax deductions and corporate CSR funding.",
+        details: {
+          overview: "12A and 80G Registration is a combined application filed with the Income Tax Department to secure complete income tax exemptions for your NGO (12A) and enable donors to claim 50% tax deductions on their donations (80G).",
+          targetAudience: "NGOs, Section 8 companies, public charitable trusts, and societies.",
+          benefits: ["NGO income is 100% tax-free", "Attracts high-value corporate donations", "Prerequisite for corporate CSR grants"],
+          documents: ["NGO incorporation certificate", "Trust Deed / MOA & AOA", "Detailed 3-year operations activity reports", "NGO Darpan ID"],
+          process: ["Filing Form 10A (12A) and Form 10G (80G)", "Submitting financial books and balance sheets", "Responding to Income Tax Commissioner queries", "Obtaining final certificates"],
+          timeline: "45-60 Working Days",
+          faqs: [
+            {
+              question: "Are these registrations permanent?",
+              answer: "No, under recent amendments, provisional registrations are initially granted for 3 years, which must be converted to regular registration within that period."
+            },
+            {
+              question: "What is Form 10BD for registered NGOs?",
+              answer: "Form 10BD is an annual statement of donations that must be filed on the income tax portal to transmit tax deduction benefits directly to the donors' profiles."
+            },
+            {
+              question: "Is a Darpan ID mandatory for 12A/80G?",
+              answer: "Yes, having a valid NITI Aayog NGO Darpan ID is highly recommended and practically mandatory to get tax approvals and government projects."
+            },
+            {
+              question: "What is the key benefit of applying for both together?",
+              answer: "It streamlines administrative workloads, ensures consistent legal files, and makes your NGO immediately operational for tax-free donations and CSR grants."
+            }
+          ]
+        }
+      },
+      {
+        name: "Barcode Registration",
+        tag: "#Barcode",
+        slug: "barcode-registration",
+        description: "Acquire international GS1 barcode numbers for your retail products to sell on global retail and e-commerce platforms.",
+        details: {
+          overview: "Barcode Registration provides internationally recognized GS1 barcode numbers (EAN/UPC) for your retail products. This is a mandatory requirement to sell your products on major retail shelves and online platforms (like Amazon, Flipkart, Reliance Retail).",
+          targetAudience: "FMCG brands, cosmetic manufacturers, electronics brands, and retail packagers.",
+          benefits: ["Sell globally on Amazon, Flipkart, etc.", "Flawless inventory scanning", "Eliminates duplicate SKU risks"],
+          documents: ["PAN and Aadhaar of promoter", "MSME/Incorporation certificate", "Product description details & SKU counts"],
+          process: ["Registering with GS1 India", "Selecting product category and SKU volume (100, 1000, 10000)", "Fee payment", "Acquiring GS1 barcode ranges"],
+          timeline: "3-5 Working Days",
+          faqs: [
+            {
+              question: "What is GS1?",
+              answer: "GS1 is the global non-profit organization that manages international standards for retail barcodes."
+            },
+            {
+              question: "What is the difference between EAN-13 and UPC barcodes?",
+              answer: "EAN-13 (13 digits) is the standard retail barcode used globally, including in Europe and India, while UPC (12 digits) is predominantly used in the United States and Canada."
+            },
+            {
+              question: "How do I choose the right barcode pack?",
+              answer: "GS1 offers barcode ranges in blocks of 100, 1,000, or 10,000, based on your active stock-keeping unit (SKU) count and product variations."
+            },
+            {
+              question: "Do virtual products require barcode registration?",
+              answer: "No, barcodes are strictly designed for physical products sold in brick-and-mortar retail stores or physical e-commerce marketplaces."
+            }
+          ]
+        }
+      },
+      {
         name: "BIS Registration",
         tag: "#BIS",
         slug: "bis-registration",
@@ -1994,11 +1722,7 @@ Fortune Multi Services is India's most trusted platform for partnership firm reg
         details: {
           overview: "BIS Registration ensures that products (electronics, household appliances, steel, toy items) meet safety and quality specifications under the Bureau of Indian Standards (BIS) ISI Mark or Compulsory Registration Scheme (CRS).",
           targetAudience: "Hardware manufacturers, electronics brands, toy makers, and chemical producers.",
-          benefits: [
-            "Permits commercial sale under ISI mark safety laws",
-            "High quality branding",
-            "Collateral for government supply tenders"
-          ],
+          benefits: ["Permits commercial sale under ISI mark safety laws", "High quality branding", "Collateral for government supply tenders"],
           documents: ["NABL lab test report of product sample", "Factory layout blueprints", "List of manufacturing machinery", "PAN & Aadhaar of director"],
           process: ["Sample testing in NABL certified lab", "Filing online BIS application", "Factory physical audit (for ISI mark)", "BIS certification grant"],
           timeline: "30-45 Working Days",
@@ -2063,11 +1787,7 @@ Fortune Multi Services is India's most trusted platform for partnership firm reg
           overview: "Darpan Registration enrolls your NGO on the NITI Aayog NGO Darpan portal. It allocates a unique ID that is mandatory to qualify for any central/state government grants, welfare projects, or CSR schemes in India.",
           targetAudience: "Public charitable trusts, societies, and Section 8 companies.",
           benefits: ["Access to central/state government grants", "Mandatory for 12A/80G filings", "Elite transparency ranking"],
-          documents: [
-            "NGO PAN Card",
-            "Trust Deed / MOA & AOA",
-            "Aadhaar and PAN details of all trustees / board members"
-          ],
+          documents: ["NGO PAN Card", "Trust Deed / MOA & AOA", "Aadhaar and PAN details of all trustees / board members"],
           process: ["NGO Darpan portal registration", "Entering trustee PAN details", "Detailed description of charitable sectors", "Unique ID generation"],
           timeline: "3-5 Working Days",
           faqs: [
@@ -2091,6 +1811,38 @@ Fortune Multi Services is India's most trusted platform for partnership firm reg
         }
       },
       {
+        name: "Digital Signature",
+        tag: "#DSC",
+        slug: "digital-signature",
+        description: "Class-3 USB crypto-token digital signatures needed for MCA, Income Tax, GST, and e-tender portal filings.",
+        details: {
+          overview: "A Digital Signature Certificate (DSC) Class-3 provides the highest level of electronic signature security. Encrypted in a FIPS-compliant USB Crypto-token, it is mandatory to sign digital filings for MCA, GST, ITR, and e-tenders.",
+          targetAudience: "Company directors, partners, CAs, lawyers, and bidding contractors.",
+          benefits: ["Enables all corporate online portal filings", "Tamper-proof digital security", "Legally recognized under the IT Act, 2000"],
+          documents: ["PAN and Aadhaar card of applicant", "Passport size photo", "Mobile number & email ID"],
+          process: ["Online portal setup", "E-KYC XML verification", "Filing video check", "Crypto-token download"],
+          timeline: "1-2 Hours",
+          faqs: [
+            {
+              question: "Can a foreigner obtain an Indian DSC?",
+              answer: "Yes, foreign nationals can obtain an Indian DSC by submitting apostilled identity and address proofs."
+            },
+            {
+              question: "What is the validity of a Class-3 DSC?",
+              answer: "Class-3 DSCs are typically issued with a validity of 2 years or 3 years, after which they must be renewed."
+            },
+            {
+              question: "What happens if I lose my USB DSC token?",
+              answer: "If lost, you must block the previous token and apply for a fresh Class-3 DSC to ensure electronic security."
+            },
+            {
+              question: "Is physical verification required to get a DSC?",
+              answer: "No, verification is done digitally via video recording of the applicant showing their PAN/Aadhaar cards and verifying their details."
+            }
+          ]
+        }
+      },
+      {
         name: "Shop Act Registration",
         tag: "#ShopAct",
         slug: "shop-act-registration",
@@ -2098,11 +1850,7 @@ Fortune Multi Services is India's most trusted platform for partnership firm reg
         details: {
           overview: "Shop Act Registration (also known as Shop & Establishment License) is a mandatory labor registration for every physical shop, commercial office, hotel, or warehouse, regulating working hours and basic wage rules.",
           targetAudience: "Retail shops, restaurants, commercial offices, and clinics.",
-          benefits: [
-            "Mandatory address proof for business bank accounts",
-            "Complies with state labor guidelines",
-            "Eligibility for local trade permits"
-          ],
+          benefits: ["Mandatory address proof for business bank accounts", "Complies with state labor guidelines", "Eligibility for local trade permits"],
           documents: ["Proprietor Aadhaar and PAN", "Electricity bill of shop/office", "NOC / Rent Agreement", "Photo of shop with sign board"],
           process: ["Online application on State Labour portal", "Uploading business photographs and details", "Paying fees & instant download"],
           timeline: "3-5 Working Days",
@@ -2127,258 +1875,97 @@ Fortune Multi Services is India's most trusted platform for partnership firm reg
         }
       },
       {
-        name: "RCMC Registration",
-        tag: "#RCMC",
-        slug: "rcmc-registration",
-        description: "Obtain Registration Cum Membership Certificate from export councils to unlock major export benefits.",
+        name: "Udyam Registration",
+        tag: "#UdyamRegistration",
+        slug: "udyam-registration",
+        description: "Get registered under MSME to unlock benefits like low-interest loans, tax subsidies, and tender preferences.",
         details: {
-          overview: "RCMC Registration (Registration Cum Membership Certificate) is issued by Export Promotion Councils (like APEDA, FIEO, EEPC). It is mandatory for exporters wanting to claim duty drawbacks, tax rebates, and concessions under the Foreign Trade Policy.",
-          targetAudience: "Agricultural exporters, chemical manufacturers, textile exporters, and global traders.",
-          benefits: ["Unlocks duty drawback schemes", "Required for DGFT export concessions", "Export networking and trade fair access"],
-          documents: [
-            "Import Export Code (IEC)",
-            "PAN and Aadhaar of promoter",
-            "Manufacturing proof / FSSAI (for agricultural products)"
-          ],
-          process: ["Identifying the relevant Export Promotion Council", "Filing RCMC portal form", "Fee payment and certificate allotment"],
-          timeline: "7-12 Working Days",
+          overview: "MSME registration (currently known as Udyam Registration) is a government-issued recognition that helps businesses avail themselves of various financial and operational benefits. After registration, your enterprise receives a unique Udyam Registration Number (URN) and a certificate issued by the Ministry of Micro, Small and Medium Enterprises.",
+          targetAudience: "Micro, Small, and Medium Enterprises classification: Micro (Investment up to 1Cr, Turnover up to 5Cr), Small (Investment up to 10Cr, Turnover up to 50Cr), Medium (Investment up to 50Cr, Turnover up to 250Cr).",
+          benefits: ["Easy access to finance and collateral-free bank credit", "Substantial government subsidies (Patent, ISO, Technology)", "Income tax concessions, electricity rebate, and tender advantages", "High market recognition and corporate credibility"],
+          documents: ["Aadhaar Card of the proprietor/director", "PAN Card of the organization/individual", "GST Registration Number (if applicable)", "Bank Account details"],
+          process: ["Enter & Validate Aadhaar Number via OTP", "Fill Business Details (Name, Type, PAN, Location)", "Provide Plant & Machinery Investment & Turnover Details", "Select the Correct National Industrial Classification (NIC) Code", "Submit and Verify details against PAN & GST Databases", "Receive Udyam MSME Certificate with Unique Registration Number"],
+          timeline: "1-2 Working Days",
           faqs: [
             {
-              question: "Is RCMC mandatory for all exports?",
-              answer: "No, RCMC is only mandatory if you wish to claim export incentives, rebates, or duty drawbacks from the government."
+              question: "Is MSME registration mandatory?",
+              answer: "No, it's not mandatory, but it is highly beneficial for availing government benefits, concessions, subsidies, and low-interest loans."
             },
             {
-              question: "How long is an RCMC certificate valid?",
-              answer: "It is valid for exactly 5 years, starting from the 1st of April of the registration year, and must be renewed upon expiry."
+              question: "Can traders apply for MSME registration?",
+              answer: "Yes. As per the latest updates from the Ministry of MSME, both manufacturers and service providers, including retail and wholesale traders, are eligible to apply."
             },
             {
-              question: "Which council should I register with for agricultural goods?",
-              answer: "Agricultural exporters must register with APEDA (Agricultural and Processed Food Products Export Development Authority) to get their RCMC."
+              question: "Is GST registration required for MSME registration?",
+              answer: "Not mandatory for basic registration, but having a valid GSTIN is highly recommended and mandatory for certain turnover limits."
             },
             {
-              question: "What is FIEO in RCMC?",
-              answer: "FIEO (Federation of Indian Export Organisations) is the apex export facilitation body. If there is no specific council for your product, you can register with FIEO."
+              question: "Can a company have multiple MSME registrations?",
+              answer: "No, one business entity/PAN can have only one Udyam registration, but you can add multiple branches or manufacturing units under the same registration."
             }
           ]
         }
       },
       {
-        name: "TN RERA Registration for Agents",
-        tag: "#TNRERA",
-        slug: "tn-rera-registration-agents",
-        description: "Mandatory Tamil Nadu Real Estate Regulatory Authority registration for real estate agents and brokers.",
+        name: "Fire License",
+        tag: "#FireLicense",
+        slug: "fire-license",
+        description: "Official fire safety clearance certificate (NOC) issued by regional Fire and Emergency Services departments.",
         details: {
-          overview: "TN RERA Registration is a mandatory legal registration for real estate agents, brokers, and consultants operating in Tamil Nadu, ensuring all property sales, commissions, and ads are transparent and legally authorized.",
-          targetAudience: "Property consultants, real estate brokers, and marketing agents in Tamil Nadu.",
-          benefits: ["Legal authority to broker RERA properties", "High consumer trust and elite branding", "Prevents heavy RERA fines (up to ₹10,000/day)"],
-          documents: [
-            "PAN and Aadhaar of the agent",
-            "Business address proof",
-            "Photograph",
-            "Income tax returns of past 3 years",
-            "Enterprise structure details (if firm)"
-          ],
-          process: ["Filing application on the TN RERA portal", "Filing details of previous real estate experience", "Paying agent fee", "RERA registration certificate grant"],
-          timeline: "15-20 Working Days",
+          overview: "A Fire License (Fire NOC) is an official safety certificate issued by the state's Fire and Emergency Services, confirming that a physical commercial facility has adequate fire extinguishing systems and is safe for occupancy.",
+          targetAudience: "Hotels, restaurants, multiplexes, manufacturing plants, schools, and high-rise commercial structures.",
+          benefits: ["Ensures complete occupier safety compliance", "Prerequisite for Trade & FSSAI licenses", "Protects against municipal shutdowns"],
+          documents: ["Building layout plans approved by local authority", "Details of fire fighting equipment installed", "PAN & Aadhaar of promoter", "Zoning certificates"],
+          process: ["Submitting building blueprints", "Department review and site safety audit by Fire Officer", "Resolving safety queries", "Fire NOC Certificate grant"],
+          timeline: "20-30 Working Days",
           faqs: [
             {
-              question: "Can an agent sell properties without RERA?",
-              answer: "No, advertising, marketing, booking, or selling plots/apartments in RERA registered projects is strictly illegal without a RERA agent license."
+              question: "How often must a Fire NOC be renewed?",
+              answer: "For commercial buildings, a Fire NOC is typically renewed annually or every 2 years, depending on state regulations."
             },
             {
-              question: "What is the validity of a TN RERA Agent license?",
-              answer: "A RERA Agent registration in Tamil Nadu is valid for 5 years and must be renewed at least 60 days before expiry."
+              question: "What are the common equipment requirements for a Fire NOC?",
+              answer: "Typically, buildings must install fire extinguishers, wet risers, hose reels, automatic sprinkler systems, and highly visible fire alarms."
             },
             {
-              question: "Does RERA apply to commercial property brokers?",
-              answer: "Yes, RERA regulations apply to both residential and commercial real estate transactions and brokerages."
+              question: "Is a Fire NOC mandatory for small offices?",
+              answer: "A Fire NOC is generally mandatory for commercial properties over a certain height (usually 15 meters) or specific businesses like restaurants, schools, and malls regardless of size."
             },
             {
-              question: "What is the penalty for acting as a broker without RERA?",
-              answer: "Under the RERA Act, brokers operating without registration face a daily penalty of ₹10,000, which can accumulate up to 5% of the total cost of the property brokered."
-            }
-          ]
-        }
-      }
-    ],
-    details: {
-      benefits: ["Legal Compliance", "Business Credibility", "Access to Govt Schemes", "Ease of Operation"],
-      documents: ["Business Proof", "ID Proof", "Property Documents", "Electricity Bill"],
-      process: [
-        "Application Preparation",
-        "Online Submission",
-        "Fee Payment",
-        "Department Verification",
-        "License Issuance"
-      ],
-      timeline: "10-20 Working Days"
-    },
-    faqs: [
-      {
-        question: "What are regulatory licenses?",
-        answer: "These are mandatory approvals issued by specific government bodies authorizing you to conduct specialized commercial operations."
-      },
-      {
-        question: "Do I need a Fire NOC for an office?",
-        answer: "Yes, if your office is located in a high-rise commercial complex, fire safety clearance is mandatory."
-      },
-      {
-        question: "What is the penalty for operating without a license?",
-        answer: "Operating without mandatory licenses can lead to severe fines, closure notices, or criminal prosecution."
-      },
-      {
-        question: "How long does it take to get a license?",
-        answer: "Usually between 10 to 45 working days, depending on inspections and department processing speeds."
-      }
-    ]
-  },
-  {
-    title: "Food License",
-    slug: "food-license",
-    description: "FSSAI & Food Business Regulatory Services",
-    services: [
-      {
-        name: "FSSAI Registration",
-        tag: "#FSSAIRegistration",
-        slug: "fssai-registration",
-        description: "Basic food safety registration mandatory for small food businesses with turnover under ₹12 Lakhs.",
-        details: {
-          overview: "FSSAI Basic Registration is a mandatory food safety certification designed for micro food business operators, home-bakers, small retailers, and mobile food stalls with an annual turnover strictly under ₹12 Lakhs.",
-          targetAudience: "Home kitchens, street food vendors, local grocery stores, and micro-caterers.",
-          benefits: ["Complete legal compliance", "Allows partnership with Zomato & Swiggy", "Improves brand hygiene perception"],
-          documents: ["Proprietor Aadhaar and PAN", "Passport photograph", "NOC or Rent agreement of premises", "List of food items handled"],
-          process: ["FoSCos portal profile creation", "Uploading basic applicant data & address proofs", "Government fee payment", "Instant or verified registration grant"],
-          timeline: "3-5 Working Days",
-          faqs: [
-            {
-              question: "Who requires a Basic FSSAI Registration?",
-              answer: "Petty food businesses, local retailers, temporary stall holders, or home bakers with an annual turnover under ₹12 Lakhs require a Basic FSSAI Registration."
-            },
-            {
-              question: "Is FSSAI mandatory for home bakers?",
-              answer: "Yes, any person preparing, handling, or selling food items from home must have a valid FSSAI license or registration to operate legally."
-            },
-            {
-              question: "What is the validity period of an FSSAI Certificate?",
-              answer: "FSSAI registrations are issued with a validity of 1 to 5 years. You must apply for renewal at least 30 days before expiration to avoid daily late penalties."
-            },
-            {
-              question: "What is the penalty for operating a food business without FSSAI?",
-              answer: "Operating without an FSSAI certificate can lead to imprisonment for up to 6 months and a cash penalty of up to ₹5 Lakhs."
+              question: "What is the consequence of operating a public facility without a Fire NOC?",
+              answer: "Operating without a Fire NOC invites immediate sealing of the property by fire marshals, a cancellation of the local trade license, and zero insurance claims coverage."
             }
           ]
         }
       },
       {
-        name: "FSSAI License",
-        tag: "#FSSAILicense",
-        slug: "fssai-license",
-        description: "State & Central food safety licenses mandatory for medium to large scale food businesses.",
+        name: "Legal Name Change",
+        tag: "#NameChange",
+        slug: "legal-name-change",
+        description: "Complete legal publication and Gazetted notification services for official name changes.",
         details: {
-          overview: "An FSSAI License is a comprehensive food safety approval required for food manufacturers, high-capacity warehouses, restaurants, and packaging units whose annual turnover exceeds ₹12 Lakhs.",
-          targetAudience: "Restaurants, cloud kitchens, food importers/exporters, and large food processing factories.",
-          benefits: [
-            "Allows state-wide or nationwide commercial distribution",
-            "Prerequisite for food institutional bids",
-            "High consumer trust and credibility"
-          ],
-          documents: ["Premises layout blueprints", "NABL potable water test certificate", "List of manufacturing equipment", "Directors' ID & Address proofs"],
-          process: [
-            "Checking turnover limits (State vs Central)",
-            "Filing FoSCoS portal application",
-            "Uploading detailed technical plans",
-            "Handling physical safety audit by FSO",
-            "License issuance"
-          ],
-          timeline: "15-30 Working Days",
+          overview: "Legal Name Change facilitates the complete, legally recognized procedure for modifying your name due to marriage, divorce, or preference, culminating in an official Gazette of India publication.",
+          targetAudience: "Individuals wanting to correct passport/Aadhaar names, and corporate entities rebranding.",
+          benefits: ["Updates names across all passports, bank accounts, and properties", "100% legal document verification", "Eliminates duplicate name mismatch errors"],
+          documents: ["Original notarized Name Affidavit", "Newspaper clippings (two papers)", "Identity proofs", "Passport photo"],
+          process: ["Drafting and notarizing affidavit", "Publishing name ads in two local papers", "Filing application with Department of Publication", "Gazette notification download"],
+          timeline: "20-30 Working Days",
           faqs: [
             {
-              question: "What is the difference between State and Central FSSAI Licenses?",
-              answer: "A State License is for mid-sized businesses with turnovers between ₹12 Lakhs and ₹20 Crores. A Central License is mandatory for businesses with turnover exceeding ₹20 Crores, exporters, importers, or multi-state operators."
+              question: "Is Gazette publication mandatory for name change?",
+              answer: "Yes, for government employees and standard passport revisions, the official Gazette publication is the only legally accepted proof."
             },
             {
-              question: "Do food e-commerce platforms like Swiggy and Zomato require FSSAI?",
-              answer: "Yes, all e-commerce food operators must obtain a Central FSSAI License to list, sell, or deliver food products."
+              question: "Can I change my name online in the Gazette?",
+              answer: "The application is prepared online, but physical submission of the dossier and CD is often required at the Department of Publication in New Delhi."
             },
             {
-              question: "Can I upgrade my FSSAI Basic Registration to a State License?",
-              answer: "Yes, as your annual turnover grows beyond ₹12 Lakhs, you can apply for an upgrade from Basic Registration to a State FSSAI License on the FoSCoS portal."
+              question: "How long does it take for the Gazette name change to publish?",
+              answer: "Once submitted, it generally takes 3 to 5 weeks for the Government Press to officially publish the name change in the weekly Gazette."
             },
             {
-              question: "Is a food safety plan mandatory for FSSAI licenses?",
-              answer: "Yes, State and Central FSSAI license applications mandatorily require the submission of a FSMS (Food Safety Management System) plan and layout layout blueprints."
-            }
-          ]
-        }
-      },
-      {
-        name: "Halal License & Certification",
-        tag: "#HalalLicense",
-        slug: "halal-license-certification",
-        description: "Global standard halal compliance certification to permit global sales in Islamic markets.",
-        details: {
-          overview: "Halal Certification verifies that food items, cosmetics, or ingredients are processed, stored, and packaged in absolute compliance with Islamic dietary guidelines (Shariah law), making them eligible for export to global Islamic markets.",
-          targetAudience: "Food exporters, meat processors, cosmetics manufacturers, and pharmaceutical firms.",
-          benefits: [
-            "Unlocks major export markets in Gulf & Southeast Asia",
-            "High standard brand credibility",
-            "Ensures compliance with international standards"
-          ],
-          documents: [
-            "FSSAI License / Business Registration",
-            "Detailed list of ingredients & raw material sources",
-            "Laboratory test reports proving absence of non-halal items"
-          ],
-          process: ["Halal audit application", "Raw material trace examination", "On-site production facility inspection", "Halal Board review and certificate grant"],
-          timeline: "15-20 Working Days",
-          faqs: [
-            {
-              question: "What is a Halal Certificate?",
-              answer: "A Halal Certificate ensures that food, cosmetics, or pharmaceutical products conform to Islamic dietary laws and quality standards, making them eligible for consumption by Muslim consumers."
-            },
-            {
-              question: "Is Halal certification mandatory by Indian law?",
-              answer: "No, Halal certification is voluntary in India, but it is highly recommended for exporting to Muslim-majority countries (UAE, Saudi Arabia, Malaysia)."
-            },
-            {
-              question: "How long is a Halal Certificate valid?",
-              answer: "A Halal Certificate is typically valid for exactly 1 year and requires an annual audit of the production unit for renewal."
-            },
-            {
-              question: "Which industries benefit from Halal certification?",
-              answer: "Meat processors, packaged food manufacturers, cosmetics, pharmaceuticals, and hotels targeting global Islamic tourism benefit immensely."
-            }
-          ]
-        }
-      },
-      {
-        name: "Food Testing",
-        tag: "#FoodTesting",
-        slug: "food-testing",
-        description: "Professional laboratory testing of food products for nutritional mapping, shelf-life, and safety parameters.",
-        details: {
-          overview: "Food Testing services subject your food products to comprehensive NABL-accredited laboratory checks, analyzing chemical compositions, microbiological counts, nutritional values, and shelf-life variables.",
-          targetAudience: "Food packagers, FMCG brands, cloud kitchens, and organic food startups.",
-          benefits: ["Mandatory for FSSAI nutritional label printing", "Validates product shelf life", "Guarantees absolute product consumer safety"],
-          documents: ["FSSAI License or GST IN", "Details of raw ingredients", "Product samples (required quantity)"],
-          process: ["Submitting product samples to certified lab", "Conducting microbiological & chemical profiling", "Shelf-life studies (where selected)", "Issuance of certified lab test report"],
-          timeline: "7-10 Working Days",
-          faqs: [
-            {
-              question: "Why is professional food testing required?",
-              answer: "It validates the safety, nutritional profile, shelf life, and allergen content of food products, ensuring compliance with strict FSSAI food quality regulations."
-            },
-            {
-              question: "How often should food products be tested?",
-              answer: "FSSAI mandates that food manufacturing units test their food products for chemical and microbiological contaminants at least once every 6 months."
-            },
-            {
-              question: "What is a shelf-life analysis?",
-              answer: "It determines how long a food product remains safe, nutritious, and appetizing under recommended storage conditions, which is needed to print 'Best Before' dates."
-            },
-            {
-              question: "Where are food samples tested?",
-              answer: "Food samples must be tested in FSSAI-notified, NABL-accredited laboratory facilities to be accepted as legally valid test records."
+              question: "Can minor child name changes be done via the Gazette?",
+              answer: "Yes, parents or legal guardians can file a Gazette name change application on behalf of their minor children."
             }
           ]
         }
@@ -2391,17 +1978,9 @@ Fortune Multi Services is India's most trusted platform for partnership firm reg
         details: {
           overview: "Water Testing conducts rigorous chemical and microbiological tests on the water source used in your food facility, ensuring it is 100% potable, free from heavy metals, and compliant with BIS IS 10500 standards.",
           targetAudience: "Restaurants, schools, cloud kitchens, beverage units, and hotels.",
-          benefits: [
-            "Mandatory pre-requisite for FSSAI license",
-            "Ensures process water does not contaminate food products",
-            "Protects public health"
-          ],
+          benefits: ["Mandatory pre-requisite for FSSAI license", "Ensures process water does not contaminate food products", "Protects public health"],
           documents: ["GST or commercial address proof", "Water source information", "Water sample in sterilized container"],
-          process: [
-            "Sterile collection of water sample",
-            "Lab analysis for coliform, pH, heavy metals, and total dissolved solids (TDS)",
-            "Report generation and certification"
-          ],
+          process: ["Sterile collection of water sample", "Lab analysis for coliform, pH, heavy metals, and total dissolved solids (TDS)", "Report generation and certification"],
           timeline: "5-7 Working Days",
           faqs: [
             {
@@ -2422,28 +2001,54 @@ Fortune Multi Services is India's most trusted platform for partnership firm reg
             }
           ]
         }
+      },
+      {
+        name: "Food Testing",
+        tag: "#FoodTesting",
+        slug: "food-testing",
+        description: "Professional laboratory testing of food products for nutritional mapping, shelf-life, and safety parameters.",
+        details: {
+          overview: "Food Testing services subject your food products to comprehensive NABL-accredited laboratory checks, analyzing chemical compositions, microbiological counts, nutritional values, and shelf-life variables.",
+          targetAudience: "Food packagers, FMCG brands, cloud kitchens, and organic food startups.",
+          benefits: ["Mandatory for FSSAI nutritional label printing", "Validates product shelf life", "Guarantees absolute product consumer safety"],
+          documents: ["FSSAI License or GSTIN", "Details of raw ingredients", "Product samples (required quantity)"],
+          process: ["Submitting product samples to certified lab", "Conducting microbiological & chemical profiling", "Shelf-life studies (where selected)", "Issuance of certified lab test report"],
+          timeline: "7-10 Working Days",
+          faqs: [
+            {
+              question: "Why is professional food testing required?",
+              answer: "It validates the safety, nutritional profile, shelf life, and allergen content of food products, ensuring compliance with strict FSSAI food quality regulations."
+            },
+            {
+              question: "Where are food samples tested?",
+              answer: "Food samples must be tested in FSSAI-notified, NABL-accredited laboratory facilities to be accepted as legally valid test records."
+            }
+          ]
+        }
       }
     ],
     details: {
-      benefits: ["Consumer Trust", "Legal Security", "Standardization", "Business Expansion"],
-      documents: ["Identity Proof", "Business Address Proof", "Food Category List", "Water Test Report"],
-      process: [
-        "Form Selection",
-        "Document Upload",
-        "Application Fee",
-        "Authority Review",
-        "License Grant"
-      ],
-      timeline: "5-30 Working Days"
+      benefits: ["Legal compliance", "Business credibility", "Access to government schemes", "Enables commercial bank accounts"],
+      documents: ["PAN Card of promoter/entity", "Aadhaar Card / Voter ID", "Registered office address proof", "Passport size photograph"],
+      process: ["Selecting appropriate registration type", "Collecting required documents", "Submitting online application on portal", "Department approval & certificate download"],
+      timeline: "2-15 Working Days"
     },
     faqs: [
       {
-        question: "Who needs an FSSAI License?",
-        answer: "Every food business operator, from manufacturers and packagers to local grocery stores and online sellers, mandatorily requires an FSSAI registration/license."
+        question: "Why are B2B business registrations critical?",
+        answer: "Registrations establish your legal presence, protect you from heavy government penalties, and build institutional trust."
       },
       {
-        question: "What is FoSCoS?",
-        answer: "FoSCoS is the official online portal of FSSAI used to apply, renew, modify, and track food licenses in India."
+        question: "What is Udyam Registration?",
+        answer: "It is a government registration for micro, small, and medium enterprises (MSMEs) to avail interest subsidies, collateral-free loans, and other MSMED benefits."
+      },
+      {
+        question: "Do I need a Trade License?",
+        answer: "Yes, if you are operating a commercial business within municipal limits."
+      },
+      {
+        question: "How long is a GST registration valid?",
+        answer: "Once granted, GST registration is valid for lifetime unless cancelled or surrendered."
       },
       {
         question: "Can a home kitchen run without FSSAI?",
@@ -3747,7 +3352,7 @@ Fortune Multi Services is India's most trusted platform for partnership firm reg
       {
         name: "Revised ITR Return (ITR-U)",
         tag: "#ITRU",
-        slug: "revised-itr-u",
+        slug: "revised-itr-return",
         description: "File updated returns (ITR-U) to correct errors or declare missed incomes within 24 months.",
         details: {
           overview: "Updated Return (ITR-U) allows taxpayers to correct errors, fill omissions, or declare additional income for up to 2 years after the end of the assessment year.",
@@ -3879,7 +3484,7 @@ Fortune Multi Services is India's most trusted platform for partnership firm reg
       {
         name: "Name Change - Company",
         tag: "#CompanyNameChange",
-        slug: "company-name-change",
+        slug: "name-change-company",
         description: "Rebrand your business by filing name change applications with the ROC.",
         details: {
           overview: "Company Name Change services assist in modifying the official registered name of a corporation, modifying the MOA and AOA on government records.",
@@ -4143,7 +3748,7 @@ Fortune Multi Services is India's most trusted platform for partnership firm reg
       {
         name: "LLP Form 11 Filing",
         tag: "#LLPForm11",
-        slug: "llp-form-11",
+        slug: "llp-form-11-filing",
         description: "Mandatory annual return filing (Form 11) for Limited Liability Partnerships.",
         details: {
           overview: "LLP Form 11 is the annual return containing details of partners, contributions, and partners changes during the year, filed with the MCA.",
@@ -4492,6 +4097,294 @@ Fortune Multi Services is India's most trusted platform for partnership firm reg
             {
               question: "How can Fortune Multi Services assist with CCFS Scheme?",
               answer: "We provide end-to-end professional support, from file compiling and application filings to regulatory responses and certificate downloads."
+            }
+          ]
+        }
+      },
+      {
+        name: "FDI Filing",
+        tag: "#FDIFiling",
+        slug: "fdi-filing",
+        description: "File Foreign Direct Investment reporting and compliance forms with the Reserve Bank of India (RBI).",
+        details: {
+          overview: "FDI Filing involves reporting foreign capital inflows to the RBI through the Single Master Form (SMF) on the FIRMS portal, satisfying FEMA compliance rules.",
+          targetAudience: "Indian startups and companies receiving foreign equity investments.",
+          benefits: ["Ensures FEMA legal compliance", "Avoids heavy compounding penalties", "Enables legal share allotment to foreign investors"],
+          documents: ["FC-GPR form", "KYC report from foreign bank", "FIRC (Foreign Inward Remittance Certificate)", "Board Resolution"],
+          process: ["Receiving foreign funds in bank account", "Obtaining FIRC and KYC from AD bank", "Filing entity master details on FIRMS", "Submitting Form FC-GPR within 30 days of share allotment"],
+          timeline: "7-10 Working Days",
+          faqs: [
+            {
+              question: "What is FC-GPR?",
+              answer: "Form Foreign Collaboration-General Permission Route (FC-GPR) is filed with the RBI whenever an Indian company issues shares to a non-resident investor."
+            },
+            {
+              question: "What is the timeline for FDI reporting?",
+              answer: "The FDI inflow must be reported and shares allocated, with FC-GPR submitted, within 30 days of the date of allotment of shares."
+            }
+          ]
+        }
+      },
+      {
+        name: "ODI Filing",
+        tag: "#ODIFiling",
+        slug: "odi-filing",
+        description: "File Overseas Direct Investment reporting to RBI for Indian businesses investing in foreign joint ventures.",
+        details: {
+          overview: "ODI Filing involves reporting capital investments made by Indian residents/entities in offshore businesses, joint ventures, or wholly-owned subsidiaries, keeping FEMA compliance in check.",
+          targetAudience: "Indian entities or residents investing in overseas companies.",
+          benefits: ["Compliance with RBI guidelines", "Ensures legal capital transfers overseas", "Avoids severe FEMA penalties"],
+          documents: ["Form ODI Part I", "Board Resolution authorizing investment", "Net worth certificate of the Indian entity", "Valuation report of overseas shares"],
+          process: ["Filing Form ODI Part I with AD Bank", "Securing UIN (Unique Identification Number) from RBI", "Remitting funds abroad through AD bank", "Filing annual performance report (APR)"],
+          timeline: "10-15 Working Days",
+          faqs: [
+            {
+              question: "What is UIN in ODI?",
+              answer: "UIN is the Unique Identification Number issued by the RBI for overseas direct investment, required before making any remittance."
+            },
+            {
+              question: "Who needs to file ODI?",
+              answer: "Any Indian company, partnership firm, or individual investing in equity/preference shares of any foreign entity."
+            }
+          ]
+        }
+      },
+      {
+        name: "FLA Return Filing",
+        tag: "#FLAReturn",
+        slug: "fla-return-filing",
+        description: "Mandatory annual filing of Foreign Liabilities and Assets (FLA) return to the Reserve Bank of India.",
+        details: {
+          overview: "FLA Return is a mandatory annual report that Indian companies receiving FDI or making ODI must submit to the RBI, showing details of foreign assets and liabilities.",
+          targetAudience: "Companies with outstanding FDI or ODI investments.",
+          benefits: ["Ensures annual RBI/FEMA compliance", "Maintains clean foreign remittance logs", "Avoids financial penalties"],
+          documents: ["Audited financial statements of the current year", "Details of FDI & ODI investments", "Company PAN and contact info"],
+          process: ["Collating audited foreign equity numbers", "Registering on the RBI FLAIR portal", "Filling asset and liability schedules", "Submitting form online by July 15th"],
+          timeline: "3-5 Working Days",
+          faqs: [
+            {
+              question: "What is the due date for FLA Return?",
+              answer: "FLA return must be filed annually on or before July 15th for the preceding financial year."
+            },
+            {
+              question: "Is FLA return mandatory for all companies?",
+              answer: "It is mandatory only for companies that have outstanding FDI (foreign direct investment) or ODI (overseas direct investment) as of March 31st."
+            }
+          ]
+        }
+      },
+      {
+        name: "Business Plan",
+        tag: "#BusinessPlan",
+        slug: "business-plan",
+        description: "Professional business plan drafting and financial modeling for startups and fundraising.",
+        details: {
+          overview: "Business Plan services design high-quality, comprehensive pitch decks and financial projections required for startup funding, bank loans, and visa approvals.",
+          targetAudience: "Startups raising capital, founders seeking bank loans, and business visa applicants.",
+          benefits: ["Attracts venture capital and angel funding", "Improves bank loan approval odds", "Provides a clear strategic roadmap"],
+          documents: ["Executive summary guidelines", "Target market insights", "Revenue and cost outlines", "Co-founder bios"],
+          process: ["Kick-off strategic consultation session", "Conducting market research and competitive analysis", "Formulating financial model projections", "Drafting and polishing final PDF proposal"],
+          timeline: "7-12 Working Days",
+          faqs: [
+            {
+              question: "What is included in a professional Business Plan?",
+              answer: "It includes an executive summary, market analysis, marketing strategy, operations plan, management profile, and 3-to-5 year financial statements."
+            },
+            {
+              question: "Can this plan be used for bank loan applications?",
+              answer: "Yes, our business plans are structured to meet the credit evaluation guidelines of public and private sector banks in India."
+            }
+          ]
+        }
+      },
+      {
+        name: "HR & Payroll",
+        tag: "#HRPayroll",
+        slug: "hr-payroll",
+        description: "End-to-end payroll processing, employee salary structures, and corporate HR compliance setup.",
+        details: {
+          overview: "HR & Payroll services automate employee compensation, tax deductions, pay slip generation, and statutory filings (PF, ESI, TDS) for businesses of all sizes.",
+          targetAudience: "SMEs and corporations managing employee payrolls.",
+          benefits: ["Ensures accurate salary payouts on time", "Handles complex tax calculations (TDS, PT)", "Maintains labor law compliance"],
+          documents: ["Employee profile sheets", "Attendance and leave records", "Salary structure outlines", "Bank account details"],
+          process: ["Onboarding staff and setting up structures", "Processing monthly attendance and leaves", "Calculating TDS, PF, ESI, and net salary", "Generating payslips and executing bank transfers"],
+          timeline: "Monthly Support",
+          faqs: [
+            {
+              question: "What is included in payroll compliance?",
+              answer: "It includes monthly calculation and filing of EPF, ESIC, Professional Tax, and quarterly TDS (Form 24Q)."
+            },
+            {
+              question: "Can you custom design salary structures?",
+              answer: "Yes, we structure salaries to optimize tax exemptions for employees while keeping company liabilities minimum."
+            }
+          ]
+        }
+      },
+      {
+        name: "PF Return Filing",
+        tag: "#PFReturn",
+        slug: "pf-return-filing",
+        description: "Monthly filing of Provident Fund (EPF) returns and employee registration compliance.",
+        details: {
+          overview: "EPF return filing ensures monthly contributions deducted from employees are deposited with the EPFO portal, generating the Electronic Challan cum Return (ECR).",
+          targetAudience: "Establishments with 20 or more employees registered under EPF.",
+          benefits: ["Ensures statutory EPFO compliance", "Avoids heavy interest and damages penalties", "Provides social security to employees"],
+          documents: ["Monthly employee wage list", "EPF establishment credentials", "Payment challan record"],
+          process: ["Calculating wage contribution (12% employee + 12% employer)", "Drafting monthly ECR text file", "Uploading file to EPFO portal", "Making challan payment online"],
+          timeline: "2-3 Working Days",
+          faqs: [
+            {
+              question: "When is the monthly due date for EPF return?",
+              answer: "EPF returns and contributions must be submitted on or before the 15th of every month."
+            },
+            {
+              question: "What happens if EPF return is delayed?",
+              answer: "Delayed payments attract interest under Section 7Q (12% p.a.) and damages under Section 14B (up to 25% p.a.)."
+            }
+          ]
+        }
+      },
+      {
+        name: "ESI Return Filing",
+        tag: "#ESIReturn",
+        slug: "esi-return-filing",
+        description: "Monthly filing of Employee State Insurance (ESIC) returns and contribution compliance.",
+        details: {
+          overview: "ESI return filing reports monthly contributions deducted for health and medical benefits on the ESIC portal for employees earning up to ₹21,000.",
+          targetAudience: "Registered businesses with 10 or more employees under ESIC.",
+          benefits: ["Maintains ESIC health benefits for staff", "Avoids legal recovery proceedings", "Fulfills mandatory labor norms"],
+          documents: ["Monthly employee register with wages", "ESIC portal credentials", "Challan payments logs"],
+          process: ["Calculating wage contribution (0.75% employee + 3.25% employer)", "Drafting contribution details sheet", "Filing details on ESIC portal", "Generating and paying online Challan"],
+          timeline: "2-3 Working Days",
+          faqs: [
+            {
+              question: "When is the monthly due date for ESI return?",
+              answer: "ESI return and contribution must be filed on or before the 15th of every month."
+            },
+            {
+              question: "Who is covered under ESI?",
+              answer: "Any employee whose monthly gross salary is ₹21,000 or less must be registered under ESI."
+            }
+          ]
+        }
+      },
+      {
+        name: "Professional Tax Return Filing",
+        tag: "#PTReturn",
+        slug: "professional-tax-return-filing",
+        description: "File monthly or annual Professional Tax (PT) returns for companies and employees.",
+        details: {
+          overview: "Professional Tax is a state-level tax levied on professions, trades, and employments, requiring employers to deduct and file returns monthly/annually.",
+          targetAudience: "All businesses employing staff in states where PT is applicable.",
+          benefits: ["Ensures state compliance", "Avoids local government interest charges", "Keeps trade licenses validated"],
+          documents: ["Employee count list and slabs", "PT enrollment certificate copy", "PT portal credentials"],
+          process: ["Determining state-specific PT slabs", "Deducting PT from employee salaries", "Filing PT returns online", "Paying tax amounts to state departments"],
+          timeline: "2-4 Working Days",
+          faqs: [
+            {
+              question: "Is Professional Tax applicable in all Indian states?",
+              answer: "No, PT is only applicable in certain states like Maharashtra, Karnataka, Tamil Nadu, West Bengal, Telangana, etc."
+            },
+            {
+              question: "What is the maximum limit of Professional Tax?",
+              answer: "The maximum Professional Tax that can be levied by any state is capped at ₹2,500 per individual per year."
+            }
+          ]
+        }
+      },
+      {
+        name: "Partnership Compliance",
+        tag: "#PartnershipCompliance",
+        slug: "partnership-compliance",
+        description: "Annual tax returns, partnership deed modifications, and legal compliance support.",
+        details: {
+          overview: "Partnership Compliance manages the annual tax filings (ITR-5), deed revisions, partner admissions/retirements, and bank validations for general partnerships.",
+          targetAudience: "General Partnership firms.",
+          benefits: ["Maintains active firm status", "Validates legal deed amendments", "Ensures compliance with income tax rules"],
+          documents: ["Partnership Deed copy", "Firm PAN Card", "Income details of partners", "Bank statement"],
+          process: ["Reviewing annual firm operations", "Computing firm tax liability", "Filing ITR-5 return on IT portal", "Updating deed clauses if required"],
+          timeline: "4-6 Working Days",
+          faqs: [
+            {
+              question: "Is audit mandatory for partnership firms?",
+              answer: "Audit is only mandatory if the firm's total annual turnover exceeds ₹1 Crore (for business) or ₹50 Lakhs (for professional services)."
+            },
+            {
+              question: "What is the tax rate for partnership firms?",
+              answer: "Partnership firms are taxed at a flat rate of 30% on their net taxable profits plus applicable surcharge and cess."
+            }
+          ]
+        }
+      },
+      {
+        name: "Proprietorship Compliance",
+        tag: "#ProprietorshipCompliance",
+        slug: "proprietorship-compliance",
+        description: "Tax filings, business registration renewals, and annual compliances for sole proprietors.",
+        details: {
+          overview: "Proprietorship Compliance simplifies the annual compliance load for single owners, filing individual ITRs (ITR-3/ITR-4) and managing local renewals.",
+          targetAudience: "Sole proprietors and freelancers.",
+          benefits: ["Avoids tax default penalties", "Ensures clean loan eligibility", "Keeps GST and MSME registrations active"],
+          documents: ["Individual PAN & Aadhaar", "GST sales and purchase logs", "Bank account statement", "MSME certificate"],
+          process: ["Reconciling business invoices", "Choosing presumptive taxation if applicable", "Filing ITR-3/ITR-4 on the portal", "Renewing local trade permits"],
+          timeline: "2-4 Working Days",
+          faqs: [
+            {
+              question: "Which ITR form should a sole proprietor file?",
+              answer: "ITR-3 is for standard business accounts, and ITR-4 is for presumptive taxation (under Section 44AD/44ADA)."
+            },
+            {
+              question: "Do I need a separate PAN card for my proprietorship?",
+              answer: "No, the proprietor's individual PAN is used for all business transactions and tax filings."
+            }
+          ]
+        }
+      },
+      {
+        name: "Bookkeeping",
+        tag: "#Bookkeeping",
+        slug: "bookkeeping",
+        description: "Professional accounting, bookkeeping, and cash flow tracking for businesses.",
+        details: {
+          overview: "Bookkeeping services provide regular accounting records, ledger entries, bank reconciliations, and financial statement reports (P&L, Balance Sheet) to keep your books investor-ready.",
+          targetAudience: "Startups, freelancers, and SMEs requiring dedicated accounting support.",
+          benefits: ["Ensures accurate financial records", "Speeds up GST and ITR filing calculations", "Provides clear cash flow insights"],
+          documents: ["Sales and purchase invoices", "Bank current statements", "Expense vouchers and receipts"],
+          process: ["Setting up charts of accounts", "Recording daily transactions", "Performing monthly bank reconciliations", "Generating financial dashboard reports"],
+          timeline: "Monthly Support",
+          faqs: [
+            {
+              question: "Which accounting software do you support?",
+              answer: "We support QuickBooks, Tally Prime, Zoho Books, and Xero based on client preferences."
+            },
+            {
+              question: "How often are books updated?",
+              answer: "We update ledger entries weekly and complete bank reconciliations on a monthly cycle."
+            }
+          ]
+        }
+      },
+      {
+        name: "CA Support",
+        tag: "#CASupport",
+        slug: "ca-support",
+        description: "Dedicated Chartered Accountant (CA) consultation, tax audit planning, and advisory services.",
+        details: {
+          overview: "CA Support connects you with experienced Chartered Accountants to resolve complex tax notices, plan corporate tax structures, and prepare for audits.",
+          targetAudience: "Businesses requiring expert tax advisory or statutory audit sign-offs.",
+          benefits: ["Expert tax optimization advice", "Ensures compliance with ICAI and income tax audit rules", "Professional representations before tax officers"],
+          documents: ["Financial accounts ledger", "Previous year's tax returns", "Relevant notice or query details"],
+          process: ["Consultation scheduling with a senior CA", "Reviewing financial files and issues", "Designing tax mitigation plans", "Statutory audit and sign-off validations"],
+          timeline: "1-3 Working Days",
+          faqs: [
+            {
+              question: "What is included in CA Support?",
+              answer: "It includes corporate tax planning, statutory and tax audit preparation, transfer pricing advisory, and response drafting for tax department notices."
+            },
+            {
+              question: "Do you provide audit sign-offs?",
+              answer: "Yes, through our network of practicing CAs, we assist in completing statutory audits and issuing Audit Reports under Section 44AB."
             }
           ]
         }

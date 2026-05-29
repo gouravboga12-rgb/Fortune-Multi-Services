@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { Mail, Phone, MapPin, Send, MessageSquare, CheckCircle2, Clock } from 'lucide-react';
-import { servicesData } from '../data/services';
+import { navLinks } from '../components/Navbar';
 import { motion } from 'framer-motion';
 import { createInquiry } from '../config/api';
 
@@ -61,32 +61,32 @@ const Contact = () => {
 
   const contactCards = [
     {
-      icon: <Phone className="w-5 h-5 text-primary" />,
-      bg: 'bg-blue-50',
+      icon: <Phone className="w-5 h-5 text-accent" />,
+      bg: 'bg-accent/10',
       label: 'Call Us',
       sub: 'Mon–Sat, 9am–7pm',
-      action: <a href="tel:+918919051513" className="text-primary font-black text-base hover:underline">+91 89190 51513</a>
+      action: <a href="tel:+918919051513" className="text-white font-black text-base hover:text-accent hover:underline">+91 89190 51513</a>
     },
     {
-      icon: <MessageSquare className="w-5 h-5 text-green-600" />,
-      bg: 'bg-green-50',
+      icon: <MessageSquare className="w-5 h-5 text-green-400" />,
+      bg: 'bg-green-500/10',
       label: 'WhatsApp',
       sub: 'Instant consultation',
-      action: <a href="https://wa.me/918919051513" target="_blank" rel="noopener noreferrer" className="text-green-600 font-black text-base hover:underline">Chat with Expert</a>
+      action: <a href="https://wa.me/918919051513" target="_blank" rel="noopener noreferrer" className="text-green-400 font-black text-base hover:text-green-300 hover:underline">Chat with Expert</a>
     },
     {
       icon: <Mail className="w-5 h-5 text-accent" />,
-      bg: 'bg-yellow-50',
+      bg: 'bg-accent/10',
       label: 'Email',
       sub: 'For formal inquiries',
-      action: <a href="mailto:fortunemultiservices2023@gmail.com" className="text-accent font-black text-xs break-all hover:underline">fortunemultiservices2023@gmail.com</a>
+      action: <a href="mailto:fortunemultiservices2023@gmail.com" className="text-accent font-black text-xs break-all hover:text-accent-light hover:underline">fortunemultiservices2023@gmail.com</a>
     },
     {
-      icon: <Clock className="w-5 h-5 text-purple-600" />,
-      bg: 'bg-purple-50',
+      icon: <Clock className="w-5 h-5 text-purple-400" />,
+      bg: 'bg-purple-500/10',
       label: 'Working Hours',
       sub: 'Sunday Closed',
-      action: <span className="text-primary font-black text-sm">Mon–Sat 9:00 AM – 7:00 PM</span>
+      action: <span className="text-white font-black text-sm">Mon–Sat 9:00 AM – 7:00 PM</span>
     },
   ];
 
@@ -124,13 +124,13 @@ const Contact = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.08, duration: 0.4 }}
-              className="glass-card bg-white/95 p-5 rounded-2xl border border-light-gray shadow-premium shrink-0 w-[200px] sm:w-auto snap-center flex flex-col gap-3"
+              className="glass-card bg-secondary p-5 rounded-2xl border border-light-gray shadow-premium shrink-0 w-[200px] sm:w-auto snap-center flex flex-col gap-3"
             >
               <div className={`w-10 h-10 ${card.bg} rounded-xl flex items-center justify-center shrink-0`}>
                 {card.icon}
               </div>
               <div>
-                <h3 className="text-sm font-black text-primary mb-0.5">{card.label}</h3>
+                <h3 className="text-sm font-black text-white mb-0.5">{card.label}</h3>
                 <p className="text-[11px] text-gray-400 font-medium mb-2">{card.sub}</p>
                 {card.action}
               </div>
@@ -148,9 +148,9 @@ const Contact = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="lg:col-span-3 glass-card bg-white/95 p-6 sm:p-10 rounded-2xl border border-light-gray shadow-premium"
+            className="lg:col-span-3 glass-card bg-secondary p-6 sm:p-10 rounded-2xl border border-light-gray shadow-premium"
           >
-            <h2 className="text-2xl sm:text-3xl font-black text-primary mb-1">Send an Inquiry</h2>
+            <h2 className="text-2xl sm:text-3xl font-black text-white mb-1">Send an Inquiry</h2>
             <p className="text-sm text-dark-gray/60 mb-6 sm:mb-8">Fill in the details below and we'll get back to you over WhatsApp instantly.</p>
 
             {submitted ? (
@@ -163,23 +163,23 @@ const Contact = () => {
               <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="space-y-1.5">
-                    <label className="text-xs font-black text-primary uppercase tracking-wider">Full Name</label>
+                    <label className="text-xs font-black text-dark-gray/80 uppercase tracking-wider">Full Name</label>
                     <input
                       type="text"
                       required
                       placeholder="e.g. John Doe"
-                      className="w-full px-4 py-3 rounded-xl border border-light-gray focus:border-accent focus:ring-1 focus:ring-accent outline-none transition-all text-sm bg-soft-white/50"
+                      className="w-full px-4 py-3 rounded-xl border border-light-gray focus:border-accent focus:ring-1 focus:ring-accent outline-none transition-all text-sm bg-primary text-white"
                       value={formData.name}
                       onChange={(e) => setFormData({...formData, name: e.target.value})}
                     />
                   </div>
                   <div className="space-y-1.5">
-                    <label className="text-xs font-black text-primary uppercase tracking-wider">Phone Number</label>
+                    <label className="text-xs font-black text-dark-gray/80 uppercase tracking-wider">Phone Number</label>
                     <input
                       type="tel"
                       required
                       placeholder="e.g. +91 9876543210"
-                      className="w-full px-4 py-3 rounded-xl border border-light-gray focus:border-accent focus:ring-1 focus:ring-accent outline-none transition-all text-sm bg-soft-white/50"
+                      className="w-full px-4 py-3 rounded-xl border border-light-gray focus:border-accent focus:ring-1 focus:ring-accent outline-none transition-all text-sm bg-primary text-white"
                       value={formData.phone}
                       onChange={(e) => setFormData({...formData, phone: e.target.value})}
                     />
@@ -188,21 +188,21 @@ const Contact = () => {
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="space-y-1.5">
-                    <label className="text-xs font-black text-primary uppercase tracking-wider">Email Address</label>
+                    <label className="text-xs font-black text-dark-gray/80 uppercase tracking-wider">Email Address</label>
                     <input
                       type="email"
                       required
                       placeholder="e.g. john@example.com"
-                      className="w-full px-4 py-3 rounded-xl border border-light-gray focus:border-accent focus:ring-1 focus:ring-accent outline-none transition-all text-sm bg-soft-white/50"
+                      className="w-full px-4 py-3 rounded-xl border border-light-gray focus:border-accent focus:ring-1 focus:ring-accent outline-none transition-all text-sm bg-primary text-white"
                       value={formData.email}
                       onChange={(e) => setFormData({...formData, email: e.target.value})}
                     />
                   </div>
                   <div className="space-y-1.5">
-                    <label className="text-xs font-black text-primary uppercase tracking-wider">Service Required</label>
+                    <label className="text-xs font-black text-dark-gray/80 uppercase tracking-wider">Service Required</label>
                     <select
                       required
-                      className="w-full px-4 py-3 rounded-xl border border-light-gray focus:border-accent focus:ring-1 focus:ring-accent outline-none transition-all appearance-none bg-soft-white/50 text-sm"
+                      className="w-full px-4 py-3 rounded-xl border border-light-gray focus:border-accent focus:ring-1 focus:ring-accent outline-none transition-all appearance-none bg-primary text-white text-sm"
                       value={formData.service}
                       onChange={(e) => setFormData({...formData, service: e.target.value})}
                     >
@@ -218,24 +218,27 @@ const Contact = () => {
                         <option value="Cloud Hosting">Cloud Hosting</option>
                         <option value="Dedicated Servers">Dedicated Servers</option>
                       </optgroup>
-                      {servicesData.map(c => (
-                        <optgroup key={c.slug} label={c.title}>
-                          {c.services.map(s => (
-                            <option key={s.name} value={s.name}>{s.name}</option>
-                          ))}
-                        </optgroup>
-                      ))}
+                      {navLinks
+                        .filter(link => link.hasDropdown && link.services)
+                        .map(link => (
+                          <optgroup key={link.name} label={link.name}>
+                            {link.services?.map(s => (
+                              <option key={s.name} value={s.name}>{s.name}</option>
+                            ))}
+                          </optgroup>
+                        ))
+                      }
                     </select>
                   </div>
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="text-xs font-black text-primary uppercase tracking-wider">Your Message</label>
+                  <label className="text-xs font-black text-dark-gray/80 uppercase tracking-wider">Your Message</label>
                   <textarea
                     rows={4}
                     required
                     placeholder="Tell us about your requirements..."
-                    className="w-full px-4 py-3 rounded-xl border border-light-gray focus:border-accent focus:ring-1 focus:ring-accent outline-none transition-all text-sm bg-soft-white/50 resize-none"
+                    className="w-full px-4 py-3 rounded-xl border border-light-gray focus:border-accent focus:ring-1 focus:ring-accent outline-none transition-all text-sm bg-primary text-white resize-none"
                     value={formData.message}
                     onChange={(e) => setFormData({...formData, message: e.target.value})}
                   ></textarea>
@@ -265,8 +268,8 @@ const Contact = () => {
             className="lg:col-span-2 flex flex-col gap-5"
           >
             {/* Office Card */}
-            <div className="glass-card bg-white/95 p-6 rounded-2xl border border-light-gray shadow-premium">
-              <h2 className="text-lg sm:text-xl font-black text-primary mb-4 flex items-center gap-2">
+            <div className="glass-card bg-secondary p-6 rounded-2xl border border-light-gray shadow-premium">
+              <h2 className="text-lg sm:text-xl font-black text-white mb-4 flex items-center gap-2">
                 <MapPin className="w-5 h-5 text-accent" />
                 Visit Our Office
               </h2>
@@ -276,8 +279,8 @@ const Contact = () => {
                 Kukatpally, Hyderabad, Telangana 500072
               </p>
               <div className="pt-4 border-t border-light-gray space-y-2">
-                <p className="text-[10px] font-black text-primary/40 uppercase tracking-widest">Working Hours</p>
-                <div className="flex justify-between text-sm font-bold text-primary">
+                <p className="text-[10px] font-black text-dark-gray/60 uppercase tracking-widest">Working Hours</p>
+                <div className="flex justify-between text-sm font-bold text-white">
                   <span>Monday – Saturday</span>
                   <span className="text-accent">9:00 AM – 7:00 PM</span>
                 </div>

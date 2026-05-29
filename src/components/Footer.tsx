@@ -3,9 +3,9 @@ import { Mail, Phone, MapPin, MessageCircle } from 'lucide-react';
 
 const Footer = () => {
   return (
-    <footer className="bg-secondary text-white pt-16 pb-8">
-      <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+    <footer className="bg-secondary text-white pt-12 sm:pt-16 pb-8">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10 lg:gap-12 mb-10 sm:mb-12">
           {/* Brand Info */}
           <div className="space-y-6">
             <Link to="/" className="inline-block">
@@ -67,23 +67,25 @@ const Footer = () => {
           {/* Quick Links */}
           <div>
             <h4 className="text-lg font-bold mb-6 text-accent">Quick Links</h4>
-            <ul className="space-y-4 text-gray-400">
+            <ul className="space-y-3 text-gray-400 text-sm">
               <li><Link to="/" className="hover:text-white transition-colors">Home</Link></li>
               <li><Link to="/about" className="hover:text-white transition-colors">About Us</Link></li>
+              <li><Link to="/web-services" className="hover:text-white transition-colors">Web Services</Link></li>
               <li><Link to="/contact" className="hover:text-white transition-colors">Contact Us</Link></li>
+              <li><Link to="/login" className="hover:text-white transition-colors">Login / Signup</Link></li>
             </ul>
           </div>
 
           {/* Services */}
           <div>
             <h4 className="text-lg font-bold mb-6 text-accent">Our Services</h4>
-            <ul className="space-y-4 text-gray-400 text-sm">
-              <li><Link to="/services/registrations" className="hover:text-white transition-colors">Business Registration</Link></li>
-              <li><Link to="/services/gst" className="hover:text-white transition-colors">GST Filings</Link></li>
-              <li><Link to="/services/tax-compliance" className="hover:text-white transition-colors">Tax Compliance</Link></li>
-              <li><Link to="/services/govt-license" className="hover:text-white transition-colors">Govt. Licenses</Link></li>
-              <li><Link to="/services/food-license" className="hover:text-white transition-colors">Food License</Link></li>
-              <li><Link to="/services/trademark" className="hover:text-white transition-colors">Trademark Registration</Link></li>
+            <ul className="space-y-3 text-gray-400 text-sm">
+              <li><Link to="/services/startup" className="hover:text-white transition-colors">Startup & Company</Link></li>
+              <li><Link to="/services/registrations" className="hover:text-white transition-colors">Registrations & Licenses</Link></li>
+              <li><Link to="/services/trademark" className="hover:text-white transition-colors">Trademark & IP</Link></li>
+              <li><Link to="/services/gst" className="hover:text-white transition-colors">GST Services</Link></li>
+              <li><Link to="/services/tax-compliance" className="hover:text-white transition-colors">Income Tax & MCA</Link></li>
+              <li><Link to="/services/global" className="hover:text-white transition-colors">Global Business</Link></li>
             </ul>
           </div>
 

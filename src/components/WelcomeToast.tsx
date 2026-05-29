@@ -27,9 +27,9 @@ const WelcomeToast = () => {
           animate={{ opacity: 1, y: 0, scale: 1 }}
           exit={{ opacity: 0, y: 20, scale: 0.9 }}
           transition={{ duration: 0.5, ease: 'easeOut' }}
-          className="fixed bottom-24 right-6 left-6 md:left-auto md:right-8 md:w-[380px] z-50"
+          className="fixed bottom-3 sm:bottom-6 left-3 right-3 md:left-auto md:right-8 md:w-[380px] z-40"
         >
-          <div className="glass-card bg-white/95 backdrop-blur-md border border-accent/20 shadow-premium p-6 rounded-2xl relative overflow-hidden flex flex-col gap-5">
+          <div className="bg-secondary backdrop-blur-md border border-accent/20 shadow-premium p-6 rounded-2xl relative overflow-hidden flex flex-col gap-5">
             {/* Ambient Background Glow */}
             <div className="absolute top-0 right-0 w-24 h-24 bg-accent/5 blur-2xl rounded-full"></div>
             
@@ -42,7 +42,7 @@ const WelcomeToast = () => {
 
               {/* Title & Body */}
               <div className="flex-1 pr-6">
-                <h4 className="text-sm font-black text-primary uppercase tracking-wider mb-1">
+                <h4 className="text-sm font-black text-white uppercase tracking-wider mb-1">
                   Welcome to Fortune Multi Services
                 </h4>
                 <p className="text-xs text-dark-gray font-semibold leading-relaxed">
@@ -53,7 +53,7 @@ const WelcomeToast = () => {
               {/* Close Button */}
               <button
                 onClick={handleDismiss}
-                className="absolute top-4 right-4 p-1.5 rounded-lg text-primary/40 hover:text-primary hover:bg-light-gray/60 transition-colors"
+                className="absolute top-4 right-4 p-1.5 rounded-lg text-dark-gray hover:text-white hover:bg-white/10 transition-colors cursor-pointer"
                 aria-label="Dismiss welcome message"
               >
                 <X className="w-4 h-4" />
@@ -65,7 +65,7 @@ const WelcomeToast = () => {
               <Link
                 to="/services/registrations/udyam-registration"
                 onClick={handleDismiss}
-                className="group flex items-center justify-between px-4 py-3.5 bg-accent hover:bg-accent/90 text-white text-[10px] font-black uppercase tracking-widest rounded-xl transition-all duration-300 shadow-md hover:shadow-glow cursor-pointer"
+                className="group flex items-center justify-between px-4 py-3 bg-accent hover:bg-accent/90 text-white text-[9px] sm:text-[10px] font-black uppercase tracking-widest rounded-xl transition-all duration-300 shadow-md hover:shadow-glow cursor-pointer"
               >
                 <span className="flex items-center gap-2">
                   <span className="w-1.5 h-1.5 rounded-full bg-white animate-ping"></span>
@@ -77,7 +77,7 @@ const WelcomeToast = () => {
               <Link
                 to="/#our-services"
                 onClick={handleDismiss}
-                className="flex items-center justify-center gap-1.5 py-2.5 text-primary/60 hover:text-primary text-[10px] font-black uppercase tracking-widest transition-colors border border-dashed border-light-gray hover:border-primary/20 rounded-xl bg-soft-white/50 cursor-pointer"
+                className="flex items-center justify-center gap-1.5 py-2.5 text-dark-gray/60 hover:text-white text-[10px] font-black uppercase tracking-widest transition-colors border border-dashed border-light-gray hover:border-accent/30 rounded-xl bg-primary/50 cursor-pointer"
               >
                 <Compass className="w-3.5 h-3.5 text-accent" />
                 Explore All Services

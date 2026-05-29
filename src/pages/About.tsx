@@ -3,9 +3,9 @@ import { motion } from 'framer-motion';
 
 const About = () => {
   return (
-    <div className="bg-soft-white min-h-screen">
+    <div className="bg-primary min-h-screen">
       {/* Hero Header */}
-      <section className="relative pt-32 pb-10 sm:pt-48 sm:pb-24 overflow-hidden bg-primary">
+      <section className="relative pt-28 pb-10 sm:pt-36 sm:pb-16 lg:pt-48 lg:pb-24 overflow-hidden bg-primary">
         <div className="absolute inset-0 mesh-gradient opacity-60"></div>
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
           <motion.div
@@ -27,14 +27,14 @@ const About = () => {
       </section>
 
       {/* Registrations & Licenses Section */}
-      <section className="py-12 sm:py-20 lg:py-24 bg-white relative">
+      <section className="py-12 sm:py-20 lg:py-24 bg-secondary relative">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-16 space-y-3 sm:space-y-4">
             <div className="flex flex-wrap justify-center gap-2 sm:gap-4 text-xs font-black uppercase tracking-widest text-accent mb-2">
               <span className="px-3 py-1 bg-accent/10 rounded-full">Make a massive Progress</span>
               <span className="px-3 py-1 bg-green-500/10 text-green-600 rounded-full">Safe investment</span>
             </div>
-            <h2 className="text-2xl sm:text-3xl lg:text-5xl font-black text-primary tracking-tight">
+            <h2 className="text-2xl sm:text-3xl lg:text-5xl font-black text-white tracking-tight">
               Get Your Business Registrations &amp; Licenses
             </h2>
             <p className="text-sm sm:text-lg text-dark-gray font-medium opacity-65">
@@ -46,28 +46,28 @@ const About = () => {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
             {[
               {
-                title: 'GST Filling',
+                title: 'GST Filing',
                 desc: 'File your GST returns every month with us.',
                 icon: TrendingUp,
-                color: 'bg-primary/5 text-primary border-primary/10 hover:border-primary',
+                color: 'bg-accent/5 text-accent border-accent/15 hover:border-accent/40',
               },
               {
-                title: 'Labour Renews',
+                title: 'Labour Renewals',
                 desc: 'Renew your Labour License annually with us.',
                 icon: Clock,
-                color: 'bg-accent/5 text-accent border-accent/10 hover:border-accent',
+                color: 'bg-accent-blue/5 text-accent-blue border-accent-blue/15 hover:border-accent-blue/40',
               },
               {
-                title: 'PvtLtd Compliances',
+                title: 'Pvt Ltd Compliances',
                 desc: 'File Private limited Company yearly compliances.',
                 icon: ShieldCheck,
-                color: 'bg-green-500/5 text-green-600 border-green-500/10 hover:border-green-600',
+                color: 'bg-green-500/5 text-green-400 border-green-500/15 hover:border-green-500/40',
               },
               {
-                title: 'IT returns',
+                title: 'IT Returns',
                 desc: 'File your Income tax returns here.',
                 icon: Award,
-                color: 'bg-purple-500/5 text-purple-600 border-purple-500/10 hover:border-purple-600',
+                color: 'bg-purple-500/5 text-purple-400 border-purple-500/15 hover:border-purple-500/40',
               },
             ].map((item, index) => (
               <motion.div
@@ -78,7 +78,7 @@ const About = () => {
                 transition={{ delay: index * 0.1 }}
                 className={`p-5 sm:p-8 rounded-[1.5rem] sm:rounded-[2rem] border transition-all duration-500 group flex flex-col items-start ${item.color}`}
               >
-                <div className="p-3 sm:p-4 rounded-xl sm:rounded-2xl bg-white shadow-sm mb-4 sm:mb-6 group-hover:scale-110 transition-transform duration-500">
+                <div className="p-3 sm:p-4 rounded-xl sm:rounded-2xl bg-primary/30 border border-white/10 shadow-sm mb-4 sm:mb-6 group-hover:scale-110 transition-transform duration-500">
                   <item.icon className="w-6 h-6 sm:w-8 sm:h-8" />
                 </div>
                 <h3 className="text-lg sm:text-2xl font-black mb-2 sm:mb-3 tracking-tight">{item.title}</h3>
@@ -128,13 +128,13 @@ const About = () => {
       </section>
 
       {/* Metrics Board Grid 1 */}
-      <section className="py-12 sm:py-20 lg:py-24 bg-white relative">
+      <section className="py-12 sm:py-20 lg:py-24 bg-secondary relative">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-16 space-y-3 sm:space-y-4">
             <span className="text-accent uppercase tracking-widest font-black text-xs">
               Milestones
             </span>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-primary tracking-tight">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-white tracking-tight">
               Track Record of Business Excellence
             </h2>
             <div className="w-20 h-1 bg-accent mx-auto rounded-full"></div>
@@ -157,12 +157,12 @@ const About = () => {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.05 }}
-                className="bg-soft-white p-4 sm:p-6 lg:p-8 rounded-2xl sm:rounded-3xl border border-light-gray flex flex-col items-center text-center group hover:shadow-xl hover:border-accent transition-all duration-500"
+                className="bg-secondary p-4 sm:p-6 lg:p-8 rounded-2xl sm:rounded-3xl border border-light-gray flex flex-col items-center text-center group hover:shadow-xl hover:border-accent transition-all duration-500"
               >
-                <div className="p-2 sm:p-3 bg-white rounded-xl sm:rounded-2xl shadow-sm text-primary mb-2 sm:mb-4 group-hover:scale-110 transition-transform">
+                <div className="p-2 sm:p-3 bg-primary/50 rounded-xl sm:rounded-2xl border border-white/10 text-accent mb-2 sm:mb-4 group-hover:scale-110 transition-transform">
                   <stat.icon className="w-5 h-5 sm:w-6 sm:h-6" />
                 </div>
-                <div className="text-2xl sm:text-3xl lg:text-4xl font-black text-primary tracking-tighter mb-1 sm:mb-2">
+                <div className="text-2xl sm:text-3xl lg:text-4xl font-black text-white tracking-tighter mb-1 sm:mb-2">
                   {stat.val}
                 </div>
                 <div className="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-dark-gray opacity-80">
@@ -175,7 +175,7 @@ const About = () => {
       </section>
 
       {/* India's Largest Corporate compliance Platform Section */}
-      <section className="py-12 sm:py-20 lg:py-24 bg-soft-white relative overflow-hidden">
+      <section className="py-12 sm:py-20 lg:py-24 bg-primary relative overflow-hidden">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 sm:gap-16 items-center">
             {/* Platform Text Details */}
@@ -189,7 +189,7 @@ const About = () => {
                 <span className="text-accent uppercase tracking-widest font-black text-xs px-4 py-2 bg-accent/10 rounded-full border border-accent/20">
                   India's largest financial services
                 </span>
-                <h2 className="text-2xl sm:text-4xl lg:text-5xl font-black text-primary leading-tight tracking-tight">
+                <h2 className="text-2xl sm:text-4xl lg:text-5xl font-black text-white leading-tight tracking-tight">
                   <span className="text-accent">Fortune Multi Services</span>
                 </h2>
                 <div className="w-20 h-1 bg-accent rounded-full"></div>
@@ -208,8 +208,8 @@ const About = () => {
                   { title: 'Tax returns filed', val: '782+' },
                   { title: 'Happy clients', val: '1200+' },
                 ].map((stat, idx) => (
-                  <div key={idx} className="p-4 sm:p-6 bg-white rounded-xl sm:rounded-2xl border border-light-gray shadow-sm flex flex-col">
-                    <span className="text-xl sm:text-2xl font-black text-primary tracking-tight mb-1">{stat.val}</span>
+                  <div key={idx} className="p-4 sm:p-6 bg-secondary rounded-xl sm:rounded-2xl border border-light-gray flex flex-col">
+                    <span className="text-xl sm:text-2xl font-black text-white tracking-tight mb-1">{stat.val}</span>
                     <span className="text-[10px] sm:text-xs font-bold uppercase tracking-wide text-dark-gray opacity-70">{stat.title}</span>
                   </div>
                 ))}
@@ -241,13 +241,13 @@ const About = () => {
       </section>
 
       {/* Core Operational Service Highlights */}
-      <section className="py-12 sm:py-20 lg:py-24 bg-white relative">
+      <section className="py-12 sm:py-20 lg:py-24 bg-secondary relative">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-20 space-y-3 sm:space-y-4">
             <span className="text-accent uppercase tracking-widest font-black text-xs">
               Platform Features
             </span>
-            <h2 className="text-2xl sm:text-3xl lg:text-5xl font-black text-primary tracking-tight">
+            <h2 className="text-2xl sm:text-3xl lg:text-5xl font-black text-white tracking-tight">
               Our Core Services &amp; Filings
             </h2>
             <div className="w-20 h-1 bg-accent mx-auto rounded-full"></div>
@@ -294,10 +294,10 @@ const About = () => {
                 transition={{ delay: idx * 0.1 }}
                 className="p-5 sm:p-8 rounded-2xl sm:rounded-3xl border border-light-gray hover:border-accent hover:shadow-xl transition-all duration-500 group"
               >
-                <div className="w-10 h-10 sm:w-12 sm:h-12 bg-primary/5 rounded-xl sm:rounded-2xl flex items-center justify-center mb-4 sm:mb-6 group-hover:bg-accent group-hover:scale-110 transition-all duration-500">
-                  <srv.icon className="w-5 h-5 sm:w-6 sm:h-6 text-primary group-hover:text-white" />
+                <div className="w-10 h-10 sm:w-12 sm:h-12 bg-accent/10 rounded-xl sm:rounded-2xl flex items-center justify-center mb-4 sm:mb-6 group-hover:bg-accent group-hover:scale-110 transition-all duration-500">
+                  <srv.icon className="w-5 h-5 sm:w-6 sm:h-6 text-accent group-hover:text-white" />
                 </div>
-                <h4 className="text-lg sm:text-2xl font-black text-primary mb-2 sm:mb-3 tracking-tight">{srv.title}</h4>
+                <h4 className="text-lg sm:text-2xl font-black text-white mb-2 sm:mb-3 tracking-tight">{srv.title}</h4>
                 <p className="text-dark-gray font-medium text-xs sm:text-sm leading-relaxed opacity-75">{srv.desc}</p>
               </motion.div>
             ))}
