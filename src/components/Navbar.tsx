@@ -339,28 +339,28 @@ const Navbar = () => {
         )}
       >
         {/* Logo */}
-        <Link to="/" className="flex items-center shrink-0 mr-4 xl:mr-16 2xl:mr-24">
+        <Link to="/" className="flex items-center shrink-0 mr-4 xl:mr-8 2xl:mr-12">
           <img
             src="/logo.png"
             alt="Fortune Multi Services"
             className="h-9 sm:h-10 xl:h-11 2xl:h-14 w-auto object-contain"
           />
         </Link>
-
+ 
         {/* Desktop Navigation Links */}
-        <div className="hidden xl:flex items-center flex-1 min-w-0">
-          <div className="flex items-center gap-0 flex-1">
+        <div className="hidden xl:flex items-center flex-grow justify-center min-w-0">
+          <div className="flex items-center justify-center gap-0.5 xl:gap-1 2xl:gap-1.5">
             {navLinks.map((link) => (
               <div
                 key={link.name}
-                className="relative flex items-center h-full"
+                className="relative flex items-center h-full shrink-0"
                 onMouseEnter={() => link.hasDropdown && handleMouseEnter(link.name)}
                 onMouseLeave={handleMouseLeave}
               >
                 <Link
                   to={link.path}
                   className={cn(
-                    'px-1.5 xl:px-2 2xl:px-2.5 py-4 text-[8px] xl:text-[8.5px] 2xl:text-[10px] font-bold tracking-tight uppercase transition-all duration-300 flex items-center gap-0.5 whitespace-nowrap',
+                    'px-1 xl:px-1.5 2xl:px-2.5 py-4 text-xs xl:text-[11.5px] 2xl:text-[13px] font-semibold tracking-normal transition-all duration-300 flex items-center gap-0.5 whitespace-nowrap',
                     isLinkActive(link)
                       ? 'text-accent font-extrabold'
                       : 'text-dark-gray hover:text-accent'
@@ -395,7 +395,7 @@ const Navbar = () => {
                       onMouseEnter={() => handleMouseEnter(link.name)}
                       onMouseLeave={handleMouseLeave}
                       className={cn(
-                        "absolute top-full bg-secondary shadow-2xl border border-light-gray rounded-xl overflow-hidden z-50 mt-3",
+                        "absolute top-full bg-secondary shadow-2xl border border-light-gray rounded-xl overflow-hidden z-50 mt-3 max-w-[95vw]",
                         link.name === 'Startup' ? 'left-0' :
                         link.name === 'Registrations' ? '-left-20 xl:-left-32 2xl:left-1/2 2xl:-translate-x-1/2' :
                         link.name === 'Trademark' ? '-left-10 xl:-left-20 2xl:left-1/2 2xl:-translate-x-1/2' :
@@ -414,10 +414,10 @@ const Navbar = () => {
                         className={cn(
                           'p-4 grid gap-x-4 gap-y-0.5',
                           link.columns === 4
-                            ? 'grid-cols-4'
+                            ? 'grid-cols-2 sm:grid-cols-3 lg:grid-cols-4'
                             : link.columns === 3
-                            ? 'grid-cols-3'
-                            : 'grid-cols-2'
+                            ? 'grid-cols-2 sm:grid-cols-3'
+                            : 'grid-cols-1 sm:grid-cols-2'
                         )}
                       >
                         {link.services.map((service) => (
@@ -439,7 +439,7 @@ const Navbar = () => {
           </div>
 
           {/* Right Side Actions */}
-          <div className="flex items-center gap-1.5 xl:gap-2 shrink-0 ml-1">
+          <div className="flex items-center gap-1.5 xl:gap-2 shrink-0 ml-auto">
             {/* Search */}
             <button
               onClick={() => setIsSearchOpen(true)}
@@ -464,16 +464,8 @@ const Navbar = () => {
             {/* Login / Signup */}
             <Link
               to="/login"
-              className="flex items-center gap-1.5 group shrink-0"
+              className="flex items-center group shrink-0"
             >
-              <div className="hidden 2xl:flex flex-col items-end text-right">
-                <span className="text-[7px] 2xl:text-[8px] font-bold text-accent/80 uppercase tracking-wider leading-none mb-0.5 whitespace-nowrap">
-                  User Portal
-                </span>
-                <span className="text-[8px] 2xl:text-[9px] font-black text-white group-hover:text-accent transition-colors uppercase tracking-wide whitespace-nowrap">
-                  Login / Signup
-                </span>
-              </div>
               <div className="flex items-center gap-1 bg-white/5 border border-accent/25 hover:bg-accent hover:border-accent px-2 xl:px-2.5 py-1.5 xl:py-2 rounded-lg transition-all duration-300">
                 <User className="w-3 h-3 xl:w-3.5 xl:h-3.5 text-accent group-hover:text-white transition-colors" />
                 <span className="text-[8px] xl:text-[8.5px] font-bold text-accent group-hover:text-white transition-colors uppercase tracking-wide whitespace-nowrap">

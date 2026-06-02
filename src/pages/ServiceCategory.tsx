@@ -413,7 +413,7 @@ const ServiceCategory = () => {
               <ArrowRight className="w-3 h-3" />
               <span className="text-accent">Services</span>
             </nav>
-            <h1 className="text-3xl sm:text-5xl lg:text-7xl font-black text-white leading-none tracking-tighter mb-4 sm:mb-8">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-[#b9c9d6] leading-none tracking-tighter mb-4 sm:mb-8">
               {category.title}
             </h1>
             <p className="text-base sm:text-xl text-white/70 font-medium leading-relaxed max-w-2xl">
@@ -446,7 +446,7 @@ const ServiceCategory = () => {
                     <span className="absolute -bottom-0.5 -right-0.5 w-3.5 h-3.5 bg-emerald-500 border-2 border-[#0f172a] rounded-full"></span>
                   </div>
                   <div>
-                    <h3 className="text-lg font-black text-white flex items-center gap-1.5 leading-none">
+                    <h3 className="text-lg font-black text-[#b9c9d6] flex items-center gap-1.5 leading-none">
                       Fortune AI Advisor
                       <Sparkles className="w-4 h-4 text-accent animate-pulse" />
                     </h3>
@@ -572,7 +572,7 @@ const ServiceCategory = () => {
                 <div className="w-10 h-10 sm:w-12 sm:h-12 bg-white/5 rounded-xl sm:rounded-2xl flex items-center justify-center border border-white/10">
                   <Landmark className="w-5 h-5 sm:w-6 sm:h-6 text-accent" />
                 </div>
-                <h2 className="text-2xl sm:text-3xl font-black text-white">Service Catalog</h2>
+                <h2 className="text-2xl sm:text-3xl font-black text-[#b9c9d6]">Service Catalog</h2>
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                 {category.services.map((service, i) => {
@@ -588,7 +588,7 @@ const ServiceCategory = () => {
                         </div>
                         <ArrowRight className={`w-4 h-4 sm:w-5 sm:h-5 text-accent group-hover:translate-x-1 transition-transform`} />
                       </div>
-                      <h3 className={`text-base sm:text-xl font-bold text-white group-hover:text-accent transition-colors`}>
+                      <h3 className={`text-base sm:text-xl font-bold text-[#b9c9d6] group-hover:text-accent transition-colors`}>
                         {service.name}
                       </h3>
                     </Link>
@@ -607,7 +607,7 @@ const ServiceCategory = () => {
                 <div className="w-10 h-10 sm:w-12 sm:h-12 bg-accent/5 rounded-xl sm:rounded-2xl flex items-center justify-center border border-accent/10">
                   <FileCheck className="w-5 h-5 sm:w-6 sm:h-6 text-accent" />
                 </div>
-                <h2 className="text-2xl sm:text-3xl font-black text-white">Strategic Advantages</h2>
+                <h2 className="text-2xl sm:text-3xl font-black text-[#b9c9d6]">Strategic Advantages</h2>
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                 {category.details.benefits.map((benefit, i) => (
@@ -615,7 +615,7 @@ const ServiceCategory = () => {
                     <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-green-500/10 flex items-center justify-center shrink-0">
                       <CheckCircle2 className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-green-400" />
                     </div>
-                    <span className="text-white font-bold text-sm sm:text-base">{benefit}</span>
+                    <span className="text-[#b9c9d6] font-bold text-sm sm:text-base">{benefit}</span>
                   </div>
                 ))}
               </div>
@@ -631,7 +631,7 @@ const ServiceCategory = () => {
                 <div className="w-10 h-10 sm:w-12 sm:h-12 bg-primary rounded-xl sm:rounded-2xl flex items-center justify-center shadow-lg">
                   <Clock className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
                 </div>
-                <h2 className="text-2xl sm:text-3xl font-black text-white">The Engagement Flow</h2>
+                <h2 className="text-2xl sm:text-3xl font-black text-[#b9c9d6]">The Engagement Flow</h2>
               </div>
               <div className="relative space-y-6 sm:space-y-10 pl-6 sm:pl-10 border-l-2 border-white/10 ml-3 sm:ml-5">
                 {category.details.process.map((step, i) => (
@@ -639,7 +639,7 @@ const ServiceCategory = () => {
                     <div className="absolute -left-[35px] sm:-left-[51px] top-0 w-4 h-4 sm:w-5 sm:h-5 bg-secondary rounded-full border-4 border-primary group-hover:bg-accent transition-colors shadow-sm"></div>
                     <div className="glass-card p-5 sm:p-8 group-hover:translate-x-2 transition-transform">
                       <div className="text-[10px] font-black text-accent uppercase tracking-widest mb-1 sm:mb-2">Phase 0{i + 1}</div>
-                      <h4 className="text-base sm:text-xl font-bold text-white">{step}</h4>
+                      <h4 className="text-base sm:text-xl font-bold text-[#b9c9d6]">{step}</h4>
                     </div>
                   </div>
                 ))}
@@ -656,7 +656,7 @@ const ServiceCategory = () => {
                 <div className="w-10 h-10 sm:w-12 sm:h-12 bg-accent/5 rounded-xl sm:rounded-2xl flex items-center justify-center border border-accent/10">
                   <HelpCircle className="w-5 h-5 sm:w-6 sm:h-6 text-accent" />
                 </div>
-                <h2 className="text-2xl sm:text-3xl font-black text-white">Frequently Asked Questions</h2>
+                <h2 className="text-2xl sm:text-3xl font-black text-[#b9c9d6]">Frequently Asked Questions</h2>
               </div>
               <div className="space-y-4">
                 {category.faqs.map((faq, i) => (
@@ -665,7 +665,7 @@ const ServiceCategory = () => {
                       onClick={() => setOpenFaq(openFaq === i ? null : i)}
                       className="w-full p-4 sm:p-6 flex items-center justify-between text-left hover:bg-accent/5 transition-colors gap-3"
                     >
-                      <span className="font-bold text-white text-sm sm:text-base">{faq.question}</span>
+                      <span className="font-bold text-[#b9c9d6] text-sm sm:text-base">{faq.question}</span>
                       {openFaq === i ? <ChevronUp className="w-4 h-4 sm:w-5 sm:h-5 text-accent shrink-0" /> : <ChevronDown className="w-4 h-4 sm:w-5 sm:h-5 text-accent shrink-0" />}
                     </button>
                     <AnimatePresence>
@@ -696,7 +696,7 @@ const ServiceCategory = () => {
               <div className="w-9 h-9 bg-accent/5 rounded-xl flex items-center justify-center border border-accent/10">
                 <Link2 className="w-4 h-4 text-accent" />
               </div>
-              <h2 className="text-xl font-black text-white">Related Services</h2>
+              <h2 className="text-xl font-black text-[#b9c9d6]">Related Services</h2>
             </div>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
               {relatedServices.map((rs, i) => (
@@ -711,7 +711,7 @@ const ServiceCategory = () => {
                     to={`/services/${rs.categorySlug}/${rs.slug}`}
                     className="glass-card p-4 flex items-center justify-between gap-2 hover:border-accent/30 hover:bg-accent/5 transition-all group"
                   >
-                    <span className="text-xs font-bold text-white group-hover:text-accent transition-colors leading-snug">{rs.name}</span>
+                    <span className="text-xs font-bold text-[#b9c9d6] group-hover:text-accent transition-colors leading-snug">{rs.name}</span>
                     <ArrowRight className="w-3 h-3 text-accent opacity-0 group-hover:opacity-100 shrink-0 transition-all" />
                   </Link>
                 </motion.div>
@@ -729,7 +729,7 @@ const ServiceCategory = () => {
               <div className="w-9 h-9 bg-accent/5 rounded-xl flex items-center justify-center border border-accent/10">
                 <Star className="w-4 h-4 text-accent" />
               </div>
-              <h2 className="text-xl font-black text-white">Customer Reviews</h2>
+              <h2 className="text-xl font-black text-[#b9c9d6]">Customer Reviews</h2>
               <span className="ml-2 px-3 py-1 rounded-full bg-accent/10 text-accent text-[10px] font-black uppercase tracking-widest">
                 {reviewsList.length} Reviews
               </span>
@@ -755,7 +755,7 @@ const ServiceCategory = () => {
                       {review.name.charAt(0).toUpperCase()}
                     </div>
                     <div className="min-w-0">
-                      <div className="text-sm font-bold text-white truncate">{review.name}</div>
+                      <div className="text-sm font-bold text-[#b9c9d6] truncate">{review.name}</div>
                       <div className="text-[10px] text-dark-gray">{review.city} · {review.date}</div>
                     </div>
                     <div className="ml-auto flex items-center gap-0.5 shrink-0">
@@ -780,7 +780,7 @@ const ServiceCategory = () => {
               <div className="w-9 h-9 bg-accent/5 rounded-xl flex items-center justify-center border border-accent/10">
                 <Star className="w-4 h-4 text-accent" />
               </div>
-              <h2 className="text-xl font-black text-white">Customer Reviews</h2>
+              <h2 className="text-xl font-black text-[#b9c9d6]">Customer Reviews</h2>
             </div>
             <div className="glass-card p-8 text-center">
               <Star className="w-10 h-10 text-accent/30 mx-auto mb-3" />
@@ -801,7 +801,7 @@ const ServiceCategory = () => {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center gap-3 mb-5">
             <Search className="w-4 h-4 text-accent" />
-            <h2 className="text-base font-black text-white">Popular Searches</h2>
+            <h2 className="text-base font-black text-[#b9c9d6]">Popular Searches</h2>
           </div>
           <div className="flex flex-wrap gap-2.5">
             {popularSearches.map((term, i) => (
@@ -824,7 +824,7 @@ const ServiceCategory = () => {
       {/* Other Categories CTA */}
       <section className="py-12 sm:py-20 lg:py-24 bg-secondary/30 border-t border-light-gray">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-2xl sm:text-3xl font-black text-white mb-6 sm:mb-12">Explore Other Excellence Areas</h2>
+          <h2 className="text-2.5xl sm:text-3.5xl font-black text-[#b9c9d6] mb-6 sm:mb-12">Explore Other Excellence Areas</h2>
           <div className="flex flex-wrap justify-center gap-3 sm:gap-4">
             {servicesData.filter(c => c.slug !== slug).map(c => (
               <Link 
@@ -856,7 +856,7 @@ const ServiceCategory = () => {
               className="glass-card bg-secondary border border-white/10 w-full max-w-md p-6 relative overflow-hidden"
               onClick={(e) => e.stopPropagation()}
             >
-              <h3 className="text-lg font-black text-white mb-4">Write a Customer Review</h3>
+              <h3 className="text-lg font-black text-[#b9c9d6] mb-4">Write a Customer Review</h3>
               <form onSubmit={handleReviewSubmit} className="space-y-4">
                 <div>
                   <label className="block text-[10px] font-bold uppercase tracking-wider text-dark-gray/60 mb-1">Your Name</label>

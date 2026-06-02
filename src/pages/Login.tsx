@@ -19,7 +19,7 @@ const Login = () => {
           <div className="w-16 h-16 bg-white/5 rounded-2xl flex items-center justify-center mx-auto mb-6 border border-white/10">
             <User className="w-8 h-8 text-accent" />
           </div>
-          <h1 className="text-3xl font-black text-white mb-2">
+          <h1 className="text-3xl font-black text-[#b9c9d6] mb-2">
             {isLogin ? 'Welcome Back' : 'Create Account'}
           </h1>
           <p className="text-dark-gray/60 font-medium text-sm">

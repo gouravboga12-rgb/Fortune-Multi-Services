@@ -1,6 +1,7 @@
 import Hero from '../components/Hero';
 import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { useState, useEffect, useRef } from 'react';
+import { motion, useInView } from 'framer-motion';
 import { 
   CheckCircle, ArrowRight, Star, Quote, 
   Briefcase, Award, TrendingUp, Users2, ShieldCheck, 
@@ -8,6 +9,52 @@ import {
 } from 'lucide-react';
 import GstCalculator from '../components/GstCalculator';
 import premiumAdvisors from '../assets/premium_advisors.png';
+
+const Counter = ({ value, duration = 1.5 }: { value: string; duration?: number }) => {
+  const [count, setCount] = useState(0);
+  const ref = useRef<HTMLSpanElement>(null);
+  const isInView = useInView(ref, { once: true, margin: "-50px 0px" });
+
+  useEffect(() => {
+    if (!isInView) return;
+
+    const numericString = value.replace(/[,%+]/g, '');
+    const target = parseInt(numericString, 10);
+    if (isNaN(target)) return;
+
+    let start = 0;
+    const end = target;
+    const startTime = performance.now();
+    const totalMs = duration * 1000;
+
+    let animationFrameId: number;
+
+    const updateCount = (currentTime: number) => {
+      const elapsed = currentTime - startTime;
+      if (elapsed >= totalMs) {
+        setCount(end);
+      } else {
+        const progress = elapsed / totalMs;
+        const easeOutQuad = progress * (2 - progress);
+        setCount(Math.floor(start + (end - start) * easeOutQuad));
+        animationFrameId = requestAnimationFrame(updateCount);
+      }
+    };
+
+    animationFrameId = requestAnimationFrame(updateCount);
+
+    return () => cancelAnimationFrame(animationFrameId);
+  }, [value, duration, isInView]);
+
+  const formatNumber = (num: number) => {
+    const formatted = num.toLocaleString('en-IN');
+    if (value.includes('+')) return `${formatted}+`;
+    if (value.includes('%')) return `${formatted}%`;
+    return formatted;
+  };
+
+  return <span ref={ref}>{formatNumber(count)}</span>;
+};
 
 const Home = () => {
   const stats = [
@@ -67,11 +114,11 @@ const Home = () => {
             viewport={{ once: true }}
             className="max-w-3xl mx-auto mb-10 sm:mb-20 text-center space-y-4"
           >
-            <h2 className="text-3xl sm:text-4xl lg:text-6xl font-black text-white">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-[#b9c9d6]">
               Our <span className="text-accent">Services</span>
             </h2>
-            <div className="w-24 h-1 bg-accent mx-auto rounded-full" />
-            <p className="text-base sm:text-lg text-dark-gray font-medium max-w-2xl mx-auto leading-relaxed">
+            <div className="w-16 h-1 bg-accent mx-auto rounded-full" />
+            <p className="text-sm sm:text-base text-dark-gray font-medium max-w-2xl mx-auto leading-relaxed">
               End-to-end business compliance — from startup registration to global expansion.
             </p>
           </motion.div>
@@ -121,7 +168,7 @@ const Home = () => {
                     <div className="w-11 h-11 sm:w-13 sm:h-13 lg:w-14 lg:h-14 bg-white/5 rounded-2xl flex items-center justify-center mb-4 sm:mb-5 border border-white/10 group-hover:bg-accent group-hover:border-accent transition-all duration-500">
                       <Icon className="w-5 h-5 sm:w-6 sm:h-6" />
                     </div>
-                    <h3 className="text-lg sm:text-xl lg:text-2xl font-bold mb-2 sm:mb-3 text-white group-hover:text-accent transition-colors">
+                    <h3 className="text-base sm:text-lg lg:text-xl font-bold mb-2 sm:mb-3 text-[#b9c9d6] group-hover:text-accent transition-colors">
                       {item.title}
                     </h3>
                     <p className="text-dark-gray/60 text-xs sm:text-sm font-medium line-clamp-2 leading-relaxed">
@@ -194,7 +241,7 @@ const Home = () => {
                     <div className="w-11 h-11 sm:w-13 sm:h-13 lg:w-14 lg:h-14 bg-white/5 rounded-2xl flex items-center justify-center mb-4 sm:mb-5 border border-white/10 group-hover:bg-accent group-hover:border-accent transition-all duration-500">
                       <Icon className="w-5 h-5 sm:w-6 sm:h-6" />
                     </div>
-                    <h3 className="text-lg sm:text-xl lg:text-2xl font-bold mb-2 sm:mb-3 text-white group-hover:text-accent transition-colors">
+                    <h3 className="text-base sm:text-lg lg:text-xl font-bold mb-2 sm:mb-3 text-[#b9c9d6] group-hover:text-accent transition-colors">
                       {item.title}
                     </h3>
                     <p className="text-dark-gray/60 text-xs sm:text-sm font-medium line-clamp-2 leading-relaxed">
@@ -259,7 +306,7 @@ const Home = () => {
                     <div className="w-11 h-11 sm:w-13 sm:h-13 lg:w-14 lg:h-14 bg-white/5 rounded-2xl flex items-center justify-center mb-4 sm:mb-5 border border-white/10 group-hover:bg-accent group-hover:border-accent transition-all duration-500">
                       <Icon className="w-5 h-5 sm:w-6 sm:h-6" />
                     </div>
-                    <h3 className="text-lg sm:text-xl lg:text-2xl font-bold mb-2 sm:mb-3 text-white group-hover:text-accent transition-colors">
+                    <h3 className="text-base sm:text-lg lg:text-xl font-bold mb-2 sm:mb-3 text-[#b9c9d6] group-hover:text-accent transition-colors">
                       {item.title}
                     </h3>
                     <p className="text-dark-gray/60 text-xs sm:text-sm font-medium line-clamp-2 leading-relaxed">
@@ -308,7 +355,9 @@ const Home = () => {
                     <stat.icon className="w-6 h-6 sm:w-8 sm:h-8 text-accent" />
                   </div>
                   <div>
-                    <div className="text-3xl sm:text-4xl lg:text-6xl font-black text-white tracking-tighter mb-1">{stat.value}</div>
+                    <div className="text-2xl sm:text-3xl lg:text-4xl font-black text-[#b9c9d6] tracking-tight mb-1">
+                      <Counter value={stat.value} />
+                    </div>
                     <div className="text-[10px] sm:text-xs lg:text-sm text-white/50 font-bold uppercase tracking-widest">{stat.label}</div>
                   </div>
                 </motion.div>
@@ -329,20 +378,20 @@ const Home = () => {
                 viewport={{ once: true }}
                 className="space-y-4 sm:space-y-6"
               >
-                <div className="inline-flex items-center gap-3 px-4 py-1.5 rounded-full bg-accent/10 text-accent text-xs sm:text-sm font-bold border border-accent/20">
-                  <ShieldCheck className="w-4 h-4" />
+                <div className="inline-flex items-center gap-2.5 px-3 py-1 rounded-full bg-accent/10 text-accent text-[11px] sm:text-xs font-bold border border-accent/20">
+                  <ShieldCheck className="w-3.5 h-3.5" />
                   Elite Business Solutions
                 </div>
-                <h2 className="text-4xl sm:text-5xl lg:text-7xl font-black text-white leading-none tracking-tighter">
+                <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-[#b9c9d6] leading-tight tracking-tighter">
                   The Gold Standard <br />
                   <span className="text-accent">Of Consulting</span>
                 </h2>
-                <p className="text-lg sm:text-xl text-dark-gray font-medium leading-relaxed">
+                <p className="text-sm sm:text-base text-dark-gray font-medium leading-relaxed">
                   We don't just register companies; we build the foundations for global conglomerates. Our approach is surgical, data-driven, and results-oriented.
                 </p>
               </motion.div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-10">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                 {[
                   { title: 'Full Spectrum', desc: 'End-to-end compliance from incorporation to annual audit.', icon: Zap },
                   { title: 'Global Precision', desc: 'Adhering to international standards for trademark and IP.', icon: Award },
@@ -354,13 +403,13 @@ const Home = () => {
                     initial={{ opacity: 0, y: 10 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ delay: i * 0.1 }}
-                    className="space-y-2 sm:space-y-3"
+                    className="space-y-1.5 sm:space-y-2"
                   >
-                    <div className="w-12 h-12 bg-white/5 rounded-xl flex items-center justify-center border border-white/10">
-                      <item.icon className="w-6 h-6 text-accent" />
+                    <div className="w-10 h-10 bg-white/5 rounded-xl flex items-center justify-center border border-white/10">
+                      <item.icon className="w-5 h-5 text-accent" />
                     </div>
-                    <h4 className="text-lg font-bold text-white">{item.title}</h4>
-                    <p className="text-dark-gray/60 text-sm font-medium leading-relaxed">{item.desc}</p>
+                    <h4 className="text-base font-bold text-[#b9c9d6]">{item.title}</h4>
+                    <p className="text-dark-gray/60 text-xs font-medium leading-relaxed">{item.desc}</p>
                   </motion.div>
                 ))}
               </div>
@@ -395,12 +444,12 @@ const Home = () => {
       {/* Testimonials: Premium Carousel feel */}
       <section className="py-16 sm:py-24 lg:py-32 bg-secondary overflow-hidden">
         <div className="container mx-auto px-4 lg:px-8">
-          <div className="text-center mb-12 sm:mb-24 space-y-4">
-            <h2 className="text-3xl sm:text-4xl lg:text-6xl font-black text-white">Client Success Stories</h2>
-            <div className="w-20 h-1 bg-accent mx-auto rounded-full"></div>
+          <div className="text-center mb-10 sm:mb-16 space-y-4">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-[#b9c9d6]">Client Success Stories</h2>
+            <div className="w-16 h-1 bg-accent mx-auto rounded-full"></div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-10">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
             {[
               { name: 'Rahul Sharma', role: 'CEO, TechLogics', content: 'Fortune Multi Services transformed our legal foundation. Their precision is unmatched in the industry.', avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=150&h=150' },
               { name: 'Ananya Goel', role: 'Founder, Organic Bloom', content: 'From GST to Trademark, they handled everything while I focused on growth. A true partner in every sense.', avatar: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=150&h=150' },
@@ -411,19 +460,19 @@ const Home = () => {
                 initial={{ opacity: 0, scale: 0.95 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 transition={{ delay: i * 0.1 }}
-                className="glass-card p-6 sm:p-10 relative group"
+                className="glass-card p-5 sm:p-7 relative group"
               >
-                <Quote className="absolute top-8 right-8 w-16 h-16 text-primary/5 group-hover:text-accent/10 transition-colors" />
-                <div className="flex items-center gap-5 mb-8">
-                  <img src={t.avatar} alt={t.name} className="w-14 h-14 rounded-2xl border-2 border-white shadow-lg" />
+                <Quote className="absolute top-6 right-6 w-12 h-12 text-primary/5 group-hover:text-accent/10 transition-colors" />
+                <div className="flex items-center gap-4 mb-6">
+                  <img src={t.avatar} alt={t.name} className="w-12 h-12 rounded-2xl border-2 border-white shadow-lg" />
                   <div>
-                    <div className="font-black text-white text-lg">{t.name}</div>
+                    <div className="font-black text-[#b9c9d6] text-base">{t.name}</div>
                     <div className="text-[10px] text-accent font-black uppercase tracking-widest">{t.role}</div>
                   </div>
                 </div>
-                <p className="text-dark-gray font-medium leading-relaxed text-base sm:text-lg">"{t.content}"</p>
-                <div className="mt-8 flex gap-1">
-                  {[1,2,3,4,5].map(star => <Star key={star} className="w-4 h-4 fill-accent text-accent" />)}
+                <p className="text-dark-gray font-medium leading-relaxed text-xs sm:text-sm">"{t.content}"</p>
+                <div className="mt-6 flex gap-1">
+                  {[1,2,3,4,5].map(star => <Star key={star} className="w-3.5 h-3.5 fill-accent text-accent" />)}
                 </div>
               </motion.div>
             ))}
@@ -432,26 +481,26 @@ const Home = () => {
       </section>
 
       {/* Final Call to Action */}
-      <section className="py-16 sm:py-24 lg:py-32">
+      <section className="py-16 sm:py-24">
         <div className="container mx-auto px-4 lg:px-8">
-          <div className="relative bg-primary rounded-[2rem] sm:rounded-[3rem] lg:rounded-[4rem] p-6 sm:p-16 lg:p-32 text-center text-white overflow-hidden shadow-[0_50px_100px_-20px_rgba(15,23,42,0.5)]">
+          <div className="relative bg-primary rounded-[2rem] sm:rounded-[3rem] lg:rounded-[4rem] p-6 sm:p-12 lg:p-20 text-center text-slate-100 overflow-hidden shadow-[0_50px_100px_-20px_rgba(15,23,42,0.5)]">
             <div className="absolute inset-0 mesh-gradient opacity-60"></div>
-            <div className="relative z-10 max-w-4xl mx-auto space-y-8 sm:space-y-12">
-              <h2 className="text-3xl sm:text-5xl lg:text-8xl font-black tracking-tighter leading-none text-white">
+            <div className="relative z-10 max-w-3xl mx-auto space-y-6 sm:space-y-8">
+              <h2 className="text-2xl sm:text-3xl lg:text-5xl font-black tracking-tighter leading-tight text-[#b9c9d6]">
                 Build Your <span className="text-accent">Empire</span> <br />
                 With Confidence
               </h2>
-              <p className="text-lg sm:text-2xl text-white/70 font-medium">
+              <p className="text-sm sm:text-lg text-slate-300 font-medium">
                 Join the elite circle of 5,000+ businesses powered by Fortune Multi Services.
               </p>
-              <div className="flex flex-col sm:flex-row justify-center gap-4 sm:gap-8">
-                <Link to="/contact" className="btn-accent px-8 sm:px-16 py-4 sm:py-6 text-base sm:text-xl shadow-glow">
+              <div className="flex flex-col sm:flex-row justify-center gap-4 sm:gap-6">
+                <Link to="/contact" className="btn-accent px-6 sm:px-10 py-3 sm:py-4 text-sm sm:text-base shadow-glow">
                   Initialize Setup
-                  <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6 ml-2" />
+                  <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 ml-2" />
                 </Link>
                 <a 
                   href="https://wa.me/918919051513" 
-                  className="px-8 sm:px-16 py-4 sm:py-6 rounded-2xl bg-white/10 backdrop-blur-md border border-white/10 font-bold text-white hover:bg-white/20 transition-all text-base sm:text-xl text-center"
+                  className="px-6 sm:px-10 py-3 sm:py-4 rounded-2xl bg-white/5 backdrop-blur-md border border-white/10 font-bold text-slate-100 hover:bg-white/10 transition-all text-sm sm:text-base text-center"
                 >
                   Priority Concierge
                 </a>

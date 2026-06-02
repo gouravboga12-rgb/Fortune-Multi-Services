@@ -1,5 +1,52 @@
 import { Shield, Target, Award, TrendingUp, Heart, Clock, ShieldCheck, FileText, Briefcase, DollarSign, MapPin, Users, Coins } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { useState, useEffect, useRef } from 'react';
+import { motion, useInView } from 'framer-motion';
+
+const Counter = ({ value, duration = 1.5 }: { value: string; duration?: number }) => {
+  const [count, setCount] = useState(0);
+  const ref = useRef<HTMLSpanElement>(null);
+  const isInView = useInView(ref, { once: true, margin: "-50px 0px" });
+
+  useEffect(() => {
+    if (!isInView) return;
+
+    const numericString = value.replace(/[,%+]/g, '');
+    const target = parseInt(numericString, 10);
+    if (isNaN(target)) return;
+
+    let start = 0;
+    const end = target;
+    const startTime = performance.now();
+    const totalMs = duration * 1000;
+
+    let animationFrameId: number;
+
+    const updateCount = (currentTime: number) => {
+      const elapsed = currentTime - startTime;
+      if (elapsed >= totalMs) {
+        setCount(end);
+      } else {
+        const progress = elapsed / totalMs;
+        const easeOutQuad = progress * (2 - progress);
+        setCount(Math.floor(start + (end - start) * easeOutQuad));
+        animationFrameId = requestAnimationFrame(updateCount);
+      }
+    };
+
+    animationFrameId = requestAnimationFrame(updateCount);
+
+    return () => cancelAnimationFrame(animationFrameId);
+  }, [value, duration, isInView]);
+
+  const formatNumber = (num: number) => {
+    const formatted = num.toLocaleString('en-IN');
+    if (value.includes('+')) return `${formatted}+`;
+    if (value.includes('%')) return `${formatted}%`;
+    return formatted;
+  };
+
+  return <span ref={ref}>{formatNumber(count)}</span>;
+};
 
 const About = () => {
   return (
@@ -16,7 +63,7 @@ const About = () => {
             <span className="text-accent uppercase tracking-widest font-black text-xs sm:text-sm px-4 py-2 bg-accent/10 rounded-full border border-accent/20">
               About Us
             </span>
-            <h1 className="text-3xl sm:text-4xl lg:text-6xl font-black text-white leading-tight tracking-tighter">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-[#b9c9d6] leading-tight tracking-tighter">
               Who we are and what <span className="text-accent">We can do</span> for your Business?
             </h1>
             <p className="text-sm sm:text-lg md:text-xl text-white/80 font-medium leading-relaxed max-w-3xl mx-auto">
@@ -34,7 +81,7 @@ const About = () => {
               <span className="px-3 py-1 bg-accent/10 rounded-full">Make a massive Progress</span>
               <span className="px-3 py-1 bg-green-500/10 text-green-600 rounded-full">Safe investment</span>
             </div>
-            <h2 className="text-2xl sm:text-3xl lg:text-5xl font-black text-white tracking-tight">
+            <h2 className="text-2.5xl sm:text-3.5xl lg:text-4xl font-black text-[#b9c9d6] tracking-tight">
               Get Your Business Registrations &amp; Licenses
             </h2>
             <p className="text-sm sm:text-lg text-dark-gray font-medium opacity-65">
@@ -103,7 +150,7 @@ const About = () => {
               <span className="text-accent uppercase tracking-widest font-black text-xs">
                 Seven Years of Trust
               </span>
-              <h2 className="text-2xl sm:text-3xl lg:text-5xl font-black tracking-tight leading-tight text-white">
+              <h2 className="text-2.5xl sm:text-3.5xl lg:text-4xl font-black tracking-tight leading-tight text-[#b9c9d6]">
                 We have Over <span className="text-accent">Seven years</span> of Experience
               </h2>
               <div className="w-20 h-1 bg-accent rounded-full"></div>
@@ -134,7 +181,7 @@ const About = () => {
             <span className="text-accent uppercase tracking-widest font-black text-xs">
               Milestones
             </span>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-white tracking-tight">
+            <h2 className="text-2.5xl sm:text-3.5xl lg:text-4xl font-black text-[#b9c9d6] tracking-tight">
               Track Record of Business Excellence
             </h2>
             <div className="w-20 h-1 bg-accent mx-auto rounded-full"></div>
@@ -162,8 +209,8 @@ const About = () => {
                 <div className="p-2 sm:p-3 bg-primary/50 rounded-xl sm:rounded-2xl border border-white/10 text-accent mb-2 sm:mb-4 group-hover:scale-110 transition-transform">
                   <stat.icon className="w-5 h-5 sm:w-6 sm:h-6" />
                 </div>
-                <div className="text-2xl sm:text-3xl lg:text-4xl font-black text-white tracking-tighter mb-1 sm:mb-2">
-                  {stat.val}
+                <div className="text-2xl sm:text-3xl lg:text-4xl font-black text-[#b9c9d6] tracking-tight mb-1 sm:mb-2">
+                  <Counter value={stat.val} />
                 </div>
                 <div className="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-dark-gray opacity-80">
                   {stat.label}
@@ -189,7 +236,7 @@ const About = () => {
                 <span className="text-accent uppercase tracking-widest font-black text-xs px-4 py-2 bg-accent/10 rounded-full border border-accent/20">
                   India's largest financial services
                 </span>
-                <h2 className="text-2xl sm:text-4xl lg:text-5xl font-black text-white leading-tight tracking-tight">
+                <h2 className="text-2.5xl sm:text-3.5xl lg:text-4xl font-black text-[#b9c9d6] leading-tight tracking-tight">
                   <span className="text-accent">Fortune Multi Services</span>
                 </h2>
                 <div className="w-20 h-1 bg-accent rounded-full"></div>
@@ -209,7 +256,7 @@ const About = () => {
                   { title: 'Happy clients', val: '1200+' },
                 ].map((stat, idx) => (
                   <div key={idx} className="p-4 sm:p-6 bg-secondary rounded-xl sm:rounded-2xl border border-light-gray flex flex-col">
-                    <span className="text-xl sm:text-2xl font-black text-white tracking-tight mb-1">{stat.val}</span>
+                    <span className="text-xl sm:text-2xl font-black text-[#b9c9d6] tracking-tight mb-1">{stat.val}</span>
                     <span className="text-[10px] sm:text-xs font-bold uppercase tracking-wide text-dark-gray opacity-70">{stat.title}</span>
                   </div>
                 ))}
@@ -227,7 +274,7 @@ const About = () => {
                 <span className="text-accent uppercase tracking-widest font-black text-xs">
                   Trusted Partners
                 </span>
-                <h3 className="text-2xl sm:text-3xl font-black tracking-tight leading-tight text-white">
+                <h3 className="text-xl sm:text-2.5xl font-black tracking-tight leading-tight text-[#b9c9d6]">
                   200+ brands. <br />700+ businesses. <br />20+ experts.
                 </h3>
               </div>
@@ -247,7 +294,7 @@ const About = () => {
             <span className="text-accent uppercase tracking-widest font-black text-xs">
               Platform Features
             </span>
-            <h2 className="text-2xl sm:text-3xl lg:text-5xl font-black text-white tracking-tight">
+            <h2 className="text-2.5xl sm:text-3.5xl lg:text-4xl font-black text-[#b9c9d6] tracking-tight">
               Our Core Services &amp; Filings
             </h2>
             <div className="w-20 h-1 bg-accent mx-auto rounded-full"></div>
@@ -297,7 +344,7 @@ const About = () => {
                 <div className="w-10 h-10 sm:w-12 sm:h-12 bg-accent/10 rounded-xl sm:rounded-2xl flex items-center justify-center mb-4 sm:mb-6 group-hover:bg-accent group-hover:scale-110 transition-all duration-500">
                   <srv.icon className="w-5 h-5 sm:w-6 sm:h-6 text-accent group-hover:text-white" />
                 </div>
-                <h4 className="text-lg sm:text-2xl font-black text-white mb-2 sm:mb-3 tracking-tight">{srv.title}</h4>
+                <h4 className="text-base sm:text-xl font-black text-[#b9c9d6] mb-2 sm:mb-3 tracking-tight">{srv.title}</h4>
                 <p className="text-dark-gray font-medium text-xs sm:text-sm leading-relaxed opacity-75">{srv.desc}</p>
               </motion.div>
             ))}

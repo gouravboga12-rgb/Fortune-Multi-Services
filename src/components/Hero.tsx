@@ -118,10 +118,10 @@ const Hero = () => {
               </motion.div>
 
               {/* Heading */}
-              <h1 className="text-[2.75rem] sm:text-5xl lg:text-8xl font-black leading-[1.05] tracking-tighter overflow-visible">
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black leading-[1.05] tracking-tighter overflow-visible">
                 <span className="block pb-2 pr-6 overflow-visible">
                   <span
-                    className="italic"
+                    className=""
                     style={{
                       display: 'inline-block',
                       paddingRight: '0.18em',
@@ -181,12 +181,12 @@ const Hero = () => {
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 2.2, duration: 0.8, ease: "easeOut" }}
-                className="text-sm sm:text-lg lg:text-xl text-white/70 max-w-xl leading-relaxed font-medium"
+                className="text-xs sm:text-base lg:text-lg text-slate-300 max-w-xl leading-relaxed font-medium"
               >
                 Elevate your business with elite compliance solutions. From{' '}
-                <span className="text-white font-bold underline decoration-accent underline-offset-4">Startup Registrations</span>{' '}
+                <span className="text-slate-100 font-bold underline decoration-accent underline-offset-4">Startup Registrations</span>{' '}
                 to{' '}
-                <span className="text-white font-bold underline decoration-accent underline-offset-4">Global Trademarks</span>.
+                <span className="text-slate-100 font-bold underline decoration-accent underline-offset-4">Global Trademarks</span>.
               </motion.p>
 
               {/* CTA Buttons */}
@@ -198,7 +198,7 @@ const Hero = () => {
               >
                 <Link
                   to="/contact"
-                  className="btn-accent px-7 py-4 text-sm sm:text-base shadow-glow text-center"
+                  className="btn-accent px-6 py-3.5 text-xs sm:text-sm shadow-glow text-center"
                 >
                   Start My Business
                   <ArrowRight className="w-4 h-4" />
@@ -207,7 +207,7 @@ const Hero = () => {
                   href="https://wa.me/918919051513"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-2 px-7 py-4 rounded-xl bg-white/5 backdrop-blur-xl border border-white/10 font-bold text-white hover:bg-white/10 transition-all text-sm sm:text-base"
+                  className="flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-white/5 backdrop-blur-xl border border-white/10 font-bold text-slate-100 hover:bg-white/10 transition-all text-xs sm:text-sm"
                 >
                   <MessageSquare className="w-4 h-4 sm:w-5 sm:h-5 text-green-400" />
                   Expert Consultation
@@ -236,9 +236,9 @@ const Hero = () => {
                     {[1, 2, 3, 4, 5].map((s) => (
                       <Star key={s} className="w-3 h-3 sm:w-3.5 sm:h-3.5 fill-accent text-accent" />
                     ))}
-                    <span className="text-white font-bold ml-1.5 text-xs sm:text-sm">4.9/5</span>
+                    <span className="text-slate-100 font-bold ml-1.5 text-xs sm:text-sm">4.9/5</span>
                   </div>
-                  <p className="text-white/50 text-xs font-medium">Trusted by 5,000+ Entrepreneurs</p>
+                  <p className="text-slate-400 text-xs font-medium">Trusted by 5,000+ Entrepreneurs</p>
                 </div>
               </motion.div>
 

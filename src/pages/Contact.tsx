@@ -65,7 +65,7 @@ const Contact = () => {
       bg: 'bg-accent/10',
       label: 'Call Us',
       sub: 'Mon–Sat, 9am–7pm',
-      action: <a href="tel:+918919051513" className="text-white font-black text-base hover:text-accent hover:underline">+91 89190 51513</a>
+      action: <a href="tel:+918919051513" className="text-[#b9c9d6] font-black text-base hover:text-accent hover:underline">+91 89190 51513</a>
     },
     {
       icon: <MessageSquare className="w-5 h-5 text-green-400" />,
@@ -86,7 +86,7 @@ const Contact = () => {
       bg: 'bg-purple-500/10',
       label: 'Working Hours',
       sub: 'Sunday Closed',
-      action: <span className="text-white font-black text-sm">Mon–Sat 9:00 AM – 7:00 PM</span>
+      action: <span className="text-[#b9c9d6] font-black text-sm">Mon–Sat 9:00 AM – 7:00 PM</span>
     },
   ];
 
@@ -105,7 +105,7 @@ const Contact = () => {
             <span className="inline-block px-3 py-1 rounded-full bg-accent/20 border border-accent/30 text-accent text-[10px] font-black uppercase tracking-widest mb-4">
               Get in Touch
             </span>
-            <h1 className="text-3xl sm:text-5xl lg:text-7xl font-black text-white leading-tight tracking-tighter mb-4">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-[#b9c9d6] leading-tight tracking-tighter mb-4">
               Let's Build Your<br className="hidden sm:block" /> Business Together
             </h1>
             <p className="text-sm sm:text-lg text-white/60 font-medium max-w-xl mx-auto leading-relaxed">
@@ -130,7 +130,7 @@ const Contact = () => {
                 {card.icon}
               </div>
               <div>
-                <h3 className="text-sm font-black text-white mb-0.5">{card.label}</h3>
+                <h3 className="text-sm font-black text-[#b9c9d6] mb-0.5">{card.label}</h3>
                 <p className="text-[11px] text-gray-400 font-medium mb-2">{card.sub}</p>
                 {card.action}
               </div>
@@ -150,7 +150,7 @@ const Contact = () => {
             transition={{ duration: 0.5 }}
             className="lg:col-span-3 glass-card bg-secondary p-6 sm:p-10 rounded-2xl border border-light-gray shadow-premium"
           >
-            <h2 className="text-2xl sm:text-3xl font-black text-white mb-1">Send an Inquiry</h2>
+            <h2 className="text-2xl sm:text-3xl font-black text-[#b9c9d6] mb-1">Send an Inquiry</h2>
             <p className="text-sm text-dark-gray/60 mb-6 sm:mb-8">Fill in the details below and we'll get back to you over WhatsApp instantly.</p>
 
             {submitted ? (
@@ -269,18 +269,25 @@ const Contact = () => {
           >
             {/* Office Card */}
             <div className="glass-card bg-secondary p-6 rounded-2xl border border-light-gray shadow-premium">
-              <h2 className="text-lg sm:text-xl font-black text-white mb-4 flex items-center gap-2">
+              <h2 className="text-lg sm:text-xl font-black text-[#b9c9d6] mb-4 flex items-center gap-2">
                 <MapPin className="w-5 h-5 text-accent" />
                 Visit Our Office
               </h2>
               <p className="text-sm text-dark-gray leading-relaxed mb-5">
-                Plot no 178 &amp; 179, Flat No 303, Damarhu Construction,<br />
-                Mahadevpuram Colony, Usha Mullapudi Rd,<br />
-                Kukatpally, Hyderabad, Telangana 500072
+                <a 
+                  href="https://maps.app.goo.gl/1b7QKTcuvudJYtde9" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="hover:text-accent transition-colors"
+                >
+                  Plot no 178 &amp; 179, Flat No 302, Damarhu Construction,<br />
+                  Mahadevpuram Colony, Usha Mullapudi Rd,<br />
+                  Kukatpally, Hyderabad, Telangana 500072
+                </a>
               </p>
               <div className="pt-4 border-t border-light-gray space-y-2">
                 <p className="text-[10px] font-black text-dark-gray/60 uppercase tracking-widest">Working Hours</p>
-                <div className="flex justify-between text-sm font-bold text-white">
+                <div className="flex justify-between text-sm font-bold text-[#b9c9d6]">
                   <span>Monday – Saturday</span>
                   <span className="text-accent">9:00 AM – 7:00 PM</span>
                 </div>
@@ -294,7 +301,7 @@ const Contact = () => {
             {/* Map */}
             <div className="rounded-2xl overflow-hidden border border-light-gray shadow-premium h-[260px] sm:h-[340px] lg:flex-1">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3805.2952875150534!2d78.39763787595707!3d17.493393083411476!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb91f5f5f5f5f5%3A0x1234567890abcdef!2sKukatpally%2C%20Hyderabad%2C%20Telangana%20500072!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3805.0084478144067!2d78.41208927595738!3d17.51496808340003!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb91068e893495%3A0x697c51fd0d361d14!2sFortune%20Multi%20Services!5e0!3m2!1sen!2sin!4v1717325600000!5m2!1sen!2sin"
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}

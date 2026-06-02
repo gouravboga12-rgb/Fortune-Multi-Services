@@ -42,7 +42,7 @@ const AdminDashboard = () => {
           <div className="w-10 h-10 bg-accent rounded-lg flex items-center justify-center">
             <LayoutDashboard className="w-6 h-6 text-secondary" />
           </div>
-          <span className="text-xl font-bold">Admin Panel</span>
+          <span className="text-xl font-bold text-[#b9c9d6]">Admin Panel</span>
         </div>
 
         <nav className="space-y-2 flex-grow">
@@ -76,8 +76,8 @@ const AdminDashboard = () => {
       <main className="flex-grow p-6 lg:p-12 overflow-x-hidden">
         <header className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-12">
           <div>
-            <h1 className="text-3xl font-bold text-secondary">Dashboard</h1>
-            <p className="text-gray-500 text-sm">Welcome back! Here's what's happening today.</p>
+            <h1 className="text-3xl font-bold text-[#b9c9d6]">Dashboard</h1>
+            <p className="text-dark-gray text-sm">Welcome back! Here's what's happening today.</p>
           </div>
           <div className="relative w-full md:w-64">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
@@ -94,33 +94,33 @@ const AdminDashboard = () => {
         {activeTab === 'inquiries' && (
           <div data-aos="fade-up">
             <div className="flex justify-between items-center mb-6">
-              <h2 className="text-xl font-bold text-secondary">Recent Inquiries</h2>
-              <span className="px-3 py-1 bg-blue-50 text-primary text-xs font-bold rounded-full">
+              <h2 className="text-xl font-bold text-[#b9c9d6]">Recent Inquiries</h2>
+              <span className="px-3 py-1 bg-accent/10 text-accent text-xs font-bold rounded-full">
                 {inquiries.length} Total
               </span>
             </div>
 
-            <div className="bg-white rounded-2xl border border-light-gray shadow-sm overflow-hidden">
+            <div className="bg-secondary rounded-2xl border border-light-gray shadow-premium overflow-hidden">
               <div className="overflow-x-auto">
                 <table className="w-full text-left border-collapse">
                   <thead>
-                    <tr className="bg-gray-50 border-b border-light-gray">
-                      <th className="px-6 py-4 text-xs font-bold text-gray-500 uppercase tracking-wider">Client</th>
-                      <th className="px-6 py-4 text-xs font-bold text-gray-500 uppercase tracking-wider">Service</th>
-                      <th className="px-6 py-4 text-xs font-bold text-gray-500 uppercase tracking-wider">Payment Status</th>
-                      <th className="px-6 py-4 text-xs font-bold text-gray-500 uppercase tracking-wider">Date</th>
-                      <th className="px-6 py-4 text-xs font-bold text-gray-500 uppercase tracking-wider">Actions</th>
+                    <tr className="bg-primary/50 border-b border-light-gray">
+                      <th className="px-6 py-4 text-xs font-bold text-dark-gray uppercase tracking-wider">Client</th>
+                      <th className="px-6 py-4 text-xs font-bold text-dark-gray uppercase tracking-wider">Service</th>
+                      <th className="px-6 py-4 text-xs font-bold text-dark-gray uppercase tracking-wider">Payment Status</th>
+                      <th className="px-6 py-4 text-xs font-bold text-dark-gray uppercase tracking-wider">Date</th>
+                      <th className="px-6 py-4 text-xs font-bold text-dark-gray uppercase tracking-wider">Actions</th>
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-light-gray">
                     {filteredInquiries.length > 0 ? filteredInquiries.map((inquiry) => (
-                      <tr key={inquiry.id} className="hover:bg-gray-50 transition-colors group">
+                      <tr key={inquiry.id} className="hover:bg-primary/30 border-b border-light-gray/30 transition-colors group">
                         <td className="px-6 py-4">
-                          <div className="font-bold text-secondary">{inquiry.name}</div>
-                          <div className="text-xs text-gray-500">{inquiry.phone}</div>
-                          <div className="text-xs text-gray-400">{inquiry.email}</div>
+                          <div className="font-bold text-[#b9c9d6]">{inquiry.name}</div>
+                          <div className="text-xs text-dark-gray">{inquiry.phone}</div>
+                          <div className="text-xs text-dark-gray/60">{inquiry.email}</div>
                           {inquiry.companyName && (
-                            <div className="text-xs text-primary/40 font-semibold mt-1">Company: {inquiry.companyName}</div>
+                            <div className="text-xs text-accent/80 font-semibold mt-1">Company: {inquiry.companyName}</div>
                           )}
                         </td>
                         <td className="px-6 py-4">
@@ -142,22 +142,22 @@ const AdminDashboard = () => {
                             </span>
                           )}
                         </td>
-                        <td className="px-6 py-4 text-xs text-gray-500 flex items-center gap-2 mt-4 lg:mt-0">
-                          <Calendar className="w-3 h-3" />
+                        <td className="px-6 py-4 text-xs text-dark-gray flex items-center gap-2 mt-4 lg:mt-0">
+                          <Calendar className="w-3 h-3 text-accent" />
                           {new Date(inquiry.date).toLocaleDateString()}
                         </td>
                         <td className="px-6 py-4">
                           <div className="flex gap-2">
                             <button 
                               onClick={() => window.open(`https://wa.me/${inquiry.phone.replace(/[^0-9]/g, '')}`, '_blank')}
-                              className="p-2 text-green-600 hover:bg-green-50 rounded-lg transition-colors"
+                              className="p-2 text-green-400 hover:bg-green-500/10 rounded-lg transition-colors"
                               title="Contact on WhatsApp"
                             >
                               <ExternalLink className="w-4 h-4" />
                             </button>
                             <button 
                               onClick={() => deleteInquiry(inquiry.id)}
-                              className="p-2 text-red-500 hover:bg-red-50 rounded-lg transition-colors"
+                              className="p-2 text-red-400 hover:bg-red-500/10 rounded-lg transition-colors"
                               title="Delete Inquiry"
                             >
                               <Trash2 className="w-4 h-4" />
@@ -183,10 +183,10 @@ const AdminDashboard = () => {
         )}
 
         {activeTab !== 'inquiries' && (
-          <div className="flex flex-col items-center justify-center py-20 bg-white rounded-3xl border border-light-gray border-dashed" data-aos="fade-up">
-            <LayoutDashboard className="w-16 h-16 text-gray-200 mb-4" />
-            <h3 className="text-xl font-bold text-secondary mb-2">Content Management</h3>
-            <p className="text-gray-500 max-w-sm text-center">
+          <div className="flex flex-col items-center justify-center py-20 bg-secondary rounded-3xl border border-light-gray border-dashed" data-aos="fade-up">
+            <LayoutDashboard className="w-16 h-16 text-white/10 mb-4" />
+            <h3 className="text-xl font-bold text-[#b9c9d6] mb-2">Content Management</h3>
+            <p className="text-dark-gray max-w-sm text-center">
               This feature is coming soon! You will be able to edit services, testimonials, and FAQs directly from here.
             </p>
           </div>

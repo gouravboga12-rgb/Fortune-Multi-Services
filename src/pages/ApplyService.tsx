@@ -59,7 +59,7 @@ const ApplyService = () => {
   if (!category || !service) {
     return (
       <div className="pt-40 pb-20 text-center">
-        <h1 className="text-4xl font-black text-white mb-4">Service Not Found</h1>
+        <h1 className="text-4xl font-black text-[#b9c9d6] mb-4">Service Not Found</h1>
         <Link to="/" className="text-accent font-bold hover:underline">Return to Home</Link>
       </div>
     );
@@ -138,7 +138,7 @@ const ApplyService = () => {
           <ChevronRight className="w-3.5 h-3.5" />
           <Link to={`/services/${category.slug}/${service.slug}`} className="hover:text-accent transition-colors">{service.name}</Link>
           <ChevronRight className="w-3.5 h-3.5" />
-          <span className="text-white font-black">Application & Checkout</span>
+          <span className="text-[#b9c9d6] font-black">Application & Checkout</span>
         </div>
 
         {!isSuccess ? (
@@ -151,7 +151,7 @@ const ApplyService = () => {
                     <ShieldCheck className="w-3.5 h-3.5" />
                     Instant Secure Gateway
                   </div>
-                  <h1 className="text-3xl lg:text-4xl font-black text-white mb-2">
+                  <h1 className="text-3xl lg:text-4xl font-black text-[#b9c9d6] mb-2">
                     Initialize Setup: <span className="text-accent font-medium italic">{service.name}</span>
                   </h1>
                   <p className="text-sm text-dark-gray/60 font-medium">
@@ -252,7 +252,7 @@ const ApplyService = () => {
             <div className="space-y-8">
               <div className="bg-primary rounded-3xl p-8 lg:p-10 text-white border border-white/5 shadow-2xl space-y-8">
                 <div>
-                  <h3 className="text-xl font-black mb-1">Application Summary</h3>
+                  <h3 className="text-xl font-black text-[#b9c9d6] mb-1">Application Summary</h3>
                   <div className="w-12 h-0.5 bg-accent rounded-full"></div>
                 </div>
 
@@ -327,7 +327,7 @@ const ApplyService = () => {
               <span className="px-4 py-1.5 rounded-full bg-green-500/10 text-green-400 text-xs font-black uppercase tracking-wider">
                 Booking Payment Success
               </span>
-              <h1 className="text-4xl font-black text-white">₹199 Paid Successfully</h1>
+              <h1 className="text-4xl font-black text-[#b9c9d6]">₹199 Paid Successfully</h1>
               <p className="text-dark-gray/60 font-medium text-sm max-w-md mx-auto">
                 Thank you, <span className="font-bold text-white">{formData.name}</span>! Your setup fee for <span className="font-bold text-white">{service.name}</span> has been processed via Razorpay.
               </p>
@@ -340,7 +340,7 @@ const ApplyService = () => {
               <div className="flex justify-between items-center pb-4 border-b border-light-gray">
                 <div>
                   <h4 className="text-xs text-dark-gray/40 font-bold uppercase tracking-wider">Service Ordered</h4>
-                  <p className="font-bold text-white text-base mt-0.5">{service.name}</p>
+                  <p className="font-bold text-[#b9c9d6] text-base mt-0.5">{service.name}</p>
                 </div>
                 <div className="text-right">
                   <h4 className="text-xs text-dark-gray/40 font-bold uppercase tracking-wider">Amount Paid</h4>
@@ -351,15 +351,15 @@ const ApplyService = () => {
               <div className="grid grid-cols-2 gap-y-4 gap-x-6 text-sm">
                 <div>
                   <span className="text-xs text-dark-gray/40 font-bold uppercase tracking-wider block">Transaction ID</span>
-                  <span className="font-mono font-bold text-white uppercase">{paymentId}</span>
+                  <span className="font-mono font-bold text-[#b9c9d6] uppercase">{paymentId}</span>
                 </div>
                 <div>
                   <span className="text-xs text-dark-gray/40 font-bold uppercase tracking-wider block">Payment Mode</span>
-                  <span className="font-bold text-white">Razorpay Standard Secure</span>
+                  <span className="font-bold text-[#b9c9d6]">Razorpay Standard Secure</span>
                 </div>
                 <div>
                   <span className="text-xs text-dark-gray/40 font-bold uppercase tracking-wider block">Receipt Timestamp</span>
-                  <span className="font-bold text-white">{new Date().toLocaleString()}</span>
+                  <span className="font-bold text-[#b9c9d6]">{new Date().toLocaleString()}</span>
                 </div>
                 <div>
                   <span className="text-xs text-dark-gray/40 font-bold uppercase tracking-wider block">Status</span>
@@ -416,7 +416,7 @@ const ApplyService = () => {
                     R
                   </div>
                   <div>
-                    <h3 className="font-bold text-sm tracking-tight text-white/90">Fortune Multi Services</h3>
+                    <h3 className="font-bold text-sm tracking-tight text-[#b9c9d6]/90">Fortune Multi Services</h3>
                     <p className="text-[10px] text-white/50 font-bold uppercase tracking-wider">{service.name}</p>
                   </div>
                 </div>
@@ -443,7 +443,7 @@ const ApplyService = () => {
                             <QrCode className="w-5 h-5 text-accent" />
                           </div>
                           <div className="text-left">
-                            <h4 className="font-bold text-white text-sm">UPI (Google Pay, PhonePe, BHIM)</h4>
+                            <h4 className="font-bold text-[#b9c9d6] text-sm">UPI (Google Pay, PhonePe, BHIM)</h4>
                             <p className="text-[10px] text-dark-gray/50 font-semibold mt-0.5">Instant pay using UPI Apps or Scan QR</p>
                           </div>
                         </div>
@@ -459,7 +459,7 @@ const ApplyService = () => {
                             <CreditCard className="w-5 h-5 text-accent" />
                           </div>
                           <div className="text-left">
-                            <h4 className="font-bold text-white text-sm">Card (Credit/Debit/ATM)</h4>
+                            <h4 className="font-bold text-[#b9c9d6] text-sm">Card (Credit/Debit/ATM)</h4>
                             <p className="text-[10px] text-dark-gray/50 font-semibold mt-0.5">Visa, Mastercard, RuPay, Maestro</p>
                           </div>
                         </div>
@@ -475,7 +475,7 @@ const ApplyService = () => {
                             <Landmark className="w-5 h-5 text-accent" />
                           </div>
                           <div className="text-left">
-                            <h4 className="font-bold text-white text-sm">Net Banking</h4>
+                            <h4 className="font-bold text-[#b9c9d6] text-sm">Net Banking</h4>
                             <p className="text-[10px] text-dark-gray/50 font-semibold mt-0.5">All major Indian banks available</p>
                           </div>
                         </div>
@@ -633,7 +633,7 @@ const ApplyService = () => {
                             <button 
                               key={bank}
                               onClick={handlePaymentSuccess}
-                              className="p-3 text-xs font-bold border border-light-gray rounded-xl hover:border-accent hover:bg-primary transition-colors text-center text-white"
+                              className="p-3 text-xs font-bold border border-light-gray rounded-xl hover:border-accent hover:bg-primary transition-colors text-center text-[#b9c9d6]"
                             >
                               {bank}
                             </button>

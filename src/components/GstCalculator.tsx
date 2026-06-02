@@ -52,7 +52,7 @@ const GstCalculator = () => {
         <div className="max-w-5xl mx-auto">
           {/* Header */}
           <div className="text-center space-y-4 mb-12 sm:mb-16 max-w-2xl mx-auto">
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white leading-tight tracking-tight">
+            <h2 className="text-3xl sm:text-4xl lg:text-4xl font-black text-[#b9c9d6] leading-tight tracking-tight">
               GST <span className="text-accent">Calculator</span>
             </h2>
             <div className="w-16 h-1 bg-accent mx-auto rounded-full" />
@@ -202,7 +202,7 @@ const GstCalculator = () => {
               <div className="pt-6 border-t border-white/10 space-y-4 relative z-10">
                 <div className="flex justify-between items-end">
                   <span className="text-xs font-bold text-white/60 uppercase tracking-widest pb-1">Gross Total:</span>
-                  <span className="text-3xl font-black tracking-tight text-white">{formatCurrency(gstResults.totalAmount)}</span>
+                  <span className="text-3xl font-black tracking-tight text-[#b9c9d6]">{formatCurrency(gstResults.totalAmount)}</span>
                 </div>
               </div>
             </div>

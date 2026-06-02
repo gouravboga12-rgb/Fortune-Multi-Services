@@ -138,7 +138,7 @@ const WebServices = () => {
             <span className="inline-block px-4 py-1.5 rounded-full bg-accent/20 border border-accent/30 text-accent text-[10px] sm:text-xs font-black uppercase tracking-[0.2em]">
               Web Development Services
             </span>
-            <h1 className="text-3xl sm:text-5xl lg:text-7xl font-black text-white leading-tight tracking-tighter">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-[#b9c9d6] leading-tight tracking-tighter">
               Full-Cycle Web Development<br className="hidden sm:block" />
               <span className="text-accent"> From Concept to Deployment</span>
             </h1>
@@ -149,7 +149,7 @@ const WebServices = () => {
               <Link to="/contact" className="btn-accent px-8 py-4 text-sm sm:text-base flex items-center justify-center gap-2">
                 Start Your Project <ArrowRight className="w-4 h-4" />
               </Link>
-              <a href="#solutions" className="px-8 py-4 rounded-xl border border-white/20 text-white text-sm font-bold hover:bg-white/10 transition-all">
+              <a href="#solutions" className="px-8 py-4 rounded-xl border border-white/20 text-[#b9c9d6] text-sm font-bold hover:bg-white/10 transition-all">
                 Explore Solutions
               </a>
             </div>
@@ -167,7 +167,7 @@ const WebServices = () => {
             className="text-center max-w-2xl mx-auto mb-10 sm:mb-16 space-y-3"
           >
             <span className="text-accent uppercase tracking-widest font-black text-xs">Our Offerings</span>
-            <h2 className="text-2xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight">Our Web Solutions</h2>
+            <h2 className="text-2.5xl sm:text-3.5xl lg:text-4xl font-black text-[#b9c9d6] tracking-tight">Our Web Solutions</h2>
             <div className="w-20 h-1 bg-accent mx-auto rounded-full"></div>
           </motion.div>
 
@@ -188,7 +188,7 @@ const WebServices = () => {
                   <s.icon className="w-6 h-6" />
                 </div>
                 <div>
-                  <h3 className="text-lg sm:text-xl font-black text-white mb-2">{s.title}</h3>
+                  <h3 className="text-lg sm:text-xl font-black text-[#b9c9d6] mb-2">{s.title}</h3>
                   <p className="text-sm text-dark-gray font-medium leading-relaxed opacity-75">{s.desc}</p>
                 </div>
               </motion.div>
@@ -208,7 +208,7 @@ const WebServices = () => {
             className="text-center max-w-2xl mx-auto mb-10 sm:mb-16 space-y-3"
           >
             <span className="text-accent uppercase tracking-widest font-black text-xs">How We Work</span>
-            <h2 className="text-2xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight">Our Simple Process</h2>
+            <h2 className="text-2.5xl sm:text-3.5xl lg:text-4xl font-black text-[#b9c9d6] tracking-tight">Our Simple Process</h2>
             <div className="w-20 h-1 bg-accent mx-auto rounded-full"></div>
           </motion.div>
 
@@ -230,7 +230,7 @@ const WebServices = () => {
                     {i + 1}
                   </div>
                 </div>
-                <h3 className="text-sm sm:text-lg font-black text-white">{step.label}</h3>
+                <h3 className="text-sm sm:text-base font-black text-[#b9c9d6]">{step.label}</h3>
                 <p className="text-xs sm:text-sm text-white/50 font-medium leading-relaxed">{step.desc}</p>
               </motion.div>
             ))}
@@ -248,7 +248,7 @@ const WebServices = () => {
             className="text-center max-w-2xl mx-auto mb-10 sm:mb-16 space-y-3"
           >
             <span className="text-accent uppercase tracking-widest font-black text-xs">Built With The Best</span>
-            <h2 className="text-2xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight">Our Technology Stack</h2>
+            <h2 className="text-2.5xl sm:text-3.5xl lg:text-4xl font-black text-[#b9c9d6] tracking-tight">Our Technology Stack</h2>
             <div className="w-20 h-1 bg-accent mx-auto rounded-full"></div>
           </motion.div>
 
@@ -265,7 +265,7 @@ const WebServices = () => {
                 <div className={`w-10 h-10 rounded-xl flex items-center justify-center border mb-4 ${tech.color}`}>
                   <tech.icon className="w-5 h-5" />
                 </div>
-                <h3 className="text-sm font-black text-white uppercase tracking-wider mb-3">{tech.label}</h3>
+                <h3 className="text-sm font-black text-[#b9c9d6] uppercase tracking-wider mb-3">{tech.label}</h3>
                 <ul className="space-y-2">
                   {tech.items.map((item, j) => (
                     <li key={j} className="flex items-start gap-2 text-xs text-dark-gray font-medium">
@@ -290,7 +290,7 @@ const WebServices = () => {
             className="text-center max-w-2xl mx-auto mb-10 sm:mb-16 space-y-3"
           >
             <span className="text-accent uppercase tracking-widest font-black text-xs">End-to-End</span>
-            <h2 className="text-2xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight">Our Development Lifecycle</h2>
+            <h2 className="text-2.5xl sm:text-3.5xl lg:text-4xl font-black text-[#b9c9d6] tracking-tight">Our Development Lifecycle</h2>
             <div className="w-20 h-1 bg-accent mx-auto rounded-full"></div>
           </motion.div>
 
@@ -304,11 +304,11 @@ const WebServices = () => {
                 transition={{ delay: i * 0.1 }}
                 className="relative group"
               >
-                <div className="absolute -left-[35px] sm:-left-[51px] top-1 w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-secondary flex items-center justify-center text-white text-[10px] sm:text-xs font-black border-4 border-primary group-hover:bg-accent transition-colors shadow">
+                <div className="absolute -left-[35px] sm:-left-[51px] top-1 w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-secondary flex items-center justify-center text-[#b9c9d6] text-[10px] sm:text-xs font-black border-4 border-primary group-hover:bg-accent transition-colors shadow">
                   {phase.num}
                 </div>
                 <div className="glass-card p-5 sm:p-7 bg-secondary/80 group-hover:border-accent/30 group-hover:translate-x-1 transition-all">
-                  <h3 className="text-base sm:text-xl font-black text-white mb-1">{phase.title}</h3>
+                  <h3 className="text-base sm:text-xl font-black text-[#b9c9d6] mb-1">{phase.title}</h3>
                   <p className="text-xs sm:text-sm text-dark-gray font-medium opacity-75">{phase.desc}</p>
                 </div>
               </motion.div>
@@ -327,7 +327,7 @@ const WebServices = () => {
             className="text-center max-w-2xl mx-auto mb-10 sm:mb-16 space-y-3"
           >
             <span className="text-accent uppercase tracking-widest font-black text-xs">Go Live</span>
-            <h2 className="text-2xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight">Hosting &amp; Deployment Options</h2>
+            <h2 className="text-2.5xl sm:text-3.5xl lg:text-4xl font-black text-[#b9c9d6] tracking-tight">Hosting &amp; Deployment Options</h2>
             <div className="w-20 h-1 bg-accent mx-auto rounded-full"></div>
           </motion.div>
 
@@ -346,7 +346,7 @@ const WebServices = () => {
                 }`}
               >
                 <div className="flex items-center justify-between mb-4">
-                  <h3 className={`text-lg sm:text-xl font-black text-white`}>
+                  <h3 className={`text-lg sm:text-xl font-black text-[#b9c9d6]`}>
                     {plan.label}
                   </h3>
                   <span className={`text-[10px] font-black uppercase tracking-wider px-2.5 py-1 rounded-full ${plan.badgeColor}`}>
@@ -390,7 +390,7 @@ const WebServices = () => {
             viewport={{ once: true }}
             className="max-w-2xl mx-auto space-y-4 sm:space-y-6"
           >
-            <h2 className="text-2xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight">
+            <h2 className="text-2.5xl sm:text-3.5xl lg:text-4xl font-black text-[#b9c9d6] tracking-tight">
               Ready to Build Your <span className="text-accent">Digital Presence?</span>
             </h2>
             <p className="text-sm sm:text-lg text-white/60 font-medium">
@@ -404,7 +404,7 @@ const WebServices = () => {
                 href="https://wa.me/918919051513?text=Hi, I am interested in Web Development services."
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-8 py-4 rounded-xl border border-white/20 text-white text-sm font-bold hover:bg-white/10 transition-all flex items-center justify-center gap-2"
+                className="px-8 py-4 rounded-xl border border-white/20 text-[#b9c9d6] text-sm font-bold hover:bg-white/10 transition-all flex items-center justify-center gap-2"
               >
                 <Layers className="w-4 h-4 text-green-400" />
                 WhatsApp Us
