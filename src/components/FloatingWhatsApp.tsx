@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { Bot, X, Send, Sparkles, Phone, ArrowRight, MessageCircle, User, Mail, ArrowLeft, MessageSquare } from 'lucide-react';
+import { X, Send, Sparkles, Phone, ArrowRight, MessageCircle, User, Mail, ArrowLeft, MessageSquare } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { servicesData } from '../data/services';
