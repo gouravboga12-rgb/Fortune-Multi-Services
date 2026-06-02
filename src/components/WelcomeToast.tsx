@@ -27,7 +27,7 @@ const WelcomeToast = () => {
           animate={{ opacity: 1, y: 0, scale: 1 }}
           exit={{ opacity: 0, y: 20, scale: 0.9 }}
           transition={{ duration: 0.5, ease: 'easeOut' }}
-          className="fixed bottom-3 sm:bottom-6 left-3 right-3 md:left-auto md:right-8 md:w-[380px] z-40"
+          className="fixed bottom-24 sm:bottom-28 left-3 right-3 md:left-auto md:right-8 md:w-[380px] z-40"
         >
           <div className="bg-secondary backdrop-blur-md border border-accent/20 shadow-premium p-6 rounded-2xl relative overflow-hidden flex flex-col gap-5">
             {/* Ambient Background Glow */}

@@ -339,7 +339,7 @@ const Navbar = () => {
         )}
       >
         {/* Logo */}
-        <Link to="/" className="flex items-center shrink-0 mr-4 xl:mr-8 2xl:mr-12">
+        <Link to="/" className="flex items-center shrink-0 mr-3 xl:mr-4 2xl:mr-10">
           <img
             src="/logo.png"
             alt="Fortune Multi Services"
@@ -349,7 +349,7 @@ const Navbar = () => {
  
         {/* Desktop Navigation Links */}
         <div className="hidden xl:flex items-center flex-grow justify-center min-w-0">
-          <div className="flex items-center justify-center gap-0.5 xl:gap-1 2xl:gap-1.5">
+          <div className="flex items-center justify-center gap-0.5 xl:gap-0.5 2xl:gap-1">
             {navLinks.map((link) => (
               <div
                 key={link.name}
@@ -360,7 +360,7 @@ const Navbar = () => {
                 <Link
                   to={link.path}
                   className={cn(
-                    'px-1 xl:px-1.5 2xl:px-2.5 py-4 text-xs xl:text-[11.5px] 2xl:text-[13px] font-semibold tracking-normal transition-all duration-300 flex items-center gap-0.5 whitespace-nowrap',
+                    'px-1 xl:px-1 2xl:px-2 py-4 text-xs xl:text-[10px] 2xl:text-[12px] font-semibold tracking-normal transition-all duration-300 flex items-center gap-0.5 whitespace-nowrap',
                     isLinkActive(link)
                       ? 'text-accent font-extrabold'
                       : 'text-dark-gray hover:text-accent'
@@ -439,7 +439,7 @@ const Navbar = () => {
           </div>
 
           {/* Right Side Actions */}
-          <div className="flex items-center gap-1.5 xl:gap-2 shrink-0 ml-auto">
+          <div className="flex items-center gap-1 xl:gap-1.5 2xl:gap-2.5 shrink-0 ml-auto">
             {/* Search */}
             <button
               onClick={() => setIsSearchOpen(true)}
@@ -448,27 +448,27 @@ const Navbar = () => {
             >
               <Search className="w-3 h-3 xl:w-3.5 xl:h-3.5 text-dark-gray group-hover:text-accent transition-colors" />
             </button>
-
+ 
             {/* Book Consultation */}
             <Link
               to="/contact"
-              className="flex items-center gap-1 bg-accent hover:bg-accent-light text-white text-[8px] xl:text-[8.5px] 2xl:text-[10px] font-bold px-2 xl:px-2.5 2xl:px-3.5 py-1.5 xl:py-2 rounded-lg uppercase tracking-wide shadow-glow whitespace-nowrap transition-all duration-300"
+              className="flex items-center gap-1 bg-accent hover:bg-accent-light text-white text-[8px] xl:text-[8.5px] 2xl:text-[9.5px] font-bold px-2 xl:px-2.5 2xl:px-3 py-1.5 xl:py-2 rounded-lg uppercase tracking-wide shadow-glow whitespace-nowrap transition-all duration-300"
             >
               <PhoneCall className="w-2.5 h-2.5 xl:w-3 xl:h-3 shrink-0" />
               Free Consult
             </Link>
-
+ 
             {/* Divider */}
             <div className="w-px h-6 bg-white/15 mx-0.5 shrink-0" />
-
+ 
             {/* Login / Signup */}
             <Link
               to="/login"
               className="flex items-center group shrink-0"
             >
-              <div className="flex items-center gap-1 bg-white/5 border border-accent/25 hover:bg-accent hover:border-accent px-2 xl:px-2.5 py-1.5 xl:py-2 rounded-lg transition-all duration-300">
+              <div className="flex items-center gap-1 bg-white/5 border border-accent/25 hover:bg-accent hover:border-accent px-2 xl:px-2 py-1.5 xl:py-2 rounded-lg transition-all duration-300">
                 <User className="w-3 h-3 xl:w-3.5 xl:h-3.5 text-accent group-hover:text-white transition-colors" />
-                <span className="text-[8px] xl:text-[8.5px] font-bold text-accent group-hover:text-white transition-colors uppercase tracking-wide whitespace-nowrap">
+                <span className="text-[8px] xl:text-[8.5px] 2xl:text-[9.5px] font-bold text-accent group-hover:text-white transition-colors uppercase tracking-wide whitespace-nowrap">
                   Login
                 </span>
               </div>
