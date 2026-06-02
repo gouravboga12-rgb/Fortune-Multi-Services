@@ -58,7 +58,7 @@ const About = () => {
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            className="max-w-4xl mx-auto space-y-4 sm:space-y-6"
+            className="max-w-6xl mx-auto space-y-4 sm:space-y-6"
           >
             <span className="text-accent uppercase tracking-widest font-black text-xs sm:text-sm px-4 py-2 bg-accent/10 rounded-full border border-accent/20">
               About Us
@@ -66,7 +66,7 @@ const About = () => {
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-[#b9c9d6] leading-tight tracking-tighter">
               Who we are and what <span className="text-accent">We can do</span> for your Business?
             </h1>
-            <p className="text-sm sm:text-lg md:text-xl text-white/80 font-medium leading-relaxed max-w-3xl mx-auto">
+            <p className="text-sm sm:text-lg md:text-xl text-white/80 font-medium leading-relaxed max-w-5xl mx-auto">
               <span className="text-accent font-bold">Fortune Multi Services</span> is the largest offline & online compliance services platform dedicated to helping people start and grow their business, at an affordable cost. Our aim is to help the entrepreneur on the legal and regulatory requirements, and be a partner throughout the business lifecycle, offering support at every stage to ensure the business remains compliant and continually growing.
             </p>
           </motion.div>
@@ -76,7 +76,7 @@ const About = () => {
       {/* Registrations & Licenses Section */}
       <section className="py-12 sm:py-20 lg:py-24 bg-secondary relative">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-16 space-y-3 sm:space-y-4">
+          <div className="text-center max-w-5xl mx-auto mb-8 sm:mb-16 space-y-3 sm:space-y-4">
             <div className="flex flex-wrap justify-center gap-2 sm:gap-4 text-xs font-black uppercase tracking-widest text-accent mb-2">
               <span className="px-3 py-1 bg-accent/10 rounded-full">Make a massive Progress</span>
               <span className="px-3 py-1 bg-green-500/10 text-green-600 rounded-full">Safe investment</span>
@@ -177,7 +177,7 @@ const About = () => {
       {/* Metrics Board Grid 1 */}
       <section className="py-12 sm:py-20 lg:py-24 bg-secondary relative">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-16 space-y-3 sm:space-y-4">
+          <div className="text-center max-w-5xl mx-auto mb-8 sm:mb-16 space-y-3 sm:space-y-4">
             <span className="text-accent uppercase tracking-widest font-black text-xs">
               Milestones
             </span>
@@ -290,7 +290,7 @@ const About = () => {
       {/* Core Operational Service Highlights */}
       <section className="py-12 sm:py-20 lg:py-24 bg-secondary relative">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-20 space-y-3 sm:space-y-4">
+          <div className="text-center max-w-5xl mx-auto mb-10 sm:mb-20 space-y-3 sm:space-y-4">
             <span className="text-accent uppercase tracking-widest font-black text-xs">
               Platform Features
             </span>

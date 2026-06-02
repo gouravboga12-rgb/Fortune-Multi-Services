@@ -133,7 +133,7 @@ const WebServices = () => {
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.55 }}
-            className="max-w-4xl mx-auto space-y-4 sm:space-y-6"
+            className="max-w-6xl mx-auto space-y-4 sm:space-y-6"
           >
             <span className="inline-block px-4 py-1.5 rounded-full bg-accent/20 border border-accent/30 text-accent text-[10px] sm:text-xs font-black uppercase tracking-[0.2em]">
               Web Development Services
@@ -142,7 +142,7 @@ const WebServices = () => {
               Full-Cycle Web Development<br className="hidden sm:block" />
               <span className="text-accent"> From Concept to Deployment</span>
             </h1>
-            <p className="text-sm sm:text-lg text-white/60 font-medium max-w-2xl mx-auto leading-relaxed">
+            <p className="text-sm sm:text-lg text-white/60 font-medium max-w-4xl mx-auto leading-relaxed">
               We design, build, and launch high-performance digital products that drive real business results — on time and on budget.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center pt-2">
@@ -164,7 +164,7 @@ const WebServices = () => {
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center max-w-2xl mx-auto mb-10 sm:mb-16 space-y-3"
+            className="text-center max-w-4xl mx-auto mb-10 sm:mb-16 space-y-3"
           >
             <span className="text-accent uppercase tracking-widest font-black text-xs">Our Offerings</span>
             <h2 className="text-2.5xl sm:text-3.5xl lg:text-4xl font-black text-[#b9c9d6] tracking-tight">Our Web Solutions</h2>
@@ -205,7 +205,7 @@ const WebServices = () => {
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center max-w-2xl mx-auto mb-10 sm:mb-16 space-y-3"
+            className="text-center max-w-4xl mx-auto mb-10 sm:mb-16 space-y-3"
           >
             <span className="text-accent uppercase tracking-widest font-black text-xs">How We Work</span>
             <h2 className="text-2.5xl sm:text-3.5xl lg:text-4xl font-black text-[#b9c9d6] tracking-tight">Our Simple Process</h2>
@@ -245,7 +245,7 @@ const WebServices = () => {
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center max-w-2xl mx-auto mb-10 sm:mb-16 space-y-3"
+            className="text-center max-w-4xl mx-auto mb-10 sm:mb-16 space-y-3"
           >
             <span className="text-accent uppercase tracking-widest font-black text-xs">Built With The Best</span>
             <h2 className="text-2.5xl sm:text-3.5xl lg:text-4xl font-black text-[#b9c9d6] tracking-tight">Our Technology Stack</h2>
@@ -287,14 +287,14 @@ const WebServices = () => {
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center max-w-2xl mx-auto mb-10 sm:mb-16 space-y-3"
+            className="text-center max-w-4xl mx-auto mb-10 sm:mb-16 space-y-3"
           >
             <span className="text-accent uppercase tracking-widest font-black text-xs">End-to-End</span>
             <h2 className="text-2.5xl sm:text-3.5xl lg:text-4xl font-black text-[#b9c9d6] tracking-tight">Our Development Lifecycle</h2>
             <div className="w-20 h-1 bg-accent mx-auto rounded-full"></div>
           </motion.div>
 
-          <div className="relative pl-6 sm:pl-10 border-l-2 border-accent/20 ml-3 sm:ml-6 space-y-6 sm:space-y-8 max-w-3xl mx-auto">
+          <div className="relative pl-6 sm:pl-10 border-l-2 border-accent/20 ml-3 sm:ml-6 space-y-6 sm:space-y-8 max-w-5xl mx-auto">
             {lifecycle.map((phase, i) => (
               <motion.div
                 key={i}
@@ -324,14 +324,14 @@ const WebServices = () => {
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center max-w-2xl mx-auto mb-10 sm:mb-16 space-y-3"
+            className="text-center max-w-4xl mx-auto mb-10 sm:mb-16 space-y-3"
           >
             <span className="text-accent uppercase tracking-widest font-black text-xs">Go Live</span>
             <h2 className="text-2.5xl sm:text-3.5xl lg:text-4xl font-black text-[#b9c9d6] tracking-tight">Hosting &amp; Deployment Options</h2>
             <div className="w-20 h-1 bg-accent mx-auto rounded-full"></div>
           </motion.div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 sm:gap-8 max-w-5xl mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 sm:gap-8 max-w-6xl mx-auto">
             {hosting.map((plan, i) => (
               <motion.div
                 key={i}
@@ -388,7 +388,7 @@ const WebServices = () => {
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="max-w-2xl mx-auto space-y-4 sm:space-y-6"
+            className="max-w-4xl mx-auto space-y-4 sm:space-y-6"
           >
             <h2 className="text-2.5xl sm:text-3.5xl lg:text-4xl font-black text-[#b9c9d6] tracking-tight">
               Ready to Build Your <span className="text-accent">Digital Presence?</span>
