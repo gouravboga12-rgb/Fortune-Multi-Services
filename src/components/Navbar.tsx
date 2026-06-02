@@ -339,7 +339,7 @@ const Navbar = () => {
         )}
       >
         {/* Logo */}
-        <Link to="/" className="flex items-center shrink-0 mr-3 xl:mr-4 2xl:mr-10">
+        <Link to="/" className="flex items-center shrink-0 mr-3 xl:mr-[1vw] 2xl:mr-[2vw]">
           <img
             src="/logo.png"
             alt="Fortune Multi Services"
@@ -349,7 +349,7 @@ const Navbar = () => {
  
         {/* Desktop Navigation Links */}
         <div className="hidden xl:flex items-center flex-grow justify-center min-w-0">
-          <div className="flex items-center justify-center gap-0.5 xl:gap-0.5 2xl:gap-1">
+          <div className="flex items-center justify-center gap-0.5 xl:gap-[0.3vw] 2xl:gap-[0.6vw]">
             {navLinks.map((link) => (
               <div
                 key={link.name}
@@ -360,7 +360,7 @@ const Navbar = () => {
                 <Link
                   to={link.path}
                   className={cn(
-                    'px-1 xl:px-1 2xl:px-2 py-4 text-xs xl:text-[10px] 2xl:text-[12px] font-semibold tracking-normal transition-all duration-300 flex items-center gap-0.5 whitespace-nowrap',
+                    'px-1 xl:px-[0.4vw] 2xl:px-[0.8vw] py-4 text-xs xl:text-[9.5px] 2xl:text-[12px] font-semibold tracking-normal transition-all duration-300 flex items-center gap-0.5 whitespace-nowrap',
                     isLinkActive(link)
                       ? 'text-accent font-extrabold'
                       : 'text-dark-gray hover:text-accent'
@@ -439,7 +439,7 @@ const Navbar = () => {
           </div>
 
           {/* Right Side Actions */}
-          <div className="flex items-center gap-1 xl:gap-1.5 2xl:gap-2.5 shrink-0 ml-auto">
+          <div className="flex items-center gap-1 xl:gap-[0.6vw] 2xl:gap-[1.2vw] shrink-0 ml-auto">
             {/* Search */}
             <button
               onClick={() => setIsSearchOpen(true)}
