@@ -258,12 +258,19 @@ const ServiceDetails = () => {
             {/* Badges */}
             <div className="flex flex-wrap gap-3 mb-6">
               {details.targetAudience && (
-                <span className="px-3 py-1 rounded-full bg-accent/20 border border-accent/30 text-accent text-[10px] font-black uppercase tracking-widest">
-                  Best For: {details.targetAudience}
+                <span
+                  className={`px-3 py-1.5 rounded-xl bg-accent/20 border border-accent/30 text-accent text-[10px] leading-relaxed max-w-full inline-block ${
+                    details.targetAudience.length <= 40
+                      ? 'rounded-full uppercase tracking-widest font-black'
+                      : 'normal-case tracking-normal font-semibold'
+                  }`}
+                >
+                  <span className="font-black uppercase tracking-widest">Best For: </span>
+                  {details.targetAudience}
                 </span>
               )}
               {details.timeline && (
-                <span className="px-3 py-1 rounded-full bg-white/10 border border-white/10 text-white/80 text-[10px] font-black uppercase tracking-widest flex items-center gap-1.5">
+                <span className="px-3 py-1 rounded-full bg-white/10 border border-white/10 text-white/80 text-[10px] font-black uppercase tracking-widest flex items-center gap-1.5 shrink-0">
                   <Clock className="w-3 h-3 text-accent" /> {details.timeline}
                 </span>
               )}
