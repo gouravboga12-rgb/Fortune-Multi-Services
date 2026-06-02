@@ -21,6 +21,27 @@
   --shadow-glow: 0 0 20px rgba(2, 132, 199, 0.25);
 }
 
+@utility container {
+  width: 100%;
+  margin-inline: auto;
+  
+  @media (min-width: 640px) {
+    max-width: 640px;
+  }
+  @media (min-width: 768px) {
+    max-width: 720px;
+  }
+  @media (min-width: 1024px) {
+    max-width: 960px;
+  }
+  @media (min-width: 1280px) {
+    max-width: 1200px;
+  }
+  @media (min-width: 1536px) {
+    max-width: 1400px;
+  }
+}
+
 @layer base {
   html {
     scroll-behavior: smooth;

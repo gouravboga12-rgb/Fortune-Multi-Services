@@ -334,8 +334,8 @@ const Navbar = () => {
     >
       <div
         className={cn(
-          'w-full flex items-center transition-all duration-500',
-          isOpen ? 'px-4 sm:px-5 py-3' : isScrolled ? 'px-4 sm:px-5 py-1.5 xl:px-4 2xl:px-8' : 'px-4 sm:px-5 py-3 xl:px-4 2xl:px-8'
+          'container mx-auto flex items-center transition-all duration-500 px-4 sm:px-6 lg:px-8',
+          isOpen ? 'py-3' : isScrolled ? 'py-1.5' : 'py-3'
         )}
       >
         {/* Logo */}

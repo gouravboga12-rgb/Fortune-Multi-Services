@@ -86,7 +86,7 @@ const Hero = () => {
         <img
           src={heroConsulting}
           alt="Consulting Background"
-          className="w-full h-full object-cover object-right lg:object-center"
+          className="w-full h-full object-cover object-right"
         />
         {/* Dark overlay on mobile for text readability */}
         <div className="absolute inset-0 bg-primary/85 lg:hidden" />
@@ -104,7 +104,7 @@ const Hero = () => {
       <div className="w-full relative z-20">
         <div className="container mx-auto px-5 sm:px-8 lg:px-8">
           <div className="max-w-3xl lg:max-w-none lg:grid lg:grid-cols-12 lg:gap-16 lg:items-center">
-            <div className="lg:col-span-9 lg:pr-8 space-y-5 sm:space-y-7 lg:space-y-10">
+            <div className="lg:col-span-8 xl:col-span-7 2xl:col-span-6 lg:pr-8 space-y-5 sm:space-y-7 lg:space-y-10">
 
               {/* Badge */}
               <motion.div
