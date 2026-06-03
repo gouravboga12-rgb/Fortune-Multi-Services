@@ -85,7 +85,7 @@ const Home = () => {
       <Hero />
 
       {/* Credibility Registry Strip */}
-      <div className="bg-secondary/50 py-6 sm:py-8 border-y border-light-gray overflow-x-auto">
+      <div className="hidden sm:block bg-secondary/50 py-6 sm:py-8 border-y border-light-gray overflow-x-auto">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-6">
             <span className="text-[10px] font-black text-dark-gray/60 uppercase tracking-[0.2em] whitespace-nowrap shrink-0">

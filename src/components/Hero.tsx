@@ -80,46 +80,48 @@ const Hero = () => {
   }, []);
 
   return (
-    <section className="relative min-h-screen flex items-center pt-20 pb-12 sm:pt-24 lg:pt-20 lg:pb-0 overflow-x-hidden bg-primary">
+    <section className="relative sm:min-h-screen flex items-center pt-16 pb-10 sm:pt-24 lg:pt-20 lg:pb-0 overflow-x-hidden bg-primary">
       {/* Background Image */}
       <div className="absolute inset-0 w-full h-full z-0 select-none pointer-events-none">
         <img
           src={heroConsulting}
           alt="Consulting Background"
-          className="w-full h-full object-cover object-right"
+          className="w-full h-full object-cover object-center sm:object-right"
         />
-        {/* Dark overlay on mobile for text readability */}
-        <div className="absolute inset-0 bg-primary/85 lg:hidden" />
+        {/* Deeper dark overlay on mobile for text readability */}
+        <div className="absolute inset-0 bg-primary/90 lg:hidden" />
+        {/* Bottom fade on mobile */}
+        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-primary to-transparent lg:hidden" />
         {/* Gradient on desktop */}
         <div className="absolute inset-0 bg-gradient-to-r from-primary via-primary/85 to-transparent hidden lg:block z-10" />
       </div>
 
       {/* Ambient glow orbs */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-10">
-        <div className="absolute -top-[10%] -left-[10%] w-[40%] h-[40%] bg-accent/15 blur-[120px] rounded-full animate-pulse" />
-        <div className="absolute top-[20%] -right-[5%] w-[30%] h-[30%] bg-blue-500/10 blur-[100px] rounded-full" />
+        <div className="absolute -top-[10%] left-[20%] sm:-left-[10%] w-[60%] sm:w-[40%] h-[40%] bg-accent/20 blur-[120px] rounded-full animate-pulse" />
+        <div className="absolute top-[50%] -right-[5%] w-[30%] h-[30%] bg-blue-500/10 blur-[100px] rounded-full" />
       </div>
 
       {/* Main Content */}
       <div className="w-full relative z-20">
         <div className="container mx-auto px-5 sm:px-8 lg:px-8">
           <div className="max-w-3xl lg:max-w-none lg:grid lg:grid-cols-12 lg:gap-16 lg:items-center">
-            <div className="lg:col-span-8 xl:col-span-7 2xl:col-span-6 lg:pr-8 space-y-5 sm:space-y-7 lg:space-y-10">
+            <div className="lg:col-span-8 xl:col-span-7 2xl:col-span-6 lg:pr-8 space-y-5 sm:space-y-7 lg:space-y-10 flex flex-col items-center sm:items-start text-center sm:text-left">
 
               {/* Badge */}
               <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, ease: "easeOut" }}
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/10 text-accent-light text-[11px] sm:text-[13px] font-bold tracking-wider uppercase"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-accent/15 backdrop-blur-md border border-accent/25 text-accent-light text-[10px] font-bold tracking-tight uppercase"
               >
-                <Zap className="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-accent-light shrink-0" />
+                <Zap className="w-3 h-3 fill-accent-light shrink-0" />
                 <span>India's Trusted Business Partner</span>
               </motion.div>
 
               {/* Heading */}
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black leading-[1.05] tracking-tighter overflow-visible">
-                <span className="block pb-2 pr-6 overflow-visible">
+              <h1 className="text-[2.6rem] sm:text-4xl lg:text-5xl font-black leading-[1.05] tracking-tighter overflow-visible w-full">
+                <span className="block pb-2 overflow-visible">
                   <span
                     className=""
                     style={{
@@ -165,7 +167,7 @@ const Hero = () => {
                   )}
                   {text2.length === 14 && (
                     <span
-                      className="absolute -bottom-2 left-0 h-[3px] rounded-full"
+                      className="absolute -bottom-2 left-1/2 sm:left-0 -translate-x-1/2 sm:translate-x-0 h-[3px] rounded-full"
                       style={{
                         width: '55%',
                         background: 'linear-gradient(90deg, #0284C7, #0EA5E9, #38BDF8, transparent)',
@@ -181,12 +183,12 @@ const Hero = () => {
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 2.2, duration: 0.8, ease: "easeOut" }}
-                className="text-xs sm:text-base lg:text-lg text-slate-300 max-w-xl leading-relaxed font-medium"
+                className="text-sm sm:text-base lg:text-lg text-slate-300 max-w-sm sm:max-w-xl leading-relaxed font-medium"
               >
                 Elevate your business with elite compliance solutions. From{' '}
-                <span className="text-slate-100 font-bold underline decoration-accent underline-offset-4">Startup Registrations</span>{' '}
+                <span className="text-white font-bold underline decoration-accent underline-offset-4">Startup Registrations</span>{' '}
                 to{' '}
-                <span className="text-slate-100 font-bold underline decoration-accent underline-offset-4">Global Trademarks</span>.
+                <span className="text-white font-bold underline decoration-accent underline-offset-4">Global Trademarks</span>.
               </motion.p>
 
               {/* CTA Buttons */}
@@ -194,11 +196,11 @@ const Hero = () => {
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 2.5, duration: 0.8, ease: "easeOut" }}
-                className="flex flex-col sm:flex-row gap-3"
+                className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto"
               >
                 <Link
                   to="/contact"
-                  className="btn-accent px-6 py-3.5 text-xs sm:text-sm shadow-glow text-center"
+                  className="btn-accent px-6 py-4 text-sm shadow-glow text-center w-full sm:w-auto"
                 >
                   Start My Business
                   <ArrowRight className="w-4 h-4" />
@@ -207,38 +209,39 @@ const Hero = () => {
                   href="https://wa.me/918919051513"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-white/5 backdrop-blur-xl border border-white/10 font-bold text-slate-100 hover:bg-white/10 transition-all text-xs sm:text-sm"
+                  className="flex items-center justify-center gap-2 px-6 py-4 rounded-xl bg-white/8 backdrop-blur-xl border border-white/15 font-bold text-slate-100 hover:bg-white/15 transition-all text-sm w-full sm:w-auto"
                 >
-                  <MessageSquare className="w-4 h-4 sm:w-5 sm:h-5 text-green-400" />
+                  <MessageSquare className="w-4 h-4 text-green-400" />
                   Expert Consultation
                 </a>
               </motion.div>
 
-              {/* Trust indicators */}
+              {/* Trust indicators — compact pill */}
               <motion.div
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 2.8, duration: 0.8, ease: "easeOut" }}
-                className="flex flex-wrap items-center gap-4 sm:gap-8"
+                className="flex items-center gap-3 py-2.5 px-4 rounded-2xl bg-white/6 border border-white/10 backdrop-blur-sm"
               >
-                <div className="flex -space-x-3">
+                <div className="flex -space-x-2.5">
                   {trustedAvatars.map((url, idx) => (
                     <div
                       key={idx}
-                      className="w-9 h-9 sm:w-11 sm:h-11 rounded-full border-2 border-primary bg-slate-800 overflow-hidden"
+                      className="w-8 h-8 sm:w-9 sm:h-9 rounded-full border-2 border-primary bg-slate-800 overflow-hidden"
                     >
                       <img src={url} alt={`Entrepreneur ${idx + 1}`} className="w-full h-full object-cover" />
                     </div>
                   ))}
                 </div>
+                <div className="w-px h-8 bg-white/15 shrink-0" />
                 <div className="space-y-0.5">
-                  <div className="flex items-center gap-1">
+                  <div className="flex items-center gap-0.5">
                     {[1, 2, 3, 4, 5].map((s) => (
-                      <Star key={s} className="w-3 h-3 sm:w-3.5 sm:h-3.5 fill-accent text-accent" />
+                      <Star key={s} className="w-3 h-3 fill-accent text-accent" />
                     ))}
-                    <span className="text-slate-100 font-bold ml-1.5 text-xs sm:text-sm">4.9/5</span>
+                    <span className="text-slate-100 font-bold ml-1 text-xs">4.9/5</span>
                   </div>
-                  <p className="text-slate-400 text-xs font-medium">Trusted by 5,000+ Entrepreneurs</p>
+                  <p className="text-slate-400 text-[10px] font-medium whitespace-nowrap">Trusted by 5,000+ Entrepreneurs</p>
                 </div>
               </motion.div>
 

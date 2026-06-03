@@ -334,8 +334,8 @@ const Navbar = () => {
     >
       <div
         className={cn(
-          'w-full max-w-[1920px] mx-auto flex items-center justify-between transition-all duration-500 px-4 sm:px-8 lg:px-12 xl:px-16',
-          isOpen ? 'py-3' : isScrolled ? 'py-1.5' : 'py-3'
+          'w-full max-w-[2200px] mx-auto flex items-center justify-between transition-all duration-500 px-4 sm:px-8 lg:px-12 xl:px-16 3xl:px-24 4xl:px-32',
+          isOpen ? 'py-3 3xl:py-4' : isScrolled ? 'py-1.5 3xl:py-2.5 4xl:py-3' : 'py-3 3xl:py-4.5 4xl:py-5'
         )}
       >
         {/* Logo */}
@@ -343,13 +343,13 @@ const Navbar = () => {
           <img
             src="/logo.png"
             alt="Fortune Multi Services"
-            className="h-9 sm:h-10 xl:h-11 2xl:h-12 3xl:h-13 4xl:h-14 w-auto object-contain"
+            className="h-9 sm:h-10 xl:h-11 2xl:h-12 3xl:h-16 4xl:h-20 w-auto object-contain"
           />
         </Link>
  
         {/* Desktop Navigation Links */}
-        <div className="hidden xl:flex items-center justify-center flex-grow mx-2 2xl:mx-4 3xl:mx-6 min-w-0">
-          <div className="flex items-center justify-center gap-0.5 xl:gap-0.5 2xl:gap-1 3xl:gap-1.5 4xl:gap-2">
+        <div className="hidden xl:flex items-center justify-center flex-grow mx-2 2xl:mx-4 3xl:mx-8 4xl:mx-12 min-w-0">
+          <div className="flex items-center justify-center gap-0.5 xl:gap-0.5 2xl:gap-1 3xl:gap-3 4xl:gap-5">
             {navLinks.map((link) => (
               <div
                 key={link.name}
@@ -360,7 +360,7 @@ const Navbar = () => {
                 <Link
                   to={link.path}
                   className={cn(
-                    'px-1 xl:px-1 2xl:px-1.5 3xl:px-2.5 4xl:px-3.5 py-4 text-xs xl:text-[12.5px] 2xl:text-[14px] 3xl:text-[15.5px] 4xl:text-[16.5px] font-bold tracking-normal transition-all duration-300 flex items-center gap-0.5 whitespace-nowrap',
+                    'px-1 xl:px-1.5 2xl:px-2 3xl:px-3.5 4xl:px-5 py-4 3xl:py-5 4xl:py-6 text-xs xl:text-[12.5px] 2xl:text-[14px] 3xl:text-[17px] 4xl:text-[20px] font-bold tracking-normal transition-all duration-300 flex items-center gap-0.5 whitespace-nowrap',
                     isLinkActive(link)
                       ? 'text-accent font-extrabold'
                       : 'text-dark-gray hover:text-accent'
@@ -370,7 +370,7 @@ const Navbar = () => {
                   {link.hasDropdown && (
                     <ChevronDown
                       className={cn(
-                        'w-2.5 h-2.5 xl:w-2.5 xl:h-2.5 2xl:w-3 2xl:h-3 transition-transform duration-300 shrink-0',
+                        'w-2.5 h-2.5 xl:w-2.5 xl:h-2.5 2xl:w-3 2xl:h-3 3xl:w-4 3xl:h-4 4xl:w-5 4xl:h-5 transition-transform duration-300 shrink-0',
                         activeDropdown === link.name && 'rotate-180 text-accent'
                       )}
                     />
@@ -404,10 +404,10 @@ const Navbar = () => {
                       style={{
                         width:
                           (link.columns ?? 2) === 4
-                            ? '780px'
+                            ? 'clamp(780px, 55vw, 1100px)'
                             : (link.columns ?? 2) === 3
-                            ? '620px'
-                            : '460px',
+                            ? 'clamp(620px, 42vw, 880px)'
+                            : 'clamp(460px, 32vw, 680px)',
                       }}
                     >
                       <div
@@ -424,9 +424,9 @@ const Navbar = () => {
                           <Link
                             key={service.name}
                             to={service.path}
-                            className="text-[12.5px] 2xl:text-[13px] font-semibold text-dark-gray hover:text-accent transition-colors py-1.5 px-1 rounded flex items-center gap-1.5 hover:bg-accent/5 group"
+                            className="text-[12.5px] 2xl:text-[13px] 3xl:text-[15px] 4xl:text-[17px] font-semibold text-dark-gray hover:text-accent transition-colors py-1.5 3xl:py-2 px-1 rounded flex items-center gap-1.5 hover:bg-accent/5 group"
                           >
-                            <div className="w-1.5 h-1.5 rounded-full bg-accent/40 group-hover:bg-accent shrink-0 transition-colors" />
+                            <div className="w-1.5 h-1.5 3xl:w-2 3xl:h-2 rounded-full bg-accent/40 group-hover:bg-accent shrink-0 transition-colors" />
                             {service.name}
                           </Link>
                         ))}
@@ -440,36 +440,36 @@ const Navbar = () => {
         </div>
 
         {/* Right Side Actions */}
-        <div className="hidden xl:flex items-center gap-1.5 2xl:gap-2 3xl:gap-2.5 shrink-0">
+        <div className="hidden xl:flex items-center gap-1.5 2xl:gap-2 3xl:gap-4 4xl:gap-5 shrink-0">
           {/* Search */}
           <button
             onClick={() => setIsSearchOpen(true)}
-            className="w-7 h-7 xl:w-8 xl:h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center hover:bg-accent/10 hover:text-accent transition-all duration-300 cursor-pointer group"
+            className="w-7 h-7 xl:w-8 xl:h-8 3xl:w-11 3xl:h-11 4xl:w-12 4xl:h-12 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center hover:bg-accent/10 hover:text-accent transition-all duration-300 cursor-pointer group"
             aria-label="Search"
           >
-            <Search className="w-3 h-3 xl:w-3.5 xl:h-3.5 text-dark-gray group-hover:text-accent transition-colors" />
+            <Search className="w-3 h-3 xl:w-3.5 xl:h-3.5 3xl:w-5 3xl:h-5 4xl:w-6 4xl:h-6 text-dark-gray group-hover:text-accent transition-colors" />
           </button>
  
           {/* Book Consultation */}
           <Link
             to="/contact"
-            className="flex items-center gap-1 bg-accent hover:bg-accent-light text-white text-[8px] xl:text-[8.5px] 2xl:text-[9.5px] font-bold px-2 xl:px-2.5 2xl:px-3 py-1.5 xl:py-2 rounded-lg uppercase tracking-wide shadow-glow whitespace-nowrap transition-all duration-300"
+            className="flex items-center gap-1 3xl:gap-2 bg-accent hover:bg-accent-light text-white text-[8px] xl:text-[8.5px] 2xl:text-[9.5px] 3xl:text-[13px] 4xl:text-[15px] font-bold px-2 xl:px-2.5 2xl:px-3 3xl:px-5 4xl:px-6 py-1.5 xl:py-2 3xl:py-3 4xl:py-3.5 rounded-lg 3xl:rounded-xl uppercase tracking-wide shadow-glow whitespace-nowrap transition-all duration-300"
           >
-            <PhoneCall className="w-2.5 h-2.5 xl:w-3 xl:h-3 shrink-0" />
+            <PhoneCall className="w-2.5 h-2.5 xl:w-3 xl:h-3 3xl:w-4 3xl:h-4 4xl:w-5 4xl:h-5 shrink-0" />
             Free Consult
           </Link>
  
           {/* Divider */}
-          <div className="w-px h-6 bg-white/15 mx-0.5 shrink-0" />
+          <div className="w-px h-6 3xl:h-9 4xl:h-10 bg-white/15 mx-0.5 shrink-0" />
  
           {/* Login / Signup */}
           <Link
             to="/login"
             className="flex items-center group shrink-0"
           >
-            <div className="flex items-center gap-1 bg-white/5 border border-accent/25 hover:bg-accent hover:border-accent px-2 xl:px-2 py-1.5 xl:py-2 rounded-lg transition-all duration-300">
-              <User className="w-3 h-3 xl:w-3.5 xl:h-3.5 text-accent group-hover:text-white transition-colors" />
-              <span className="text-[8px] xl:text-[8.5px] 2xl:text-[9.5px] font-bold text-accent group-hover:text-white transition-colors uppercase tracking-wide whitespace-nowrap">
+            <div className="flex items-center gap-1 3xl:gap-1.5 bg-white/5 border border-accent/25 hover:bg-accent hover:border-accent px-2 xl:px-2 3xl:px-4 4xl:px-5 py-1.5 xl:py-2 3xl:py-3 4xl:py-3.5 rounded-lg 3xl:rounded-xl transition-all duration-300">
+              <User className="w-3 h-3 xl:w-3.5 xl:h-3.5 3xl:w-5 3xl:h-5 4xl:w-6 4xl:h-6 text-accent group-hover:text-white transition-colors" />
+              <span className="text-[8px] xl:text-[8.5px] 2xl:text-[9.5px] 3xl:text-[13px] 4xl:text-[15px] font-bold text-accent group-hover:text-white transition-colors uppercase tracking-wide whitespace-nowrap">
                 Login
               </span>
             </div>
