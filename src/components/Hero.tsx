@@ -120,7 +120,7 @@ const Hero = () => {
               </motion.div>
 
               {/* Heading */}
-              <h1 className="text-[2.6rem] sm:text-4xl lg:text-5xl font-black leading-[1.05] tracking-tighter overflow-visible w-full">
+              <h1 className="text-2xl sm:text-4xl lg:text-5xl font-black leading-[1.05] tracking-tighter overflow-visible w-full">
                 <span className="block pb-2 overflow-visible">
                   <span
                     className=""
