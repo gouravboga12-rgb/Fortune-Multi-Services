@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, ChevronDown, User, Search, PhoneCall } from 'lucide-react';
+import { Menu, X, ChevronDown, User, Search, PhoneCall, Sun, Moon } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
@@ -218,6 +218,30 @@ const Navbar = () => {
   const location = useLocation();
   const dropdownTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
+  const [theme, setTheme] = useState<'light' | 'dark'>(() => {
+    if (typeof window !== 'undefined') {
+      return document.documentElement.classList.contains('light') ? 'light' : 'dark';
+    }
+    return 'dark';
+  });
+
+  const toggleTheme = () => {
+    const nextTheme = theme === 'light' ? 'dark' : 'light';
+    if (nextTheme === 'light') {
+      document.documentElement.classList.add('light');
+      localStorage.setItem('theme', 'light');
+    } else {
+      document.documentElement.classList.remove('light');
+      localStorage.setItem('theme', 'dark');
+    }
+    setTheme(nextTheme);
+  };
+
+  useEffect(() => {
+    const activeTheme = document.documentElement.classList.contains('light') ? 'light' : 'dark';
+    setTheme(activeTheme);
+  }, []);
+
   const isLinkActive = (link: NavLink) => {
     if (link.path === '/') return location.pathname === '/';
     
@@ -343,7 +367,7 @@ const Navbar = () => {
           <img
             src="/logo.png"
             alt="Fortune Multi Services"
-            className="h-9 sm:h-10 xl:h-11 2xl:h-12 3xl:h-16 4xl:h-20 w-auto object-contain"
+            className="h-9 sm:h-10 xl:h-11 2xl:h-12 3xl:h-16 4xl:h-20 w-auto object-contain navbar-logo-light"
           />
         </Link>
  
@@ -397,9 +421,9 @@ const Navbar = () => {
                       className={cn(
                         "absolute top-full bg-secondary shadow-2xl border border-light-gray rounded-xl overflow-hidden z-50 mt-3 max-w-[95vw]",
                         link.name === 'Startup' ? 'left-0' :
-                        link.name === 'Registrations' ? '-left-20 xl:-left-32 2xl:left-1/2 2xl:-translate-x-1/2' :
-                        link.name === 'Trademark' ? '-left-10 xl:-left-20 2xl:left-1/2 2xl:-translate-x-1/2' :
-                        'left-1/2 -translate-x-1/2'
+                        link.name === 'Registrations' ? 'left-0 xl:-left-2 2xl:-left-4 3xl:left-1/2 3xl:-translate-x-1/2' :
+                        link.name === 'Trademark' ? 'left-0 xl:-left-2 2xl:-left-4 3xl:left-1/2 3xl:-translate-x-1/2' :
+                        'left-0 xl:-left-12 2xl:left-1/2 2xl:-translate-x-1/2'
                       )}
                       style={{
                         width:
@@ -426,7 +450,7 @@ const Navbar = () => {
                             to={service.path}
                             className="text-[12.5px] 2xl:text-[13px] 3xl:text-[15px] 4xl:text-[17px] font-semibold text-dark-gray hover:text-accent transition-colors py-1.5 3xl:py-2 px-1 rounded flex items-center gap-1.5 hover:bg-accent/5 group"
                           >
-                            <div className="w-1.5 h-1.5 3xl:w-2 3xl:h-2 rounded-full bg-accent/40 group-hover:bg-accent shrink-0 transition-colors" />
+                            <div className="w-1.5 h-1.5 3xl:w-2 3xl:h-2 rounded-full bg-success/40 group-hover:bg-success shrink-0 transition-colors" />
                             {service.name}
                           </Link>
                         ))}
@@ -448,6 +472,19 @@ const Navbar = () => {
             aria-label="Search"
           >
             <Search className="w-3 h-3 xl:w-3.5 xl:h-3.5 3xl:w-5 3xl:h-5 4xl:w-6 4xl:h-6 text-dark-gray group-hover:text-accent transition-colors" />
+          </button>
+
+          {/* Theme Toggle */}
+          <button
+            onClick={toggleTheme}
+            className="w-7 h-7 xl:w-8 xl:h-8 3xl:w-11 3xl:h-11 4xl:w-12 4xl:h-12 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center hover:bg-accent/10 hover:text-accent transition-all duration-300 cursor-pointer group"
+            aria-label="Toggle Theme"
+          >
+            {theme === 'light' ? (
+              <Moon className="w-3 h-3 xl:w-3.5 xl:h-3.5 3xl:w-5 3xl:h-5 4xl:w-6 4xl:h-6 text-dark-gray group-hover:text-accent transition-colors" />
+            ) : (
+              <Sun className="w-3 h-3 xl:w-3.5 xl:h-3.5 3xl:w-5 3xl:h-5 4xl:w-6 4xl:h-6 text-dark-gray group-hover:text-accent transition-colors" />
+            )}
           </button>
  
           {/* Book Consultation */}
@@ -485,6 +522,16 @@ const Navbar = () => {
           >
             <Search className="w-4 h-4" />
           </button>
+          
+          <button
+            onClick={toggleTheme}
+            className="p-2 bg-white/10 backdrop-blur-md rounded-lg border border-white/20 text-white flex items-center justify-center"
+            aria-label="Toggle Theme"
+            type="button"
+          >
+            {theme === 'light' ? <Moon className="w-4 h-4" /> : <Sun className="w-4 h-4" />}
+          </button>
+
           <button
             className="text-white p-2 bg-white/10 backdrop-blur-md rounded-lg border border-white/20"
             onClick={() => setIsOpen(!isOpen)}
@@ -551,10 +598,10 @@ const Navbar = () => {
                         <Link
                           key={service.name}
                           to={service.path}
-                          className="text-xs text-dark-gray py-1.5 hover:text-accent transition-colors flex items-center gap-1"
+                          className="text-xs text-dark-gray py-1.5 hover:text-accent transition-colors flex items-center gap-1 group"
                           onClick={() => setIsOpen(false)}
                         >
-                          <div className="w-1 h-1 rounded-full bg-accent/40 shrink-0" />
+                          <div className="w-1 h-1 rounded-full bg-success/40 group-hover:bg-success shrink-0 transition-colors" />
                           {service.name}
                         </Link>
                       ))}

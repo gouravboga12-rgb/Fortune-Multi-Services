@@ -123,15 +123,11 @@ const Hero = () => {
               <h1 className="text-[2.6rem] sm:text-4xl lg:text-5xl font-black leading-[1.05] tracking-tighter overflow-visible w-full">
                 <span className="block pb-2 overflow-visible">
                   <span
-                    className=""
+                    className="hero-title-fortune"
                     style={{
                       display: 'inline-block',
                       paddingRight: '0.18em',
                       marginRight: '-0.15em',
-                      background: 'linear-gradient(135deg, #ffffff 0%, #f5ecd4 30%, #ffffff 55%, #e8dfc8 85%, #fff8ec 100%)',
-                      WebkitBackgroundClip: 'text',
-                      WebkitTextFillColor: 'transparent',
-                      backgroundClip: 'text',
                       letterSpacing: '-0.03em',
                     }}
                   >
@@ -147,13 +143,9 @@ const Hero = () => {
 
                 <span className="block relative mt-1">
                   <span
+                    className="hero-title-services"
                     style={{
                       display: 'inline-block',
-                      background: 'linear-gradient(135deg, #0284C7 0%, #0EA5E9 35%, #38BDF8 60%, #0EA5E9 80%, #0284C7 100%)',
-                      WebkitBackgroundClip: 'text',
-                      WebkitTextFillColor: 'transparent',
-                      backgroundClip: 'text',
-                      filter: 'drop-shadow(0 0 24px rgba(14, 165, 233, 0.4))',
                       letterSpacing: '-0.03em',
                     }}
                   >
@@ -183,7 +175,7 @@ const Hero = () => {
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 2.2, duration: 0.8, ease: "easeOut" }}
-                className="text-sm sm:text-base lg:text-lg text-slate-300 max-w-sm sm:max-w-xl leading-relaxed font-medium"
+                className="text-sm sm:text-base lg:text-lg text-white/80 max-w-sm sm:max-w-xl leading-relaxed font-medium"
               >
                 Elevate your business with elite compliance solutions. From{' '}
                 <span className="text-white font-bold underline decoration-accent underline-offset-4">Startup Registrations</span>{' '}

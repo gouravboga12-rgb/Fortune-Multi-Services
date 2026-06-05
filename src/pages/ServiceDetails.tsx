@@ -5,7 +5,7 @@ import {
   CheckCircle2, FileText, Clock, ArrowRight, 
   ShieldCheck, HelpCircle, FileCheck,
   ChevronDown, ChevronUp, AlertTriangle, ThumbsUp, ThumbsDown,
-  ShieldAlert, Award, Star, Search, Link2
+  ShieldAlert, Award, Star, Search, Link2, ArrowUp
 } from 'lucide-react';
 import React, { useState, useEffect } from 'react';
 
@@ -54,6 +54,19 @@ const ServiceDetails = () => {
   const [reviewsList, setReviewsList] = useState(initialReviews);
   const [isReviewModalOpen, setIsReviewModalOpen] = useState(false);
   const [newReview, setNewReview] = useState({ name: '', city: '', rating: 5, review: '' });
+  const [showScrollTop, setShowScrollTop] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowScrollTop(window.scrollY > 400);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   // Update reviewsList when serviceSlug changes to reload reviews
   useEffect(() => {
@@ -276,27 +289,12 @@ const ServiceDetails = () => {
               )}
             </div>
 
-            <h1 className="text-3xl lg:text-4xl font-black text-[#b9c9d6] leading-tight tracking-tight mb-5">
+            <h1 className="text-3xl lg:text-4xl font-black text-slate-100 leading-tight tracking-tight mb-5">
               {service.name}
             </h1>
             <p className="text-sm text-white/70 font-medium leading-relaxed max-w-2xl mb-6">
               {service.description || `Professional ${service.name} services tailored for your business needs.`}
             </p>
-
-            <div className="flex flex-col xs:flex-row flex-wrap gap-3 sm:gap-4 mt-6">
-              <Link
-                to={`/apply/${category.slug}/${service.slug}`}
-                className="btn-accent text-xs font-black uppercase tracking-widest px-6 sm:px-8 py-3.5 sm:py-4 shadow-glow text-center"
-              >
-                Apply Now
-              </Link>
-              <a
-                href={`https://wa.me/918919051513?text=Hi, I am interested in ${service.name} service.`}
-                className="flex items-center justify-center gap-2 font-black text-white px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all text-xs uppercase tracking-widest"
-              >
-                Talk to Senior Partner
-              </a>
-            </div>
           </motion.div>
         </div>
       </section>
@@ -306,8 +304,83 @@ const ServiceDetails = () => {
         <div className="container mx-auto px-4 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
 
-            {/* ══════ LEFT COLUMN ══════ */}
-            <div className="lg:col-span-2 space-y-12 order-2 lg:order-1">
+            {/* ══════ LEFT COLUMN: Sticky Sidebar (1/3 width) ══════ */}
+            <div className="lg:col-span-1">
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                className="lg:sticky lg:top-24 flex flex-col gap-4 lg:max-h-[calc(100vh-8rem)] lg:overflow-y-auto pr-2 sidebar-scrollbar"
+              >
+                {/* Apply Now CTA */}
+                <div className="glass-card p-6 bg-secondary/40 text-slate-100 border-white/10 shadow-premium">
+                  <Link
+                    to={`/apply/${category.slug}/${service.slug}`}
+                    className="btn-accent w-full text-center py-3.5 rounded-lg mb-3 text-sm font-bold uppercase tracking-wider shadow-glow block"
+                  >
+                    Apply Now
+                  </Link>
+                  <a
+                    href={`https://wa.me/918919051513?text=Hi, I am interested in ${service.name} service.`}
+                    className="w-full flex items-center justify-center gap-2 font-bold text-white py-3 rounded-lg bg-white/5 border border-white/10 hover:bg-white/10 transition-all text-xs uppercase tracking-wider"
+                  >
+                    <ShieldCheck className="w-4 h-4 text-green-400" />
+                    Talk to Senior Partner
+                  </a>
+                  {details.timeline && (
+                    <div className="mt-3 p-3 bg-white/5 rounded-xl border border-white/10">
+                      <div className="flex items-center gap-2.5">
+                        <Clock className="w-4 h-4 text-accent shrink-0" />
+                        <div>
+                          <div className="text-[8px] text-white/30 font-bold uppercase tracking-widest">Expected Timeline</div>
+                          <div className="text-sm font-black text-slate-100">{details.timeline}</div>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </div>
+
+                {/* Documents Required */}
+                {details.documents && details.documents.length > 0 && (
+                  <div id="documents-section" className="glass-card p-6 bg-secondary/40 text-slate-100 border-white/10 shadow-premium">
+                    <div className="flex items-center gap-2.5 mb-4">
+                      <FileText className="w-4 h-4 text-accent" />
+                      <h3 className="text-sm font-black tracking-tight text-slate-100">Documents Required</h3>
+                    </div>
+                    <ul className="space-y-2.5">
+                      {details.documents.map((doc, i) => (
+                        <li key={i} className="flex items-start gap-2 text-[11px] text-white/60 font-medium leading-relaxed">
+                          <div className="w-1.5 h-1.5 bg-accent rounded-full shrink-0 mt-1.5" />
+                          {doc}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+
+                {/* Expert Advisory */}
+                <div className="glass-card p-6 bg-gradient-to-br from-secondary/40 to-primary/40 border-white/10 shadow-premium relative overflow-hidden group">
+                  <div className="absolute top-0 right-0 w-24 h-24 bg-accent/20 blur-3xl -mr-12 -mt-12 rounded-full group-hover:bg-accent/30 transition-all duration-700" />
+                  <div className="relative z-10">
+                    <div className="flex items-center gap-3 mb-4">
+                      <div className="w-9 h-9 bg-white/5 rounded-xl flex items-center justify-center border border-white/10 group-hover:bg-accent transition-all duration-500">
+                        <HelpCircle className="w-4 h-4 text-accent group-hover:text-white transition-colors" />
+                      </div>
+                      <h3 className="text-sm font-bold text-slate-100">Need Expert Help?</h3>
+                    </div>
+                    <p className="text-[11px] text-text-muted font-medium mb-4 leading-relaxed">
+                      Our consultants are available for a one-on-one session to clarify your path.
+                    </p>
+                    <Link to="/contact" className="inline-flex items-center gap-1.5 text-accent font-black uppercase text-[9px] tracking-widest hover:text-white transition-all">
+                      Contact Advisory
+                      <ArrowRight className="w-3 h-3" />
+                    </Link>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+
+            {/* ══════ RIGHT COLUMN: Main Content (2/3 width) ══════ */}
+            <div className="lg:col-span-2 space-y-12">
 
               {/* 1 ── What is this service about? */}
               {details.overview && (
@@ -315,10 +388,10 @@ const ServiceDetails = () => {
                   initial={{ opacity: 0, y: 16 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  className="glass-card p-6 bg-secondary/80 relative overflow-hidden"
+                  className="glass-card p-6 bg-secondary/40 border-white/10 shadow-premium relative overflow-hidden"
                 >
                   <div className="absolute top-0 right-0 w-24 h-24 bg-accent/5 blur-2xl rounded-full" />
-                  <h2 className="text-lg font-black text-[#b9c9d6] mb-4">What is this service about?</h2>
+                  <h2 className="text-lg font-black text-slate-100 mb-4">What is this service about?</h2>
                   <p className="text-dark-gray text-xs font-medium leading-relaxed whitespace-pre-line">
                     {details.overview}
                   </p>
@@ -335,11 +408,11 @@ const ServiceDetails = () => {
                   <SectionHeader icon={<ShieldAlert className="w-4 h-4 text-accent" />} title="Key Characteristics" />
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mt-6">
                     {details.characteristics.map((char, i) => (
-                      <div key={i} className="flex gap-3 p-3.5 glass-card bg-white/5 border border-white/10">
+                      <div key={i} className="flex gap-3 p-3.5 glass-card bg-secondary/40 border border-white/10 shadow-premium">
                         <div className="w-5 h-5 rounded-full bg-accent/10 flex items-center justify-center shrink-0 mt-0.5">
                           <Award className="w-2.5 h-2.5 text-accent" />
                         </div>
-                        <p className="text-[#b9c9d6] font-medium leading-relaxed text-[11px]">{char}</p>
+                        <p className="text-slate-100 font-medium leading-relaxed text-[11px]">{char}</p>
                       </div>
                     ))}
                   </div>
@@ -357,11 +430,11 @@ const ServiceDetails = () => {
                   <SectionHeader icon={<FileCheck className="w-4 h-4 text-accent" />} title="Strategic Advantages" />
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mt-6">
                     {details.benefits.map((benefit, i) => (
-                      <div key={i} className="flex items-center gap-2.5 p-3.5 glass-card bg-white/5 border border-white/10">
+                      <div key={i} className="flex items-center gap-2.5 p-3.5 glass-card bg-secondary/40 border border-white/10 shadow-premium">
                         <div className="w-5 h-5 rounded-full bg-green-500/10 flex items-center justify-center shrink-0">
                           <CheckCircle2 className="w-2.5 h-2.5 text-green-500" />
                         </div>
-                        <span className="text-[#b9c9d6] font-medium text-[11px] leading-relaxed">{benefit}</span>
+                        <span className="text-slate-100 font-medium text-[11px] leading-relaxed">{benefit}</span>
                       </div>
                     ))}
                   </div>
@@ -430,11 +503,11 @@ const ServiceDetails = () => {
                     {details.process.map((step, i) => (
                       <div key={i} className="relative group">
                         <div className="absolute -left-[41px] top-1 w-4 h-4 bg-secondary rounded-full border-4 border-primary group-hover:bg-accent transition-colors shadow-sm" />
-                        <div className="glass-card p-4 group-hover:translate-x-1 transition-transform">
+                        <div className="glass-card p-4 bg-secondary/40 border-white/10 shadow-premium group-hover:translate-x-1 transition-transform">
                           <div className="text-[9px] font-black text-accent uppercase tracking-widest mb-1">
                             Phase {String(i + 1).padStart(2, '0')}
                           </div>
-                          <h4 className="text-sm font-semibold text-[#b9c9d6]">{step}</h4>
+                          <h4 className="text-sm font-semibold text-slate-100">{step}</h4>
                         </div>
                       </div>
                     ))}
@@ -448,13 +521,13 @@ const ServiceDetails = () => {
                   initial={{ opacity: 0, y: 16 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  className="glass-card p-7 bg-amber-500/[0.03] border border-amber-500/20"
+                  className="glass-card p-7 bg-amber-500/[0.02] border border-amber-500/25 shadow-premium"
                 >
                   <div className="flex items-center gap-3 mb-6">
                     <div className="w-10 h-10 rounded-xl bg-amber-500/10 flex items-center justify-center border border-amber-500/20">
                       <AlertTriangle className="w-5 h-5 text-amber-500" />
                     </div>
-                    <h2 className="text-base font-black text-[#b9c9d6]">Common Mistakes to Avoid</h2>
+                    <h2 className="text-base font-black text-slate-100">Common Mistakes to Avoid</h2>
                   </div>
                   <ul className="space-y-3">
                     {details.commonMistakes.map((mistake, i) => (
@@ -475,17 +548,17 @@ const ServiceDetails = () => {
                   viewport={{ once: true }}
                 >
                   <SectionHeader icon={<ShieldCheck className="w-4 h-4 text-accent" />} title="Post-Registration Compliances" />
-                  <div className="glass-card p-6 mt-6">
+                  <div className="glass-card p-6 bg-secondary/40 border-white/10 shadow-premium mt-6">
                     <p className="text-xs font-medium text-dark-gray/60 leading-relaxed mb-5">
                       Maintaining compliances after registration is critical to prevent penalties, keep your business active, and protect your reputation.
                     </p>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                       {details.postCompliances.map((compliance, i) => (
-                        <div key={i} className="flex items-start gap-2.5 p-3.5 bg-secondary/50 rounded-xl border border-white/10">
+                        <div key={i} className="flex items-start gap-2.5 p-3.5 bg-primary/40 rounded-xl border border-white/10">
                           <div className="w-5 h-5 rounded-full bg-accent/10 flex items-center justify-center shrink-0 mt-0.5">
                             <span className="text-accent text-[10px] font-black">!</span>
                           </div>
-                          <span className="text-[#b9c9d6] font-semibold text-[11px] leading-snug">{compliance}</span>
+                          <span className="text-slate-100 font-semibold text-[11px] leading-snug">{compliance}</span>
                         </div>
                       ))}
                     </div>
@@ -504,12 +577,12 @@ const ServiceDetails = () => {
                   <SectionHeader icon={<HelpCircle className="w-4 h-4 text-accent" />} title="Frequently Asked Questions" />
                   <div className="space-y-3 mt-6">
                     {faqs.map((faq, i) => (
-                      <div key={i} className="glass-card overflow-hidden">
+                      <div key={i} className="glass-card bg-secondary/40 border border-white/10 shadow-premium overflow-hidden">
                         <button
                           onClick={() => setOpenFaq(openFaq === i ? null : i)}
                           className="w-full p-5 flex items-center justify-between text-left hover:bg-accent/5 transition-colors"
                         >
-                          <span className="text-sm font-semibold text-[#b9c9d6] pr-4">{faq.question}</span>
+                          <span className="text-sm font-semibold text-slate-100 pr-4">{faq.question}</span>
                           {openFaq === i
                             ? <ChevronUp className="w-4 h-4 text-accent shrink-0" />
                             : <ChevronDown className="w-4 h-4 text-accent shrink-0" />}
@@ -533,81 +606,6 @@ const ServiceDetails = () => {
                 </motion.div>
               )}
             </div>
-
-            {/* ══════ RIGHT COLUMN: Sticky Sidebar ══════ */}
-            <div className="order-1 lg:order-2">
-              <motion.div
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                className="lg:sticky lg:top-24 flex flex-col gap-4"
-              >
-                {/* Apply Now CTA */}
-                <div className="order-2 lg:order-1 glass-card p-5 bg-primary text-[#b9c9d6] border-white/5 shadow-2xl">
-                  <Link
-                    to={`/apply/${category.slug}/${service.slug}`}
-                    className="btn-accent w-full text-center py-3.5 rounded-lg mb-3 text-sm font-bold uppercase tracking-wider shadow-glow block"
-                  >
-                    Apply Now
-                  </Link>
-                  <a
-                    href={`https://wa.me/918919051513?text=Hi, I am interested in ${service.name} service.`}
-                    className="w-full flex items-center justify-center gap-2 font-bold text-white py-3 rounded-lg bg-white/5 border border-white/10 hover:bg-white/10 transition-all text-xs uppercase tracking-wider"
-                  >
-                    <ShieldCheck className="w-4 h-4 text-green-400" />
-                    Talk to Senior Partner
-                  </a>
-                  {details.timeline && (
-                    <div className="mt-3 p-3 bg-white/5 rounded-xl border border-white/10">
-                      <div className="flex items-center gap-2.5">
-                        <Clock className="w-4 h-4 text-accent shrink-0" />
-                        <div>
-                          <div className="text-[8px] text-white/30 font-bold uppercase tracking-widest">Expected Timeline</div>
-                          <div className="text-sm font-black text-[#b9c9d6]">{details.timeline}</div>
-                        </div>
-                      </div>
-                    </div>
-                  )}
-                </div>
-
-                {/* Documents Required */}
-                {details.documents && details.documents.length > 0 && (
-                  <div id="documents-section" className="order-1 lg:order-2 glass-card p-5 bg-primary text-[#b9c9d6] border-white/5 shadow-2xl">
-                    <div className="flex items-center gap-2.5 mb-4">
-                      <FileText className="w-4 h-4 text-accent" />
-                      <h3 className="text-sm font-black tracking-tight text-[#b9c9d6]">Documents Required</h3>
-                    </div>
-                    <ul className="space-y-2.5">
-                      {details.documents.map((doc, i) => (
-                        <li key={i} className="flex items-start gap-2 text-[11px] text-white/60 font-medium leading-relaxed">
-                          <div className="w-1.5 h-1.5 bg-accent rounded-full shrink-0 mt-1.5" />
-                          {doc}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
-
-                {/* Expert Advisory */}
-                <div className="order-3 lg:order-3 glass-card p-5 bg-gradient-to-br from-primary to-secondary border-white/10 shadow-2xl relative overflow-hidden group">
-                  <div className="absolute top-0 right-0 w-24 h-24 bg-accent/20 blur-3xl -mr-12 -mt-12 rounded-full group-hover:bg-accent/30 transition-all duration-700" />
-                  <div className="relative z-10">
-                    <div className="flex items-center gap-3 mb-4">
-                      <div className="w-9 h-9 bg-white/5 rounded-xl flex items-center justify-center border border-white/10 group-hover:bg-accent transition-all duration-500">
-                        <HelpCircle className="w-4 h-4 text-accent group-hover:text-white transition-colors" />
-                      </div>
-                      <h3 className="text-sm font-bold text-[#b9c9d6]">Need Expert Help?</h3>
-                    </div>
-                    <p className="text-[11px] text-white/70 font-medium mb-4 leading-relaxed">
-                      Our consultants are available for a one-on-one session to clarify your path.
-                    </p>
-                    <Link to="/contact" className="inline-flex items-center gap-1.5 text-accent font-black uppercase text-[9px] tracking-widest hover:text-white transition-all">
-                      Contact Advisory
-                      <ArrowRight className="w-3 h-3" />
-                    </Link>
-                  </div>
-                </div>
-              </motion.div>
-            </div>
           </div>
         </div>
       </section>
@@ -620,7 +618,7 @@ const ServiceDetails = () => {
               <div className="w-9 h-9 bg-accent/5 rounded-xl flex items-center justify-center border border-accent/10">
                 <Link2 className="w-4 h-4 text-accent" />
               </div>
-              <h2 className="text-xl font-black text-[#b9c9d6]">Related Services</h2>
+              <h2 className="text-xl font-black text-slate-100">Related Services</h2>
             </div>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
               {relatedServices.map((rs, i) => (
@@ -633,9 +631,9 @@ const ServiceDetails = () => {
                 >
                   <Link
                     to={`/services/${rs.categorySlug}/${rs.slug}`}
-                    className="glass-card p-4 flex items-center justify-between gap-2 hover:border-accent/30 hover:bg-accent/5 transition-all group"
+                    className="glass-card p-4 bg-secondary/40 border-white/10 shadow-premium flex items-center justify-between gap-2 hover:border-accent/30 hover:bg-accent/5 transition-all group"
                   >
-                    <span className="text-xs font-bold text-[#b9c9d6] group-hover:text-accent transition-colors leading-snug">{rs.name}</span>
+                    <span className="text-xs font-bold text-slate-100 group-hover:text-accent transition-colors leading-snug">{rs.name}</span>
                     <ArrowRight className="w-3 h-3 text-accent opacity-0 group-hover:opacity-100 shrink-0 transition-all" />
                   </Link>
                 </motion.div>
@@ -653,7 +651,7 @@ const ServiceDetails = () => {
               <div className="w-9 h-9 bg-accent/5 rounded-xl flex items-center justify-center border border-accent/10">
                 <Star className="w-4 h-4 text-accent" />
               </div>
-              <h2 className="text-xl font-black text-[#b9c9d6]">Customer Reviews</h2>
+              <h2 className="text-xl font-black text-slate-100">Customer Reviews</h2>
               <span className="ml-2 px-3 py-1 rounded-full bg-accent/10 text-accent text-[10px] font-black uppercase tracking-widest">
                 {reviewsList.length} Reviews
               </span>
@@ -672,14 +670,14 @@ const ServiceDetails = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.1 }}
-                  className="glass-card p-5"
+                  className="glass-card p-5 bg-secondary/40 border-white/10 shadow-premium"
                 >
                   <div className="flex items-center gap-3 mb-4">
                     <div className="w-10 h-10 rounded-full bg-gradient-to-br from-accent/30 to-accent/10 flex items-center justify-center font-black text-accent text-sm shrink-0">
                       {review.name.charAt(0).toUpperCase()}
                     </div>
                     <div className="min-w-0">
-                      <div className="text-sm font-bold text-[#b9c9d6] truncate">{review.name}</div>
+                      <div className="text-sm font-bold text-slate-100 truncate">{review.name}</div>
                       <div className="text-[10px] text-dark-gray">{review.city} · {review.date}</div>
                     </div>
                     <div className="ml-auto flex items-center gap-0.5 shrink-0">
@@ -704,9 +702,9 @@ const ServiceDetails = () => {
               <div className="w-9 h-9 bg-accent/5 rounded-xl flex items-center justify-center border border-accent/10">
                 <Star className="w-4 h-4 text-accent" />
               </div>
-              <h2 className="text-xl font-black text-[#b9c9d6]">Customer Reviews</h2>
+              <h2 className="text-xl font-black text-slate-100">Customer Reviews</h2>
             </div>
-            <div className="glass-card p-8 text-center">
+            <div className="glass-card p-8 bg-secondary/40 border-white/10 shadow-premium text-center">
               <Star className="w-10 h-10 text-accent/30 mx-auto mb-3" />
               <p className="text-sm text-dark-gray font-medium mb-4">Be the first to review this service!</p>
               <button
@@ -725,7 +723,7 @@ const ServiceDetails = () => {
         <div className="container mx-auto px-4 lg:px-8">
           <div className="flex items-center gap-3 mb-5">
             <Search className="w-4 h-4 text-accent" />
-            <h2 className="text-base font-black text-[#b9c9d6]">Popular Searches</h2>
+            <h2 className="text-base font-black text-slate-100">Popular Searches</h2>
           </div>
           <div className="flex flex-wrap gap-2.5">
             {popularSearches.map((term, i) => (
@@ -736,7 +734,7 @@ const ServiceDetails = () => {
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.04 }}
                 onClick={() => handlePopularSearchClick(term)}
-                className="px-4 py-2 text-[11px] font-semibold text-dark-gray bg-white/5 border border-white/10 rounded-full hover:border-accent/40 hover:text-white transition-all cursor-pointer text-left"
+                className="px-4 py-2 text-[11px] font-semibold text-dark-gray bg-secondary/40 border border-white/10 rounded-full hover:bg-accent/10 hover:text-accent transition-all cursor-pointer text-left"
               >
                 {term}
               </motion.button>
@@ -748,7 +746,7 @@ const ServiceDetails = () => {
       {/* ─── Other Services in Category ─── */}
       <section className="py-20 bg-secondary/30 border-t border-light-gray">
         <div className="container mx-auto px-4 lg:px-8 text-center">
-          <h2 className="text-2xl font-black text-[#b9c9d6] mb-10">
+          <h2 className="text-2xl font-black text-slate-100 mb-10">
             Explore Other <span className="text-accent">{category.title}</span> Services
           </h2>
           <div className="flex flex-wrap justify-center gap-3">
@@ -781,10 +779,10 @@ const ServiceDetails = () => {
               initial={{ scale: 0.95, y: 20 }}
               animate={{ scale: 1, y: 0 }}
               exit={{ scale: 0.95, y: 20 }}
-              className="glass-card bg-secondary border border-white/10 w-full max-w-md p-6 relative overflow-hidden"
+              className="glass-card bg-secondary border border-white/15 w-full max-w-md p-6 relative overflow-hidden shadow-2xl"
               onClick={(e) => e.stopPropagation()}
             >
-              <h3 className="text-lg font-black text-[#b9c9d6] mb-4">Write a Customer Review</h3>
+              <h3 className="text-lg font-black text-slate-100 mb-4">Write a Customer Review</h3>
               <form onSubmit={handleReviewSubmit} className="space-y-4">
                 <div>
                   <label className="block text-[10px] font-bold uppercase tracking-wider text-dark-gray/60 mb-1">Your Name</label>
@@ -856,6 +854,22 @@ const ServiceDetails = () => {
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* Scroll to Top Button (Mobile only) */}
+      <AnimatePresence>
+        {showScrollTop && (
+          <motion.button
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.8 }}
+            onClick={scrollToTop}
+            className="fixed bottom-24 right-4 z-[99] sm:hidden w-12 h-12 rounded-full bg-[#0284C7] text-white flex items-center justify-center shadow-lg shadow-[#0284C7]/30 hover:scale-105 active:scale-95 transition-all cursor-pointer border-none"
+            aria-label="Scroll to top"
+          >
+            <ArrowUp className="w-5 h-5 text-white" />
+          </motion.button>
+        )}
+      </AnimatePresence>
     </div>
   );
 };
@@ -874,7 +888,7 @@ const SectionHeader = ({
     <div className={`w-9 h-9 ${iconBg} rounded-xl flex items-center justify-center border border-white/10`}>
       {icon}
     </div>
-    <h2 className="text-base font-black text-[#b9c9d6]">{title}</h2>
+    <h2 className="text-base font-black text-slate-100">{title}</h2>
   </div>
 );
 
