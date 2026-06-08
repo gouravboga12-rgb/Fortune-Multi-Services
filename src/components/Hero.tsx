@@ -106,7 +106,7 @@ const Hero = () => {
       <div className="w-full relative z-20">
         <div className="container mx-auto px-5 sm:px-8 lg:px-8">
           <div className="max-w-3xl lg:max-w-none lg:grid lg:grid-cols-12 lg:gap-16 lg:items-center">
-            <div className="lg:col-span-8 xl:col-span-7 2xl:col-span-6 lg:pr-8 space-y-5 sm:space-y-7 lg:space-y-10 flex flex-col items-center sm:items-start text-center sm:text-left">
+            <div className="lg:col-span-8 xl:col-span-7 2xl:col-span-6 lg:pr-8 space-y-5 sm:space-y-7 lg:space-y-10 flex flex-col items-start text-left">
 
               {/* Badge */}
               <motion.div
@@ -159,7 +159,7 @@ const Hero = () => {
                   )}
                   {text2.length === 14 && (
                     <span
-                      className="absolute -bottom-2 left-1/2 sm:left-0 -translate-x-1/2 sm:translate-x-0 h-[3px] rounded-full"
+                      className="absolute -bottom-2 left-0 h-[3px] rounded-full"
                       style={{
                         width: '55%',
                         background: 'linear-gradient(90deg, #0284C7, #0EA5E9, #38BDF8, transparent)',

@@ -339,12 +339,12 @@ html.light {
 
   /* Hero Title light mode adjustments */
   .hero-title-fortune {
-    background: linear-gradient(135deg, #0f172a 0%, #1e293b 30%, #0f172a 55%, #334155 85%, #0f172a 100%) !important;
+    background: linear-gradient(135deg, #0369a1 0%, #0284c7 35%, #0ea5e9 60%, #0284c7 80%, #0369a1 100%) !important;
     -webkit-text-fill-color: transparent !important;
     background-clip: text !important;
   }
   .hero-title-services {
-    background: linear-gradient(135deg, #0369a1 0%, #0284c7 35%, #0ea5e9 60%, #0284c7 80%, #0369a1 100%) !important;
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 30%, #0f172a 55%, #334155 85%, #0f172a 100%) !important;
     -webkit-text-fill-color: transparent !important;
     background-clip: text !important;
     filter: none !important;
