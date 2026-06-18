@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import { Mail, Phone, MapPin, Send, MessageSquare, CheckCircle2, Clock } from 'lucide-react';
+import { MapPin, Send, CheckCircle2 } from 'lucide-react';
 import { navLinks } from '../components/Navbar';
 import { motion } from 'framer-motion';
 import { createInquiry } from '../config/api';
@@ -59,37 +59,6 @@ const Contact = () => {
     setTimeout(() => setSubmitted(false), 5000);
   };
 
-  const contactCards = [
-    {
-      icon: <Phone className="w-5 h-5 text-accent" />,
-      bg: 'bg-accent/10',
-      label: 'Call Us',
-      sub: 'Mon–Sat, 9am–7pm',
-      action: <a href="tel:+918919051513" className="text-[#b9c9d6] font-black text-base hover:text-accent hover:underline">+91 89190 51513</a>
-    },
-    {
-      icon: <MessageSquare className="w-5 h-5 text-green-400" />,
-      bg: 'bg-green-500/10',
-      label: 'WhatsApp',
-      sub: 'Instant consultation',
-      action: <a href="https://wa.me/918919051513" target="_blank" rel="noopener noreferrer" className="text-green-400 font-black text-base hover:text-green-300 hover:underline">Chat with Expert</a>
-    },
-    {
-      icon: <Mail className="w-5 h-5 text-accent" />,
-      bg: 'bg-accent/10',
-      label: 'Email',
-      sub: 'For formal inquiries',
-      action: <a href="mailto:fortunemultiservices2023@gmail.com" className="text-accent font-black text-xs break-all hover:text-accent-light hover:underline">fortunemultiservices2023@gmail.com</a>
-    },
-    {
-      icon: <Clock className="w-5 h-5 text-purple-400" />,
-      bg: 'bg-purple-500/10',
-      label: 'Working Hours',
-      sub: 'Sunday Closed',
-      action: <span className="text-[#b9c9d6] font-black text-sm">Mon–Sat 9:00 AM – 7:00 PM</span>
-    },
-  ];
-
   return (
     <div className="bg-soft-white min-h-screen">
 
@@ -112,30 +81,6 @@ const Contact = () => {
               Have questions about registrations or compliance? Our experts are just a message away.
             </p>
           </motion.div>
-        </div>
-      </section>
-
-      {/* Contact Info Cards — horizontal scroll on mobile */}
-      <section className="container mx-auto px-4 sm:px-6 lg:px-8 -mt-6 sm:-mt-10 relative z-10">
-        <div className="flex gap-3 overflow-x-auto pb-2 sm:grid sm:grid-cols-2 lg:grid-cols-4 sm:overflow-visible snap-x snap-mandatory">
-          {contactCards.map((card, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: i * 0.08, duration: 0.4 }}
-              className="glass-card bg-secondary p-5 rounded-2xl border border-light-gray shadow-premium shrink-0 w-[200px] sm:w-auto snap-center flex flex-col gap-3"
-            >
-              <div className={`w-10 h-10 ${card.bg} rounded-xl flex items-center justify-center shrink-0`}>
-                {card.icon}
-              </div>
-              <div>
-                <h3 className="text-sm font-black text-[#b9c9d6] mb-0.5">{card.label}</h3>
-                <p className="text-[11px] text-gray-400 font-medium mb-2">{card.sub}</p>
-                {card.action}
-              </div>
-            </motion.div>
-          ))}
         </div>
       </section>
 

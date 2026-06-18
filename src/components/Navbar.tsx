@@ -1,10 +1,11 @@
 import { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, ChevronDown, User, Search, PhoneCall, Sun, Moon } from 'lucide-react';
+import { Menu, X, ChevronDown, User, Search, PhoneCall, Sun, Moon, ShoppingCart } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 import { servicesData } from '../data/services';
+import { useCart } from '../context/CartContext';
 
 function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -209,6 +210,7 @@ export const navLinks: NavLink[] = [
 ];
 
 const Navbar = () => {
+  const { cartCount } = useCart();
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
@@ -487,6 +489,20 @@ const Navbar = () => {
             )}
           </button>
  
+          {/* Cart Icon */}
+          <Link
+            to="/cart"
+            className="relative w-7 h-7 xl:w-8 xl:h-8 3xl:w-11 3xl:h-11 4xl:w-12 4xl:h-12 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center hover:bg-accent/10 hover:text-accent transition-all duration-300 cursor-pointer group"
+            aria-label="View Cart"
+          >
+            <ShoppingCart className="w-3 h-3 xl:w-3.5 xl:h-3.5 3xl:w-5 3xl:h-5 4xl:w-6 4xl:h-6 text-dark-gray group-hover:text-accent transition-colors" />
+            {cartCount > 0 && (
+              <span className="absolute -top-1.5 -right-1.5 w-4 h-4 3xl:w-5 3xl:h-5 rounded-full bg-accent text-white text-[9px] 3xl:text-[11px] font-black flex items-center justify-center shadow-[0_0_8px_rgba(6,182,212,0.8)] animate-pulse">
+                {cartCount > 9 ? '9+' : cartCount}
+              </span>
+            )}
+          </Link>
+
           {/* Book Consultation */}
           <Link
             to="/contact"
@@ -531,6 +547,20 @@ const Navbar = () => {
           >
             {theme === 'light' ? <Moon className="w-4 h-4" /> : <Sun className="w-4 h-4" />}
           </button>
+
+          {/* Mobile Cart Icon */}
+          <Link
+            to="/cart"
+            className="relative p-2 bg-white/10 backdrop-blur-md rounded-lg border border-white/20 text-white flex items-center justify-center"
+            aria-label="View Cart"
+          >
+            <ShoppingCart className="w-4 h-4" />
+            {cartCount > 0 && (
+              <span className="absolute -top-1.5 -right-1.5 w-4 h-4 rounded-full bg-accent text-white text-[9px] font-black flex items-center justify-center shadow-[0_0_8px_rgba(6,182,212,0.8)] animate-pulse">
+                {cartCount > 9 ? '9+' : cartCount}
+              </span>
+            )}
+          </Link>
 
           <button
             className="text-white p-2 bg-white/10 backdrop-blur-md rounded-lg border border-white/20"

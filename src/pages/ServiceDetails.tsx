@@ -5,14 +5,16 @@ import {
   CheckCircle2, FileText, Clock, ArrowRight, 
   ShieldCheck, HelpCircle, FileCheck,
   ChevronDown, ChevronUp, AlertTriangle, ThumbsUp, ThumbsDown,
-  ShieldAlert, Award, Star, Search, Link2, ArrowUp
+  ShieldAlert, Award, Star, Search, Link2, ArrowUp, ShoppingCart
 } from 'lucide-react';
 import React, { useState, useEffect } from 'react';
+import { useCart } from '../context/CartContext';
 
 const ServiceDetails = () => {
   const { category: categorySlug, serviceSlug } = useParams();
   const navigate = useNavigate();
   const location = useLocation();
+  const { addToCart, isInCart } = useCart();
   const cleanCategorySlug = categorySlug?.replace(/_/g, '-');
   const cleanServiceSlug = serviceSlug?.replace(/_/g, '-');
   const category = servicesData.find((c) => c.slug === cleanCategorySlug);
@@ -63,6 +65,20 @@ const ServiceDetails = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  const handleAddToCart = () => {
+    if (!service || !category) return;
+    if (isInCart(service.slug ?? '')) {
+      navigate('/cart');
+      return;
+    }
+    addToCart({
+      name: service.name,
+      slug: service.slug ?? '',
+      categorySlug: category.slug,
+      price: 199,
+    });
+  };
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -248,7 +264,7 @@ const ServiceDetails = () => {
       ];
 
   return (
-    <div className="bg-soft-white min-h-screen">
+    <div className="bg-soft-white min-h-screen pb-24">
 
       {/* ─── Hero Header ─── */}
       <section className="relative pt-28 sm:pt-36 lg:pt-40 pb-12 sm:pb-16 lg:pb-24 overflow-hidden bg-primary">
@@ -311,33 +327,6 @@ const ServiceDetails = () => {
                 animate={{ opacity: 1, x: 0 }}
                 className="lg:sticky lg:top-24 flex flex-col gap-4 lg:max-h-[calc(100vh-8rem)] lg:overflow-y-auto pr-2 sidebar-scrollbar"
               >
-                {/* Apply Now CTA */}
-                <div className="glass-card p-6 bg-secondary/40 text-slate-100 border-white/10 shadow-premium">
-                  <Link
-                    to={`/apply/${category.slug}/${service.slug}`}
-                    className="btn-accent w-full text-center py-3.5 rounded-lg mb-3 text-sm font-bold uppercase tracking-wider shadow-glow block"
-                  >
-                    Apply Now
-                  </Link>
-                  <a
-                    href={`https://wa.me/918919051513?text=Hi, I am interested in ${service.name} service.`}
-                    className="w-full flex items-center justify-center gap-2 font-bold text-white py-3 rounded-lg bg-white/5 border border-white/10 hover:bg-white/10 transition-all text-xs uppercase tracking-wider"
-                  >
-                    <ShieldCheck className="w-4 h-4 text-green-400" />
-                    Talk to Senior Partner
-                  </a>
-                  {details.timeline && (
-                    <div className="mt-3 p-3 bg-white/5 rounded-xl border border-white/10">
-                      <div className="flex items-center gap-2.5">
-                        <Clock className="w-4 h-4 text-accent shrink-0" />
-                        <div>
-                          <div className="text-[8px] text-white/30 font-bold uppercase tracking-widest">Expected Timeline</div>
-                          <div className="text-sm font-black text-slate-100">{details.timeline}</div>
-                        </div>
-                      </div>
-                    </div>
-                  )}
-                </div>
 
                 {/* Documents Required */}
                 {details.documents && details.documents.length > 0 && (
@@ -870,6 +859,87 @@ const ServiceDetails = () => {
           </motion.button>
         )}
       </AnimatePresence>
+
+      {/* ─── Floating Action Bar — All screens ─── */}
+      <div className="fixed bottom-0 left-0 right-0 z-[98] pb-4 lg:pb-6 px-3 sm:px-6">
+        <motion.div
+          initial={{ y: 80, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ type: 'spring', stiffness: 260, damping: 26, delay: 0.4 }}
+          className="floating-action-bar relative overflow-hidden backdrop-blur-2xl border border-transparent shadow-[0_-4px_60px_rgba(0,0,0,0.5),0_0_0_1px_rgba(255,255,255,0.05)] flex items-center rounded-2xl lg:rounded-[20px] max-w-2xl lg:mx-auto px-4 sm:px-6 lg:px-6 py-3 sm:py-3.5 lg:py-0 lg:h-[68px]"
+        >
+          {/* Ambient glow */}
+          <div className="absolute left-1/4 top-0 w-64 h-px bg-gradient-to-r from-transparent via-accent/40 to-transparent pointer-events-none" />
+          <div className="absolute -left-20 top-1/2 -translate-y-1/2 w-40 h-40 bg-accent/5 blur-3xl rounded-full pointer-events-none" />
+          <div className="absolute -right-20 top-1/2 -translate-y-1/2 w-40 h-40 bg-[#7C3AED]/8 blur-3xl rounded-full pointer-events-none" />
+
+          {/* ── Mobile layout ── */}
+          <div className="flex items-center justify-between w-full lg:hidden">
+            <div className="flex flex-col">
+              <span className="fab-label text-[8px] font-black uppercase tracking-[0.18em]">BOOKING FEE</span>
+              <span className="fab-value text-lg font-black leading-tight mt-0.5">
+                ₹199<span className="fab-sub text-[10px] font-semibold">/service</span>
+              </span>
+              <span className="fab-sub text-[8px] font-medium">+ 18% GST included</span>
+            </div>
+            <motion.button
+              whileTap={{ scale: 0.94 }}
+              onClick={handleAddToCart}
+              className={`flex items-center gap-2 rounded-xl px-5 py-2.5 font-black text-xs uppercase tracking-wider transition-all duration-300 ${
+                service.slug && isInCart(service.slug)
+                  ? 'bg-green-500 !text-white shadow-lg shadow-green-500/30'
+                  : 'bg-[#7C3AED] hover:bg-[#6D28D9] !text-white shadow-lg shadow-[#7C3AED]/50'
+              }`}
+            >
+              {service.slug && isInCart(service.slug) ? 'GO TO CART' : 'GET STARTED'}
+              <div className="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center">
+                {service.slug && isInCart(service.slug)
+                  ? <ShoppingCart className="w-3 h-3 !text-white" />
+                  : <ArrowRight className="w-3 h-3 !text-white" />}
+              </div>
+            </motion.button>
+          </div>
+
+          {/* ── Desktop layout (3-column) ── */}
+          <div className="hidden lg:flex items-center w-full gap-6">
+
+            {/* Col 1 — Service identity */}
+            <div className="flex items-center gap-3 min-w-0 flex-1">
+              <div className="fab-icon-wrap w-9 h-9 rounded-xl border flex items-center justify-center shrink-0">
+                <ShieldCheck className="w-4 h-4 text-accent" />
+              </div>
+              <div className="min-w-0">
+                <p className="fab-label text-[9px] font-black uppercase tracking-[0.2em] mb-0.5">SELECTED SERVICE</p>
+                <p className="fab-service-name font-bold text-sm truncate leading-tight">{service.name}</p>
+              </div>
+            </div>
+
+            {/* Divider */}
+            <div className="fab-divider w-px h-8 shrink-0" />
+
+            {/* Col 3 — CTA */}
+            <div className="flex items-center gap-3 shrink-0">
+              <motion.button
+                whileTap={{ scale: 0.95 }}
+                whileHover={{ scale: 1.02 }}
+                onClick={handleAddToCart}
+                className={`flex items-center gap-3 rounded-xl px-7 py-3 font-black text-sm uppercase tracking-wider transition-all duration-300 ${
+                  service.slug && isInCart(service.slug)
+                    ? 'bg-green-500 !text-white shadow-xl shadow-green-500/30'
+                    : 'bg-gradient-to-r from-[#7C3AED] to-[#6025C0] hover:from-[#6D28D9] hover:to-[#5020A8] !text-white shadow-xl shadow-[#7C3AED]/40'
+                }`}
+              >
+                <span>{service.slug && isInCart(service.slug) ? 'GO TO CART' : 'ADD TO CART'}</span>
+                <div className="w-7 h-7 rounded-full bg-white/20 flex items-center justify-center">
+                  {service.slug && isInCart(service.slug)
+                    ? <ShoppingCart className="w-3.5 h-3.5 !text-white" />
+                    : <ArrowRight className="w-3.5 h-3.5 !text-white" />}
+                </div>
+              </motion.button>
+            </div>
+          </div>
+        </motion.div>
+      </div>
     </div>
   );
 };

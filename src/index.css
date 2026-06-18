@@ -116,6 +116,19 @@ html.light {
     -webkit-text-size-adjust: 100%;
     text-size-adjust: 100%;
     overflow-x: clip;
+
+    /* ── Mobile: slightly larger base for readability ── */
+    font-size: 18px;
+
+    /* ── Tablet: slightly smaller bump ── */
+    @media (min-width: 640px) {
+      font-size: 18.5px;
+    }
+
+    /* ── Desktop: back to standard 16px ── */
+    @media (min-width: 1024px) {
+      font-size: 16px;
+    }
   }
 
   body {
@@ -348,6 +361,40 @@ html.light {
     -webkit-text-fill-color: transparent !important;
     background-clip: text !important;
     filter: none !important;
+  }
+
+  /* ── Floating Action Bar — always dark regardless of theme ── */
+  .floating-action-bar {
+    background: linear-gradient(to right, #0a1628, #0f1f38, #0a1628) !important;
+    border-color: rgba(255,255,255,0.12) !important;
+  }
+  .floating-action-bar .fab-label {
+    color: rgba(255,255,255,0.45) !important;
+  }
+  .floating-action-bar .fab-value {
+    color: #ffffff !important;
+  }
+  .floating-action-bar .fab-sub {
+    color: rgba(255,255,255,0.35) !important;
+  }
+  .floating-action-bar .fab-divider {
+    background-color: rgba(255,255,255,0.1) !important;
+  }
+  .floating-action-bar .fab-service-name {
+    color: #ffffff !important;
+  }
+  .floating-action-bar .fab-icon-wrap {
+    background-color: rgba(2, 132, 199, 0.15) !important;
+    border-color: rgba(2, 132, 199, 0.3) !important;
+  }
+  .floating-action-bar .fab-delivery {
+    color: rgba(74, 222, 128, 0.85) !important;
+  }
+  .floating-action-bar .fab-guarantee {
+    color: #38bdf8 !important;
+  }
+  .floating-action-bar svg {
+    color: inherit !important;
   }
 }
 

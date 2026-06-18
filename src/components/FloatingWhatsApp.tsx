@@ -353,7 +353,7 @@ const FloatingWhatsApp = () => {
                       type="button"
                       onClick={() => setChatUsingWhatsApp(!chatUsingWhatsApp)}
                       className={`relative inline-flex items-center h-6 rounded-full w-11 transition-colors duration-300 cursor-pointer outline-none border-none ${
-                        chatUsingWhatsApp ? 'bg-[#25D366]' : 'bg-primary'
+                        chatUsingWhatsApp ? 'bg-[#25D366]' : 'bg-[#0284C7]'
                       }`}
                     >
                       <span
