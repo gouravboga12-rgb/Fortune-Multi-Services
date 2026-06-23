@@ -6,9 +6,9 @@ import {
   ShieldCheck, ArrowRight, Lock, CreditCard, 
   CheckCircle2, AlertCircle, Mail, 
   User, Building2, Smartphone, Landmark,
-  QrCode, ChevronRight
+  QrCode, ChevronRight, Loader2, Upload
 } from 'lucide-react';
-import { createInquiry } from '../config/api';
+import { createInquiry, getServices, uploadCertificateFile } from '../config/api';
 
 const ApplyService = () => {
   const { category: categorySlug, serviceSlug } = useParams();
@@ -16,8 +16,26 @@ const ApplyService = () => {
 
   const cleanCategorySlug = categorySlug?.replace(/_/g, '-');
   const cleanServiceSlug = serviceSlug?.replace(/_/g, '-');
-  const category = servicesData.find((c) => c.slug === cleanCategorySlug);
-  const service = category?.services.find((s) => s.slug === cleanServiceSlug);
+
+  const [categoriesList, setCategoriesList] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchServices = async () => {
+      try {
+        const data = await getServices();
+        setCategoriesList(data);
+      } catch (err) {
+        console.error('Failed to load dynamic services in application page:', err);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchServices();
+  }, []);
+
+  const category = categoriesList.find((c) => c.slug === cleanCategorySlug) || servicesData.find((c) => c.slug === cleanCategorySlug);
+  const service = category?.services.find((s: any) => s.slug === cleanServiceSlug);
 
   const [formData, setFormData] = useState({
     name: '',
@@ -26,6 +44,9 @@ const ApplyService = () => {
     companyName: '',
     message: '',
   });
+
+  const [customFormValues, setCustomFormValues] = useState<Record<string, any>>({});
+  const [uploadingField, setUploadingField] = useState<string | null>(null);
 
   const [formErrors, setFormErrors] = useState<any>({});
   const [showRazorpay, setShowRazorpay] = useState(false);
@@ -56,6 +77,15 @@ const ApplyService = () => {
     }
   }, [categorySlug, serviceSlug, navigate]);
 
+  if (loading && categoriesList.length === 0) {
+    return (
+      <div className="pt-40 pb-20 text-center bg-primary min-h-screen flex flex-col items-center justify-center">
+        <div className="w-10 h-10 border-4 border-accent border-t-transparent rounded-full animate-spin"></div>
+        <p className="text-xs text-slate-400 mt-4 font-semibold">Loading application portal...</p>
+      </div>
+    );
+  }
+
   if (!category || !service) {
     return (
       <div className="pt-40 pb-20 text-center">
@@ -64,6 +94,42 @@ const ApplyService = () => {
       </div>
     );
   }
+
+  const rawPrice = service.discountPrice || service.price || 199;
+  const gstAmount = Math.round((rawPrice - (rawPrice / 1.18)) * 100) / 100;
+  const subtotalBase = Math.round((rawPrice - gstAmount) * 100) / 100;
+
+  const handleFileUpload = async (fieldKey: string, e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    setUploadingField(fieldKey);
+    try {
+      const reader = new FileReader();
+      reader.onload = async (event) => {
+        const result = event.target?.result as string;
+        if (result) {
+          // Strip prefix e.g. "data:application/pdf;base64,"
+          const base64Data = result.split(',')[1] || result;
+          const uploadRes = await uploadCertificateFile(file.name, base64Data);
+          if (uploadRes.success && uploadRes.fileUrl) {
+            setCustomFormValues(prev => ({
+              ...prev,
+              [fieldKey]: uploadRes.fileUrl
+            }));
+          } else {
+            alert('File upload failed. Please try again.');
+          }
+        }
+      };
+      reader.readAsDataURL(file);
+    } catch (err) {
+      console.error(err);
+      alert('Error reading file.');
+    } finally {
+      setUploadingField(null);
+    }
+  };
 
   const validateForm = () => {
     const errors: any = {};
@@ -77,6 +143,20 @@ const ApplyService = () => {
       errors.email = 'Email address is required';
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
       errors.email = 'Please enter a valid email address';
+    }
+
+    // Validate dynamic fields
+    const dynamicFields = service?.details?.formFields || [];
+    if (Array.isArray(dynamicFields) && dynamicFields.length > 0) {
+      dynamicFields.forEach((field: any) => {
+        const fieldKey = field.id || field.label;
+        if (field.required) {
+          const val = customFormValues[fieldKey];
+          if (val === undefined || val === null || (typeof val === 'string' && !val.trim())) {
+            errors[fieldKey] = `${field.label} is required`;
+          }
+        }
+      });
     }
     return errors;
   };
@@ -102,17 +182,23 @@ const ApplyService = () => {
       setIsProcessing(false);
       setIsSuccess(true);
       
+      const formDetailsPayload = {
+        companyName: formData.companyName,
+        message: formData.message,
+        ...customFormValues
+      };
+
       // Store in Resilient API backend
       await createInquiry({
         name: formData.name,
         phone: formData.phone,
         email: formData.email,
-        companyName: formData.companyName,
         message: formData.message,
         service: service.name,
         paid: true,
         paymentId: generatedPayId,
-        amount: 199
+        amount: service.discountPrice || service.price || 199,
+        form_details: formDetailsPayload
       });
     }, 1800);
   };
@@ -210,38 +296,123 @@ const ApplyService = () => {
                       </div>
                       {formErrors.email && <p className="text-xs text-red-500 font-bold ml-1">{formErrors.email}</p>}
                     </div>
+                  </div>
  
-                    <div className="space-y-2">
-                      <label className="text-xs font-black uppercase tracking-widest text-dark-gray/80 ml-1">Company / Proposed Name</label>
-                      <div className="relative">
-                        <Building2 className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-white/30" />
-                        <input 
-                          type="text" 
-                          placeholder="e.g. Sharma Enterprise (Optional)"
-                          className="w-full pl-12 pr-4 py-4 bg-primary text-white rounded-xl border border-light-gray focus:border-accent focus:ring-1 outline-none transition-all font-medium text-sm"
-                          value={formData.companyName}
-                          onChange={(e) => setFormData({ ...formData, companyName: e.target.value })}
-                        />
-                      </div>
+                  {service.details?.formFields && Array.isArray(service.details.formFields) && service.details.formFields.length > 0 ? (
+                    <div className="space-y-5">
+                      {service.details.formFields.map((field: any) => {
+                        const fieldKey = field.id || field.label;
+                        return (
+                          <div key={fieldKey} className="space-y-2">
+                            <label className="text-xs font-black uppercase tracking-widest text-dark-gray/80 ml-1">
+                              {field.label} {field.required && ' *'}
+                            </label>
+                            
+                            {field.type === 'textarea' ? (
+                              <textarea
+                                rows={4}
+                                required={field.required}
+                                placeholder={`Enter ${field.label}...`}
+                                className={`w-full px-4 py-4 bg-primary text-white rounded-xl border ${formErrors[fieldKey] ? 'border-red-500 focus:border-red-500' : 'border-light-gray focus:border-accent'} focus:ring-1 outline-none transition-all font-medium text-sm`}
+                                value={customFormValues[fieldKey] || ''}
+                                onChange={(e) => setCustomFormValues({ ...customFormValues, [fieldKey]: e.target.value })}
+                              />
+                            ) : field.type === 'select' ? (
+                              <select
+                                required={field.required}
+                                className={`w-full px-4 py-4 bg-primary text-white rounded-xl border ${formErrors[fieldKey] ? 'border-red-500 focus:border-red-500' : 'border-light-gray focus:border-accent'} focus:ring-1 outline-none transition-all font-medium text-sm`}
+                                value={customFormValues[fieldKey] || ''}
+                                onChange={(e) => setCustomFormValues({ ...customFormValues, [fieldKey]: e.target.value })}
+                              >
+                                <option value="">Select Option</option>
+                                {field.options && Array.isArray(field.options) && field.options.map((opt: string) => (
+                                  <option key={opt} value={opt} className="bg-primary text-white">{opt}</option>
+                                ))}
+                              </select>
+                            ) : field.type === 'file' ? (
+                              <div className="flex flex-col gap-2">
+                                <div className="relative border border-dashed border-light-gray rounded-xl p-4 bg-primary flex items-center justify-between group hover:border-accent transition-all">
+                                  {uploadingField === fieldKey ? (
+                                    <div className="flex items-center gap-2 text-xs font-bold text-accent">
+                                      <Loader2 className="w-4 h-4 animate-spin" /> Uploading file...
+                                    </div>
+                                  ) : customFormValues[fieldKey] ? (
+                                    <div className="flex items-center justify-between w-full">
+                                      <span className="text-xs text-green-400 font-bold">✓ Document attached</span>
+                                      <a href={customFormValues[fieldKey]} target="_blank" rel="noopener noreferrer" className="text-xs text-accent hover:underline flex items-center gap-1">
+                                        View Upload
+                                      </a>
+                                    </div>
+                                  ) : (
+                                    <>
+                                      <div className="flex items-center gap-3">
+                                        <Upload className="w-5 h-5 text-white/30 group-hover:text-accent transition-colors" />
+                                        <span className="text-xs text-white/40 group-hover:text-white/60 transition-colors">Select certificate/document file</span>
+                                      </div>
+                                      <input 
+                                        type="file" 
+                                        required={field.required}
+                                        className="absolute inset-0 opacity-0 cursor-pointer"
+                                        onChange={(e) => handleFileUpload(fieldKey, e)}
+                                      />
+                                    </>
+                                  )}
+                                </div>
+                                {customFormValues[fieldKey] && (
+                                  <p className="text-[10px] text-green-500 font-semibold ml-1">File uploaded successfully: {customFormValues[fieldKey].split('/').pop()}</p>
+                                )}
+                              </div>
+                            ) : (
+                              // default to input (text, number, email, tel, etc.)
+                              <input
+                                type={field.type}
+                                required={field.required}
+                                placeholder={`Enter ${field.label}...`}
+                                className={`w-full px-4 py-4 bg-primary text-white rounded-xl border ${formErrors[fieldKey] ? 'border-red-500 focus:border-red-500' : 'border-light-gray focus:border-accent'} focus:ring-1 outline-none transition-all font-medium text-sm`}
+                                value={customFormValues[fieldKey] || ''}
+                                onChange={(e) => setCustomFormValues({ ...customFormValues, [fieldKey]: e.target.value })}
+                              />
+                            )}
+                            {formErrors[fieldKey] && (
+                              <p className="text-xs text-red-500 font-bold ml-1">{formErrors[fieldKey]}</p>
+                            )}
+                          </div>
+                        );
+                      })}
                     </div>
-                  </div>
-
-                  <div className="space-y-2">
-                    <label className="text-xs font-black uppercase tracking-widest text-dark-gray/80 ml-1">Message / Key Requirements</label>
-                    <textarea 
-                      rows={4}
-                      placeholder="Share any specific requests, operational targets, or timelines..."
-                      className="w-full px-4 py-4 bg-primary text-white rounded-xl border border-light-gray focus:border-accent focus:ring-1 outline-none transition-all font-medium text-sm"
-                      value={formData.message}
-                      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    ></textarea>
-                  </div>
+                  ) : (
+                    <>
+                      <div className="space-y-2">
+                        <label className="text-xs font-black uppercase tracking-widest text-dark-gray/80 ml-1">Company / Proposed Name</label>
+                        <div className="relative">
+                          <Building2 className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-white/30" />
+                          <input 
+                            type="text" 
+                            placeholder="e.g. Sharma Enterprise (Optional)"
+                            className="w-full pl-12 pr-4 py-4 bg-primary text-white rounded-xl border border-light-gray focus:border-accent focus:ring-1 outline-none transition-all font-medium text-sm"
+                            value={formData.companyName}
+                            onChange={(e) => setFormData({ ...formData, companyName: e.target.value })}
+                          />
+                        </div>
+                      </div>
+                      <div className="space-y-2 mt-4">
+                        <label className="text-xs font-black uppercase tracking-widest text-dark-gray/80 ml-1">Message / Key Requirements</label>
+                        <textarea 
+                          rows={4}
+                          placeholder="Share any specific requests, operational targets, or timelines..."
+                          className="w-full px-4 py-4 bg-primary text-white rounded-xl border border-light-gray focus:border-accent focus:ring-1 outline-none transition-all font-medium text-sm"
+                          value={formData.message}
+                          onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                        ></textarea>
+                      </div>
+                    </>
+                  )}
 
                   <button 
                     type="submit" 
                     className="btn-accent w-full py-5 text-lg flex items-center justify-center gap-3 shadow-glow"
                   >
-                    Proceed to Payment (₹199)
+                    Proceed to Payment (₹{rawPrice})
                     <ArrowRight className="w-5 h-5" />
                   </button>
                 </form>
@@ -281,17 +452,17 @@ const ApplyService = () => {
                   <div className="space-y-4 pt-2">
                     <div className="flex justify-between text-sm text-white/70">
                       <span>Standard Booking Fee</span>
-                      <span>₹168.64</span>
+                      <span>₹{subtotalBase}</span>
                     </div>
                     <div className="flex justify-between text-sm text-white/70">
                       <span>GST (18% Included)</span>
-                      <span>₹30.36</span>
+                      <span>₹{gstAmount}</span>
                     </div>
                     <div className="h-px bg-white/10 my-2"></div>
                     <div className="flex justify-between items-center">
                       <span className="text-base font-bold text-white">Total Booking Fee</span>
                       <div className="text-right">
-                        <span className="text-2xl font-black text-accent">₹199/-</span>
+                        <span className="text-2xl font-black text-accent">₹{rawPrice}/-</span>
                         <p className="text-[10px] text-white/50 font-bold uppercase">All Inclusive</p>
                       </div>
                     </div>
@@ -327,7 +498,7 @@ const ApplyService = () => {
               <span className="px-4 py-1.5 rounded-full bg-green-500/10 text-green-400 text-xs font-black uppercase tracking-wider">
                 Booking Payment Success
               </span>
-              <h1 className="text-4xl font-black text-[#b9c9d6]">₹199 Paid Successfully</h1>
+              <h1 className="text-4xl font-black text-[#b9c9d6]">₹{rawPrice} Paid Successfully</h1>
               <p className="text-dark-gray/60 font-medium text-sm max-w-md mx-auto">
                 Thank you, <span className="font-bold text-white">{formData.name}</span>! Your setup fee for <span className="font-bold text-white">{service.name}</span> has been processed via Razorpay.
               </p>
@@ -344,7 +515,7 @@ const ApplyService = () => {
                 </div>
                 <div className="text-right">
                   <h4 className="text-xs text-dark-gray/40 font-bold uppercase tracking-wider">Amount Paid</h4>
-                  <p className="font-black text-accent text-lg mt-0.5">₹199/-</p>
+                  <p className="font-black text-accent text-lg mt-0.5">₹{rawPrice}/-</p>
                 </div>
               </div>
 
@@ -423,7 +594,7 @@ const ApplyService = () => {
 
                 <div className="text-right z-10">
                   <span className="text-[10px] text-white/40 font-bold uppercase tracking-wider block">Payable Amount</span>
-                  <span className="text-xl font-black text-accent">₹199.00</span>
+                  <span className="text-xl font-black text-accent">₹{rawPrice}.00</span>
                 </div>
               </div>
 
@@ -556,7 +727,7 @@ const ApplyService = () => {
                           disabled={cardNumber.length < 12 || cardExpiry.length < 5 || cardCvv.length < 3}
                           className="w-full py-4 bg-accent hover:bg-accent-light text-white font-bold rounded-xl text-sm transition-colors mt-2 disabled:opacity-50 disabled:cursor-not-allowed"
                         >
-                          Pay Securely ₹199.00
+                          Pay Securely ₹{rawPrice}.00
                         </button>
                       </div>
                     )}
@@ -580,7 +751,7 @@ const ApplyService = () => {
                                 disabled={!upiId.includes('@')}
                                 className="px-6 py-3 bg-accent hover:bg-accent-light text-white font-bold rounded-xl text-xs transition-colors disabled:opacity-50"
                               >
-                                Pay ₹199
+                                Pay ₹{rawPrice}
                               </button>
                             </div>
 
@@ -606,12 +777,12 @@ const ApplyService = () => {
                                 <QrCode className="w-16 h-16 text-[#2b6cb0]/40" />
                               </div>
                               <img 
-                                src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=upi://pay?pa=fortunemultiservices@oksbi%26pn=Fortune%20Multi%20Services%26am=199%26cu=INR" 
+                                src={`https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=upi://pay?pa=fortunemultiservices@oksbi%26pn=Fortune%20Multi%20Services%26am=${rawPrice}%26cu=INR`} 
                                 alt="Payment QR Code" 
                                 className="w-full h-full object-contain"
                               />
                             </div>
-                            <p className="text-[10px] text-dark-gray/50 font-medium">Scan this QR code using GPay, PhonePe, Paytm, or any BHIM UPI App to pay ₹199/-</p>
+                            <p className="text-[10px] text-dark-gray/50 font-medium">Scan this QR code using GPay, PhonePe, Paytm, or any BHIM UPI App to pay ₹{rawPrice}/-</p>
                             
                             <button 
                               onClick={handlePaymentSuccess}

@@ -8,6 +8,7 @@ import {
   Bot, Sparkles, Send
 } from 'lucide-react';
 import React, { useState, useEffect } from 'react';
+import { getServices } from '../config/api';
 
 const renderMessageText = (text: string) => {
   if (!text) return null;
@@ -25,42 +26,62 @@ const ServiceCategory = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const cleanSlug = slug?.replace(/_/g, '-');
-  const category = servicesData.find((c) => c.slug === cleanSlug);
+  
+  const [categoriesList, setCategoriesList] = useState<any[]>([]);
+
+  useEffect(() => {
+    const fetchServices = async () => {
+      try {
+        const data = await getServices();
+        setCategoriesList(data);
+      } catch (err) {
+        console.error('Failed to load dynamic services in category page:', err);
+      }
+    };
+    fetchServices();
+  }, []);
+
+  const category = categoriesList.find((c) => c.slug === cleanSlug) || servicesData.find((c) => c.slug === cleanSlug);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const details = category?.details;
 
-  // Initialize reviews state with realistic dummy reviews as fallback safely
-  const initialReviews = (details && category)
-    ? (details.reviews && details.reviews.length > 0
-        ? details.reviews
-        : [
-            {
-              name: "Anil Sharma",
-              city: "Bengaluru",
-              rating: 5,
-              review: `Outstanding legal assistance for ${category.title} services. Saved us tons of time and effort. Transparent pricing and exceptional support.`,
-              date: "18 May 2026"
-            },
-            {
-              name: "Sneha Reddy",
-              city: "Hyderabad",
-              rating: 5,
-              review: `Highly professional team. They assisted us with compliance filings in the ${category.title} category. Communication was spot-on.`,
-              date: "04 May 2026"
-            },
-            {
-              name: "Amit Singhal",
-              city: "Pune",
-              rating: 4,
-              review: `Great advisory and seamless execution. The compliance setup was structured very well. Will definitely use their services again.`,
-              date: "20 April 2026"
-            }
-          ])
-    : [];
-
-  const [reviewsList, setReviewsList] = useState(initialReviews);
+  const [reviewsList, setReviewsList] = useState<any[]>([]);
   const [isReviewModalOpen, setIsReviewModalOpen] = useState(false);
   const [newReview, setNewReview] = useState({ name: '', city: '', rating: 5, review: '' });
+
+  // Update reviewsList dynamically when category changes
+  useEffect(() => {
+    if (category) {
+      const detailsReviews = category.details?.reviews;
+      if (detailsReviews && detailsReviews.length > 0) {
+        setReviewsList(detailsReviews);
+      } else {
+        setReviewsList([
+          {
+            name: "Anil Sharma",
+            city: "Bengaluru",
+            rating: 5,
+            review: `Outstanding legal assistance for ${category.title} services. Saved us tons of time and effort. Transparent pricing and exceptional support.`,
+            date: "18 May 2026"
+          },
+          {
+            name: "Sneha Reddy",
+            city: "Hyderabad",
+            rating: 5,
+            review: `Highly professional team. They assisted us with compliance filings in the ${category.title} category. Communication was spot-on.`,
+            date: "04 May 2026"
+          },
+          {
+            name: "Amit Singhal",
+            city: "Pune",
+            rating: 4,
+            review: `Great advisory and seamless execution. The compliance setup was structured very well. Will definitely use their services again.`,
+            date: "20 April 2026"
+          }
+        ]);
+      }
+    }
+  }, [category]);
 
   // AI Assistant chatbot states
   const [chatMessages, setChatMessages] = useState<any[]>([]);
@@ -135,7 +156,7 @@ const ServiceCategory = () => {
       let matchedService = null;
       let highestScore = 0;
 
-      category.services.forEach(s => {
+      category.services.forEach((s: any) => {
         let score = 0;
         const nameLower = s.name.toLowerCase();
         const descLower = (s.description || '').toLowerCase();
@@ -228,10 +249,7 @@ const ServiceCategory = () => {
     }, 1000);
   };
 
-  // Update reviewsList when category slug changes to reload reviews
-  useEffect(() => {
-    setReviewsList(initialReviews);
-  }, [slug, details]);
+
 
   // Scroll to hash on load
   useEffect(() => {
@@ -294,7 +312,9 @@ const ServiceCategory = () => {
       }
     }
 
-    for (const cat of servicesData) {
+    const availableCategories = categoriesList.length > 0 ? categoriesList : servicesData;
+
+    for (const cat of availableCategories) {
       for (const s of cat.services) {
         const cleanName = s.name.toLowerCase();
         
@@ -330,12 +350,12 @@ const ServiceCategory = () => {
         }
 
         // Overlapping words check
-        const termWords = searchString.split(/\s+/).filter(w => w.length > 2);
-        const nameWords = cleanName.split(/\s+/).filter(w => w.length > 2);
+        const termWords = searchString.split(/\s+/).filter((w: string) => w.length > 2);
+        const nameWords = cleanName.split(/\s+/).filter((w: string) => w.length > 2);
         
         let overlap = 0;
         for (const tw of termWords) {
-          if (nameWords.some(nw => nw.includes(tw) || tw.includes(nw))) {
+          if (nameWords.some((nw: string) => nw.includes(tw) || tw.includes(nw))) {
             overlap++;
           }
         }
@@ -364,7 +384,7 @@ const ServiceCategory = () => {
     }
 
     // 2. Try to find a matching category
-    for (const cat of servicesData) {
+    for (const cat of availableCategories) {
       const cleanTitle = cat.title.toLowerCase();
       if (searchString.includes(cleanTitle) || cleanTitle.includes(searchString)) {
         navigate(`/services/${cat.slug}`);
@@ -381,9 +401,9 @@ const ServiceCategory = () => {
   const relatedServices = details!.relatedServices && details!.relatedServices.length > 0
     ? details!.relatedServices
     : category.services
-        .filter(s => s.slug)
+        .filter((s: any) => s.slug)
         .slice(0, 8)
-        .map(s => ({ name: s.name, slug: s.slug!, categorySlug: category.slug }));
+        .map((s: any) => ({ name: s.name, slug: s.slug!, categorySlug: category.slug }));
 
   // Auto-generate popular searches if not defined
   const popularSearches = details!.popularSearches && details!.popularSearches.length > 0
@@ -575,7 +595,7 @@ const ServiceCategory = () => {
                 <h2 className="text-2xl sm:text-3xl font-black text-[#b9c9d6]">Service Catalog</h2>
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
-                {category.services.map((service, i) => {
+                {category.services.map((service: any, i: number) => {
                   return (
                     <Link 
                       key={i} 
@@ -610,7 +630,7 @@ const ServiceCategory = () => {
                 <h2 className="text-2xl sm:text-3xl font-black text-[#b9c9d6]">Strategic Advantages</h2>
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
-                {category.details.benefits.map((benefit, i) => (
+                {category.details.benefits.map((benefit: any, i: number) => (
                   <div key={i} className="flex items-center gap-3 sm:gap-4 p-4 sm:p-6 glass-card bg-white/5 border border-white/10">
                     <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-green-500/10 flex items-center justify-center shrink-0">
                       <CheckCircle2 className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-green-400" />
@@ -634,7 +654,7 @@ const ServiceCategory = () => {
                 <h2 className="text-2xl sm:text-3xl font-black text-[#b9c9d6]">The Engagement Flow</h2>
               </div>
               <div className="relative space-y-6 sm:space-y-10 pl-6 sm:pl-10 border-l-2 border-white/10 ml-3 sm:ml-5">
-                {category.details.process.map((step, i) => (
+                {category.details.process.map((step: any, i: number) => (
                   <div key={i} className="relative group">
                     <div className="absolute -left-[35px] sm:-left-[51px] top-0 w-4 h-4 sm:w-5 sm:h-5 bg-secondary rounded-full border-4 border-primary group-hover:bg-accent transition-colors shadow-sm"></div>
                     <div className="glass-card p-5 sm:p-8 group-hover:translate-x-2 transition-transform">
@@ -659,7 +679,7 @@ const ServiceCategory = () => {
                 <h2 className="text-2xl sm:text-3xl font-black text-[#b9c9d6]">Frequently Asked Questions</h2>
               </div>
               <div className="space-y-4">
-                {category.faqs.map((faq, i) => (
+                {category.faqs.map((faq: any, i: number) => (
                   <div key={i} className="glass-card overflow-hidden">
                     <button 
                       onClick={() => setOpenFaq(openFaq === i ? null : i)}
@@ -699,7 +719,7 @@ const ServiceCategory = () => {
               <h2 className="text-xl font-black text-[#b9c9d6]">Related Services</h2>
             </div>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-              {relatedServices.map((rs, i) => (
+              {relatedServices.map((rs: any, i: number) => (
                 <motion.div
                   key={i}
                   initial={{ opacity: 0, y: 12 }}
@@ -804,7 +824,7 @@ const ServiceCategory = () => {
             <h2 className="text-base font-black text-[#b9c9d6]">Popular Searches</h2>
           </div>
           <div className="flex flex-wrap gap-2.5">
-            {popularSearches.map((term, i) => (
+            {popularSearches.map((term: any, i: number) => (
               <motion.button
                 key={i}
                 initial={{ opacity: 0, scale: 0.9 }}
@@ -826,7 +846,7 @@ const ServiceCategory = () => {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-2.5xl sm:text-3.5xl font-black text-[#b9c9d6] mb-6 sm:mb-12">Explore Other Excellence Areas</h2>
           <div className="flex flex-wrap justify-center gap-3 sm:gap-4">
-            {servicesData.filter(c => c.slug !== slug).map(c => (
+            {(categoriesList.length > 0 ? categoriesList : servicesData).filter(c => c.slug !== slug).map(c => (
               <Link 
                 key={c.slug} 
                 to={`/services/${c.slug}`}

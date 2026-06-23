@@ -10,7 +10,6 @@ import {
 import { useCart } from '../context/CartContext';
 import { createInquiry } from '../config/api';
 
-const BOOKING_FEE_PER_SERVICE = 199;
 const GST_RATE = 0.18;
 
 const Cart = () => {
@@ -39,9 +38,9 @@ const Cart = () => {
   const [upiId, setUpiId] = useState('');
   const [showQR, setShowQR] = useState(false);
 
-  const subtotalBase = cartItems.length * BOOKING_FEE_PER_SERVICE / (1 + GST_RATE);
-  const gstAmount = cartItems.length * BOOKING_FEE_PER_SERVICE - subtotalBase;
-  const total = cartItems.length * BOOKING_FEE_PER_SERVICE;
+  const total = cartItems.reduce((acc, item) => acc + (item.price || 199), 0);
+  const subtotalBase = total / (1 + GST_RATE);
+  const gstAmount = total - subtotalBase;
 
   const validateForm = () => {
     const errors: Record<string, string> = {};
@@ -85,12 +84,11 @@ const Cart = () => {
           name: formData.name,
           phone: formData.phone,
           email: formData.email,
-          companyName: formData.companyName,
           message: formData.message,
           service: item.name,
           paid: true,
           paymentId: generatedPayId,
-          amount: BOOKING_FEE_PER_SERVICE,
+          amount: item.price || 199,
         });
       }
       clearCart();
@@ -257,7 +255,7 @@ const Cart = () => {
                         <div className="text-[10px] text-dark-gray/50 font-bold uppercase tracking-wider mt-0.5 capitalize">{item.categorySlug.replace(/-/g, ' ')} Registration</div>
                       </div>
                       <div className="text-right shrink-0">
-                        <div className="font-black text-accent text-base">₹199</div>
+                        <div className="font-black text-accent text-base">₹{item.price || 199}</div>
                         <div className="text-[9px] text-dark-gray/40 uppercase tracking-wide font-bold">Booking Fee</div>
                       </div>
                       <button
@@ -368,7 +366,7 @@ const Cart = () => {
                 {cartItems.map((item) => (
                   <div key={item.slug} className="flex justify-between text-sm">
                     <span className="text-white/70 font-medium truncate mr-2">{item.name}</span>
-                    <span className="text-white font-bold shrink-0">₹199</span>
+                    <span className="text-white font-bold shrink-0">₹{item.price || 199}</span>
                   </div>
                 ))}
               </div>
@@ -397,7 +395,7 @@ const Cart = () => {
               <div className="p-4 bg-white/5 rounded-2xl border border-white/10 flex items-start gap-3">
                 <AlertCircle className="w-4 h-4 text-accent shrink-0 mt-0.5" />
                 <p className="text-xs text-white/60 leading-relaxed font-medium">
-                  Booking fee of ₹199 per service secures your consultation slot, document review, and expert advisory dispatch. 100% money-back guarantee.
+                  Booking fee secures your consultation slot, document review, and expert advisory dispatch. 100% money-back guarantee.
                 </p>
               </div>
 

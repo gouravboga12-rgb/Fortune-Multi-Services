@@ -9,6 +9,7 @@ import {
 } from 'lucide-react';
 import React, { useState, useEffect } from 'react';
 import { useCart } from '../context/CartContext';
+import { getServices } from '../config/api';
 
 const ServiceDetails = () => {
   const { category: categorySlug, serviceSlug } = useParams();
@@ -17,43 +18,32 @@ const ServiceDetails = () => {
   const { addToCart, isInCart } = useCart();
   const cleanCategorySlug = categorySlug?.replace(/_/g, '-');
   const cleanServiceSlug = serviceSlug?.replace(/_/g, '-');
-  const category = servicesData.find((c) => c.slug === cleanCategorySlug);
-  const service = category?.services.find((s) => s.slug === cleanServiceSlug);
+
+  const [categoriesList, setCategoriesList] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchServices = async () => {
+      try {
+        const data = await getServices();
+        setCategoriesList(data);
+      } catch (err) {
+        console.error('Failed to load dynamic services in details page:', err);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchServices();
+  }, []);
+
+  const category = categoriesList.find((c) => c.slug === cleanCategorySlug) || servicesData.find((c) => c.slug === cleanCategorySlug);
+  const service = category?.services.find((s: any) => s.slug === cleanServiceSlug);
   
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   const details = ((service && category) ? (service.details || category.details) : null) as ServiceDetail;
 
-  // Initialize reviews state with realistic dummy reviews as fallback
-  const initialReviews = (details && service)
-    ? (details.reviews && details.reviews.length > 0
-        ? details.reviews
-        : [
-            {
-              name: "Rajesh Kumar",
-              city: "Mumbai",
-              rating: 5,
-              review: `Extremely smooth and professional experience for our ${service.name}. The team handled all paperwork and completed everything ahead of schedule. Highly recommended!`,
-              date: "12 May 2026"
-            },
-            {
-              name: "Sneha Patel",
-              city: "Ahmedabad",
-              rating: 5,
-              review: `Excellent service. They clarified all my doubts about the ${service.name} process and kept me updated at every step. Truly premium experience.`,
-              date: "28 April 2026"
-            },
-            {
-              name: "Vikram Malhotra",
-              city: "New Delhi",
-              rating: 4,
-              review: `Very efficient and reliable. Handled our registration without any hassle. A minor delay in government approval, but the team's support was prompt.`,
-              date: "15 April 2026"
-            }
-          ])
-    : [];
-
-  const [reviewsList, setReviewsList] = useState(initialReviews);
+  const [reviewsList, setReviewsList] = useState<any[]>([]);
   const [isReviewModalOpen, setIsReviewModalOpen] = useState(false);
   const [newReview, setNewReview] = useState({ name: '', city: '', rating: 5, review: '' });
   const [showScrollTop, setShowScrollTop] = useState(false);
@@ -76,18 +66,57 @@ const ServiceDetails = () => {
       name: service.name,
       slug: service.slug ?? '',
       categorySlug: category.slug,
-      price: 199,
+      price: service.discountPrice || service.price || 199,
     });
+  };
+
+  const handleBuyNow = () => {
+    if (!service || !category) return;
+    if (!isInCart(service.slug ?? '')) {
+      addToCart({
+        name: service.name,
+        slug: service.slug ?? '',
+        categorySlug: category.slug,
+        price: service.discountPrice || service.price || 199,
+      });
+    }
+    navigate('/cart');
   };
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  // Update reviewsList when serviceSlug changes to reload reviews
+  // Update reviewsList when service or details load
   useEffect(() => {
-    setReviewsList(initialReviews);
-  }, [serviceSlug, details]);
+    if (details?.reviews && details.reviews.length > 0) {
+      setReviewsList(details.reviews);
+    } else if (service) {
+      setReviewsList([
+        {
+          name: "Rajesh Kumar",
+          city: "Mumbai",
+          rating: 5,
+          review: `Extremely smooth and professional experience for our ${service.name}. The team handled all paperwork and completed everything ahead of schedule. Highly recommended!`,
+          date: "12 May 2026"
+        },
+        {
+          name: "Sneha Patel",
+          city: "Ahmedabad",
+          rating: 5,
+          review: `Excellent service. They clarified all my doubts about the ${service.name} process and kept me updated at every step. Truly premium experience.`,
+          date: "28 April 2026"
+        },
+        {
+          name: "Vikram Malhotra",
+          city: "New Delhi",
+          rating: 4,
+          review: `Very efficient and reliable. Handled our registration without any hassle. A minor delay in government approval, but the team's support was prompt.`,
+          date: "15 April 2026"
+        }
+      ]);
+    }
+  }, [serviceSlug, details, service]);
 
   useEffect(() => {
     if (location.hash) {
@@ -111,6 +140,15 @@ const ServiceDetails = () => {
     }
   }, [categorySlug, serviceSlug, navigate]);
 
+  if (loading && categoriesList.length === 0) {
+    return (
+      <div className="pt-40 pb-20 text-center bg-primary min-h-screen flex flex-col items-center justify-center">
+        <div className="w-10 h-10 border-4 border-accent border-t-transparent rounded-full animate-spin"></div>
+        <p className="text-xs text-slate-400 mt-4 font-semibold">Loading service details...</p>
+      </div>
+    );
+  }
+
   if (!category || !service) {
     return (
       <div className="pt-40 pb-20 text-center">
@@ -120,7 +158,7 @@ const ServiceDetails = () => {
     );
   }
 
-  const faqs = details!.faqs || category.faqs;
+  const faqs = details?.faqs || category.faqs;
 
   const handleReviewSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -136,7 +174,7 @@ const ServiceDetails = () => {
   const handlePopularSearchClick = (term: string) => {
     const cleanTerm = term.toLowerCase();
     
-    // 1. Try to find a matching service in servicesData
+    // 1. Try to find a matching service in availableCategories
     let bestServiceMatch = null;
     let maxServiceOverlap = 0;
     
@@ -157,7 +195,9 @@ const ServiceDetails = () => {
       }
     }
 
-    for (const cat of servicesData) {
+    const availableCategories = categoriesList.length > 0 ? categoriesList : servicesData;
+
+    for (const cat of availableCategories) {
       for (const s of cat.services) {
         const cleanName = s.name.toLowerCase();
         
@@ -193,12 +233,12 @@ const ServiceDetails = () => {
         }
 
         // Overlapping words check
-        const termWords = searchString.split(/\s+/).filter(w => w.length > 2);
-        const nameWords = cleanName.split(/\s+/).filter(w => w.length > 2);
+        const termWords = searchString.split(/\s+/).filter((w: string) => w.length > 2);
+        const nameWords = cleanName.split(/\s+/).filter((w: string) => w.length > 2);
         
         let overlap = 0;
         for (const tw of termWords) {
-          if (nameWords.some(nw => nw.includes(tw) || tw.includes(nw))) {
+          if (nameWords.some((nw: string) => nw.includes(tw) || tw.includes(nw))) {
             overlap++;
           }
         }
@@ -227,7 +267,7 @@ const ServiceDetails = () => {
     }
 
     // 2. Try to find a matching category
-    for (const cat of servicesData) {
+    for (const cat of availableCategories) {
       const cleanTitle = cat.title.toLowerCase();
       if (searchString.includes(cleanTitle) || cleanTitle.includes(searchString)) {
         navigate(`/services/${cat.slug}`);
@@ -240,12 +280,12 @@ const ServiceDetails = () => {
     window.dispatchEvent(event);
   };
   // Auto-derive related services from same category if not defined
-  const relatedServices = details.relatedServices && details.relatedServices.length > 0
+  const relatedServices = details?.relatedServices && details.relatedServices.length > 0
     ? details.relatedServices
     : category.services
-        .filter(s => s.slug !== service.slug && s.slug)
+        .filter((s: any) => s.slug !== service.slug && s.slug)
         .slice(0, 6)
-        .map(s => ({ name: s.name, slug: s.slug!, categorySlug: category.slug }));
+        .map((s: any) => ({ name: s.name, slug: s.slug!, categorySlug: category.slug }));
 
   // Auto-generate popular searches if not defined
   const popularSearches = details.popularSearches && details.popularSearches.length > 0
@@ -346,25 +386,6 @@ const ServiceDetails = () => {
                   </div>
                 )}
 
-                {/* Expert Advisory */}
-                <div className="glass-card p-6 bg-gradient-to-br from-secondary/40 to-primary/40 border-white/10 shadow-premium relative overflow-hidden group">
-                  <div className="absolute top-0 right-0 w-24 h-24 bg-accent/20 blur-3xl -mr-12 -mt-12 rounded-full group-hover:bg-accent/30 transition-all duration-700" />
-                  <div className="relative z-10">
-                    <div className="flex items-center gap-3 mb-4">
-                      <div className="w-9 h-9 bg-white/5 rounded-xl flex items-center justify-center border border-white/10 group-hover:bg-accent transition-all duration-500">
-                        <HelpCircle className="w-4 h-4 text-accent group-hover:text-white transition-colors" />
-                      </div>
-                      <h3 className="text-sm font-bold text-slate-100">Need Expert Help?</h3>
-                    </div>
-                    <p className="text-[11px] text-text-muted font-medium mb-4 leading-relaxed">
-                      Our consultants are available for a one-on-one session to clarify your path.
-                    </p>
-                    <Link to="/contact" className="inline-flex items-center gap-1.5 text-accent font-black uppercase text-[9px] tracking-widest hover:text-white transition-all">
-                      Contact Advisory
-                      <ArrowRight className="w-3 h-3" />
-                    </Link>
-                  </div>
-                </div>
               </motion.div>
             </div>
 
@@ -565,7 +586,7 @@ const ServiceDetails = () => {
                 >
                   <SectionHeader icon={<HelpCircle className="w-4 h-4 text-accent" />} title="Frequently Asked Questions" />
                   <div className="space-y-3 mt-6">
-                    {faqs.map((faq, i) => (
+                    {faqs.map((faq: any, i: number) => (
                       <div key={i} className="glass-card bg-secondary/40 border border-white/10 shadow-premium overflow-hidden">
                         <button
                           onClick={() => setOpenFaq(openFaq === i ? null : i)}
@@ -610,7 +631,7 @@ const ServiceDetails = () => {
               <h2 className="text-xl font-black text-slate-100">Related Services</h2>
             </div>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-              {relatedServices.map((rs, i) => (
+              {relatedServices.map((rs: any, i: number) => (
                 <motion.div
                   key={i}
                   initial={{ opacity: 0, y: 12 }}
@@ -740,8 +761,8 @@ const ServiceDetails = () => {
           </h2>
           <div className="flex flex-wrap justify-center gap-3">
             {category.services
-              .filter(s => s.slug !== service.slug)
-              .map(s => (
+              .filter((s: any) => s.slug !== service.slug)
+              .map((s: any) => (
                 <Link
                   key={s.slug}
                   to={`/services/${category.slug}/${s.slug}`}
@@ -866,7 +887,7 @@ const ServiceDetails = () => {
           initial={{ y: 80, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ type: 'spring', stiffness: 260, damping: 26, delay: 0.4 }}
-          className="floating-action-bar relative overflow-hidden backdrop-blur-2xl border border-transparent shadow-[0_-4px_60px_rgba(0,0,0,0.5),0_0_0_1px_rgba(255,255,255,0.05)] flex items-center rounded-2xl lg:rounded-[20px] max-w-2xl lg:mx-auto px-4 sm:px-6 lg:px-6 py-3 sm:py-3.5 lg:py-0 lg:h-[68px]"
+          className="floating-action-bar relative overflow-hidden backdrop-blur-2xl border border-transparent shadow-[0_-4px_60px_rgba(0,0,0,0.5),0_0_0_1px_rgba(255,255,255,0.05)] flex items-center rounded-2xl lg:rounded-[20px] max-w-3xl lg:mx-auto px-4 sm:px-6 lg:px-6 py-3 sm:py-3.5 lg:py-0 lg:h-[68px]"
         >
           {/* Ambient glow */}
           <div className="absolute left-1/4 top-0 w-64 h-px bg-gradient-to-r from-transparent via-accent/40 to-transparent pointer-events-none" />
@@ -874,30 +895,36 @@ const ServiceDetails = () => {
           <div className="absolute -right-20 top-1/2 -translate-y-1/2 w-40 h-40 bg-[#7C3AED]/8 blur-3xl rounded-full pointer-events-none" />
 
           {/* ── Mobile layout ── */}
-          <div className="flex items-center justify-between w-full lg:hidden">
-            <div className="flex flex-col">
+          <div className="flex items-center justify-between w-full lg:hidden gap-2">
+            <div className="flex flex-col shrink-0">
               <span className="fab-label text-[8px] font-black uppercase tracking-[0.18em]">BOOKING FEE</span>
-              <span className="fab-value text-lg font-black leading-tight mt-0.5">
+              <span className="fab-value text-base sm:text-lg font-black leading-tight mt-0.5">
                 ₹199<span className="fab-sub text-[10px] font-semibold">/service</span>
               </span>
               <span className="fab-sub text-[8px] font-medium">+ 18% GST included</span>
             </div>
-            <motion.button
-              whileTap={{ scale: 0.94 }}
-              onClick={handleAddToCart}
-              className={`flex items-center gap-2 rounded-xl px-5 py-2.5 font-black text-xs uppercase tracking-wider transition-all duration-300 ${
-                service.slug && isInCart(service.slug)
-                  ? 'bg-green-500 !text-white shadow-lg shadow-green-500/30'
-                  : 'bg-[#7C3AED] hover:bg-[#6D28D9] !text-white shadow-lg shadow-[#7C3AED]/50'
-              }`}
-            >
-              {service.slug && isInCart(service.slug) ? 'GO TO CART' : 'GET STARTED'}
-              <div className="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center">
-                {service.slug && isInCart(service.slug)
-                  ? <ShoppingCart className="w-3 h-3 !text-white" />
-                  : <ArrowRight className="w-3 h-3 !text-white" />}
-              </div>
-            </motion.button>
+            <div className="flex items-center gap-2 min-w-0">
+              <motion.button
+                whileTap={{ scale: 0.94 }}
+                onClick={handleAddToCart}
+                className={`flex items-center justify-center gap-1.5 rounded-xl px-2.5 sm:px-3.5 py-2.5 font-black text-[10px] sm:text-xs uppercase tracking-wider transition-all duration-300 shrink-0 ${
+                  service.slug && isInCart(service.slug)
+                    ? 'bg-green-500/20 border border-green-500 text-green-400'
+                    : 'border border-[#7C3AED] text-slate-200 hover:bg-[#7C3AED]/15'
+                }`}
+              >
+                <span>{service.slug && isInCart(service.slug) ? 'GO TO CART' : 'ADD TO CART'}</span>
+                <ShoppingCart className="w-3.5 h-3.5" />
+              </motion.button>
+              <motion.button
+                whileTap={{ scale: 0.94 }}
+                onClick={handleBuyNow}
+                className="flex items-center justify-center gap-1.5 rounded-xl px-3 sm:px-4 py-2.5 font-black text-[10px] sm:text-xs uppercase tracking-wider bg-[#7C3AED] hover:bg-[#6D28D9] text-white shadow-lg shadow-[#7C3AED]/40 transition-all duration-300 shrink-0"
+              >
+                <span>BUY NOW</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </motion.button>
+            </div>
           </div>
 
           {/* ── Desktop layout (3-column) ── */}
@@ -923,17 +950,25 @@ const ServiceDetails = () => {
                 whileTap={{ scale: 0.95 }}
                 whileHover={{ scale: 1.02 }}
                 onClick={handleAddToCart}
-                className={`flex items-center gap-3 rounded-xl px-7 py-3 font-black text-sm uppercase tracking-wider transition-all duration-300 ${
+                className={`flex items-center gap-2 rounded-xl px-5 py-3 font-black text-xs sm:text-sm uppercase tracking-wider transition-all duration-300 ${
                   service.slug && isInCart(service.slug)
-                    ? 'bg-green-500 !text-white shadow-xl shadow-green-500/30'
-                    : 'bg-gradient-to-r from-[#7C3AED] to-[#6025C0] hover:from-[#6D28D9] hover:to-[#5020A8] !text-white shadow-xl shadow-[#7C3AED]/40'
+                    ? 'bg-green-500/20 border border-green-500 text-green-400 shadow-md'
+                    : 'border border-[#7C3AED] text-slate-200 hover:bg-[#7C3AED]/15 shadow-md'
                 }`}
               >
                 <span>{service.slug && isInCart(service.slug) ? 'GO TO CART' : 'ADD TO CART'}</span>
-                <div className="w-7 h-7 rounded-full bg-white/20 flex items-center justify-center">
-                  {service.slug && isInCart(service.slug)
-                    ? <ShoppingCart className="w-3.5 h-3.5 !text-white" />
-                    : <ArrowRight className="w-3.5 h-3.5 !text-white" />}
+                <ShoppingCart className="w-4 h-4" />
+              </motion.button>
+
+              <motion.button
+                whileTap={{ scale: 0.95 }}
+                whileHover={{ scale: 1.02 }}
+                onClick={handleBuyNow}
+                className="flex items-center gap-2 rounded-xl px-6 py-3 font-black text-xs sm:text-sm uppercase tracking-wider bg-gradient-to-r from-[#7C3AED] to-[#6025C0] hover:from-[#6D28D9] hover:to-[#5020A8] text-white shadow-xl shadow-[#7C3AED]/40 transition-all duration-300"
+              >
+                <span>BUY NOW</span>
+                <div className="w-5 h-5 rounded-full bg-white/20 flex items-center justify-center">
+                  <ArrowRight className="w-3 h-3 text-white" />
                 </div>
               </motion.button>
             </div>

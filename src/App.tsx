@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
@@ -14,6 +14,7 @@ import Login from './pages/Login';
 import ApplyService from './pages/ApplyService';
 import WebServices from './pages/WebServices';
 import Cart from './pages/Cart';
+import UserDashboard from './pages/UserDashboard';
 
 // Components
 import Navbar from './components/Navbar';
@@ -21,6 +22,34 @@ import Footer from './components/Footer';
 import FloatingWhatsApp from './components/FloatingWhatsApp';
 import ScrollToTop from './components/ScrollToTop';
 import { CartProvider } from './context/CartContext';
+
+function AppContent() {
+  const location = useLocation();
+  const isAdminOrLogin = location.pathname.startsWith('/admin') || location.pathname === '/login';
+
+  return (
+    <div className="flex flex-col min-h-screen w-full overflow-x-clip">
+      {!isAdminOrLogin && <Navbar />}
+      <main className="flex-grow">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/services/:category" element={<ServiceCategory />} />
+          <Route path="/services/:category/:serviceSlug" element={<ServiceDetails />} />
+          <Route path="/apply/:category/:serviceSlug" element={<ApplyService />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/web-services" element={<WebServices />} />
+          <Route path="/admin" element={<AdminDashboard />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/dashboard" element={<UserDashboard />} />
+        </Routes>
+      </main>
+      {!isAdminOrLogin && <Footer />}
+      {!isAdminOrLogin && <FloatingWhatsApp />}
+    </div>
+  );
+}
 
 function App() {
   useEffect(() => {
@@ -35,25 +64,7 @@ function App() {
     <CartProvider>
       <Router>
         <ScrollToTop />
-        <div className="flex flex-col min-h-screen w-full overflow-x-clip">
-          <Navbar />
-          <main className="flex-grow">
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/services/:category" element={<ServiceCategory />} />
-              <Route path="/services/:category/:serviceSlug" element={<ServiceDetails />} />
-              <Route path="/apply/:category/:serviceSlug" element={<ApplyService />} />
-              <Route path="/cart" element={<Cart />} />
-              <Route path="/contact" element={<Contact />} />
-              <Route path="/web-services" element={<WebServices />} />
-              <Route path="/admin" element={<AdminDashboard />} />
-              <Route path="/login" element={<Login />} />
-            </Routes>
-          </main>
-          <Footer />
-          <FloatingWhatsApp />
-        </div>
+        <AppContent />
       </Router>
     </CartProvider>
   );

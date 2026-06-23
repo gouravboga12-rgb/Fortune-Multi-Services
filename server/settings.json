@@ -1,0 +1,8 @@
+{
+  "paymentModes": {
+    "upi": true,
+    "razorpay": true,
+    "bankTransfer": true,
+    "manual": true
+  }
+}
