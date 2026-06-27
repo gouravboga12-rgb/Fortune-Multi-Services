@@ -36,6 +36,9 @@ const AdminDashboard = () => {
   const [editingService, setEditingService] = useState<any>(null);
   const [selectedServiceCategorySlug, setSelectedServiceCategorySlug] = useState<string>('');
   const [serviceSubTab, setServiceSubTab] = useState<'meta' | 'lists' | 'faqs' | 'form'>('meta');
+
+  const configObj = editingService?.details?.formFields?.find((f: any) => f.isStandardFieldsConfig);
+  const disabledStandardFields = configObj ? configObj.disabledStandardFields || [] : [];
   
   // File Upload State for Order management
   const [selectedOrderForUpload, setSelectedOrderForUpload] = useState<any>(null);
@@ -333,6 +336,26 @@ const AdminDashboard = () => {
     }
   };
 
+  // --- USER DIRECTORY DELETE ---
+  const handleDeleteUser = async (email: string) => {
+    if (window.confirm(`Are you sure you want to permanently delete the account: ${email}?\n\nThis action cannot be undone.`)) {
+      try {
+        const response = await fetch(`http://localhost:5000/api/users/${encodeURIComponent(email)}`, {
+          method: 'DELETE',
+          headers: { 'Authorization': `Bearer ${sessionStorage.getItem('adminToken')}` }
+        });
+        if (response.ok) {
+          setUsersList(prev => prev.filter(u => u.email !== email));
+        } else {
+          alert('Failed to delete user. Please try again.');
+        }
+      } catch (err) {
+        console.error('Delete user error:', err);
+        alert('Network error while deleting user.');
+      }
+    }
+  };
+
   // --- FILTERING ---
   const filteredInquiries = inquiries.filter(i => {
     const isSearchMatch = (
@@ -401,6 +424,15 @@ const AdminDashboard = () => {
                   onChange={(e) => setAdminPassword(e.target.value)}
                   className="w-full pl-12 pr-4 py-4 bg-primary text-white rounded-xl border border-white/10 focus:border-accent outline-none transition-all font-medium text-sm"
                 />
+              </div>
+              <div className="text-right">
+                <button 
+                  type="button" 
+                  onClick={() => setLoginError("To reset the admin password, please contact backend portal support or edit credentials inside server/index.js.")}
+                  className="text-xs font-bold text-accent hover:underline bg-transparent border-none cursor-pointer"
+                >
+                  Forgot Password?
+                </button>
               </div>
             </div>
 
@@ -1103,11 +1135,70 @@ const AdminDashboard = () => {
                         )}
                       </div>
                     </div>
-                  )}
-
-                  {/* FORM BUILDER SUB-TAB */}
+                  )}                  {/* FORM BUILDER SUB-TAB */}
                   {serviceSubTab === 'form' && (
                     <div className="space-y-6">
+                      {/* Standard Auto-Included Fields */}
+                      <div className="space-y-4 p-5 bg-primary/20 border border-white/5 rounded-3xl">
+                        <div>
+                          <h4 className="text-xs font-black uppercase text-accent tracking-wider">Standard Fields (Auto-Included)</h4>
+                          <p className="text-[9px] text-dark-gray/50 uppercase mt-0.5 font-bold font-mono">These basic application fields are enabled by default. Use 'Remove' to exclude them from this service's form.</p>
+                        </div>
+                        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 pt-1">
+                          {[
+                            { id: 'name', name: 'Full Name', type: 'Text Box', req: true },
+                            { id: 'phone', name: 'Mobile Number', type: 'Phone Input', req: true },
+                            { id: 'email', name: 'Email Address', type: 'Email Input', req: true },
+                            { id: 'panCard', name: 'PAN Card Number', type: 'Text Input', req: true },
+                            { id: 'aadhaarCard', name: 'Aadhaar Card Number', type: 'Text Input', req: true },
+                            { id: 'description', name: 'Description / Key Requirements', type: 'Textarea', req: true },
+                            { id: 'companyName', name: 'Company Name', type: 'Text Input', req: false },
+                          ].map((field) => {
+                            const isDisabled = disabledStandardFields.includes(field.id);
+                            return (
+                              <div key={field.name} className={`p-3 bg-primary/45 border border-white/5 rounded-xl flex flex-col justify-between transition-all ${isDisabled ? 'opacity-40 border-dashed bg-primary/20' : ''}`}>
+                                <div className="flex justify-between items-start gap-1">
+                                  <span className={`text-[11px] font-bold leading-snug ${isDisabled ? 'text-slate-500 line-through' : 'text-slate-200'}`}>{field.name}</span>
+                                  <button
+                                    type="button"
+                                    onClick={() => {
+                                      let updatedDisabled = [...disabledStandardFields];
+                                      if (isDisabled) {
+                                        updatedDisabled = updatedDisabled.filter(id => id !== field.id);
+                                      } else {
+                                        updatedDisabled.push(field.id);
+                                      }
+                                      // Save back to formFields list
+                                      const cleanFields = (editingService.details?.formFields || []).filter((f: any) => !f.isStandardFieldsConfig);
+                                      const updatedFields = [...cleanFields, { isStandardFieldsConfig: true, disabledStandardFields: updatedDisabled }];
+                                      setEditingService({
+                                        ...editingService,
+                                        details: { ...editingService.details, formFields: updatedFields }
+                                      });
+                                    }}
+                                    className={`text-[8px] font-black uppercase px-1.5 py-0.5 rounded transition-all shrink-0 ${
+                                      isDisabled 
+                                        ? 'bg-green-500/10 text-green-400 border border-green-500/20 hover:bg-green-500/20' 
+                                        : 'bg-red-500/10 text-red-400 border border-red-500/20 hover:bg-red-500/20'
+                                    }`}
+                                  >
+                                    {isDisabled ? 'Enable' : 'Remove'}
+                                  </button>
+                                </div>
+                                <div className="flex justify-between items-center mt-2.5">
+                                  <span className="text-[8px] text-dark-gray/50 font-bold uppercase">{field.type}</span>
+                                  {!isDisabled && (
+                                    <span className={`text-[8px] font-black uppercase px-1.5 py-0.5 rounded ${field.req ? 'bg-accent/10 text-accent border border-accent/20' : 'bg-white/5 text-dark-gray/60'}`}>
+                                      {field.req ? 'Required' : 'Optional'}
+                                    </span>
+                                  )}
+                                </div>
+                              </div>
+                            );
+                          })}
+                        </div>
+                      </div>
+
                       <div className="flex justify-between items-center pb-2 border-b border-white/5">
                         <div>
                           <h4 className="text-xs font-black uppercase text-[#b9c9d6]">Custom Form Builder</h4>
@@ -1134,15 +1225,14 @@ const AdminDashboard = () => {
                           <Plus className="w-3 h-3" /> Add Input Field
                         </button>
                       </div>
-
                       <div className="space-y-4 max-h-[450px] overflow-y-auto pr-1">
-                        {(editingService.details?.formFields || []).map((field: any, fieldIdx: number) => (
+                        {(editingService.details?.formFields || []).filter((f: any) => !f.isStandardFieldsConfig).map((field: any, fieldIdx: number) => (
                           <div key={field.id || fieldIdx} className="p-4 bg-primary/20 border border-white/5 rounded-2xl space-y-4 relative animate-fade-in">
                             <button 
                               type="button"
                               onClick={() => {
                                 const currentFields = editingService.details?.formFields || [];
-                                const updatedFields = currentFields.filter((_: any, i: number) => i !== fieldIdx);
+                                const updatedFields = currentFields.filter((f: any) => f.id !== field.id);
                                 setEditingService({
                                   ...editingService,
                                   details: { ...editingService.details, formFields: updatedFields }
@@ -1164,11 +1254,14 @@ const AdminDashboard = () => {
                                   value={field.label}
                                   onChange={(e) => {
                                     const currentFields = [...(editingService.details?.formFields || [])];
-                                    currentFields[fieldIdx] = { ...field, label: e.target.value };
-                                    setEditingService({
-                                      ...editingService,
-                                      details: { ...editingService.details, formFields: currentFields }
-                                    });
+                                    const origIdx = currentFields.findIndex((f: any) => f.id === field.id);
+                                    if (origIdx !== -1) {
+                                      currentFields[origIdx] = { ...field, label: e.target.value };
+                                      setEditingService({
+                                        ...editingService,
+                                        details: { ...editingService.details, formFields: currentFields }
+                                      });
+                                    }
                                   }}
                                 />
                               </div>
@@ -1180,11 +1273,14 @@ const AdminDashboard = () => {
                                   value={field.type}
                                   onChange={(e) => {
                                     const currentFields = [...(editingService.details?.formFields || [])];
-                                    currentFields[fieldIdx] = { ...field, type: e.target.value };
-                                    setEditingService({
-                                      ...editingService,
-                                      details: { ...editingService.details, formFields: currentFields }
-                                    });
+                                    const origIdx = currentFields.findIndex((f: any) => f.id === field.id);
+                                    if (origIdx !== -1) {
+                                      currentFields[origIdx] = { ...field, type: e.target.value };
+                                      setEditingService({
+                                        ...editingService,
+                                        details: { ...editingService.details, formFields: currentFields }
+                                      });
+                                    }
                                   }}
                                 >
                                   <option value="text">Text Box</option>
@@ -1202,19 +1298,22 @@ const AdminDashboard = () => {
                               <div className="flex items-center gap-3 pt-6 pl-2">
                                 <input 
                                   type="checkbox" 
-                                  id={`required_${fieldIdx}`}
+                                  id={`required_${field.id || fieldIdx}`}
                                   className="w-4 h-4 accent-accent rounded"
                                   checked={field.required}
                                   onChange={(e) => {
                                     const currentFields = [...(editingService.details?.formFields || [])];
-                                    currentFields[fieldIdx] = { ...field, required: e.target.checked };
-                                    setEditingService({
-                                      ...editingService,
-                                      details: { ...editingService.details, formFields: currentFields }
-                                    });
+                                    const origIdx = currentFields.findIndex((f: any) => f.id === field.id);
+                                    if (origIdx !== -1) {
+                                      currentFields[origIdx] = { ...field, required: e.target.checked };
+                                      setEditingService({
+                                        ...editingService,
+                                        details: { ...editingService.details, formFields: currentFields }
+                                      });
+                                    }
                                   }}
                                 />
-                                <label htmlFor={`required_${fieldIdx}`} className="text-xs font-bold text-slate-300 cursor-pointer">Required Input</label>
+                                <label htmlFor={`required_${field.id || fieldIdx}`} className="text-xs font-bold text-slate-300 cursor-pointer">Required Input</label>
                               </div>
                             </div>
 
@@ -1227,12 +1326,15 @@ const AdminDashboard = () => {
                                     type="button"
                                     onClick={() => {
                                       const currentFields = [...(editingService.details?.formFields || [])];
-                                      const opts = field.options || [];
-                                      currentFields[fieldIdx] = { ...field, options: [...opts, 'New Option'] };
-                                      setEditingService({
-                                        ...editingService,
-                                        details: { ...editingService.details, formFields: currentFields }
-                                      });
+                                      const origIdx = currentFields.findIndex((f: any) => f.id === field.id);
+                                      if (origIdx !== -1) {
+                                        const opts = field.options || [];
+                                        currentFields[origIdx] = { ...field, options: [...opts, 'New Option'] };
+                                        setEditingService({
+                                          ...editingService,
+                                          details: { ...editingService.details, formFields: currentFields }
+                                        });
+                                      }
                                     }}
                                     className="text-accent text-[9px] font-black uppercase tracking-wider flex items-center gap-1 hover:underline"
                                   >
@@ -1248,25 +1350,31 @@ const AdminDashboard = () => {
                                         value={opt}
                                         onChange={(e) => {
                                           const currentFields = [...(editingService.details?.formFields || [])];
-                                          const opts = [...(field.options || [])];
-                                          opts[optIdx] = e.target.value;
-                                          currentFields[fieldIdx] = { ...field, options: opts };
-                                          setEditingService({
-                                            ...editingService,
-                                            details: { ...editingService.details, formFields: currentFields }
-                                          });
+                                          const origIdx = currentFields.findIndex((f: any) => f.id === field.id);
+                                          if (origIdx !== -1) {
+                                            const opts = [...(field.options || [])];
+                                            opts[optIdx] = e.target.value;
+                                            currentFields[origIdx] = { ...field, options: opts };
+                                            setEditingService({
+                                              ...editingService,
+                                              details: { ...editingService.details, formFields: currentFields }
+                                            });
+                                          }
                                         }}
                                       />
                                       <button 
                                         type="button" 
                                         onClick={() => {
                                           const currentFields = [...(editingService.details?.formFields || [])];
-                                          const opts = (field.options || []).filter((_: any, i: number) => i !== optIdx);
-                                          currentFields[fieldIdx] = { ...field, options: opts };
-                                          setEditingService({
-                                            ...editingService,
-                                            details: { ...editingService.details, formFields: currentFields }
-                                          });
+                                          const origIdx = currentFields.findIndex((f: any) => f.id === field.id);
+                                          if (origIdx !== -1) {
+                                            const opts = (field.options || []).filter((_: any, i: number) => i !== optIdx);
+                                            currentFields[origIdx] = { ...field, options: opts };
+                                            setEditingService({
+                                              ...editingService,
+                                              details: { ...editingService.details, formFields: currentFields }
+                                            });
+                                          }
                                         }}
                                         className="text-red-400 hover:text-red-300 font-bold ml-1"
                                       >
@@ -1282,9 +1390,9 @@ const AdminDashboard = () => {
                             )}
                           </div>
                         ))}
-                        {(!editingService.details?.formFields || editingService.details.formFields.length === 0) && (
+                        {(!editingService.details?.formFields || editingService.details.formFields.filter((f: any) => !f.isStandardFieldsConfig).length === 0) && (
                           <div className="p-8 border border-dashed border-white/10 rounded-2xl text-center text-dark-gray/40 text-xs">
-                            No custom form fields built. Form will fall back to Name, Phone, Email, Company Name, and Message.
+                            No custom form fields built. Each service form in the cart will automatically include enabled basic fields: Full Name, Phone, Email, Description, PAN Card, and Aadhaar Card.
                           </div>
                         )}
                       </div>
@@ -1562,17 +1670,26 @@ const AdminDashboard = () => {
                               )}>{user.status || 'active'}</span>
                             </td>
                             <td className="px-6 py-4 text-right">
-                              <button 
-                                onClick={() => handleToggleUserStatus(user.email, user.status)}
-                                className={cn(
-                                  'px-4 py-2 text-[10px] font-black uppercase tracking-wider border rounded-xl transition-all cursor-pointer',
-                                  user.status === 'blocked' 
-                                    ? 'bg-green-500/10 hover:bg-green-500/20 border-green-500/20 text-green-400' 
-                                    : 'bg-rose-500/10 hover:bg-rose-500/20 border-rose-500/20 text-rose-400'
-                                )}
-                              >
-                                {user.status === 'blocked' ? 'Activate Account' : 'Block User'}
-                              </button>
+                              <div className="flex items-center justify-end gap-2">
+                                <button 
+                                  onClick={() => handleToggleUserStatus(user.email, user.status)}
+                                  className={cn(
+                                    'px-4 py-2 text-[10px] font-black uppercase tracking-wider border rounded-xl transition-all cursor-pointer whitespace-nowrap',
+                                    user.status === 'blocked' 
+                                      ? 'bg-green-500/10 hover:bg-green-500/20 border-green-500/20 text-green-400' 
+                                      : 'bg-rose-500/10 hover:bg-rose-500/20 border-rose-500/20 text-rose-400'
+                                  )}
+                                >
+                                  {user.status === 'blocked' ? 'Activate' : 'Block User'}
+                                </button>
+                                <button
+                                  onClick={() => handleDeleteUser(user.email)}
+                                  className="p-2 bg-red-500/10 hover:bg-red-500/25 border border-red-500/30 hover:border-red-500/50 text-red-400 hover:text-red-300 rounded-xl transition-all cursor-pointer"
+                                  title="Delete user permanently"
+                                >
+                                  <Trash2 className="w-3.5 h-3.5" />
+                                </button>
+                              </div>
                             </td>
                           </tr>
                         ))}

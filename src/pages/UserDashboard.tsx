@@ -16,6 +16,7 @@ const UserDashboard = () => {
   const [inquiries, setInquiries] = useState<Inquiry[]>([]);
   const [loading, setLoading] = useState(true);
   const [activeSection, setActiveSection] = useState<'orders' | 'support'>('orders');
+  const [showLogoutModal, setShowLogoutModal] = useState(false);
 
   useEffect(() => {
     const userEmail = sessionStorage.getItem('userEmail');
@@ -47,7 +48,12 @@ const UserDashboard = () => {
   }, [navigate]);
 
   const handleLogout = () => {
+    setShowLogoutModal(true);
+  };
+
+  const confirmLogout = () => {
     sessionStorage.removeItem('userEmail');
+    sessionStorage.removeItem('userToken');
     navigate('/login');
   };
 
@@ -100,10 +106,10 @@ const UserDashboard = () => {
 
           <button
             onClick={handleLogout}
-            className="flex items-center gap-2 px-5 py-3 bg-white/5 hover:bg-red-500/10 border border-white/10 hover:border-red-500/30 text-xs text-white/70 hover:text-red-400 font-bold uppercase tracking-wider rounded-xl transition-all duration-300 cursor-pointer shrink-0"
+            className="flex items-center gap-2 px-5 py-3 bg-red-500/15 hover:bg-red-500/25 border border-red-500/40 hover:border-red-500/60 text-sm text-red-400 hover:text-red-300 font-black uppercase tracking-wider rounded-xl transition-all duration-300 cursor-pointer shrink-0 shadow-[0_0_15px_rgba(239,68,68,0.1)]"
           >
             <LogOut className="w-4 h-4" />
-            Logout Account
+            Logout
           </button>
         </motion.div>
 
@@ -300,6 +306,58 @@ const UserDashboard = () => {
           </div>
         </div>
       </div>
+
+      {/* Logout Confirmation Modal */}
+      <AnimatePresence>
+        {showLogoutModal && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[9999] flex items-center justify-center p-4"
+            style={{ backdropFilter: 'blur(8px)', backgroundColor: 'rgba(0,0,0,0.65)' }}
+          >
+            <motion.div
+              initial={{ opacity: 0, scale: 0.85, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.85, y: 20 }}
+              transition={{ type: 'spring', stiffness: 300, damping: 25 }}
+              className="bg-white rounded-3xl shadow-2xl p-8 w-full max-w-sm text-center relative overflow-hidden"
+            >
+              {/* Red glow top accent */}
+              <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-red-400 via-rose-500 to-red-400 rounded-t-3xl" />
+
+              {/* Icon */}
+              <div className="w-16 h-16 rounded-2xl bg-red-50 border border-red-100 flex items-center justify-center mx-auto mb-5">
+                <LogOut className="w-7 h-7 text-red-500" />
+              </div>
+
+              <h2 className="text-xl font-black text-gray-800 mb-2">Confirm Logout</h2>
+              <p className="text-sm text-gray-500 font-medium mb-8 leading-relaxed">
+                Are you sure you want to logout from your account? Your session will be ended.
+              </p>
+
+              <div className="flex items-center gap-3">
+                {/* Cancel */}
+                <button
+                  onClick={() => setShowLogoutModal(false)}
+                  className="flex-1 px-5 py-3.5 rounded-2xl border-2 border-gray-200 text-sm font-black text-gray-600 hover:border-gray-300 hover:bg-gray-50 transition-all duration-200"
+                >
+                  Cancel
+                </button>
+                {/* Confirm Logout */}
+                <button
+                  onClick={confirmLogout}
+                  className="flex-1 px-5 py-3.5 rounded-2xl bg-red-500 hover:bg-red-600 text-sm font-black text-white transition-all duration-200 shadow-lg shadow-red-500/30 flex items-center justify-center gap-2"
+                >
+                  <LogOut className="w-4 h-4" />
+                  Yes, Logout
+                </button>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };

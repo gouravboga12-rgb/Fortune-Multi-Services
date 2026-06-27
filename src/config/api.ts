@@ -37,7 +37,17 @@ export interface GlobalSettings {
   };
 }
 
-const API_BASE_URL = 'http://localhost:5000/api';
+const API_BASE_URL = typeof window !== 'undefined' && window.location.origin.includes('localhost')
+  ? 'http://localhost:5000/api'
+  : '/api';
+
+export const getAuthHeaders = () => {
+  const token = sessionStorage.getItem('userToken') || sessionStorage.getItem('adminToken') || '';
+  return {
+    'Content-Type': 'application/json',
+    ...(token ? { 'Authorization': `Bearer ${token}` } : {})
+  };
+};
 
 const handleLocalStorageFallback = (action: string, error: any) => {
   console.warn(`[API RESILIENCY] ${action} API failed. Falling back to browser LocalStorage/Cache.`, error);
@@ -243,5 +253,159 @@ export const uploadCertificateFile = async (fileName: string, base64Data: string
   } catch (error: any) {
     console.error('[API] File upload failed:', error);
     return { success: false, error: error.message || 'Network upload failed' };
+  }
+};
+
+// --- AUTHENTICATION API ---
+
+export const sendOtp = async (email: string): Promise<{ success: boolean; message?: string; error?: string }> => {
+  try {
+    const response = await fetch(`${API_BASE_URL}/auth/send-otp`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email })
+    });
+    const resData = await response.json();
+    if (!response.ok) throw new Error(resData.error || 'Server error');
+    return resData;
+  } catch (err: any) {
+    return { success: false, error: err.message };
+  }
+};
+
+export const verifyOtp = async (email: string, otp: string): Promise<{ success: boolean; token?: string; role?: string; user?: any; error?: string }> => {
+  try {
+    const response = await fetch(`${API_BASE_URL}/auth/verify-otp`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, otp })
+    });
+    const resData = await response.json();
+    if (!response.ok) throw new Error(resData.error || 'Server error');
+    return resData;
+  } catch (err: any) {
+    return { success: false, error: err.message };
+  }
+};
+
+export const loginWithGoogle = async (credential: string): Promise<{ success: boolean; token?: string; role?: string; user?: any; error?: string }> => {
+  try {
+    const response = await fetch(`${API_BASE_URL}/auth/google`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ credential })
+    });
+    const resData = await response.json();
+    if (!response.ok) throw new Error(resData.error || 'Server error');
+    return resData;
+  } catch (err: any) {
+    return { success: false, error: err.message };
+  }
+};
+
+export const verifySession = async (): Promise<{ success: boolean; user?: any; error?: string }> => {
+  try {
+    const headers = getAuthHeaders();
+    const response = await fetch(`${API_BASE_URL}/auth/verify-session`, {
+      method: 'GET',
+      headers: {
+        'Authorization': headers['Authorization'] || ''
+      }
+    });
+    const resData = await response.json();
+    if (!response.ok) throw new Error(resData.error || 'Session invalid');
+    return resData;
+  } catch (err: any) {
+    return { success: false, error: err.message };
+  }
+};
+
+export const registerUser = async (name: string, email: string, password: string): Promise<{ success: boolean; token?: string; role?: string; user?: any; error?: string }> => {
+  try {
+    const response = await fetch(`${API_BASE_URL}/auth/register`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name, email, password })
+    });
+    const resData = await response.json();
+    if (!response.ok) throw new Error(resData.error || 'Server error');
+    return resData;
+  } catch (err: any) {
+    return { success: false, error: err.message };
+  }
+};
+
+export const loginUser = async (email: string, password: string): Promise<{ success: boolean; token?: string; role?: string; user?: any; error?: string }> => {
+  try {
+    const response = await fetch(`${API_BASE_URL}/auth/login`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, password })
+    });
+    const resData = await response.json();
+    if (!response.ok) throw new Error(resData.error || 'Server error');
+    return resData;
+  } catch (err: any) {
+    return { success: false, error: err.message };
+  }
+};
+
+export const forgotPassword = async (email: string): Promise<{ success: boolean; message?: string; error?: string }> => {
+  try {
+    const response = await fetch(`${API_BASE_URL}/auth/forgot-password`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email })
+    });
+    const resData = await response.json();
+    if (!response.ok) throw new Error(resData.error || 'Server error');
+    return resData;
+  } catch (err: any) {
+    return { success: false, error: err.message };
+  }
+};
+
+export const resetPassword = async (email: string, otp: string, newPassword: string): Promise<{ success: boolean; message?: string; error?: string }> => {
+  try {
+    const response = await fetch(`${API_BASE_URL}/auth/reset-password`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, otp, newPassword })
+    });
+    const resData = await response.json();
+    if (!response.ok) throw new Error(resData.error || 'Server error');
+    return resData;
+  } catch (err: any) {
+    return { success: false, error: err.message };
+  }
+};
+
+export const registerOtpRequest = async (email: string): Promise<{ success: boolean; message?: string; error?: string }> => {
+  try {
+    const response = await fetch(`${API_BASE_URL}/auth/register-otp`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email })
+    });
+    const resData = await response.json();
+    if (!response.ok) throw new Error(resData.error || 'Server error');
+    return resData;
+  } catch (err: any) {
+    return { success: false, error: err.message };
+  }
+};
+
+export const registerVerify = async (name: string, email: string, password: string, otp: string): Promise<{ success: boolean; token?: string; role?: string; user?: any; error?: string }> => {
+  try {
+    const response = await fetch(`${API_BASE_URL}/auth/register-verify`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name, email, password, otp })
+    });
+    const resData = await response.json();
+    if (!response.ok) throw new Error(resData.error || 'Server error');
+    return resData;
+  } catch (err: any) {
+    return { success: false, error: err.message };
   }
 };

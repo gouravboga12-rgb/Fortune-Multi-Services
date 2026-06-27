@@ -6,7 +6,7 @@ import {
   ShieldCheck, ArrowRight, Lock, CreditCard, 
   CheckCircle2, AlertCircle, Mail, 
   User, Building2, Smartphone, Landmark,
-  QrCode, ChevronRight, Loader2, Upload
+  QrCode, ChevronRight, Loader2, Upload, FileText, Fingerprint
 } from 'lucide-react';
 import { createInquiry, getServices, uploadCertificateFile } from '../config/api';
 
@@ -42,7 +42,9 @@ const ApplyService = () => {
     phone: '',
     email: '',
     companyName: '',
-    message: '',
+    message: '', // Replaced with Description
+    panCard: '',
+    aadhaarCard: '',
   });
 
   const [customFormValues, setCustomFormValues] = useState<Record<string, any>>({});
@@ -109,7 +111,6 @@ const ApplyService = () => {
       reader.onload = async (event) => {
         const result = event.target?.result as string;
         if (result) {
-          // Strip prefix e.g. "data:application/pdf;base64,"
           const base64Data = result.split(',')[1] || result;
           const uploadRes = await uploadCertificateFile(file.name, base64Data);
           if (uploadRes.success && uploadRes.fileUrl) {
@@ -133,20 +134,48 @@ const ApplyService = () => {
 
   const validateForm = () => {
     const errors: any = {};
-    if (!formData.name.trim()) errors.name = 'Full name is required';
-    if (!formData.phone.trim()) {
-      errors.phone = 'Phone number is required';
-    } else if (!/^\+?[0-9\s-]{10,12}$/.test(formData.phone.trim())) {
-      errors.phone = 'Please enter a valid 10-digit mobile number';
+    const configObj = service?.details?.formFields?.find((f: any) => f.isStandardFieldsConfig);
+    const disabledStandardFields = configObj ? configObj.disabledStandardFields || [] : [];
+
+    if (!disabledStandardFields.includes('name')) {
+      if (!formData.name.trim()) errors.name = 'Full name is required';
     }
-    if (!formData.email.trim()) {
-      errors.email = 'Email address is required';
-    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      errors.email = 'Please enter a valid email address';
+    if (!disabledStandardFields.includes('phone')) {
+      if (!formData.phone.trim()) {
+        errors.phone = 'Phone number is required';
+      } else if (!/^\+?[0-9\s-]{10,12}$/.test(formData.phone.trim())) {
+        errors.phone = 'Please enter a valid 10-digit mobile number';
+      }
+    }
+    if (!disabledStandardFields.includes('email')) {
+      if (!formData.email.trim()) {
+        errors.email = 'Email address is required';
+      } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+        errors.email = 'Please enter a valid email address';
+      }
+    }
+    if (!disabledStandardFields.includes('description')) {
+      if (!formData.message.trim()) {
+        errors.message = 'Description is required';
+      }
+    }
+    if (!disabledStandardFields.includes('panCard')) {
+      if (!formData.panCard.trim()) {
+        errors.panCard = 'PAN Card number is required';
+      } else if (!/^[A-Z]{5}[0-9]{4}[A-Z]{1}$/i.test(formData.panCard.trim())) {
+        errors.panCard = 'Please enter a valid PAN Card number (e.g. ABCDE1234F)';
+      }
+    }
+    if (!disabledStandardFields.includes('aadhaarCard')) {
+      if (!formData.aadhaarCard.trim()) {
+        errors.aadhaarCard = 'Aadhaar Card number is required';
+      } else if (!/^\d{12}$/.test(formData.aadhaarCard.trim())) {
+        errors.aadhaarCard = 'Please enter a valid 12-digit Aadhaar Card number';
+      }
     }
 
     // Validate dynamic fields
-    const dynamicFields = service?.details?.formFields || [];
+    const dynamicFields = (service?.details?.formFields || []).filter((f: any) => !f.isStandardFieldsConfig);
     if (Array.isArray(dynamicFields) && dynamicFields.length > 0) {
       dynamicFields.forEach((field: any) => {
         const fieldKey = field.id || field.label;
@@ -184,7 +213,8 @@ const ApplyService = () => {
       
       const formDetailsPayload = {
         companyName: formData.companyName,
-        message: formData.message,
+        panCard: formData.panCard,
+        aadhaarCard: formData.aadhaarCard,
         ...customFormValues
       };
 
@@ -246,61 +276,140 @@ const ApplyService = () => {
                 </div>
 
                 <form onSubmit={handleOpenPayment} className="space-y-6">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div className="space-y-2">
-                      <label className="text-xs font-black uppercase tracking-widest text-dark-gray/80 ml-1">Full Name *</label>
-                      <div className="relative">
-                        <User className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-white/30" />
-                        <input 
-                          type="text" 
-                          placeholder="e.g. Rahul Sharma"
-                          required
-                          className={`w-full pl-12 pr-4 py-4 bg-primary text-white rounded-xl border ${formErrors.name ? 'border-red-500 focus:border-red-500' : 'border-light-gray focus:border-accent'} focus:ring-1 outline-none transition-all font-medium text-sm`}
-                          value={formData.name}
-                          onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                        />
-                      </div>
-                      {formErrors.name && <p className="text-xs text-red-500 font-bold ml-1">{formErrors.name}</p>}
-                    </div>
+                  {(() => {
+                    const configObj = service?.details?.formFields?.find((f: any) => f.isStandardFieldsConfig);
+                    const disabledStandardFields = configObj ? configObj.disabledStandardFields || [] : [];
 
-                    <div className="space-y-2">
-                      <label className="text-xs font-black uppercase tracking-widest text-dark-gray/80 ml-1">Mobile Number *</label>
-                      <div className="relative">
-                        <Smartphone className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-white/30" />
-                        <input 
-                          type="tel" 
-                          placeholder="e.g. 9876543210"
-                          required
-                          className={`w-full pl-12 pr-4 py-4 bg-primary text-white rounded-xl border ${formErrors.phone ? 'border-red-500 focus:border-red-500' : 'border-light-gray focus:border-accent'} focus:ring-1 outline-none transition-all font-medium text-sm`}
-                          value={formData.phone}
-                          onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                        />
-                      </div>
-                      {formErrors.phone && <p className="text-xs text-red-500 font-bold ml-1">{formErrors.phone}</p>}
-                    </div>
-                  </div>
+                    return (
+                      <>
+                        {(!disabledStandardFields.includes('name') || !disabledStandardFields.includes('phone')) && (
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            {!disabledStandardFields.includes('name') && (
+                              <div className="space-y-2">
+                                <label className="text-xs font-black uppercase tracking-widest text-dark-gray/80 ml-1">Full Name *</label>
+                                <div className="relative">
+                                  <User className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-white/30" />
+                                  <input 
+                                    type="text" 
+                                    placeholder="e.g. Rahul Sharma"
+                                    required
+                                    className={`w-full pl-12 pr-4 py-4 bg-primary text-white rounded-xl border ${formErrors.name ? 'border-red-500 focus:border-red-500' : 'border-light-gray focus:border-accent'} focus:ring-1 outline-none transition-all font-medium text-sm`}
+                                    value={formData.name}
+                                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                                  />
+                                </div>
+                                {formErrors.name && <p className="text-xs text-red-500 font-bold ml-1">{formErrors.name}</p>}
+                              </div>
+                            )}
 
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div className="space-y-2">
-                      <label className="text-xs font-black uppercase tracking-widest text-dark-gray/80 ml-1">Email Address *</label>
-                      <div className="relative">
-                        <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-white/30" />
-                        <input 
-                          type="email" 
-                          placeholder="e.g. rahul@company.com"
-                          required
-                          className={`w-full pl-12 pr-4 py-4 bg-primary text-white rounded-xl border ${formErrors.email ? 'border-red-500 focus:border-red-500' : 'border-light-gray focus:border-accent'} focus:ring-1 outline-none transition-all font-medium text-sm`}
-                          value={formData.email}
-                          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                        />
-                      </div>
-                      {formErrors.email && <p className="text-xs text-red-500 font-bold ml-1">{formErrors.email}</p>}
-                    </div>
-                  </div>
- 
-                  {service.details?.formFields && Array.isArray(service.details.formFields) && service.details.formFields.length > 0 ? (
-                    <div className="space-y-5">
-                      {service.details.formFields.map((field: any) => {
+                            {!disabledStandardFields.includes('phone') && (
+                              <div className="space-y-2">
+                                <label className="text-xs font-black uppercase tracking-widest text-dark-gray/80 ml-1">Mobile Number *</label>
+                                <div className="relative">
+                                  <Smartphone className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-white/30" />
+                                  <input 
+                                    type="tel" 
+                                    placeholder="e.g. 9876543210"
+                                    required
+                                    className={`w-full pl-12 pr-4 py-4 bg-primary text-white rounded-xl border ${formErrors.phone ? 'border-red-500 focus:border-red-500' : 'border-light-gray focus:border-accent'} focus:ring-1 outline-none transition-all font-medium text-sm`}
+                                    value={formData.phone}
+                                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                                  />
+                                </div>
+                                {formErrors.phone && <p className="text-xs text-red-500 font-bold ml-1">{formErrors.phone}</p>}
+                              </div>
+                            )}
+                          </div>
+                        )}
+
+                        {(!disabledStandardFields.includes('email') || !disabledStandardFields.includes('companyName')) && (
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            {!disabledStandardFields.includes('email') && (
+                              <div className="space-y-2">
+                                <label className="text-xs font-black uppercase tracking-widest text-dark-gray/80 ml-1">Email Address *</label>
+                                <div className="relative">
+                                  <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-white/30" />
+                                  <input
+                                    type="email" placeholder="e.g. rahul@company.com" required
+                                    className={`w-full pl-12 pr-4 py-4 bg-primary text-white rounded-xl border ${formErrors.email ? 'border-red-500 focus:border-red-500' : 'border-light-gray focus:border-accent'} focus:ring-1 outline-none transition-all font-medium text-sm`}
+                                    value={formData.email}
+                                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                                  />
+                                </div>
+                                {formErrors.email && <p className="text-xs text-red-500 font-bold ml-1">{formErrors.email}</p>}
+                              </div>
+                            )}
+
+                            {!disabledStandardFields.includes('companyName') && (
+                              <div className="space-y-2">
+                                <label className="text-xs font-black uppercase tracking-widest text-dark-gray/80 ml-1">Company / Proposed Name (Optional)</label>
+                                <div className="relative">
+                                  <Building2 className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-white/30" />
+                                  <input
+                                    type="text" placeholder="e.g. Sharma Enterprise"
+                                    className="w-full pl-12 pr-4 py-4 bg-primary text-white rounded-xl border border-light-gray focus:border-accent focus:ring-1 outline-none transition-all font-medium text-sm"
+                                    value={formData.companyName}
+                                    onChange={(e) => setFormData({ ...formData, companyName: e.target.value })}
+                                  />
+                                </div>
+                              </div>
+                            )}
+                          </div>
+                        )}
+
+                        {(!disabledStandardFields.includes('panCard') || !disabledStandardFields.includes('aadhaarCard')) && (
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            {!disabledStandardFields.includes('panCard') && (
+                              <div className="space-y-2">
+                                <label className="text-xs font-black uppercase tracking-widest text-dark-gray/80 ml-1">PAN Card Number *</label>
+                                <div className="relative">
+                                  <FileText className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-white/30" />
+                                  <input
+                                    type="text" placeholder="e.g. ABCDE1234F" required maxLength={10}
+                                    className={`w-full pl-12 pr-4 py-4 bg-primary text-white rounded-xl border ${formErrors.panCard ? 'border-red-500 focus:border-red-500' : 'border-light-gray focus:border-accent'} focus:ring-1 outline-none transition-all font-medium text-sm uppercase`}
+                                    value={formData.panCard}
+                                    onChange={(e) => setFormData({ ...formData, panCard: e.target.value.toUpperCase() })}
+                                  />
+                                </div>
+                                {formErrors.panCard && <p className="text-xs text-red-500 font-bold ml-1">{formErrors.panCard}</p>}
+                              </div>
+                            )}
+
+                            {!disabledStandardFields.includes('aadhaarCard') && (
+                              <div className="space-y-2">
+                                <label className="text-xs font-black uppercase tracking-widest text-dark-gray/80 ml-1">Aadhaar Card Number *</label>
+                                <div className="relative">
+                                  <Fingerprint className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-white/30" />
+                                  <input
+                                    type="text" placeholder="e.g. 123456789012" required maxLength={12}
+                                    className={`w-full pl-12 pr-4 py-4 bg-primary text-white rounded-xl border ${formErrors.aadhaarCard ? 'border-red-500 focus:border-red-500' : 'border-light-gray focus:border-accent'} focus:ring-1 outline-none transition-all font-medium text-sm`}
+                                    value={formData.aadhaarCard}
+                                    onChange={(e) => setFormData({ ...formData, aadhaarCard: e.target.value.replace(/[^0-9]/g, '') })}
+                                  />
+                                </div>
+                                {formErrors.aadhaarCard && <p className="text-xs text-red-500 font-bold ml-1">{formErrors.aadhaarCard}</p>}
+                              </div>
+                            )}
+                          </div>
+                        )}
+
+                        {!disabledStandardFields.includes('description') && (
+                          <div className="space-y-2">
+                            <label className="text-xs font-black uppercase tracking-widest text-dark-gray/80 ml-1">Description / Key Requirements *</label>
+                            <textarea
+                              rows={3} placeholder="Please describe details or requirements for this service application..." required
+                              className={`w-full px-4 py-4 bg-primary text-white rounded-xl border ${formErrors.message ? 'border-red-500 focus:border-red-500' : 'border-light-gray focus:border-accent'} focus:ring-1 outline-none transition-all font-medium text-sm resize-none`}
+                              value={formData.message}
+                              onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                            />
+                            {formErrors.message && <p className="text-xs text-red-500 font-bold ml-1">{formErrors.message}</p>}
+                          </div>
+                        )}
+
+                        {service.details?.formFields && Array.isArray(service.details.formFields) && service.details.formFields.filter((f: any) => !f.isStandardFieldsConfig).length > 0 && (
+                          <div className="space-y-5 pt-5 border-t border-white/5">
+                            <h4 className="text-xs font-black uppercase tracking-wider text-accent">Additional Required Information</h4>
+                            {service.details.formFields.filter((f: any) => !f.isStandardFieldsConfig).map((field: any) => {
                         const fieldKey = field.id || field.label;
                         return (
                           <div key={fieldKey} className="space-y-2">
@@ -310,10 +419,10 @@ const ApplyService = () => {
                             
                             {field.type === 'textarea' ? (
                               <textarea
-                                rows={4}
+                                rows={3}
                                 required={field.required}
                                 placeholder={`Enter ${field.label}...`}
-                                className={`w-full px-4 py-4 bg-primary text-white rounded-xl border ${formErrors[fieldKey] ? 'border-red-500 focus:border-red-500' : 'border-light-gray focus:border-accent'} focus:ring-1 outline-none transition-all font-medium text-sm`}
+                                className={`w-full px-4 py-4 bg-primary text-white rounded-xl border ${formErrors[fieldKey] ? 'border-red-500 focus:border-red-500' : 'border-light-gray focus:border-accent'} focus:ring-1 outline-none transition-all font-medium text-sm resize-none`}
                                 value={customFormValues[fieldKey] || ''}
                                 onChange={(e) => setCustomFormValues({ ...customFormValues, [fieldKey]: e.target.value })}
                               />
@@ -349,8 +458,8 @@ const ApplyService = () => {
                                         <Upload className="w-5 h-5 text-white/30 group-hover:text-accent transition-colors" />
                                         <span className="text-xs text-white/40 group-hover:text-white/60 transition-colors">Select certificate/document file</span>
                                       </div>
-                                      <input 
-                                        type="file" 
+                                      <input
+                                        type="file"
                                         required={field.required}
                                         className="absolute inset-0 opacity-0 cursor-pointer"
                                         onChange={(e) => handleFileUpload(fieldKey, e)}
@@ -363,7 +472,6 @@ const ApplyService = () => {
                                 )}
                               </div>
                             ) : (
-                              // default to input (text, number, email, tel, etc.)
                               <input
                                 type={field.type}
                                 required={field.required}
@@ -380,33 +488,11 @@ const ApplyService = () => {
                         );
                       })}
                     </div>
-                  ) : (
-                    <>
-                      <div className="space-y-2">
-                        <label className="text-xs font-black uppercase tracking-widest text-dark-gray/80 ml-1">Company / Proposed Name</label>
-                        <div className="relative">
-                          <Building2 className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-white/30" />
-                          <input 
-                            type="text" 
-                            placeholder="e.g. Sharma Enterprise (Optional)"
-                            className="w-full pl-12 pr-4 py-4 bg-primary text-white rounded-xl border border-light-gray focus:border-accent focus:ring-1 outline-none transition-all font-medium text-sm"
-                            value={formData.companyName}
-                            onChange={(e) => setFormData({ ...formData, companyName: e.target.value })}
-                          />
-                        </div>
-                      </div>
-                      <div className="space-y-2 mt-4">
-                        <label className="text-xs font-black uppercase tracking-widest text-dark-gray/80 ml-1">Message / Key Requirements</label>
-                        <textarea 
-                          rows={4}
-                          placeholder="Share any specific requests, operational targets, or timelines..."
-                          className="w-full px-4 py-4 bg-primary text-white rounded-xl border border-light-gray focus:border-accent focus:ring-1 outline-none transition-all font-medium text-sm"
-                          value={formData.message}
-                          onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                        ></textarea>
-                      </div>
-                    </>
                   )}
+
+                      </>
+                    );
+                  })()}
 
                   <button 
                     type="submit" 

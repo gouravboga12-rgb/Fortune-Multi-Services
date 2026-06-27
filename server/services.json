@@ -208,6 +208,15 @@
             "sole proprietorship bank account opening",
             "proprietorship firm income tax return",
             "can proprietorship be converted to company"
+          ],
+          "formFields": [
+            {
+              "isStandardFieldsConfig": true,
+              "disabledStandardFields": [
+                "panCard",
+                "aadhaarCard"
+              ]
+            }
           ]
         }
       },

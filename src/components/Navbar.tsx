@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, ChevronDown, User, Search, PhoneCall, Sun, Moon, ShoppingCart } from 'lucide-react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Menu, X, ChevronDown, User, Search, PhoneCall, Sun, Moon, ShoppingCart, LogOut, LayoutDashboard } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
@@ -211,14 +211,38 @@ export const navLinks: NavLink[] = [
 
 const Navbar = () => {
   const { cartCount } = useCart();
+  const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [mobileDropdown, setMobileDropdown] = useState<string | null>(null);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
+  const [showUserMenu, setShowUserMenu] = useState(false);
+  const [loggedInUser, setLoggedInUser] = useState<string | null>(null);
+  const [showLogoutModal, setShowLogoutModal] = useState(false);
   const location = useLocation();
   const dropdownTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  // Detect logged-in user from sessionStorage
+  useEffect(() => {
+    const token = sessionStorage.getItem('userToken');
+    const email = sessionStorage.getItem('userEmail');
+    setLoggedInUser(token && email ? email : null);
+  }, [location]);
+
+  const handleLogout = () => {
+    setShowUserMenu(false);
+    setShowLogoutModal(true);
+  };
+
+  const confirmLogout = () => {
+    sessionStorage.removeItem('userToken');
+    sessionStorage.removeItem('userEmail');
+    setLoggedInUser(null);
+    setShowLogoutModal(false);
+    navigate('/');
+  };
 
   const [theme, setTheme] = useState<'light' | 'dark'>(() => {
     if (typeof window !== 'undefined') {
@@ -350,6 +374,7 @@ const Navbar = () => {
       ).slice(0, 8);
 
   return (
+    <>
     <nav
       className={cn(
         'fixed top-0 w-full z-50 transition-all duration-500',
@@ -515,18 +540,56 @@ const Navbar = () => {
           {/* Divider */}
           <div className="w-px h-6 3xl:h-9 4xl:h-10 bg-white/15 mx-0.5 shrink-0" />
  
-          {/* Login / Signup */}
-          <Link
-            to="/login"
-            className="flex items-center group shrink-0"
-          >
-            <div className="flex items-center gap-1 3xl:gap-1.5 bg-white/5 border border-accent/25 hover:bg-accent hover:border-accent px-2 xl:px-2 3xl:px-4 4xl:px-5 py-1.5 xl:py-2 3xl:py-3 4xl:py-3.5 rounded-lg 3xl:rounded-xl transition-all duration-300">
-              <User className="w-3 h-3 xl:w-3.5 xl:h-3.5 3xl:w-5 3xl:h-5 4xl:w-6 4xl:h-6 text-accent group-hover:text-white transition-colors" />
-              <span className="text-[8px] xl:text-[8.5px] 2xl:text-[9.5px] 3xl:text-[13px] 4xl:text-[15px] font-bold text-accent group-hover:text-white transition-colors uppercase tracking-wide whitespace-nowrap">
-                Login
-              </span>
+          {/* Login / User Account */}
+          {loggedInUser ? (
+            <div className="relative shrink-0">
+              <button
+                onClick={() => setShowUserMenu(!showUserMenu)}
+                className="flex items-center gap-1 3xl:gap-1.5 bg-accent/10 border border-accent/40 hover:bg-accent hover:border-accent px-2 xl:px-2 3xl:px-4 4xl:px-5 py-1.5 xl:py-2 3xl:py-3 4xl:py-3.5 rounded-lg 3xl:rounded-xl transition-all duration-300 group"
+              >
+                <User className="w-3 h-3 xl:w-3.5 xl:h-3.5 3xl:w-5 3xl:h-5 text-accent group-hover:text-white transition-colors" />
+                <span className="text-[8px] xl:text-[8.5px] 2xl:text-[9.5px] 3xl:text-[13px] font-bold text-accent group-hover:text-white transition-colors uppercase tracking-wide whitespace-nowrap max-w-[80px] 2xl:max-w-[100px] truncate">
+                  {loggedInUser.split('@')[0]}
+                </span>
+                <ChevronDown className={`w-2.5 h-2.5 text-accent group-hover:text-white transition-all ${showUserMenu ? 'rotate-180' : ''}`} />
+              </button>
+              {showUserMenu && (
+                <div className="absolute right-0 top-full mt-2 w-52 bg-white border border-gray-200 rounded-xl shadow-2xl overflow-hidden z-[999]" style={{boxShadow: '0 8px 32px rgba(0,0,0,0.18)'}}>
+                  <div className="px-4 py-3 border-b border-gray-100 bg-gray-50">
+                    <p className="text-[10px] font-black text-gray-400 uppercase tracking-wider">Signed in as</p>
+                    <p className="text-xs font-bold text-gray-800 truncate mt-0.5">{loggedInUser}</p>
+                  </div>
+                  <Link
+                    to="/dashboard"
+                    onClick={() => setShowUserMenu(false)}
+                    className="flex items-center gap-2.5 px-4 py-3 text-xs font-bold text-gray-700 hover:text-cyan-600 hover:bg-cyan-50 transition-all duration-200"
+                  >
+                    <LayoutDashboard className="w-3.5 h-3.5 shrink-0" />
+                    My Dashboard
+                  </Link>
+                  <button
+                    onClick={handleLogout}
+                    className="w-full flex items-center gap-2.5 px-4 py-3 text-xs font-bold text-rose-500 hover:bg-rose-50 transition-all duration-200 border-t border-gray-100"
+                  >
+                    <LogOut className="w-3.5 h-3.5 shrink-0" />
+                    Logout
+                  </button>
+                </div>
+              )}
             </div>
-          </Link>
+          ) : (
+            <Link
+              to="/login"
+              className="flex items-center group shrink-0"
+            >
+              <div className="flex items-center gap-1 3xl:gap-1.5 bg-white/5 border border-accent/25 hover:bg-accent hover:border-accent px-2 xl:px-2 3xl:px-4 4xl:px-5 py-1.5 xl:py-2 3xl:py-3 4xl:py-3.5 rounded-lg 3xl:rounded-xl transition-all duration-300">
+                <User className="w-3 h-3 xl:w-3.5 xl:h-3.5 3xl:w-5 3xl:h-5 4xl:w-6 4xl:h-6 text-accent group-hover:text-white transition-colors" />
+                <span className="text-[8px] xl:text-[8.5px] 2xl:text-[9.5px] 3xl:text-[13px] 4xl:text-[15px] font-bold text-accent group-hover:text-white transition-colors uppercase tracking-wide whitespace-nowrap">
+                  Login
+                </span>
+              </div>
+            </Link>
+          )}
         </div>
 
         {/* Mobile Actions */}
@@ -775,6 +838,57 @@ const Navbar = () => {
         )}
       </AnimatePresence>
     </nav>
+
+    {/* Logout Confirmation Modal — rendered outside nav to cover full viewport */}
+    <AnimatePresence>
+      {showLogoutModal && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          className="fixed inset-0 z-[99999] flex items-center justify-center p-4"
+          style={{ backdropFilter: 'blur(8px)', backgroundColor: 'rgba(0,0,0,0.65)' }}
+        >
+          <motion.div
+            initial={{ opacity: 0, scale: 0.85, y: 24 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.85, y: 24 }}
+            transition={{ type: 'spring', stiffness: 300, damping: 25 }}
+            className="bg-white rounded-3xl shadow-2xl p-8 w-full max-w-sm text-center relative overflow-hidden"
+          >
+            {/* Red accent top bar */}
+            <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-red-400 via-rose-500 to-red-400 rounded-t-3xl" />
+
+            {/* Icon */}
+            <div className="w-16 h-16 rounded-2xl bg-red-50 border border-red-100 flex items-center justify-center mx-auto mb-5 mt-2">
+              <LogOut className="w-7 h-7 text-red-500" />
+            </div>
+
+            <h2 className="text-xl font-black text-gray-800 mb-2">Confirm Logout</h2>
+            <p className="text-sm text-gray-500 font-medium mb-8 leading-relaxed">
+              Are you sure you want to logout? Your current session will be ended.
+            </p>
+
+            <div className="flex items-center gap-3">
+              <button
+                onClick={() => setShowLogoutModal(false)}
+                className="flex-1 px-5 py-3.5 rounded-2xl border-2 border-gray-200 text-sm font-black text-gray-600 hover:border-gray-300 hover:bg-gray-50 transition-all duration-200"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={confirmLogout}
+                className="flex-1 px-5 py-3.5 rounded-2xl bg-red-500 hover:bg-red-600 text-sm font-black text-white transition-all duration-200 shadow-lg shadow-red-500/30 flex items-center justify-center gap-2"
+              >
+                <LogOut className="w-4 h-4" />
+                Yes, Logout
+              </button>
+            </div>
+          </motion.div>
+        </motion.div>
+      )}
+    </AnimatePresence>
+    </>
   );
 };
 

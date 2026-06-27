@@ -123,6 +123,20 @@ async function createTables() {
       console.error('Error creating database table:', e.message);
     }
   }
+
+  // Ensure users table updates (password & name columns)
+  if (useMySQL) {
+    try {
+      await pool.query('ALTER TABLE users ADD COLUMN password VARCHAR(255) DEFAULT NULL');
+    } catch (e) {
+      // Column might already exist
+    }
+    try {
+      await pool.query('ALTER TABLE users ADD COLUMN name VARCHAR(255) DEFAULT NULL');
+    } catch (e) {
+      // Column might already exist
+    }
+  }
 }
 
 // JSON file fallback paths
@@ -484,6 +498,76 @@ const db = {
     }
   },
 
+  getUserByEmail: async (email) => {
+    if (!email) return null;
+    const cleanEmail = email.toLowerCase().trim();
+    if (useMySQL) {
+      try {
+        const [rows] = await pool.query('SELECT * FROM users WHERE email = ?', [cleanEmail]);
+        if (rows.length > 0) return rows[0];
+      } catch (e) {
+        console.error('MySQL getUserByEmail error:', e);
+      }
+    }
+    const jsonUsers = readJSON(USERS_FILE, []);
+    return jsonUsers.find(u => u.email === cleanEmail) || null;
+  },
+
+  createUser: async (email, passwordHash, name) => {
+    if (!email) return null;
+    const cleanEmail = email.toLowerCase().trim();
+    const newUser = {
+      email: cleanEmail,
+      password: passwordHash,
+      name: name || '',
+      status: 'active',
+      created_at: new Date().toISOString()
+    };
+
+    // JSON Sync
+    const jsonUsers = readJSON(USERS_FILE, []);
+    if (!jsonUsers.some(u => u.email === cleanEmail)) {
+      jsonUsers.push(newUser);
+      writeJSON(USERS_FILE, jsonUsers);
+    }
+
+    if (useMySQL) {
+      try {
+        await pool.query(
+          'INSERT INTO users (email, password, name, status) VALUES (?, ?, ?, ?) ON DUPLICATE KEY UPDATE password = ?, name = ?',
+          [cleanEmail, passwordHash, name || '', 'active', passwordHash, name || '']
+        );
+      } catch (e) {
+        console.error('MySQL createUser error:', e);
+      }
+    }
+    return newUser;
+  },
+
+  updateUserPassword: async (email, passwordHash) => {
+    if (!email) return false;
+    const cleanEmail = email.toLowerCase().trim();
+
+    // JSON Sync
+    const jsonUsers = readJSON(USERS_FILE, []);
+    const idx = jsonUsers.findIndex(u => u.email === cleanEmail);
+    if (idx !== -1) {
+      jsonUsers[idx].password = passwordHash;
+      writeJSON(USERS_FILE, jsonUsers);
+    }
+
+    if (useMySQL) {
+      try {
+        await pool.query('UPDATE users SET password = ? WHERE email = ?', [passwordHash, cleanEmail]);
+        return true;
+      } catch (e) {
+        console.error('MySQL updateUserPassword error:', e);
+        return false;
+      }
+    }
+    return true;
+  },
+
   updateUserStatus: async (email, status) => {
     const cleanEmail = email.toLowerCase().trim();
     // Sync JSON backup
@@ -534,6 +618,29 @@ const db = {
     } else {
       return readJSON(SETTINGS_FILE, defaultSettings);
     }
+  },
+
+  deleteUser: async (email) => {
+    if (!email) return false;
+    const cleanEmail = email.toLowerCase().trim();
+
+    // Remove from JSON file
+    const jsonUsers = readJSON(USERS_FILE, []);
+    const filtered = jsonUsers.filter(u => u.email !== cleanEmail);
+    if (filtered.length === jsonUsers.length) return false; // user not found
+    writeJSON(USERS_FILE, filtered);
+
+    // Remove from MySQL if connected
+    if (useMySQL) {
+      try {
+        await pool.query('DELETE FROM users WHERE email = ?', [cleanEmail]);
+        return true;
+      } catch (e) {
+        console.error('MySQL deleteUser error:', e);
+        return false;
+      }
+    }
+    return true;
   },
 
   saveSettings: async (settingsData) => {

@@ -25,11 +25,11 @@ import { CartProvider } from './context/CartContext';
 
 function AppContent() {
   const location = useLocation();
-  const isAdminOrLogin = location.pathname.startsWith('/admin') || location.pathname === '/login';
+  const isAdmin = location.pathname.startsWith('/admin');
 
   return (
     <div className="flex flex-col min-h-screen w-full overflow-x-clip">
-      {!isAdminOrLogin && <Navbar />}
+      {!isAdmin && <Navbar />}
       <main className="flex-grow">
         <Routes>
           <Route path="/" element={<Home />} />
@@ -45,8 +45,8 @@ function AppContent() {
           <Route path="/dashboard" element={<UserDashboard />} />
         </Routes>
       </main>
-      {!isAdminOrLogin && <Footer />}
-      {!isAdminOrLogin && <FloatingWhatsApp />}
+      {!isAdmin && <Footer />}
+      {!isAdmin && <FloatingWhatsApp />}
     </div>
   );
 }
